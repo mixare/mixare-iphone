@@ -1,10 +1,21 @@
-//
-//  MixareAppDelegate.m
-//  Mixare
-//
-//  Created by jakob on 05.10.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ * 
+ * This file is part of mixare.
+ * 
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 #import "MixareAppDelegate.h"
 
@@ -19,10 +30,10 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    //[window addSubview:tabBarController.view];
+	//[window addSubview:tabBarController.view];
+	self.tabBarController.tabBar.hidden = YES;
 	[self initCameraView];
 	[window addSubview:imgPicker.view];
-	//[window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
     return YES;
 }
@@ -34,9 +45,9 @@
     imgPicker.showsCameraControls = NO;
     /* move the controller, to make the 
      statusbar visible */
-    CGRect frame = imgPicker.view.frame;
+    //CGRect frame = imgPicker.view.frame;
     //frame.origin.y += 30;
-    frame.size.height= 480.0;
+    //frame.size.height= 480.0;
     //imgPicker.view.frame = frame;
 	
 	//adding close butten to View
@@ -52,10 +63,9 @@
 
 -(void)buttonClick:(id)sender{
 	NSLog(@"Close button pressed");
-	[imgPicker dismissModalViewControllerAnimated:YES];
-	imgPicker.view.hidden = YES;
-	
-	//[imgPicker.view removeFromSuperview];
+	//imgPicker.view.hidden = YES;
+	//tabBarController.tabBar.hidden = NO;
+	[imgPicker.view removeFromSuperview];
 	[window  addSubview:tabBarController.view];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

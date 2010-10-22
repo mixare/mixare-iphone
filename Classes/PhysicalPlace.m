@@ -1,21 +1,32 @@
-//
-//  PhysicalPlace.m
-//  Mixare
-//
-//  Created by jakob on 21.10.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ * 
+ * This file is part of mixare.
+ * 
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 #import "PhysicalPlace.h"
 
 
 @implementation PhysicalPlace
 @synthesize coordinate;
-@synthesize lat,lon,altitude;
-@synthesize subTitle, title;
+@synthesize lat=_lat,lon=_lon,altitude= _altitude;
+@synthesize subTitle= _subTitle, title= _title;
 
 #pragma mark methods for class PhysicalPlace
--(PhysicalPlace*)intWithLatitude: (NSString*) latitude longitude: (NSString*) longitude altitude: (NSString*) alt title: (NSString*) title subTitle: (NSString*) subTitle{
+-(PhysicalPlace*)intWithLatitude: (CGFloat) latitude longitude: (CGFloat) longitude altitude: (CGFloat) alt title: (NSString*) title subTitle: (NSString*) subTitle{
 	PhysicalPlace * place = [[[PhysicalPlace alloc]init]autorelease];
 	place.lat = latitude;
 	place.lon = longitude;
@@ -31,38 +42,47 @@
 	self.altitude = place.altitude;
 }
 
+CGFloat degreesToRadians(CGFloat degrees){
+	return degrees * M_PI / 180;
+};
+
+CGFloat radiansToDegrees(CGFloat radians){
+	return radians * 180 / M_PI;
+};
+
++(void)calcDestinationWithLat1: (CGFloat) lat1Deg lon1: (CGFloat) lon1Deg bear: (CGFloat) bear destination: (CGFloat) d place: (PhysicalPlace*) pl{
+	CGFloat brng = degreesToRadians(bear) ;
+	CGFloat lat1 = degreesToRadians(lat1Deg);
+	CGFloat lon1 = degreesToRadians(lon1Deg);
+	CGFloat R =  6371.0 * 1000.0; 
+	CGFloat lat2 = asinf((sinf(lat1)* cosf(d/R)) + (cosf(lat1)* sinf(d/R) * cosf(brng)));
+	CGFloat lon2 = lon1 + atan2f(sinf(brng) * sinf(d/R) * cosf(lat1) , cosf(d/R) - sinf(lat1)*sinf(lat2));
+	[pl setLat:radiansToDegrees(lat2)];
+	[pl setLon:radiansToDegrees(lon2)];
+}
+
 /*
-public static void calcDestination(double lat1Deg, double lon1Deg,
-								   double bear, double d, PhysicalPlace dest) {
-	/** see http://en.wikipedia.org/wiki/Great-circle_distance */
+public static void convLocToVec(Location org, PhysicalPlace gp,
+								MixVector v) {
+	float[] z = new float[1];
+	z[0] = 0;
+	Location.distanceBetween(org.getLatitude(), org.getLongitude(), gp
+							 .getLatitude(), org.getLongitude(), z);
+	float[] x = new float[1];
+	Location.distanceBetween(org.getLatitude(), org.getLongitude(), org
+							 .getLatitude(), gp.getLongitude(), x);
+	double y = gp.getAltitude() - org.getAltitude();
+	if (org.getLatitude() < gp.getLatitude())
+		z[0] *= -1;
+	if (org.getLongitude() > gp.getLongitude())
+		x[0] *= -1;
 	
-/*	double brng = Math.toRadians(bear);
-	double lat1 = Math.toRadians(lat1Deg);
-	double lon1 = Math.toRadians(lon1Deg);
-	double R = 6371.0 * 1000.0; 
-	
-	double lat2 = Math.asin(Math.sin(lat1) * Math.cos(d / R)
-							+ Math.cos(lat1) * Math.sin(d / R) * Math.cos(brng));
-	double lon2 = lon1
-	+ Math.atan2(Math.sin(brng) * Math.sin(d / R) * Math.cos(lat1),
-				 Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2));
-	
-	dest.setLatitude(Math.toDegrees(lat2));
-	dest.setLongitude(Math.toDegrees(lon2));
-}*/
-
-+(void)calcDestinationWithLat1: (float) lat1Deg lon1: (float) lon1Deg bear: (float) bear destination: (float) d place: (PhysicalPlace*) pl{
-	//float brng = degreesToRadiants(bear);
+	v.set(x[0], (float) y, z[0]);
 }
+*/	 
 
-+ (float)degreesToRadians:(float)degrees{
-	return degrees / 57.2958;
-}
 
 -(void)dealloc {
-    [self.lat release];
-	[self.lon release];
-	[self.altitude release];
 	[self.title release];
 	[self.subTitle release];
     [super dealloc];
@@ -72,9 +92,9 @@ public static void calcDestination(double lat1Deg, double lon1Deg,
 #pragma mark MKAnnotation protocol
 - (CLLocationCoordinate2D)coordinate;{
     CLLocationCoordinate2D position;
-	if (lat != nil && lon != nil) {
-		position.latitude = [lat floatValue];
-		position.longitude = [lon floatValue];
+	if (_lat != 0.0 && _lon != 0.0) {
+		position.latitude = _lat;
+		position.longitude = _lon;
 	}else {
 		position.latitude=0.0;
 		position.longitude=0.0;
@@ -84,10 +104,10 @@ public static void calcDestination(double lat1Deg, double lon1Deg,
 }
 
 -(NSString*)title{
-	return title;
+	return _title;
 }
 -(NSString*)subTitle{
-	return subTitle;
+	return _subTitle;
 }
 @end
 

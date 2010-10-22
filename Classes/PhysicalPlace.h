@@ -1,30 +1,40 @@
-//
-//  PhysicalPlace.h
-//  Mixare
-//
-//  Created by jakob on 21.10.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ * 
+ * This file is part of mixare.
+ * 
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
-//#import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
 @interface PhysicalPlace : NSObject <MKAnnotation> {
-	NSString *  lat;
-	NSString *  lon;
-	NSString *  altitude;
-	NSString * title;
-	NSString * subTitle;
+	CGFloat _lat;
+	CGFloat _lon;
+	CGFloat _altitude;
+	NSString * _title;
+	NSString * _subTitle;
 }
-@property (nonatomic,retain) NSString *  lat; 
-@property (nonatomic,retain) NSString *  lon;
-@property (nonatomic,retain) NSString * altitude; 
+@property (nonatomic) CGFloat lat; 
+@property (nonatomic) CGFloat lon;
+@property (nonatomic) CGFloat altitude; 
 @property (nonatomic,retain) NSString * title;
 @property (nonatomic,retain) NSString * subTitle;
 
-+(void)calcDestinationWithLat1: (float) lat1Deg lon1: (float) lon1Deg bear: (float) bear destination: (float) d place: (PhysicalPlace*) pl;
-+ (float)degreesToRadians:(float)degrees;
++(void)calcDestinationWithLat1: (CGFloat) lat1Deg lon1: (CGFloat) lon1Deg bear: (CGFloat) bear destination: (CGFloat) d place: (PhysicalPlace*) pl;
++ (CGFloat)degreesToRadians:(CGFloat)degrees;
 
 
 @end
