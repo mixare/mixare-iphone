@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>logo.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.mixare.mixare</string>
+	<string>org.mixare.mixare${:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

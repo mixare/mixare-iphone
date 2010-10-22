@@ -34,7 +34,7 @@
 -(void) toYRotWithAngle: (float) angleY;
 -(void) toZRotWithAngle: (float) angleZ;
 -(void) toScale: (float) scale;
-//-(void) toAtWithCam: (MixVector*) cam object:(MixVector*) obj;
+-(void) toAtWithCam: (MixVector*) cam object:(MixVector*) obj;
 -(void) adj;
 -(float) det2x2WithA: (float) a b: (float) b c: (float) c d: (float) d;
 -(float) det;

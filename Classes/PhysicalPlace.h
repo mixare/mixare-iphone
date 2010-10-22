@@ -34,7 +34,5 @@
 @property (nonatomic,retain) NSString * subTitle;
 
 +(void)calcDestinationWithLat1: (CGFloat) lat1Deg lon1: (CGFloat) lon1Deg bear: (CGFloat) bear destination: (CGFloat) d place: (PhysicalPlace*) pl;
-+ (CGFloat)degreesToRadians:(CGFloat)degrees;
-
 
 @end

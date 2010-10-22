@@ -47,6 +47,9 @@
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">2</int>
+				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIResizesToFullScreen">YES</bool>
 			</object>
@@ -59,37 +62,29 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUIViewController" key="IBUISelectedViewController" id="268481961">
-					<object class="IBUITableView" key="IBUIView" id="618205031">
+				<object class="IBUIViewController" key="IBUISelectedViewController" id="14330704">
+					<object class="IBMKMapView" key="IBUIView" id="196090754">
 						<reference key="NSNextResponder"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 20}, {320, 411}}</string>
 						<reference key="NSSuperview"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="795333663"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIAlwaysBounceVertical">YES</bool>
-						<int key="IBUISeparatorStyle">1</int>
-						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
-						<float key="IBUIRowHeight">44</float>
-						<float key="IBUISectionHeaderHeight">22</float>
-						<float key="IBUISectionFooterHeight">22</float>
+						<int key="IBMKMapType">1</int>
+						<bool key="IBMKShowsUserLocation">YES</bool>
 					</object>
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="807309489">
-						<string key="IBUITitle">Sources</string>
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="718448714">
+						<string key="IBUITitle">Map</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon_datasource.png</string>
+							<string key="NSResourceName">103-map.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUITabBar" ref="795333663"/>
 					</object>
+					<array key="IBUIToolbarItems" id="0"/>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 						<int key="IBUIInterfaceOrientation">1</int>
@@ -104,7 +99,6 @@
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{0, 20}, {320, 411}}</string>
-							<reference key="NSNextKeyView" ref="795333663"/>
 							<object class="NSColor" key="IBUIBackgroundColor">
 								<int key="NSColorSpace">3</int>
 								<bytes key="NSWhite">MQA</bytes>
@@ -131,26 +125,35 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
-					<reference ref="268481961"/>
-					<object class="IBUIViewController" id="14330704">
-						<object class="IBMKMapView" key="IBUIView" id="196090754">
+					<object class="IBUIViewController" id="268481961">
+						<object class="IBUITableView" key="IBUIView" id="618205031">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{0, 20}, {320, 411}}</string>
+							<reference key="NSNextKeyView" ref="795333663"/>
+							<object class="NSColor" key="IBUIBackgroundColor">
+								<int key="NSColorSpace">3</int>
+								<bytes key="NSWhite">MQA</bytes>
+							</object>
 							<bool key="IBUIClipsSubviews">YES</bool>
-							<bool key="IBUIMultipleTouchEnabled">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							<bool key="IBUIAlwaysBounceVertical">YES</bool>
+							<int key="IBUISeparatorStyle">1</int>
+							<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
+							<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
+							<float key="IBUIRowHeight">44</float>
+							<float key="IBUISectionHeaderHeight">22</float>
+							<float key="IBUISectionFooterHeight">22</float>
 						</object>
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="718448714">
-							<string key="IBUITitle">Map</string>
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="807309489">
+							<string key="IBUITitle">Sources</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">103-map.png</string>
+								<string key="NSResourceName">icon_datasource.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar" ref="795333663"/>
 						</object>
-						<array key="IBUIToolbarItems" id="0"/>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 							<int key="IBUIInterfaceOrientation">1</int>
@@ -159,6 +162,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
 					</object>
+					<reference ref="14330704"/>
 				</array>
 				<object class="IBUITabBar" key="IBUITabBar" id="795333663">
 					<reference key="NSNextResponder"/>
@@ -166,7 +170,6 @@
 					<string key="NSFrame">{{0, 431}, {320, 49}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MCAwAA</bytes>
@@ -178,7 +181,7 @@
 						<reference ref="807309489"/>
 						<reference ref="718448714"/>
 					</array>
-					<reference key="IBUISelectedItem" ref="807309489"/>
+					<reference key="IBUISelectedItem" ref="718448714"/>
 				</object>
 			</object>
 		</array>
@@ -347,7 +350,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">130</int>
+			<int key="maxID">134</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
