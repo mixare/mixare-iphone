@@ -18,7 +18,6 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "Matrix.h"
 
 @interface MixVector : NSObject {
 	float _x;
@@ -32,15 +31,12 @@
 -(void) addVector: (MixVector*) vector;
 -(void) subX: (float) x y:(float) y z: (float) z;
 -(void) subVector: (MixVector*) vector;
--(void) multVecotr: (MixVector*) vector;
 -(void) multWithScalar: (float) s;
 -(void) divideVectorWithScale: (float) s ;
--(void) length;
+-(float) length;
 -(void) norm;
 -(void) crossWithVectorA: (MixVector*) u VectorB: (MixVector*) v;
 -(void) setVector: (MixVector*) vector;
-//-(void) prodWithMat: (Matrix*) m;
+-(void) prodWithVec1: (MixVector*) v1 vec2: (MixVector*) v2 vec3: (MixVector*) v3;
 
 @end
-
-
