@@ -22,8 +22,8 @@
 
 @interface CameraViewController : UIViewController {
     UIImagePickerController *imgPicker;
-    UIView * cameraView;
+	UIButton * closeButton;
 }
+-(void)initCameraView;
 @property (nonatomic,retain) UIImagePickerController *imgPicker;
-@property (nonatomic,retain) IBOutlet UIView * cameraView;
 @end

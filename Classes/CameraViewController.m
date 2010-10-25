@@ -18,11 +18,10 @@
  */
 
 #import "CameraViewController.h"
-
+#define CAMERA_TRANSFORM 1.12412
 
 @implementation CameraViewController
 @synthesize imgPicker;
-@synthesize cameraView;
 
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
@@ -43,16 +42,49 @@
 -(void)viewWillAppear{
 	NSLog(@"in view");
     /* generate the controller */
-    imgPicker = [[[UIImagePickerController alloc] init]
-           autorelease];
+   
+}
+
+-(void)initCameraView{
+	imgPicker = [[[UIImagePickerController alloc] init]
+				 autorelease];
     imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;  
     imgPicker.showsCameraControls = NO;
-	[cameraView addSubview:imgPicker.view];
-    
+	imgPicker.tabBarController.tabBar.hidden = YES;
+    /* move the controller, to make the 
+     statusbar visible */
+	//imgPicker.view.bounds.size.height = 480.0;
+    CGRect frame = imgPicker.view.frame;
+    frame.origin.y += 30;
+    NSLog(@"size of the frame %f", frame.origin.x) ;   
+	imgPicker.view.frame = frame;
+	imgPicker.wantsFullScreenLayout = YES;
+	imgPicker.cameraViewTransform = CGAffineTransformScale(imgPicker.cameraViewTransform, CAMERA_TRANSFORM, CAMERA_TRANSFORM);
+	//adding close butten to View
+	closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	closeButton.frame = CGRectMake(270, 0, 50, 25);
+	closeButton.backgroundColor = [UIColor clearColor];
+	[closeButton setTitle:@"Menu" forState:UIControlStateNormal];
+	[closeButton setAlpha:0.7];
+	[closeButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventTouchUpInside];
+	//closeButton.center = self.center;
+	[imgPicker.view addSubview:closeButton];
 }
+
+-(void)buttonClick:(id)sender{
+	NSLog(@"Close button pressed");
+	//imgPicker.view.hidden = YES;
+	//tabBarController.tabBar.hidden = NO;
+	//[imgPicker.view removeFromSuperview];
+	//[window  addSubview:tabBarController.view];
+}
+
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    
+	//[self initCameraView];
+	//[self.view addSubview:imgPicker.view];
+	
 }
 
 

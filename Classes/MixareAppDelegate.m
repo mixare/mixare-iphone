@@ -18,38 +18,50 @@
  */
 
 #import "MixareAppDelegate.h"
-
+#define CAMERA_TRANSFORM 1.12412
+#import "Circle.h"
 
 @implementation MixareAppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
-
+@synthesize locManager = _locManager;
+@synthesize camController = _cameraCOntroller;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	//[window addSubview:tabBarController.view];
-	self.tabBarController.tabBar.hidden = YES;
+
+	CameraViewController * cController = [[[CameraViewController alloc]initWithNibName:nil bundle:nil]autorelease];
+	self.camController = cController;
+
 	[self initCameraView];
 	[window addSubview:imgPicker.view];
-    [window makeKeyAndVisible];
+	
+	if (tabBarController.selectedIndex == 0){
+		[self initCameraView];
+	}
+	[self initLocationManager];
+	
     return YES;
 }
 
+
 -(void)initCameraView{
-	imgPicker = [[[UIImagePickerController alloc] init]
-				 autorelease];
+	imgPicker = [[UIImagePickerController alloc] init];
     imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;  
     imgPicker.showsCameraControls = NO;
+	imgPicker.tabBarController.tabBar.hidden = YES;
     /* move the controller, to make the 
      statusbar visible */
-    //CGRect frame = imgPicker.view.frame;
-    //frame.origin.y += 30;
-    //frame.size.height= 480.0;
-    //imgPicker.view.frame = frame;
-	
+	//imgPicker.view.bounds.size.height = 480.0;
+    CGRect frame = imgPicker.view.frame;
+    frame.origin.y += 30;
+    NSLog(@"size of the frame %f", frame.origin.x) ;   
+	imgPicker.view.frame = frame;
+	imgPicker.wantsFullScreenLayout = YES;
+	imgPicker.cameraViewTransform = CGAffineTransformScale(imgPicker.cameraViewTransform, CAMERA_TRANSFORM, CAMERA_TRANSFORM);
 	//adding close butten to View
 	closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	closeButton.frame = CGRectMake(270, 0, 50, 25);
@@ -61,11 +73,38 @@
 	[imgPicker.view addSubview:closeButton];
 }
 
+-(void)initLocationManager{
+	Circle *view = [[Circle alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
+	[window addSubview:view];
+	[view release];
+	
+	[window makeKeyAndVisible];
+    [window makeKeyAndVisible];
+	
+	CLLocationManager *theManager =  [[[CLLocationManager alloc] init]autorelease];
+	self.locManager = theManager;
+	self.locManager.delegate = self;
+	self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+	if( self.locManager.locationServicesEnabled && self.locManager.headingAvailable) {
+		//[locManager startUpdatingLocation];
+		self.locManager.headingOrientation;
+		self.locManager.headingFilter = 5;
+		[self.locManager startUpdatingHeading];
+		
+		NSLog(@"heading: %f",self.locManager.heading.trueHeading);
+	} else {
+		
+		NSLog(@"Can't report heading");
+		
+	}
+}
 -(void)buttonClick:(id)sender{
 	NSLog(@"Close button pressed");
 	//imgPicker.view.hidden = YES;
 	//tabBarController.tabBar.hidden = NO;
 	[imgPicker.view removeFromSuperview];
+	[imgPicker release];
+	tabBarController.selectedIndex = 1;
 	[window  addSubview:tabBarController.view];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -105,15 +144,26 @@
      */
 }
 
+#pragma mark -
+#pragma mark CLLocationDelegate methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+	//newHeading.trueHeading
+	NSLog(@"Heading: %f", newHeading.trueHeading);
+	
+	
+}
 
 #pragma mark -
 #pragma mark UITabBarControllerDelegate methods
 
-/*
+
 // Optional UITabBarControllerDelegate method.
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+	if (tabBarController.selectedIndex == 0){
+		[self initCameraView];
+	}
 }
-*/
+
 
 /*
 // Optional UITabBarControllerDelegate method.

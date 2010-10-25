@@ -18,10 +18,25 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import "Matrix.h"
+#import "MixVector.h"
 
 @interface Camera : NSObject {
-
+	int _width, _height;
+	Matrix* _transform;
+	float _viewAngle;
+	float _dist;
+	MixVector * _lco;
 }
+
+@property (nonatomic, retain) Matrix* transform;
+@property (nonatomic, retain) MixVector* lco;
+@property (nonatomic) int width, height;
+@property (nonatomic) float viewAngle, dist;
+
++(Camera*) initCameraWithHeight: (int) height widh: (int) width;
+-(void) setViewAngle: (float) angle;
+-(void) setViewAngle: (float) angle height: (int) height width: (int) width;
+-(void) projectPointWithOrigin: (MixVector*) orgPoint projectPoint: (MixVector*) prjPoint addX: (float) addX addY: (float) addY;
 
 @end
