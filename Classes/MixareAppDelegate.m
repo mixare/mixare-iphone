@@ -27,51 +27,18 @@
 @synthesize tabBarController;
 @synthesize locManager = _locManager;
 @synthesize camController = _cameraCOntroller;
-
+@synthesize view= _view;
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+	[window addSubview:tabBarController.view];
 
-	CameraViewController * cController = [[[CameraViewController alloc]initWithNibName:nil bundle:nil]autorelease];
-	self.camController = cController;
-
-	[self initCameraView];
-	[window addSubview:imgPicker.view];
-	
-	if (tabBarController.selectedIndex == 0){
-		[self initCameraView];
-	}
-	[self initLocationManager];
-	
+	[window makeKeyAndVisible];
     return YES;
 }
 
 
--(void)initCameraView{
-	imgPicker = [[UIImagePickerController alloc] init];
-    imgPicker.sourceType = UIImagePickerControllerSourceTypeCamera;  
-    imgPicker.showsCameraControls = NO;
-	imgPicker.tabBarController.tabBar.hidden = YES;
-    /* move the controller, to make the 
-     statusbar visible */
-	//imgPicker.view.bounds.size.height = 480.0;
-    CGRect frame = imgPicker.view.frame;
-    frame.origin.y += 30;
-    NSLog(@"size of the frame %f", frame.origin.x) ;   
-	imgPicker.view.frame = frame;
-	imgPicker.wantsFullScreenLayout = YES;
-	imgPicker.cameraViewTransform = CGAffineTransformScale(imgPicker.cameraViewTransform, CAMERA_TRANSFORM, CAMERA_TRANSFORM);
-	//adding close butten to View
-	closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	closeButton.frame = CGRectMake(270, 0, 50, 25);
-	closeButton.backgroundColor = [UIColor clearColor];
-	[closeButton setTitle:@"Menu" forState:UIControlStateNormal];
-	[closeButton setAlpha:0.7];
-	[closeButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventTouchUpInside];
-	//closeButton.center = self.center;
-	[imgPicker.view addSubview:closeButton];
-}
 
 -(void)initLocationManager{
 	Circle *view = [[Circle alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
@@ -79,7 +46,6 @@
 	[view release];
 	
 	[window makeKeyAndVisible];
-    [window makeKeyAndVisible];
 	
 	CLLocationManager *theManager =  [[[CLLocationManager alloc] init]autorelease];
 	self.locManager = theManager;
@@ -159,6 +125,7 @@
 
 // Optional UITabBarControllerDelegate method.
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+	NSLog(@"CONTROLLLLLLLER");
 	if (tabBarController.selectedIndex == 0){
 		[self initCameraView];
 	}

@@ -19,6 +19,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "MixVector.h"
 
 @interface PhysicalPlace : NSObject <MKAnnotation> {
 	CGFloat _lat;
@@ -35,4 +36,7 @@
 
 +(void)calcDestinationWithLat1: (CGFloat) lat1Deg lon1: (CGFloat) lon1Deg bear: (CGFloat) bear destination: (CGFloat) d place: (PhysicalPlace*) pl;
 
++(void)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp vector: (MixVector*) v;
+
+-(BOOL) isClickValidX: (float)x y: (float) y;
 @end

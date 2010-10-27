@@ -61,25 +61,16 @@ CGFloat radiansToDegrees(CGFloat radians){
 	[pl setLon:radiansToDegrees(lon2)];
 }
 
-/*
-public static void convLocToVec(Location org, PhysicalPlace gp,
-								MixVector v) {
-	float[] z = new float[1];
-	z[0] = 0;
-	Location.distanceBetween(org.getLatitude(), org.getLongitude(), gp
-							 .getLatitude(), org.getLongitude(), z);
-	float[] x = new float[1];
-	Location.distanceBetween(org.getLatitude(), org.getLongitude(), org
-							 .getLatitude(), gp.getLongitude(), x);
-	double y = gp.getAltitude() - org.getAltitude();
-	if (org.getLatitude() < gp.getLatitude())
-		z[0] *= -1;
-	if (org.getLongitude() > gp.getLongitude())
-		x[0] *= -1;
++(void)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp vector: (MixVector*) v{
+	CLLocation * gpToLoc = [[[CLLocation alloc]initWithLatitude:gp.lat longitude:gp.lon]autorelease];
+	//CLLocationDistance * distance = [org distanceFromLocation:gpToLoc];
+	double y = gp.altitude - org.altitude;
 	
-	v.set(x[0], (float) y, z[0]);
 }
-*/	 
+
+-(BOOL) isClickValidX: (float)x y: (float) y{
+	//float currentAngle = 
+}
 
 
 -(void)dealloc {
@@ -103,11 +94,5 @@ public static void convLocToVec(Location org, PhysicalPlace gp,
     return position; 
 }
 
--(NSString*)title{
-	return _title;
-}
--(NSString*)subTitle{
-	return _subTitle;
-}
 @end
 

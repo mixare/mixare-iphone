@@ -18,7 +18,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "CameraViewController.h"
+#import "CamViewController.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate>{
@@ -26,14 +26,17 @@
     //UITabBarController *tabBarController;
 	UIImagePickerController* imgPicker;
 	UIButton *closeButton;
-	CameraViewController * _cameraCOntroller;
+	CamViewController * _cameraCOntroller;
 	CLLocationManager * _locManager;
+	UIView * _view;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) CLLocationManager * locManager;
-@property (nonatomic, retain) CameraViewController * camController;
+@property (nonatomic, retain) CamViewController * camController;
+@property (nonatomic, retain) IBOutlet UIView * view;
+
 -(void)initCameraView;
 -(void)initLocationManager;
 @end
