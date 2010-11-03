@@ -17,9 +17,11 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-
+#import "JSON.h"
+#import "Marker.h"
 @interface JsonHandler : NSObject {
-
+	SBJsonParser * parser;
 }
-
+-(void)processWikipediaJSONData: (NSString*) jsonData;
 @end
+

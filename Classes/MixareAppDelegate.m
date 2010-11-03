@@ -19,21 +19,21 @@
 
 #import "MixareAppDelegate.h"
 #define CAMERA_TRANSFORM 1.12412
-#import "Circle.h"
-
+#import "SourceViewController.h"
+#import "JsonHandler.h"
 @implementation MixareAppDelegate
 
 @synthesize window;
-@synthesize tabBarController;
+@synthesize tabBarController = _tabBarController;
 @synthesize locManager = _locManager;
-@synthesize camController = _cameraCOntroller;
+@synthesize camController = _cameraController;
 @synthesize view= _view;
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	[window addSubview:tabBarController.view];
-
+	[window addSubview:_tabBarController.view];
+	[self initLocationManager];
 	[window makeKeyAndVisible];
     return YES;
 }
@@ -41,28 +41,36 @@
 
 
 -(void)initLocationManager{
-	Circle *view = [[Circle alloc] initWithFrame:CGRectMake(100, 100, 50, 50)];
-	[window addSubview:view];
-	[view release];
+	Marker * messnerMarker = [Marker initMarkerWithTitle:@"MMM" latitude:46.48 longitude:11.30546 altitude:0.0 url:@"de.wikipedia.org/wiki/Messner_Mountain_Museum_Firmian"];
 	
+	cView = [[Circle alloc] initWithFrame:CGRectMake(50, 100, 25, 25)];
+	//[window addSubview:cView];
+	//[cView release];
+	m = [[MarkerObject alloc]initWithFrame:CGRectMake(100, 200, 60, 60)];
+	//m.circle = cView;;
+	m.text = @"Test";
+	[window addSubview:m];
+	//[cView release];
+	//[m release];
 	[window makeKeyAndVisible];
 	
-	CLLocationManager *theManager =  [[[CLLocationManager alloc] init]autorelease];
+	CLLocationManager* theManager =  [[[CLLocationManager alloc] init]autorelease];
 	self.locManager = theManager;
 	self.locManager.delegate = self;
 	self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
 	if( self.locManager.locationServicesEnabled && self.locManager.headingAvailable) {
 		//[locManager startUpdatingLocation];
 		self.locManager.headingOrientation;
-		self.locManager.headingFilter = 5;
+		self.locManager.headingFilter = 2;
 		[self.locManager startUpdatingHeading];
-		
+		currentHeading = self.locManager.heading.trueHeading;
 		NSLog(@"heading: %f",self.locManager.heading.trueHeading);
 	} else {
-		
 		NSLog(@"Can't report heading");
-		
 	}
+	JsonHandler * jHandler = [[[JsonHandler alloc]init]autorelease];
+	NSString *jsonData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=46.479678&lng=11.2954&radius=3&maxRows=50&lang=de"]];
+	[jHandler processWikipediaJSONData:jsonData];
 }
 -(void)buttonClick:(id)sender{
 	NSLog(@"Close button pressed");
@@ -70,8 +78,8 @@
 	//tabBarController.tabBar.hidden = NO;
 	[imgPicker.view removeFromSuperview];
 	[imgPicker release];
-	tabBarController.selectedIndex = 1;
-	[window  addSubview:tabBarController.view];
+	_tabBarController.selectedIndex = 1;
+	[window  addSubview:_tabBarController.view];
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -115,7 +123,20 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
 	//newHeading.trueHeading
 	NSLog(@"Heading: %f", newHeading.trueHeading);
+	[UIView beginAnimations:@"MyAnimation" context:nil];
+	[UIView setAnimationBeginsFromCurrentState:YES];
+	[UIView setAnimationDuration:2.0]; // 5 seconds
 	
+	CGRect frame = cView.frame;
+	frame.origin.x += -sinf((currentHeading-manager.heading.trueHeading))*50; // Move view down 100 pixels
+	cView.frame = frame;
+	
+	CGRect textFrame = m.frame;
+	textFrame.origin.x += -sinf((currentHeading-manager.heading.trueHeading))*50;
+	m.frame = textFrame;
+	
+	[UIView commitAnimations];
+	currentHeading = manager.heading.trueHeading;
 	
 }
 
@@ -125,12 +146,19 @@
 
 // Optional UITabBarControllerDelegate method.
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-	NSLog(@"CONTROLLLLLLLER");
-	if (tabBarController.selectedIndex == 0){
-		[self initCameraView];
+	if(tabBarController.tabBar.selectedItem.title ==@"Camera"){
+		NSLog(@"cam mode on ");
+		[self.locManager startUpdatingHeading];
+	}else{
+		[self.locManager stopUpdatingHeading];
 	}
+	if (tabBarController.selectedIndex == 1) {
+		//SourceViewController * scController = [[[SourceViewController alloc]init]autorelease];
+		
+		NSLog(@"in sourceview controller asdasdasdasdasd");
+	}
+	
 }
-
 
 /*
 // Optional UITabBarControllerDelegate method.
@@ -150,7 +178,7 @@
 
 
 - (void)dealloc {
-    [tabBarController release];
+    [_tabBarController release];
     [window release];
 	[imgPicker release];
 	[closeButton release];

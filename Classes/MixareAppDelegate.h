@@ -20,15 +20,26 @@
 #import <UIKit/UIKit.h>
 #import "CamViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreMotion/CoreMotion.h>
+#import "Circle.h"
+#import "MarkerObject.h" 
+
+#import "Marker.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
     //UITabBarController *tabBarController;
 	UIImagePickerController* imgPicker;
 	UIButton *closeButton;
-	CamViewController * _cameraCOntroller;
+	CamViewController * _cameraController;
 	CLLocationManager * _locManager;
 	UIView * _view;
+	Circle *cView;
+	float currentHeading;
+	UIAccelerometer * acceloometer;
+	MarkerObject * m;
+	CMMotionManager *motionManager;
+	UITabBarController *_tabBarController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

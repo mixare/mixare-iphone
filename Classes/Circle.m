@@ -27,7 +27,8 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	// stroke and fill black with a 0.5 alpha
 	CGContextSetRGBStrokeColor(context, 0.0, 0.0, 255.0, 1.0);
-	CGContextSetLineWidth(context, 2.0);
+	CGContextSetLineWidth(context, 1.0);
+	CGContextSetAllowsAntialiasing(context, YES);
 	CGContextSetPatternPhase(context, CGSizeMake(2, 2));
 	CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 0.5);
 	CGContextStrokeEllipseInRect(context, rect);

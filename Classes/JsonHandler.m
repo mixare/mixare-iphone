@@ -21,5 +21,12 @@
 
 
 @implementation JsonHandler
-
+-(void)processWikipediaJSONData: (NSString*) jsonData{
+	parser = [[[SBJsonParser alloc]init]autorelease];
+	NSDictionary* data = [jsonData JSONValue];
+	NSArray* geonames = [data objectForKey:@"geonames"];
+	for(NSDictionary *geoname in geonames){
+		NSLog(@"Title: %@", [geoname objectForKey:@"title"]);
+	}
+}
 @end

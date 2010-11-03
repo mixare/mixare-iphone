@@ -13,6 +13,7 @@
 @synthesize title = _title, url = _url;
 @synthesize mGeoLoc = _mGeoLoc;
 @synthesize locationVector = _locationVector;
+@synthesize markerView = _markerView;
 
 +(Marker*) initMarkerWithTitle: (NSString*) title latitude: (float) lat longitude: (float) lon altitude: (float) alt url: (NSString*) url{
 	Marker * marker = [[[Marker alloc]init]autorelease];
@@ -20,7 +21,9 @@
 	marker.mGeoLoc = [[[PhysicalPlace alloc]init]autorelease];
 	marker.mGeoLoc.lat = lat;
 	marker.mGeoLoc.lon = lon;
+	marker.mGeoLoc.altitude = alt;
 	marker.url = url;
+	marker.markerView.text = title;
 	return marker;
 }
 - (void)dealloc {

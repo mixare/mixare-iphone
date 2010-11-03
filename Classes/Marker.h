@@ -11,6 +11,8 @@
 #import "MixVector.h"
 #import "ScreenLine.h"
 #import "Camera.h"
+#import "Circle.h"
+#import "MarkerObject.h"
 
 @interface Marker : NSObject {
 	NSString * _title;
@@ -27,12 +29,14 @@
 	MixVector * upV;
 	ScreenLine * pPt;
 	UILabel * txtLab; 
+	MarkerObject * _markerView;
 	
 }
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* url;
 @property (nonatomic , retain) PhysicalPlace* mGeoLoc;
 @property (nonatomic, retain) MixVector* locationVector;
+@property (nonatomic, retain) MarkerObject * markerView;
 
 +(Marker*) initMarkerWithTitle: (NSString*) title latitude: (float) lat longitude: (float) lon altitude: (float) alt url: (NSString*) url;
 -(void) cCMarkerWithOrigPoint: (MixVector *) originalPoint camera: (Camera*) viewCam addX: (float) addX addY: (float) addY; 
