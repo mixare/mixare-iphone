@@ -12,7 +12,7 @@
 @interface ListViewController : UITableViewController  {
 	NSArray *dataSourceArray;
 	int keyboardHeight;
-	
+	//data
 	NSMutableArray * source;
 	
 }
