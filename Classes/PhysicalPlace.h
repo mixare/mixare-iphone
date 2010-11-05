@@ -25,7 +25,7 @@
 	CGFloat _lat;
 	CGFloat _lon;
 	CGFloat _altitude;
-	NSString * _title;
+	NSString * title;
 	NSString * _subTitle;
 }
 @property (nonatomic) CGFloat lat; 
@@ -37,6 +37,7 @@
 +(void)calcDestinationWithLat1: (CGFloat) lat1Deg lon1: (CGFloat) lon1Deg bear: (CGFloat) bear destination: (CGFloat) d place: (PhysicalPlace*) pl;
 
 +(void)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp vector: (MixVector*) v;
++(CGFloat)distanceBetweenLong1: (CGFloat) long1 lat1: (CGFloat) lat1 long2: (CGFloat)long2 lat2: (CGFloat)lat2;
 
 -(BOOL) isClickValidX: (float)x y: (float) y;
 @end

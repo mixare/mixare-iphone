@@ -22,6 +22,6 @@
 @interface JsonHandler : NSObject {
 	SBJsonParser * parser;
 }
--(void)processWikipediaJSONData: (NSString*) jsonData;
+-(NSMutableArray*)processWikipediaJSONData: (NSString*) jsonData;
 @end
 

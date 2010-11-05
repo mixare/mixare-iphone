@@ -26,7 +26,7 @@
 
 #import "Marker.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate>{
+@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>{
     UIWindow *window;
     //UITabBarController *tabBarController;
 	UIImagePickerController* imgPicker;
@@ -38,8 +38,10 @@
 	float currentHeading;
 	UIAccelerometer * acceloometer;
 	MarkerObject * m;
-	CMMotionManager *motionManager;
 	UITabBarController *_tabBarController;
+	CMAttitude *referenceAttitude;
+	NSOperationQueue *motionQueue;
+	CMMotionManager *motionManager;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

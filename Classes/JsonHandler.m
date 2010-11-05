@@ -21,12 +21,15 @@
 
 
 @implementation JsonHandler
--(void)processWikipediaJSONData: (NSString*) jsonData{
+-(NSMutableArray*)processWikipediaJSONData: (NSString*) jsonData{
 	parser = [[[SBJsonParser alloc]init]autorelease];
 	NSDictionary* data = [jsonData JSONValue];
+	NSMutableArray* ret = [[NSMutableArray alloc]init];
 	NSArray* geonames = [data objectForKey:@"geonames"];
 	for(NSDictionary *geoname in geonames){
 		NSLog(@"Title: %@", [geoname objectForKey:@"title"]);
+		[ret addObject:[geoname objectForKey:@"title"]];
 	}
+	return ret;
 }
 @end

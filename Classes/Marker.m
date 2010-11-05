@@ -23,7 +23,10 @@
 	marker.mGeoLoc.lon = lon;
 	marker.mGeoLoc.altitude = alt;
 	marker.url = url;
+	marker.markerView = [[MarkerObject alloc]init];
 	marker.markerView.text = title;
+	
+	//marker.
 	return marker;
 }
 - (void)dealloc {
@@ -61,9 +64,56 @@
 
 -(void) calcVWithCam: (Camera*) viewCam{
 	isVisible = NO;
-	if(cMarker.z < -1.0){
+	if(cMarker.z < -1.0)
 		isVisible = YES;
+}
+
+-(void) updateWithLocation: (CLLocation*) curGPSFix{
+	if([self mGeoLoc].altitude == 0.0){
+		_mGeoLoc.altitude= curGPSFix.altitude;
+		[PhysicalPlace convLocToVecWithLocation:curGPSFix place:_mGeoLoc vector:_locationVector];
 	}
 }
 
+-(void) calcpaintWithCamera: (Camera*) viewCam addX: (float) addX addY: (float) addY{
+	[self cCMarkerWithOrigPoint:origin camera:viewCam addX:addX addY:addY];
+	[self calcVWithCam:viewCam];
+}
+
+-(BOOL) isClickValidX: (float) x Y: (float) y{
+	float currentAngle = [Marker getAngleFromCenter:cMarker.x centerY:cMarker.y postX:signMarker.x postY:signMarker.y];
+	
+	pPt.x = x - signMarker.x;
+	pPt.y = y - signMarker.y;
+	[pPt rotateWithValue:((-(currentAngle+90))* M_PI / 180)];
+	
+	pPt.x += txtLab.frame.origin.x;
+	pPt.y += txtLab.frame.origin.y;
+	
+	float objX = txtLab.frame.origin.x - txtLab.frame.size.width / 2;
+	float objY = txtLab.frame.origin.y - txtLab.frame.size.height / 2;
+	float objW = txtLab.frame.size.width;
+	float objH = txtLab.frame.size.height;
+	
+	if (pPt.x > objX && pPt.x < objX + objW && pPt.y > objY && pPt.y < objY + objH) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
++(float) getAngleFromCenter: (float) centerX centerY: (float) centerY postX: (float) postX postY: (float) postY{
+	float tmpv_x = postX - centerX;
+	float tmpv_y = postY - centerY;
+	float d = sqrtf(tmpv_x * tmpv_x + tmpv_y * tmpv_y);
+	float cos = tmpv_x / d;
+	float angle = (float) (acosf(cos)* 180 / M_PI);
+	
+	angle = (tmpv_y < 0) ? angle * -1 : angle;
+	
+	return angle;
+}
+
+
+		
 @end

@@ -60,16 +60,44 @@ CGFloat radiansToDegrees(CGFloat radians){
 	[pl setLat:radiansToDegrees(lat2)];
 	[pl setLon:radiansToDegrees(lon2)];
 }
-
-+(void)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp vector: (MixVector*) v{
-	CLLocation * gpToLoc = [[[CLLocation alloc]initWithLatitude:gp.lat longitude:gp.lon]autorelease];
-	//CLLocationDistance * distance = [org distanceFromLocation:gpToLoc];
-	double y = gp.altitude - org.altitude;
-	
++(CGFloat)distanceBetweenLong1: (CGFloat) long1 lat1: (CGFloat) lat1 long2: (CGFloat)long2 lat2: (CGFloat)lat2{
+	CGFloat r = 6371.0 * 1000.0;
+	CGFloat deltaLat= degreesToRadians(lat2-lat1);
+	CGFloat deltaLon = degreesToRadians(long2 - long1);
+	CGFloat a = sinf(deltaLat/2)*sinf(deltaLat/2)+ cosf(degreesToRadians(lat1))*cosf(degreesToRadians(lat2))*sinf(deltaLon/2)*sinf(deltaLon/2);
+	CGFloat c = 2* atan2f(sqrtf(a),sqrtf(1-a));
+	return  r*c;
 }
 
--(BOOL) isClickValidX: (float)x y: (float) y{
-	//float currentAngle = 
++(MixVector*)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp {
+	//CLLocation * gpToLoc = [[[CLLocation alloc]initWithLatitude:gp.lat longitude:gp.lon]autorelease];
+	CGFloat distanceZ = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:gp.lon lat2:gp.lat];
+	CGFloat distanceX = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:gp.lon lat2:org.coordinate.latitude];
+	CGFloat y = gp.altitude - org.altitude;
+	if(org.coordinate.latitude >gp.lat){
+		distanceZ = distanceZ*-1.0;
+	}
+	if(org.coordinate.longitude > gp.lon){
+		distanceX = distanceX*-1;
+	}
+	return [MixVector initWithX:distanceX y:y z:distanceZ];   
+}
+
++(void) convVec: (MixVector*)v toLocation:(CLLocation*) org gp: (CLLocation*)gp{
+	CGFloat brngNS = 0;
+	CGFloat brngEW = 90;
+	if(v.z>0){
+		brngNS = 180;
+	}
+	if(v.x <0) {
+		brngEW = 270;
+	}
+	PhysicalPlace * tmp1Loc = [[[PhysicalPlace alloc]init]autorelease];
+	PhysicalPlace * tmp2Loc = [[[PhysicalPlace alloc]init]autorelease];
+	[PhysicalPlace calcDestinationWithLat1:org.coordinate.latitude lon1:org.coordinate.longitude bear:brngNS destination:abs(v.z) place:tmp2Loc];
+	[PhysicalPlace calcDestinationWithLat1:tmp1Loc.lat lon1:tmp1Loc.lon bear:brngEW destination:abs(v.x) place:tmp2Loc];
+	[gp initWithCoordinate:CLLocationCoordinate2DMake(tmp2Loc.lat, tmp2Loc.lon) altitude:org.altitude+v.y horizontalAccuracy:0 verticalAccuracy:0 timestamp:nil];
+	//gp.altitude = org.altitude + v.y;
 }
 
 
@@ -93,6 +121,5 @@ CGFloat radiansToDegrees(CGFloat radians){
 	
     return position; 
 }
-
 @end
 

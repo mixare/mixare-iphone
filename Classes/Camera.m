@@ -18,7 +18,7 @@
  */
 
 #import "Camera.h"
-
+#define DEFAULT_VIEWANGLE 45.0
 
 @implementation Camera
 @synthesize width = _width, height = _height, transform = _transform, dist = _dist, lco = _lco, viewAngle = _viewAngle;
