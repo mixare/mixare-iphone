@@ -16,6 +16,7 @@
 #import "JsonHandler.h"
 #import "Matrix.h"
 #import "Camera.h"
+#import "MixVector.h"
 
 @interface CamViewController : UIViewController <CLLocationManagerDelegate>{
     UIImagePickerController *_imgPicker;
@@ -36,6 +37,7 @@
 	NSMutableArray *histroy;
 	NSUInteger _historyIndex;
 	Camera* camera;
+	Marker * messnerMarker;
 }
 @property (nonatomic,retain) UIImagePickerController *imgPicker;
 @property (nonatomic,retain) UIButton * closeButton;
@@ -47,4 +49,6 @@
 -(void)initMarkersWithJSONData: (NSString*) jsonData;
 -(void)showMarkers;
 -(void)processMotion:(CMDeviceMotion *)motion withError:(NSError *)error;
+-(float) getAngleFromCenter: (float) centerX centerY: (float) centerY postX: (float) postX postY: (float) postY;
+-(void)calcPitchBearingFromRotationMatrix: (Matrix*) rotationM;
 @end

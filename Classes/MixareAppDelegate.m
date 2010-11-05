@@ -21,6 +21,7 @@
 #define CAMERA_TRANSFORM 1.12412
 #import "SourceViewController.h"
 #import "JsonHandler.h"
+
 @implementation MixareAppDelegate
 
 @synthesize window;
@@ -28,6 +29,8 @@
 @synthesize locManager = _locManager;
 @synthesize camController = _cameraController;
 @synthesize view= _view;
+@synthesize listViewController = _listViewController;
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -106,6 +109,9 @@
 		//SourceViewController * scController = [[[SourceViewController alloc]init]autorelease];
 		
 		NSLog(@"in sourceview controller asdasdasdasdasd");
+	}
+	if(tabBarController.selectedIndex == 2 ){
+		[_listViewController initDataSourceWithJSONData];
 	}
 	
 }

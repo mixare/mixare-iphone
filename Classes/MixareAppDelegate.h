@@ -23,7 +23,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "Circle.h"
 #import "MarkerObject.h" 
-
+#import "ListViewController.h"
 #import "Marker.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>{
@@ -42,6 +42,7 @@
 	CMAttitude *referenceAttitude;
 	NSOperationQueue *motionQueue;
 	CMMotionManager *motionManager;
+	ListViewController * _listViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -49,7 +50,7 @@
 @property (nonatomic, retain) CLLocationManager * locManager;
 @property (nonatomic, retain) CamViewController * camController;
 @property (nonatomic, retain) IBOutlet UIView * view;
-
+@property (nonatomic, retain) IBOutlet ListViewController * listViewController;
 -(void)initCameraView;
 -(void)initLocationManager;
 @end

@@ -17,17 +17,34 @@
 
 +(Marker*) initMarkerWithTitle: (NSString*) title latitude: (float) lat longitude: (float) lon altitude: (float) alt url: (NSString*) url{
 	Marker * marker = [[[Marker alloc]init]autorelease];
+	[marker initMarker];
 	marker.title = title;
-	marker.mGeoLoc = [[[PhysicalPlace alloc]init]autorelease];
+	//marker.mGeoLoc = [[[PhysicalPlace alloc]init]autorelease];
 	marker.mGeoLoc.lat = lat;
 	marker.mGeoLoc.lon = lon;
 	marker.mGeoLoc.altitude = alt;
 	marker.url = url;
-	marker.markerView = [[MarkerObject alloc]init];
+	//marker.markerView = [[MarkerObject alloc]init];
 	marker.markerView.text = title;
 	
 	//marker.
 	return marker;
+}
+
+-(void) initMarker{
+	_title = [[NSString alloc]init];
+	_url = [[NSString alloc] init];
+	_mGeoLoc = [[PhysicalPlace alloc]init];
+	cMarker = [[MixVector alloc]init];
+	signMarker = [[MixVector alloc]init];
+	tmpa = [[MixVector alloc ]init];
+	tmpb = [[MixVector alloc]init];
+	tmpc = [[MixVector alloc]init];
+	_locationVector =[[MixVector alloc]init];
+	origin =[[MixVector alloc]init];
+	upV = [[MixVector alloc]init];
+	pPt = [[ScreenLine alloc]init];
+	_markerView = [[MarkerObject alloc]init];
 }
 - (void)dealloc {
 	[_url release];
@@ -58,7 +75,7 @@
 	[tmpc prodWithVec1:[MixVector initWithX:viewCam.transform.a1 y:viewCam.transform.a2 z:viewCam.transform.a3] vec2:[MixVector initWithX:viewCam.transform.b1 y:viewCam.transform.b2 z:viewCam.transform.b3] vec3:[MixVector initWithX:viewCam.transform.c1 y:viewCam.transform.c2 z:viewCam.transform.c3]];
 	[viewCam projectPointWithOrigin:tmpa projectPoint:tmpb addX:addX addY:addY];
 	[cMarker setVector:tmpb];
-	[viewCam projectPointWithOrigin:tmpc projectPoint:tmpb addX:addX addY:addY];
+	//[viewCam projectPointWithOrigin:tmpc projectPoint:tmpb addX:addX addY:addY];
 	[signMarker setVector:tmpb];
 }
 

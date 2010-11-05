@@ -40,6 +40,7 @@
 @property (nonatomic, retain) MixVector* locationVector;
 @property (nonatomic, retain) MarkerObject * markerView;
 
+
 +(Marker*) initMarkerWithTitle: (NSString*) title latitude: (float) lat longitude: (float) lon altitude: (float) alt url: (NSString*) url;
 -(void) cCMarkerWithOrigPoint: (MixVector *) originalPoint camera: (Camera*) viewCam addX: (float) addX addY: (float) addY; 
 -(void) calcVWithCam: (Camera*) viewCam;
@@ -47,5 +48,6 @@
 -(void) calcpaintWithCamera: (Camera*) viewCam addX: (float) addX addY: (float) addY;
 -(BOOL) isClickValidX: (float) x Y: (float) y;
 +(float) getAngleFromCenter: (float) centerX centerY: (float) centerY postX: (float) postX postY: (float) postY;
+-(void) initMarker;
 @end
 

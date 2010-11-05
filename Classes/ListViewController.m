@@ -18,9 +18,7 @@
 
 #define kTextFieldHeight		30.0
 static NSString *kSectionTitleKey = @"sectionTitleKey";
-static NSString *kLabelKey = @"labelKey";
-static NSString *kSourceKey = @"sourceKey";
-static NSString *kViewKey = @"viewKey";
+
 
 @implementation ListViewController
 @synthesize dataSourceArray; 
@@ -39,11 +37,14 @@ static NSString *kViewKey = @"viewKey";
 
 - (void)viewDidLoad{	
     [super viewDidLoad];
-	JsonHandler * jHandler = [[[JsonHandler alloc]init]autorelease];
-	NSString *jsonData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=46.479678&lng=11.2954&radius=3&maxRows=50&lang=de"]];
-	source= [jHandler processWikipediaJSONData:jsonData];	
 }
-
+-(void)initDataSourceWithJSONData{
+	if(source == nil){
+		JsonHandler * jHandler = [[[JsonHandler alloc]init]autorelease];
+		NSString *jsonData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=46.479678&lng=11.2954&radius=3&maxRows=50&lang=de"]];
+		source= [jHandler processWikipediaJSONData:jsonData];
+	}
+}
 // called after the view controller's view is released and set to nil.
 // For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
 // So release any properties that are loaded in viewDidLoad or can be recreated lazily.

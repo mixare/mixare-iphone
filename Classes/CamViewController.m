@@ -66,12 +66,13 @@
 	int decilination = abs(self.locManager.heading.magneticHeading-self.locManager.heading.trueHeading);
 	[m4 setToA1:cosf(angleY) a2:0.0 a3:sinf(angleY) b1:0.0 b2:1.0 b3:0.0 c1:-sinf(angleY) c2:0.0 c3:cosf(angleY)];	
 	motionManager.deviceMotionUpdateInterval = 1.0;
-	camera = [Camera initCameraWithHeight:480 widh:320];
+	camera = [[Camera alloc]init];//:480 widh:320];
+	[camera retain];
 	NSUInteger historyIndex = 0;
 	if (motionManager.isDeviceMotionAvailable) {
 		histroy = [[NSMutableArray alloc] initWithCapacity:50];
 		
-		/*[motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
+		[motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
 										   withHandler: ^(CMDeviceMotion *motion, NSError *error)
 		 {
 			 CMAttitude *attitude = motion.attitude;
@@ -93,23 +94,40 @@
 			 if(historyIndex>=50){
 				 [histroy removeAllObjects];
 			 }
+			 [self calcPitchBearingFromRotationMatrix:finalR];
 			 [smoothR setToA1:0.0 a2:0.0 a3:0.0 b1:0.0 b2:0.0 b3:0.0 c1:0.0 c2:0.0 c3:0.0];
+			[messnerMarker calcpaintWithCamera:camera addX:0.0 addY:0.0];
+			  
 			 /*for(int i = 1; i <50; i++){
 				 [smoothR addMatrix:((Matrix *)[histroy objectAtIndex:historyIndex])];
 			 }
 			 [smoothR multWithScalar:1.0/50.0];*/
-			 
-		/*	 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m11, rotMatrix.m12,rotMatrix.m13);
+			
+			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m11, rotMatrix.m12,rotMatrix.m13);
 			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m21, rotMatrix.m22,rotMatrix.m23);
 			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m31, rotMatrix.m32,rotMatrix.m33);
 			 NSLog(@"---------------------------------------------------------------------------");
 			 
-		}];		*/
+		}];		
 	}
 	else {
 		NSLog(@"motion not available");
 	}
 	
+}
+
+-(void)calcPitchBearingFromRotationMatrix: (Matrix*) rotationM{
+	MixVector * looking = [[MixVector alloc]init];
+	[rotationM transpose];
+	[looking setVector:[MixVector initWithX:0.0 y:1.0 z:0.0]];
+	[looking prodWithVec1:[MixVector initWithX:rotationM.a1 y:rotationM.a2 z:rotationM.a3] vec2:[MixVector initWithX:rotationM.b1 y:rotationM.b2 z:rotationM.b3] vec3:[MixVector initWithX:rotationM.c1 y:rotationM.c2 z:rotationM.c3]];
+	float bearing = [self getAngleFromCenter: 0  centerY: 0  postX: looking.x postY: looking.y];
+	NSLog(@"BEaring: %f",bearing);
+	[rotationM transpose];
+	[looking setVector:[MixVector initWithX:0.0 y:1.0 z:0.0]];
+	[looking prodWithVec1:[MixVector initWithX:rotationM.a1 y:rotationM.a2 z:rotationM.a3] vec2:[MixVector initWithX:rotationM.b1 y:rotationM.b2 z:rotationM.b3] vec3:[MixVector initWithX:rotationM.c1 y:rotationM.c2 z:rotationM.c3]];
+	float pitch = - [self getAngleFromCenter:0.0 centerY:0.0 postX:looking.y postY:looking.z];
+	NSLog(@"Pitch: %f", pitch);
 }
 
 -(void)setupMatrixes{
@@ -154,7 +172,7 @@
 }
 
 -(void)initLocationManager{
-	Marker * messnerMarker = [Marker initMarkerWithTitle:@"MMM" latitude:46.48 longitude:11.30546 altitude:0.0 url:@"de.wikipedia.org/wiki/Messner_Mountain_Museum_Firmian"];
+	messnerMarker = [Marker initMarkerWithTitle:@"MMM" latitude:46.48 longitude:11.30546 altitude:0.0 url:@"de.wikipedia.org/wiki/Messner_Mountain_Museum_Firmian"];
 	
 	cView = [[Circle alloc] initWithFrame:CGRectMake(50, 100, 25, 25)];
 	//[window addSubview:cView];
@@ -296,6 +314,18 @@ CGFloat RadiansToDegrees(CGFloat radians)
 {
 	return radians * 180 / M_PI;
 };
+
+-(float) getAngleFromCenter: (float) centerX centerY: (float) centerY postX: (float) postX postY: (float) postY{
+	float tmpv_x = postX - centerX;
+	float tmpv_y = postY - centerY;
+	float d = sqrtf(tmpv_x * tmpv_x + tmpv_y * tmpv_y);
+	float cos = tmpv_x / d;
+	float angle = (float) (acosf(cos)* 180 / M_PI);
+	
+	angle = (tmpv_y < 0) ? angle * -1 : angle;
+	
+	return angle;
+}
 
 #pragma mark -
 #pragma mark CLLocationDelegate methods

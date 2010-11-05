@@ -6,11 +6,13 @@
 //  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface SourceViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
-	NSArray *_dataSourceArray;
+@interface SourceViewController : UITableViewController  {
+	NSArray *dataSourceArray;
+	int keyboardHeight;	
 }
+
 @property (nonatomic, retain) NSArray *dataSourceArray;
 @end

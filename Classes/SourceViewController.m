@@ -7,16 +7,28 @@
 //
 
 #import "SourceViewController.h"
+#import "SourceTableCell.h"
+//Cons
+
+#define kTextFieldWidth	180.0
 #define kViewTag				1
+#define kLeftMargin				100.0
+#define kTopMargin				20.0
+#define kRightMargin			20.0
+#define kTweenMargin			11.0
+
+#define kTextFieldHeight		30.0
 static NSString *kSectionTitleKey = @"sectionTitleKey";
-static NSString *kLabelKey = @"labelKey";
-static NSString *kSourceKey = @"sourceKey";
-static NSString *kViewKey = @"viewKey";
+
 
 @implementation SourceViewController
-@synthesize dataSourceArray = _dataSourceArray;
-- (void)dealloc{	
-	[_dataSourceArray release];
+@synthesize dataSourceArray; 
+
+- (void)dealloc
+{	
+	//dealloc mem
+	
+	[dataSourceArray release];	
 	[super dealloc];
 }
 
@@ -24,27 +36,21 @@ static NSString *kViewKey = @"viewKey";
 
 - (void)viewDidLoad{	
     [super viewDidLoad];
-	_dataSourceArray = [NSArray arrayWithObjects:
-							[NSDictionary dictionaryWithObjectsAndKeys:
-							 // @"Settings", kSectionTitleKey,
-							 @"", kLabelKey,
-							 @"Wikipedia", kSourceKey,
-							 nil],
-							[NSDictionary dictionaryWithObjectsAndKeys:
-							 // @"Settings", kSectionTitleKey,
-							 @"", kLabelKey,
-							 @"Twitter", kSourceKey,
-							 nil],
-							nil];
-	NSLog(@"in sourceview controller");
-	//[self.tableView setDelegate:self];
-	//[self.tableView setDataSource:self];
+	dataSourceArray = [[NSArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
 }
 
 
+// called after the view controller's view is released and set to nil.
+// For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
+// So release any properties that are loaded in viewDidLoad or can be recreated lazily.
+//
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+	
+	// release the controls and set them nil in case they were ever created
+	// note: we can't use "self.xxx = nil" since they are read only properties
+	//
 	self.dataSourceArray = nil;	// this will release and set to nil
 }
 
@@ -54,17 +60,14 @@ static NSString *kViewKey = @"viewKey";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 0;
+	return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	return [[self.dataSourceArray objectAtIndex: section] valueForKey:kSectionTitleKey];
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 2;
+	return [dataSourceArray count] ;
 }
 
 // to determine specific row height for each cell, override this.
@@ -72,32 +75,41 @@ static NSString *kViewKey = @"viewKey";
 //
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return ([indexPath row] == 0) ? 50.0 : 50.0;
+	return 62.0;
 }
 
 // to determine which UITableViewCell to be used on a given row.
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-	UITableViewCell *cell = nil;
-	cell.textLabel.text = [[self.dataSourceArray objectAtIndex: indexPath.row] valueForKey:kSourceKey];
-	if (indexPath.row==0) {
-		cell.image = [UIImage imageNamed:@"wikipedia_logo.png"];
-	}else {
-		cell.image = [UIImage imageNamed:@"twitter_logo.png"];
+	static NSString * CellIdentifier = @"SourceCell";
+	SourceTableCell *cell =  (SourceTableCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if(cell == nil){
+		NSArray * topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
+		for(id currentObject in topLevelObjects){
+			if([currentObject isKindOfClass:[UITableViewCell class]]){
+				cell = (SourceTableCell *) currentObject;
+				break;
+			}
+		}
 	}
-
 	
-				
+	
+	if(dataSourceArray != nil){
+		cell.sourceLabel.text = [dataSourceArray objectAtIndex:indexPath.row];
+		if(indexPath.row == 1){
+			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"twitter_logo.png"]];
+		}else if(indexPath.row == 0){
+			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
+		}else if(indexPath.row == 2){
+			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"buzz_logo.png"]];
+		}
+	}else{
+		
+	}
 	return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	if (section ==0) {
-		return @"Insert your login information - username and password is the same as in the webpage visittrentino.it";
-	}else {
-		return @"Offline mode makes no connection to the internet - local data is used. \n 	Save money mode will ask you each time \n for permission when a connection to the internet is made";
-	}
-	
-}
+
 
 @end
+
