@@ -71,7 +71,7 @@ CGFloat radiansToDegrees(CGFloat radians){
 
 +(MixVector*)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp {
 	//CLLocation * gpToLoc = [[[CLLocation alloc]initWithLatitude:gp.lat longitude:gp.lon]autorelease];
-	CGFloat distanceZ = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:gp.lon lat2:gp.lat];
+	CGFloat distanceZ = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:org.coordinate.longitude lat2:gp.lat];
 	CGFloat distanceX = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:gp.lon lat2:org.coordinate.latitude];
 	CGFloat y = gp.altitude - org.altitude;
 	if(org.coordinate.latitude >gp.lat){
@@ -80,7 +80,8 @@ CGFloat radiansToDegrees(CGFloat radians){
 	if(org.coordinate.longitude > gp.lon){
 		distanceX = distanceX*-1;
 	}
-	return [MixVector initWithX:distanceX y:y z:distanceZ];   
+	MixVector * ret  = [MixVector initWithX:distanceX y:y z:distanceZ];
+	return    ret;
 }
 
 +(void) convVec: (MixVector*)v toLocation:(CLLocation*) org gp: (CLLocation*)gp{

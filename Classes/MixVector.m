@@ -24,10 +24,11 @@
 @implementation MixVector
 @synthesize x=_x,y=_y,z= _z;
 +(MixVector*) initWithX: (float)x y:(float) y z:(float) z{
-	MixVector * vec = [[[MixVector alloc] init]autorelease];
+	MixVector * vec = [[MixVector alloc] init];
+	[vec retain];
 	vec.x = x;
 	vec.y= y;
-	vec.z= 7;
+	vec.z= z;
 	return vec;	
 }
 

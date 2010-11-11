@@ -42,7 +42,9 @@
 	tmpc = [[MixVector alloc]init];
 	_locationVector =[[MixVector alloc]init];
 	origin =[[MixVector alloc]init];
+	[origin setVector:[MixVector initWithX:0.0 y:0.0 z:0.0]];
 	upV = [[MixVector alloc]init];
+	[upV setVector:[MixVector initWithX:0.0 y:1.0 z:0.0]];
 	pPt = [[ScreenLine alloc]init];
 	_markerView = [[MarkerObject alloc]init];
 }
@@ -63,20 +65,32 @@
     [super dealloc];
 }
 
--(void) cCMarkerWithOrigPoint: (MixVector *) originalPoint camera: (Camera*) viewCam addX: (float) addX addY: (float) addY{
-	tmpa = [[[MixVector alloc]init]autorelease];
+-(MixVector*) cCMarkerWithOrigPoint: (MixVector *) originalPoint rotM: (Matrix*) transform addX: (float) addX addY: (float) addY{
+	//tmpa = [[[MixVector alloc]init]autorelease];
 	[tmpa setVector:originalPoint];
-	tmpc = [[[MixVector alloc]init]autorelease];
+	//MixVector* tmpc = [[[MixVector alloc]init]autorelease];
 	[tmpc setVector:upV];
 	[tmpa addVector:_locationVector];
-	[tmpa subVector:viewCam.lco];
-	[tmpc subVector:viewCam.lco];
-	[tmpa prodWithVec1:[MixVector initWithX:viewCam.transform.a1 y:viewCam.transform.a2 z:viewCam.transform.a3] vec2:[MixVector initWithX:viewCam.transform.b1 y:viewCam.transform.b2 z:viewCam.transform.b3] vec3:[MixVector initWithX:viewCam.transform.c1 y:viewCam.transform.c2 z:viewCam.transform.c3]];
-	[tmpc prodWithVec1:[MixVector initWithX:viewCam.transform.a1 y:viewCam.transform.a2 z:viewCam.transform.a3] vec2:[MixVector initWithX:viewCam.transform.b1 y:viewCam.transform.b2 z:viewCam.transform.b3] vec3:[MixVector initWithX:viewCam.transform.c1 y:viewCam.transform.c2 z:viewCam.transform.c3]];
-	[viewCam projectPointWithOrigin:tmpa projectPoint:tmpb addX:addX addY:addY];
+	//[tmpa subVector:viewCam.lco];
+	//[tmpc subVector:viewCam.lco];
+	[tmpa prodWithVec1:[MixVector initWithX:transform.a1 y:transform.a2 z:transform.a3] vec2:[MixVector initWithX:transform.b1 y:transform.b2 z:transform.b3] vec3:[MixVector initWithX:transform.c1 y:transform.c2 z:transform.c3]];
+	[tmpc prodWithVec1:[MixVector initWithX:transform.a1 y:transform.a2 z:transform.a3] vec2:[MixVector initWithX:transform.b1 y:transform.b2 z:transform.b3] vec3:[MixVector initWithX:transform.c1 y:transform.c2 z:transform.c3]];
+	[self projectPointWithOrigin:tmpa projectPoint:tmpb addX:addX addY:addY];
 	[cMarker setVector:tmpb];
-	//[viewCam projectPointWithOrigin:tmpc projectPoint:tmpb addX:addX addY:addY];
-	[signMarker setVector:tmpb];
+	[tmpb retain];
+	//[self projectPointWithOrigin:tmpc projectPoint:tmpb addX:addX addY:addY];
+	//[signMarker setVector:tmpb];
+	return tmpb;
+	//NSLog("cMarker: values x: %f y: %f",cMarker.x,cMarker.y);
+}
+
+-(void) projectPointWithOrigin: (MixVector*) orgPoint projectPoint: (MixVector*) prjPoint addX: (float) addX addY: (float) addY{
+	float dist = (320/2) / tanf(45/2);
+	prjPoint.x = dist * orgPoint.y / -orgPoint.z;
+	prjPoint.y = dist * orgPoint.y / -orgPoint.z;
+	prjPoint.z = orgPoint.z;
+	prjPoint.x = prjPoint.x + addX + 320 / 2;
+	prjPoint.y = -prjPoint.y + addY + 480 / 2;
 }
 
 -(void) calcVWithCam: (Camera*) viewCam{

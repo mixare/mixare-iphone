@@ -39,7 +39,7 @@
 													0.0,  0.0);
     CGContextSetTextMatrix(ctx, xform);
 	
-    CGContextShowTextAtPoint(ctx, 10, 40, text, strlen(text));
+    CGContextShowTextAtPoint(ctx, 15, 40, text, strlen(text));
 }
 
 

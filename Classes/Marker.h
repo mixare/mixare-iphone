@@ -42,12 +42,13 @@
 
 
 +(Marker*) initMarkerWithTitle: (NSString*) title latitude: (float) lat longitude: (float) lon altitude: (float) alt url: (NSString*) url;
--(void) cCMarkerWithOrigPoint: (MixVector *) originalPoint camera: (Camera*) viewCam addX: (float) addX addY: (float) addY; 
+-(MixVector*) cCMarkerWithOrigPoint: (MixVector *) originalPoint rotM: (Matrix*) transform addX: (float) addX addY: (float) addY;
 -(void) calcVWithCam: (Camera*) viewCam;
 -(void) updateWithLocation: (CLLocation*) curGPSFix;
 -(void) calcpaintWithCamera: (Camera*) viewCam addX: (float) addX addY: (float) addY;
 -(BOOL) isClickValidX: (float) x Y: (float) y;
 +(float) getAngleFromCenter: (float) centerX centerY: (float) centerY postX: (float) postX postY: (float) postY;
 -(void) initMarker;
+-(void) projectPointWithOrigin: (MixVector*) orgPoint projectPoint: (MixVector*) prjPoint addX: (float) addX addY: (float) addY;
 @end
 

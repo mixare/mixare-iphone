@@ -8,7 +8,8 @@
 
 #import "CamViewController.h"
 #define CAMERA_TRANSFORM 1.22412
-
+#define GRAD_TO_PIX_VAL_WITH 6.738
+#define GRAD_TO_PIX_VAL_LENGTH 7.89
 @implementation CamViewController
 @synthesize imgPicker = _imgPicker;
 @synthesize closeButton = _closeButton;
@@ -27,6 +28,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSLog(@"Distance between mmm and peer : %f",[PhysicalPlace distanceBetweenLong1:11.295437 lat1:46.478766 long2:11.305661 lat2:46.479756]);
 	self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 	[self setImgPicker: [[UIImagePickerController alloc] init] ];
 	[[self imgPicker] setSourceType: UIImagePickerControllerSourceTypeCamera];
@@ -44,11 +46,13 @@
 	[self presentModalViewController:self.imgPicker animated:YES];
 	if(motionManager == nil){
 		motionManager = [[CMMotionManager alloc]init];
-		
-	}
-	if (motionManager != nil) {
 		CMDeviceMotion *dm = motionManager.deviceMotion;
 		referenceAttitude = [dm.attitude retain];
+		NSLog(@"ref matrix = [%f, %f, %f]", referenceAttitude.rotationMatrix.m11, referenceAttitude.rotationMatrix.m12,referenceAttitude.rotationMatrix.m13);
+		NSLog(@"ref matrix = [%f, %f, %f]", referenceAttitude.rotationMatrix.m21, referenceAttitude.rotationMatrix.m22,referenceAttitude.rotationMatrix.m23);
+		NSLog(@"ref matrix = [%f, %f, %f]", referenceAttitude.rotationMatrix.m31, referenceAttitude.rotationMatrix.m32,referenceAttitude.rotationMatrix.m33);
+		NSLog(@"---------------------------------------------------------------------------");
+		
 	}
 	[self initLocationManager];
 	float angleX, angleY; 
@@ -65,21 +69,65 @@
 	[m4 toIdentity];
 	int decilination = abs(self.locManager.heading.magneticHeading-self.locManager.heading.trueHeading);
 	[m4 setToA1:cosf(angleY) a2:0.0 a3:sinf(angleY) b1:0.0 b2:1.0 b3:0.0 c1:-sinf(angleY) c2:0.0 c3:cosf(angleY)];	
-	motionManager.deviceMotionUpdateInterval = 1.0;
-	camera = [[Camera alloc]init];//:480 widh:320];
-	[camera retain];
+	motionManager.deviceMotionUpdateInterval = 0.25;
+	
 	NSUInteger historyIndex = 0;
 	if (motionManager.isDeviceMotionAvailable) {
 		histroy = [[NSMutableArray alloc] initWithCapacity:50];
-		
+		changeRoll = 0;
+		changePitch= 0;
+		oldP = 0;
+		oldR = 0;
+		isFirstAcces = YES;
+		camera = [[[Camera alloc]init]autorelease];
+		MixVector * vec = [PhysicalPlace convLocToVecWithLocation:_locManager.location place:messnerMarker.mGeoLoc];
+		NSLog(@"VECTOR tis to mmm : x: %f| y: %f| z: %f|", vec.x, vec.y, vec.z); 
+		//[vec retain];
+		messnerMarker.locationVector = vec;
 		[motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue]
 										   withHandler: ^(CMDeviceMotion *motion, NSError *error)
 		 {
 			 CMAttitude *attitude = motion.attitude;
-			 if (referenceAttitude != nil) {
-				 [attitude multiplyByInverseOfAttitude:referenceAttitude];
+			 
+			 if(isFirstAcces==YES){
+				 oldP = attitude.yaw* 180 / M_PI;
+				 oldR = attitude.roll* 180 / M_PI;
+				 isFirstAcces = NO;
 			 }
+			 changePitch = oldP - (attitude.yaw* 180 / M_PI);
+			 changeRoll = oldR - (attitude.roll* 180 / M_PI);
+			 
+			 [UIView beginAnimations:@"MyAnimation" context:nil];
+			 [UIView setAnimationBeginsFromCurrentState:YES];
+			 [UIView setAnimationDuration:0.5]; // 5 seconds
+			 
+			 CGRect frame = m.frame;
+			 frame.origin.x -= changePitch*GRAD_TO_PIX_VAL_LENGTH;
+			 frame.origin.y -= changeRoll*GRAD_TO_PIX_VAL_WITH; 
+			 
+			 m.frame = frame;
+			 
+			 
+			 [UIView commitAnimations];
+			 
+			 
+			 
+			 
+			 
+			 
+			 NSLog(@"roll: %f pitch: %f yaw: %f", attitude.roll* 180 / M_PI, attitude.pitch* 180 / M_PI, attitude.yaw* 180 / M_PI);			 
+			 NSLog(@"changeR: %f changeP: %f", changeRoll, changePitch);
+			 oldR = attitude.roll* 180 / M_PI;
+			 oldP = attitude.yaw* 180 / M_PI;
+			 
+			 
 			 CMRotationMatrix rotMatrix = attitude.rotationMatrix;
+			 CMRotationMatrix rot2;
+			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m11, rotMatrix.m12,rotMatrix.m13);
+			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m21, rotMatrix.m22,rotMatrix.m23);
+			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m31, rotMatrix.m32,rotMatrix.m33);
+			 NSLog(@"---------------------------------------------------------------------------");
+			 
 			 tempR = [Matrix initMatrixWithA1:rotMatrix.m11 a2:rotMatrix.m21 a3:rotMatrix.m31 b1:rotMatrix.m12 b2:rotMatrix.m22 b3:rotMatrix.m32 c1:rotMatrix.m13 c2:rotMatrix.m23 c3:rotMatrix.m33];
 			 finalR = [[Matrix alloc]init];
 			 [finalR toIdentity];
@@ -89,25 +137,17 @@
 			 [finalR prodWithMatrix:m3];
 			 [finalR prodWithMatrix:m2];
 			 [finalR invert];
-			 [histroy addObject:finalR];
-			 _historyIndex += 1;
-			 if(historyIndex>=50){
-				 [histroy removeAllObjects];
-			 }
+			 
 			 [self calcPitchBearingFromRotationMatrix:finalR];
 			 [smoothR setToA1:0.0 a2:0.0 a3:0.0 b1:0.0 b2:0.0 b3:0.0 c1:0.0 c2:0.0 c3:0.0];
-			[messnerMarker calcpaintWithCamera:camera addX:0.0 addY:0.0];
-			  
-			 /*for(int i = 1; i <50; i++){
-				 [smoothR addMatrix:((Matrix *)[histroy objectAtIndex:historyIndex])];
-			 }
-			 [smoothR multWithScalar:1.0/50.0];*/
-			
-			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m11, rotMatrix.m12,rotMatrix.m13);
-			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m21, rotMatrix.m22,rotMatrix.m23);
-			 NSLog(@"rotation matrix = [%f, %f, %f]", rotMatrix.m31, rotMatrix.m32,rotMatrix.m33);
-			 NSLog(@"---------------------------------------------------------------------------");
 			 
+			 MixVector * mv = [[[MixVector alloc]init]autorelease];
+			 mv.x = 0; mv.y= 0; mv.z=0;
+			
+			 if(messnerMarker != nil){
+				 MixVector* temp = [messnerMarker cCMarkerWithOrigPoint:mv rotM:finalR addX:0 addY:0];
+				 NSLog(@"pix values: x: %f  y: %f", temp.x, temp.y);
+			 }
 		}];		
 	}
 	else {
@@ -172,14 +212,14 @@
 }
 
 -(void)initLocationManager{
-	messnerMarker = [Marker initMarkerWithTitle:@"MMM" latitude:46.48 longitude:11.30546 altitude:0.0 url:@"de.wikipedia.org/wiki/Messner_Mountain_Museum_Firmian"];
-	
-	cView = [[Circle alloc] initWithFrame:CGRectMake(50, 100, 25, 25)];
+	messnerMarker = [Marker initMarkerWithTitle:@"MMM" latitude:46.479741 longitude:11.305672 altitude:0.0 url:@"de.wikipedia.org/wiki/Messner_Mountain_Museum_Firmian"];
+	[messnerMarker retain];
+	//cView = [[Circle alloc] initWithFrame:CGRectMake(50, 100, 25, 25)];
 	//[window addSubview:cView];
 	//[cView release];
 	m = [[MarkerObject alloc]initWithFrame:CGRectMake(100, 200, 60, 60)];
 	//m.circle = cView;;
-	messnerMarker.markerView = m;
+	//messnerMarker.markerView = m;
 	m.text = messnerMarker.title;
 	[_window addSubview:m];
 	//[cView release];
@@ -303,6 +343,7 @@
 - (void)dealloc {
     [super dealloc];
 	[self.imgPicker release];
+	[messnerMarker release];
 }
 
 CGFloat DegreesToRadians(CGFloat degrees)
@@ -326,6 +367,9 @@ CGFloat RadiansToDegrees(CGFloat radians)
 	
 	return angle;
 }
+
+
+
 
 #pragma mark -
 #pragma mark CLLocationDelegate methods

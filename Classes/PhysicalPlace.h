@@ -40,4 +40,6 @@
 +(CGFloat)distanceBetweenLong1: (CGFloat) long1 lat1: (CGFloat) lat1 long2: (CGFloat)long2 lat2: (CGFloat)lat2;
 
 -(BOOL) isClickValidX: (float)x y: (float) y;
+
++(MixVector*)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp;
 @end

@@ -17,6 +17,7 @@
 #import "Matrix.h"
 #import "Camera.h"
 #import "MixVector.h"
+#import "PhysicalPlace.h"
 
 @interface CamViewController : UIViewController <CLLocationManagerDelegate>{
     UIImagePickerController *_imgPicker;
@@ -32,12 +33,14 @@
 	float currentHeading;
 	//GLFloat rotMatrix[16];
 	CMAttitude* referenceAttitude;
-	double changeX, changeY;
+	//double changeX, changeY;
 	Matrix * tempR, * finalR, *smoothR, *m1, *m2, *m3, *m4;
 	NSMutableArray *histroy;
 	NSUInteger _historyIndex;
 	Camera* camera;
 	Marker * messnerMarker;
+	double changePitch, changeRoll,oldR, oldP;
+	BOOL isFirstAcces;
 }
 @property (nonatomic,retain) UIImagePickerController *imgPicker;
 @property (nonatomic,retain) UIButton * closeButton;
@@ -51,4 +54,5 @@
 -(void)processMotion:(CMDeviceMotion *)motion withError:(NSError *)error;
 -(float) getAngleFromCenter: (float) centerX centerY: (float) centerY postX: (float) postX postY: (float) postY;
 -(void)calcPitchBearingFromRotationMatrix: (Matrix*) rotationM;
+-(void) projectPointWithOrigin: (MixVector*) orgPoint projectPoint: (MixVector*) prjPoint addX: (float) addX addY: (float) addY;
 @end
