@@ -12,11 +12,11 @@
 @interface SourceTableCell : UITableViewCell {
 	UILabel * _sourceLabel;
 	UIImageView * _sourceLogoView;
-	UISwitch * _sourceSwitch;
+	//UISwitch * _sourceSwitch;
 
 }
 @property (nonatomic, retain) IBOutlet UILabel * sourceLabel;
-@property (nonatomic, retain) IBOutlet UISwitch * sourceSwitch;
+//@property (nonatomic, retain) IBOutlet UISwitch * sourceSwitch;
 @property (nonatomic, retain) IBOutlet UIImageView * sourceLogoView;
 
 @end

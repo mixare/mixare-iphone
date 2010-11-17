@@ -30,6 +30,7 @@
 		3626B9401284170100B52201 /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3626B93F1284170100B52201 /* buzz_logo.png */; };
 		363F69DF1275B8E500D7B002 /* CamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363F69DE1275B8E200D7B002 /* CamViewController.m */; };
 		36521013128015C0009F5862 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36521012128015C0009F5862 /* MapViewController.m */; };
+		365FD800129119AB00DA1F1B /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365FD7FF129119AB00DA1F1B /* MenuView.xib */; };
 		366C8CF11271721F0082CB57 /* MixVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF01271721F0082CB57 /* MixVector.m */; };
 		366C8CF4127173C70082CB57 /* Matrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF3127173C70082CB57 /* Matrix.m */; };
 		366C8CF7127173CE0082CB57 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF6127173CE0082CB57 /* Camera.m */; };
@@ -38,6 +39,16 @@
 		3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
 		36862F251276D75D005E03AE /* MixUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36862F241276D75D005E03AE /* MixUtils.m */; };
+		36876BCF128BFA2A00C416F5 /* ARGeoCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BC8128BFA2A00C416F5 /* ARGeoCoordinate.m */; };
+		36876BD0128BFA2A00C416F5 /* ARGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCA128BFA2A00C416F5 /* ARGeoViewController.m */; };
+		36876BD1128BFA2A00C416F5 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCC128BFA2A00C416F5 /* ARViewController.m */; };
+		36876BD2128BFA2A00C416F5 /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCE128BFA2A00C416F5 /* ARCoordinate.m */; };
+		36876BD4128BFFCC00C416F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36876BD3128BFFCC00C416F5 /* QuartzCore.framework */; };
+		369EA5E8129145E7008EA31B /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 369EA5E7129145E7008EA31B /* list.png */; };
+		369EA5EC12915B9A008EA31B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 369EA5EB12915B9A008EA31B /* circle.png */; };
+		369EA5EF1291678D008EA31B /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 369EA5EE1291678D008EA31B /* DataSource.m */; };
+		36A31585128D6E15002D1C57 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A31584128D6E15002D1C57 /* WebView.xib */; };
+		36A3158B128D6F85002D1C57 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3158A128D6F85002D1C57 /* WebViewController.m */; };
 		36A83E61125B0AB200D0D53D /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A83E60125B0AB200D0D53D /* 103-map.png */; };
 		36A83E63125B0AC500D0D53D /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A83E62125B0AC500D0D53D /* 86-camera.png */; };
 		36A83E67125B0E9700D0D53D /* source.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A83E66125B0E9700D0D53D /* source.png */; };
@@ -94,6 +105,7 @@
 		363F69DE1275B8E200D7B002 /* CamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CamViewController.m; sourceTree = "<group>"; };
 		36521011128015C0009F5862 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		36521012128015C0009F5862 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		365FD7FF129119AB00DA1F1B /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		366C8CEF1271721F0082CB57 /* MixVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixVector.h; sourceTree = "<group>"; };
 		366C8CF01271721F0082CB57 /* MixVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixVector.m; sourceTree = "<group>"; };
 		366C8CF2127173C70082CB57 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
@@ -107,6 +119,22 @@
 		3685BA2D12756566005FF922 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		36862F231276D75D005E03AE /* MixUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixUtils.h; sourceTree = "<group>"; };
 		36862F241276D75D005E03AE /* MixUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixUtils.m; sourceTree = "<group>"; };
+		36876BC7128BFA2A00C416F5 /* ARGeoCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoCoordinate.h; sourceTree = "<group>"; };
+		36876BC8128BFA2A00C416F5 /* ARGeoCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoCoordinate.m; sourceTree = "<group>"; };
+		36876BC9128BFA2A00C416F5 /* ARGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGeoViewController.h; sourceTree = "<group>"; };
+		36876BCA128BFA2A00C416F5 /* ARGeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGeoViewController.m; sourceTree = "<group>"; };
+		36876BCB128BFA2A00C416F5 /* ARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
+		36876BCC128BFA2A00C416F5 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
+		36876BCD128BFA2A00C416F5 /* ARCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoordinate.h; sourceTree = "<group>"; };
+		36876BCE128BFA2A00C416F5 /* ARCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoordinate.m; sourceTree = "<group>"; };
+		36876BD3128BFFCC00C416F5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		369EA5E7129145E7008EA31B /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		369EA5EB12915B9A008EA31B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		369EA5ED1291678D008EA31B /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		369EA5EE1291678D008EA31B /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		36A31584128D6E15002D1C57 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
+		36A31589128D6F85002D1C57 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		36A3158A128D6F85002D1C57 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		36A83E60125B0AB200D0D53D /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
 		36A83E62125B0AC500D0D53D /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		36A83E66125B0E9700D0D53D /* source.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = source.png; sourceTree = "<group>"; };
@@ -134,6 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36876BD4128BFFCC00C416F5 /* QuartzCore.framework in Frameworks */,
 				367ADBAE1280598900324124 /* CoreMotion.framework in Frameworks */,
 				3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */,
 				3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */,
@@ -192,9 +221,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				365FD7FF129119AB00DA1F1B /* MenuView.xib */,
 				2840D7CD1179279E00D7F93C /* FirstView.xib */,
 				3626B93A12840B1600B52201 /* SourceCell.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
+				36A31584128D6E15002D1C57 /* WebView.xib */,
 				8D1107310486CEB800E47090 /* Mixare-Info.plist */,
 			);
 			name = Resources;
@@ -203,6 +234,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36876BD3128BFFCC00C416F5 /* QuartzCore.framework */,
 				367ADBAD1280598900324124 /* CoreMotion.framework */,
 				3685BA2D12756566005FF922 /* MapKit.framework */,
 				3685BA2B1275653F005FF922 /* CoreLocation.framework */,
@@ -247,6 +279,8 @@
 		366FD7EC1270419C00EAC466 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				369EA5ED1291678D008EA31B /* DataSource.h */,
+				369EA5EE1291678D008EA31B /* DataSource.m */,
 				3621470C127FD0DC00E2C4CE /* JSON_Framework */,
 				36FBD05912705F4000705201 /* XMLHandler.h */,
 				36FBD05A12705F4000705201 /* XMLHandler.m */,
@@ -261,6 +295,9 @@
 		366FD7ED127041A500EAC466 /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				36876BC6128BF9CF00C416F5 /* AR */,
+				36A31589128D6F85002D1C57 /* WebViewController.h */,
+				36A3158A128D6F85002D1C57 /* WebViewController.m */,
 				3626B93C12840F7800B52201 /* SourceTableCell.h */,
 				3626B93D12840F7800B52201 /* SourceTableCell.m */,
 				360E7ED81283FB930061C67C /* ListViewController.h */,
@@ -294,9 +331,26 @@
 			name = reality;
 			sourceTree = "<group>";
 		};
+		36876BC6128BF9CF00C416F5 /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				36876BC7128BFA2A00C416F5 /* ARGeoCoordinate.h */,
+				36876BC8128BFA2A00C416F5 /* ARGeoCoordinate.m */,
+				36876BC9128BFA2A00C416F5 /* ARGeoViewController.h */,
+				36876BCA128BFA2A00C416F5 /* ARGeoViewController.m */,
+				36876BCB128BFA2A00C416F5 /* ARViewController.h */,
+				36876BCC128BFA2A00C416F5 /* ARViewController.m */,
+				36876BCD128BFA2A00C416F5 /* ARCoordinate.h */,
+				36876BCE128BFA2A00C416F5 /* ARCoordinate.m */,
+			);
+			name = AR;
+			sourceTree = "<group>";
+		};
 		36A83E5F125B0A4300D0D53D /* img */ = {
 			isa = PBXGroup;
 			children = (
+				369EA5EB12915B9A008EA31B /* circle.png */,
+				369EA5E7129145E7008EA31B /* list.png */,
 				3626B93F1284170100B52201 /* buzz_logo.png */,
 				3621471D127FF0C200E2C4CE /* twitter_logo.png */,
 				3621471E127FF0C200E2C4CE /* wikipedia_logo.png */,
@@ -385,6 +439,10 @@
 				36214720127FF0C200E2C4CE /* wikipedia_logo.png in Resources */,
 				3626B93B12840B1600B52201 /* SourceCell.xib in Resources */,
 				3626B9401284170100B52201 /* buzz_logo.png in Resources */,
+				36A31585128D6E15002D1C57 /* WebView.xib in Resources */,
+				365FD800129119AB00DA1F1B /* MenuView.xib in Resources */,
+				369EA5E8129145E7008EA31B /* list.png in Resources */,
+				369EA5EC12915B9A008EA31B /* circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +477,12 @@
 				36521013128015C0009F5862 /* MapViewController.m in Sources */,
 				360E7EDA1283FB930061C67C /* ListViewController.m in Sources */,
 				3626B93E12840F7800B52201 /* SourceTableCell.m in Sources */,
+				36876BCF128BFA2A00C416F5 /* ARGeoCoordinate.m in Sources */,
+				36876BD0128BFA2A00C416F5 /* ARGeoViewController.m in Sources */,
+				36876BD1128BFA2A00C416F5 /* ARViewController.m in Sources */,
+				36876BD2128BFA2A00C416F5 /* ARCoordinate.m in Sources */,
+				36A3158B128D6F85002D1C57 /* WebViewController.m in Sources */,
+				369EA5EF1291678D008EA31B /* DataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,9 +522,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 			};
@@ -472,9 +537,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;

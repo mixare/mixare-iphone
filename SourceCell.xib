@@ -39,7 +39,7 @@
 								<string key="NSFrame">{{60, 0}, {150, 60}}</string>
 								<reference key="NSSuperview" ref="328684360"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="675906660"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -74,18 +74,6 @@
 									<string key="NSResourceName">wikipedia_logo.png</string>
 								</object>
 							</object>
-							<object class="IBUISwitch" id="675906660">
-								<reference key="NSNextResponder" ref="328684360"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 16}, {94, 27}}</string>
-								<reference key="NSSuperview" ref="328684360"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-							</object>
 						</array>
 						<string key="NSFrameSize">{320, 60}</string>
 						<reference key="NSSuperview" ref="201608930"/>
@@ -115,6 +103,17 @@
 				<int key="IBUISeparatorStyle">1</int>
 				<reference key="IBUIContentView" ref="328684360"/>
 			</object>
+			<object class="IBUISwitch" id="675906660">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<string key="NSFrameSize">{94, 27}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSNextKeyView"/>
+				<bool key="IBUIOpaque">NO</bool>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUIContentHorizontalAlignment">0</int>
+				<int key="IBUIContentVerticalAlignment">0</int>
+			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array key="connectionRecords">
@@ -124,7 +123,7 @@
 						<reference key="source" ref="201608930"/>
 						<reference key="destination" ref="37722300"/>
 					</object>
-					<int key="connectionID">6</int>
+					<int key="connectionID">9</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -132,15 +131,7 @@
 						<reference key="source" ref="201608930"/>
 						<reference key="destination" ref="651740953"/>
 					</object>
-					<int key="connectionID">7</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">sourceSwitch</string>
-						<reference key="source" ref="201608930"/>
-						<reference key="destination" ref="675906660"/>
-					</object>
-					<int key="connectionID">8</int>
+					<int key="connectionID">10</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -168,7 +159,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="37722300"/>
 							<reference ref="651740953"/>
-							<reference ref="675906660"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -185,7 +175,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
 						<reference key="object" ref="675906660"/>
-						<reference key="parent" ref="201608930"/>
+						<reference key="parent" ref="0"/>
 					</object>
 				</array>
 			</object>
@@ -201,7 +191,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">8</int>
+			<int key="maxID">10</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -211,7 +201,6 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="sourceLabel">UILabel</string>
 						<string key="sourceLogoView">UIImageView</string>
-						<string key="sourceSwitch">UISwitch</string>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>

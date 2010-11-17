@@ -7,7 +7,7 @@
 //
 
 #import "ListViewController.h"
-//Cons
+#import "WebViewController.h"
 
 #define kTextFieldWidth	180.0
 #define kViewTag				1
@@ -21,7 +21,7 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 
 
 @implementation ListViewController
-@synthesize dataSourceArray; 
+@synthesize dataSourceArray= source; 
 
 - (void)dealloc
 {	
@@ -37,14 +37,9 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 
 - (void)viewDidLoad{	
     [super viewDidLoad];
+	
 }
--(void)initDataSourceWithJSONData{
-	if(source == nil){
-		JsonHandler * jHandler = [[[JsonHandler alloc]init]autorelease];
-		NSString *jsonData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=46.479678&lng=11.2954&radius=3&maxRows=50&lang=de"]];
-		source= [jHandler processWikipediaJSONData:jsonData];
-	}
-}
+
 // called after the view controller's view is released and set to nil.
 // For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
 // So release any properties that are loaded in viewDidLoad or can be recreated lazily.
@@ -69,14 +64,11 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 	return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	return [[self.dataSourceArray objectAtIndex: section] valueForKey:kSectionTitleKey];
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [source count] ;
+	return (source != nil) ? [source count] :0;
 }
 
 // to determine specific row height for each cell, override this.
@@ -84,23 +76,36 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 //
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return ([indexPath row] == 0) ? 50.0 : 50.0;
+	return ([indexPath row] == 0) ? 60.0 : 60.0;
 }
 
 // to determine which UITableViewCell to be used on a given row.
 //
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell *cell = nil;
-	NSUInteger row = [indexPath row];
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
+	//NSUInteger row = [indexPath row];
+	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
 	if(source != nil){
-		cell.textLabel.text = [source objectAtIndex:indexPath.row];
+		cell.textLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"title"];
+		cell.detailTextLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"sum"];
 	}else{
-		
+		//
 	}
 	return cell;
 }
+#pragma mark -
+#pragma mark UITableViewDelegate
 
-
+// the table's selection has changed, switch to that item's UIViewController
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	NSLog(@"in select row");
+	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+	if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"BUZZ"]){
+		targetViewController.url = [NSString stringWithFormat:@"%@",[[source objectAtIndex:indexPath.row]valueForKey:@"url"]];
+	}else{
+		targetViewController.url = [NSString stringWithFormat:@"http://%@",[[source objectAtIndex:indexPath.row]valueForKey:@"url"]];
+	}
+	[[self navigationController] pushViewController:targetViewController animated:YES];
+}
 
 @end

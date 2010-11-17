@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "JsonHandler.h"
-@interface ListViewController : UITableViewController  {
-	NSArray *dataSourceArray;
+@interface ListViewController : UITableViewController<UITableViewDelegate>  {
+	NSMutableArray *dataSourceArray;
 	int keyboardHeight;
 	//data
 	NSMutableArray * source;
@@ -18,5 +18,5 @@
 }
 -(void)initDataSourceWithJSONData;
 
-@property (nonatomic, retain) NSArray *dataSourceArray;
+@property (nonatomic, retain) IBOutlet NSMutableArray *dataSourceArray;
 @end

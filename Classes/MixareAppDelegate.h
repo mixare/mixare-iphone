@@ -25,32 +25,42 @@
 #import "MarkerObject.h" 
 #import "ListViewController.h"
 #import "Marker.h"
-
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>{
+#import "ARGeoViewController.h"
+#import "JsonHandler.h"
+#import "MapViewController.h"
+@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
-    //UITabBarController *tabBarController;
-	UIImagePickerController* imgPicker;
-	UIButton *closeButton;
-	CamViewController * _cameraController;
+	UIButton *_closeButton;
 	CLLocationManager * _locManager;
-	UIView * _view;
-	Circle *cView;
-	float currentHeading;
-	UIAccelerometer * acceloometer;
-	MarkerObject * m;
 	UITabBarController *_tabBarController;
-	CMAttitude *referenceAttitude;
-	NSOperationQueue *motionQueue;
 	CMMotionManager *motionManager;
 	ListViewController * _listViewController;
+	MapViewController * _mapViewController;
+	ARGeoViewController *viewController;
+	NSMutableArray * _data;
+	JsonHandler * jHandler;
+	UISlider * _slider;
+	UISegmentedControl *_menuButton;
+	IBOutlet UIView * menuView;
+	IBOutlet UISwitch * wikiSwitch;
+	IBOutlet UISwitch * buzzSwtich;
+	IBOutlet UISwitch * twitterSwitch;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) CLLocationManager * locManager;
-@property (nonatomic, retain) CamViewController * camController;
-@property (nonatomic, retain) IBOutlet UIView * view;
 @property (nonatomic, retain) IBOutlet ListViewController * listViewController;
+@property (nonatomic, retain) IBOutlet NSMutableArray * data;
+@property (nonatomic, retain) IBOutlet MapViewController* mapViewController;
+@property (nonatomic, retain) IBOutlet UISlider * slider;
+@property (nonatomic, retain) IBOutlet UISegmentedControl * menuButton;
+
 -(void)initCameraView;
+-(void) iniARView;
+- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate;
 -(void)initLocationManager;
+-(void)mapData;
+-(void)downloadData;
+-(void) initControls;
 @end

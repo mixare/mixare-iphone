@@ -12,7 +12,10 @@
 
 @interface MapViewController : UIViewController {
 	IBOutlet MKMapView* _map;
-
+	NSMutableArray *_data;
 }
 @property(nonatomic,retain)MKMapView *map;
+@property (nonatomic, retain) NSMutableArray * data;
+-(void) mapDataToMapAnnotations;
+
 @end

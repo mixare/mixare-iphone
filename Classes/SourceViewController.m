@@ -88,6 +88,7 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 		for(id currentObject in topLevelObjects){
 			if([currentObject isKindOfClass:[UITableViewCell class]]){
 				cell = (SourceTableCell *) currentObject;
+				//[cell.sourceSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
 				break;
 			}
 		}
@@ -100,6 +101,7 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"twitter_logo.png"]];
 		}else if(indexPath.row == 0){
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}else if(indexPath.row == 2){
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"buzz_logo.png"]];
 		}
@@ -109,7 +111,20 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 	return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+	//static NSString * CellIdentifier = @"SourceCell";
+	SourceTableCell *cell =  (SourceTableCell *) [tableView cellForRowAtIndexPath:indexPath];
+	if(cell != nil){
+		if (cell.accessoryType == UITableViewCellAccessoryNone){
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+			[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:cell.sourceLabel.text];
+		}else{
+			cell.accessoryType = UITableViewCellAccessoryNone;
+			[[NSUserDefaults standardUserDefaults] setObject:@"FALSE" forKey:cell.sourceLabel.text];
+		}
+	}else NSLog(@"NOT WORKING");
 
+}
 
 @end
 
