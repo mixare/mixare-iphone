@@ -67,6 +67,73 @@
 	[alert show];
 	//[alert release];
 }
+
+-(void) iniARView{
+    //if(viewController == nil){
+        viewController = [[ARGeoViewController alloc] init];
+    //}
+	viewController.debugMode = NO;
+	
+	viewController.delegate = self;
+	
+	viewController.scaleViewsBasedOnDistance = YES;
+	viewController.minimumScaleFactor = .2;
+	
+	viewController.rotateViewsBasedOnPerspective = YES;
+	
+	[self mapData];
+    
+	if(_locManager != nil){
+		viewController.centerLocation = _locManager.location;
+	}
+    [self initControls];
+    [viewController.view addSubview:_menuButton];
+    [viewController.view addSubview:_slider];
+	[viewController startListening];
+	[window addSubview:viewController.view];
+    
+}
+
+-(void) initControls{
+    
+    //if(_slider == nil){
+        _slider = [[UISlider alloc]initWithFrame:CGRectMake(0, 5, 170, 23)];
+        _slider.alpha = 0.7;  
+        [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+        _slider.hidden = YES;
+        _slider.minimumValue = 1.0;
+        _slider.maximumValue = 20.0;
+        _slider.continuous= NO;
+    //}
+	//if(_menuButton == nil){
+        _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Menü", @"Radius",nil]];
+        _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
+        _menuButton.frame = CGRectMake(190, 0, 130, 30);
+        _menuButton.alpha = 0.65;
+        [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
+	//}
+    float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
+    if(radius <= 0 || radius > 100){
+        _slider.value = 5.0;
+    }else{
+        _slider.value = radius;
+        NSLog(@"RADIUS VALUE: %f", radius);
+    }
+    
+        
+    
+}
+
+-(void) initLocationManager{
+	if (_locManager == nil){
+		_locManager = [[CLLocationManager alloc]init];
+		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
+		_locManager.delegate = self;
+		_locManager.distanceFilter = 3.0;
+		//[_locManager startUpdatingLocation];
+	}
+}
+
 -(void)mapData{
 	if(_data != nil){
 		NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:[_data count]];
@@ -91,130 +158,6 @@
 		[tempLocationArray release];
 	}else NSLog(@"no data received");
 }
--(void) iniARView{
-	viewController = [[ARGeoViewController alloc] init];
-	viewController.debugMode = NO;
-	
-	viewController.delegate = self;
-	
-	viewController.scaleViewsBasedOnDistance = YES;
-	viewController.minimumScaleFactor = .2;
-	
-	viewController.rotateViewsBasedOnPerspective = YES;
-	
-	/*
-	NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:10];
-	
-	CLLocation *tempLocation;
-	ARGeoCoordinate *tempCoordinate;
-	
-	CLLocationCoordinate2D location;
-	location.latitude = 46.479722;
-	location.longitude = 11.305693;
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:location altitude:260 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:[NSDate date]];
-	
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"MMM MUSEUM";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	
-	//tempLocation = [[CLLocation alloc] initWithLatitude: longitude:];
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.478917, 11.344097) altitude:383 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Hasel Burg";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	//tempLocation = [[CLLocation alloc] initWithLatitude:46.43893 longitude:11.21706 ]; 
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.43893, 11.21706) altitude:1737 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude = 1737;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Penegal";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.615, 11.46083) altitude:2260 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Rittner Horn";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	 
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.51159, 11.57452) altitude:2563 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude =2563;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Schlern";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.475468, 11.285145) altitude:293 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude =2563;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Kugel";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.4782, 11.2966) altitude:263 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude =2563;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Kirche";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	[viewController addCoordinates:tempLocationArray];
-	[tempLocationArray release];
-	*/
-	[self mapData];
-	if(_locManager != nil){
-		//CLLocation *newCenter = _;
-		//NSLog(@"Hight: %f ",newCenter.altitude);
-		viewController.centerLocation = _locManager.location;
-		//[newCenter release];
-	}
-	[viewController startListening];
-	[self initControls];
-	[viewController.view addSubview:_menuButton];
-	[viewController.view addSubview:_slider];
-	[window addSubview:viewController.view];
-}
-
--(void) initControls{
-	_slider = [[UISlider alloc]initWithFrame:CGRectMake(0, 5, 170, 23)];
-	_slider.alpha = 0.7;
-	_menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Menü", @"Radius",nil]];
-	_menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
-	_menuButton.frame = CGRectMake(190, 0, 130, 30);
-	_menuButton.alpha = 0.65;
-	[_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
-	[_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-	
-	_slider.hidden = YES;
-	_slider.minimumValue = 1.0;
-	_slider.maximumValue = 20.0;
-	_slider.continuous= NO;
-	_slider.value = 5.0;
-
-}
-
--(void) initLocationManager{
-	if (_locManager == nil){
-		_locManager = [[CLLocationManager alloc]init];
-		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
-		_locManager.delegate = self;
-		_locManager.distanceFilter = 3.0;
-		//[_locManager startUpdatingLocation];
-	}
-}
 
 -(void)downloadData{
 	//NSAutoreleasePool * pool = [[NSAutoreleasePool alloc]init];
@@ -224,35 +167,36 @@
 	//jsonData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://mixare.org/geotest.php"]];
 	NSString * buzzData;
 	if(_slider != nil){
-		NSLog(@"%@",[NSString stringWithFormat:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=%f&lng=%f&radius=%f&maxRows=%d&lang=de",pos.coordinate.latitude,pos.coordinate.longitude,5.5,30]);
-		wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=%f&lng=%f&radius=%f&maxRows=%d&lang=de",pos.coordinate.latitude,pos.coordinate.longitude,5.5,30]] encoding:NSUTF8StringEncoding error:nil];
+		NSLog(@"%@",[NSString stringWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"]);
+		wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
 		
-		buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:5 Lang:@"de"]]];
+		buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:_slider.value Lang:@"de"]]];
 		
 	}else{
-		wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=%f&lng=%f&radius=%f&maxRows=%d&lang=de",pos.coordinate.latitude,pos.coordinate.longitude,_slider.value,30]] encoding:NSUTF8StringEncoding error:nil];
-		buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:_slider.value Lang:@"de"]]];
+        NSLog(@"%@",[NSString stringWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"]);
+		wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
+		buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:5.0 Lang:@"de"]]];
 	}
-	NSMutableArray * buzzMessages = [jHandler processBuzzJSONData:buzzData];
-	_data= [jHandler processWikipediaJSONData:wikiData];
-	[_data addObjectsFromArray:buzzMessages];
-	
+    [_data removeAllObjects];
+    NSLog(@"data count: %d", [_data count]);
+	_data= [jHandler processMixareJSONData:wikiData];
+    NSLog(@"data count: %d", [_data count]);
+	[_data addObjectsFromArray:[jHandler processBuzzJSONData:buzzData]];
+    NSLog(@"data count: %d", [_data count]);	
+    //_data = [jHandler processBuzzJSONData:buzzData];
 	[wikiData release];
 	[jHandler release];
-	//[pos release];
 	//[pool release];
 }
+
 -(void)valueChanged:(id)sender{
 	NSLog(@"val: %f",_slider.value);
-	/*viewController.updateFrequency = 500.0;
-	[self downloadData];
-	[self mapData];
-	viewController.updateFrequency = 1 / 20.0;*/
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
 	[viewController removeCoordinates:_data];
-	[viewController stopListening];
 	[self downloadData];
-	[self mapData];
-	[viewController startListening];
+    [self iniARView];
+    [viewController startListening];
+    
 	NSLog(@"POIS CHANGED");
 	
 }
@@ -276,35 +220,7 @@
 
 #define BOX_WIDTH 150
 #define BOX_HEIGHT 100
-/*
-- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate {
-	
-	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	UIView *tempView = [[UIView alloc] initWithFrame:theFrame];
-	
-	//tempView.backgroundColor = [UIColor colorWithWhite:.5 alpha:.3];
-	
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, BOX_WIDTH, 20.0)];
-	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
-	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.textAlignment = UITextAlignmentCenter;
-	titleLabel.text = coordinate.title;
-	[titleLabel sizeToFit];
-	
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, 0, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-	
-	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
-	pointView.image = [UIImage imageNamed:@"location.png"];
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), (int)(BOX_HEIGHT / 2.0 - pointView.image.size.height / 2.0), pointView.image.size.width, pointView.image.size.height);
-	
-	[tempView addSubview:titleLabel];
-	[tempView addSubview:pointView];
-	
-	[titleLabel release];
-	[pointView release];
-	
-	return [tempView autorelease];
-}*/
+
 - (UIView *)viewForCoordinate:(ARCoordinate *)coordinate {
 	
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
@@ -410,6 +326,7 @@
 		if(_data != nil){
 			NSLog(@"data set");
 			[_listViewController setDataSourceArray:_data];
+            NSLog(@"elements in data: %d", [_data count]);
 		}
 	}
 	if(tabBarController.selectedIndex == 3 ){
@@ -448,6 +365,77 @@
     [window release];
     [super dealloc];
 }
-
+-(void) setManualMarkers{
+    NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:10];
+	
+	CLLocation *tempLocation;
+	ARGeoCoordinate *tempCoordinate;
+	
+	CLLocationCoordinate2D location;
+	location.latitude = 46.479722;
+	location.longitude = 11.305693;
+	
+	tempLocation = [[CLLocation alloc] initWithCoordinate:location altitude:260 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:[NSDate date]];
+	
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"MMM MUSEUM";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+	
+	//tempLocation = [[CLLocation alloc] initWithLatitude: longitude:];
+	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.478917, 11.344097) altitude:383 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"Hasel Burg";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+	//tempLocation = [[CLLocation alloc] initWithLatitude:46.43893 longitude:11.21706 ]; 
+	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.43893, 11.21706) altitude:1737 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+	//tempLocation.altitude = 1737;
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"Penegal";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+	
+	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.615, 11.46083) altitude:2260 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"Rittner Horn";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+    
+	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.51159, 11.57452) altitude:2563 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+	//tempLocation.altitude =2563;
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"Schlern";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.475468, 11.285145) altitude:293 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+	//tempLocation.altitude =2563;
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"Kugel";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.4782, 11.2966) altitude:263 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+	//tempLocation.altitude =2563;
+	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+	tempCoordinate.title = @"Kirche";
+	
+	[tempLocationArray addObject:tempCoordinate];
+	[tempLocation release];
+	
+	[viewController addCoordinates:tempLocationArray];
+	[tempLocationArray release];
+}
 @end
 

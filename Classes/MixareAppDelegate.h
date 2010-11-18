@@ -42,9 +42,7 @@
 	UISlider * _slider;
 	UISegmentedControl *_menuButton;
 	IBOutlet UIView * menuView;
-	IBOutlet UISwitch * wikiSwitch;
-	IBOutlet UISwitch * buzzSwtich;
-	IBOutlet UISwitch * twitterSwitch;
+	
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

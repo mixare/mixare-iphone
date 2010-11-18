@@ -30,7 +30,6 @@
 		3626B9401284170100B52201 /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3626B93F1284170100B52201 /* buzz_logo.png */; };
 		363F69DF1275B8E500D7B002 /* CamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363F69DE1275B8E200D7B002 /* CamViewController.m */; };
 		36521013128015C0009F5862 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36521012128015C0009F5862 /* MapViewController.m */; };
-		365FD800129119AB00DA1F1B /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365FD7FF129119AB00DA1F1B /* MenuView.xib */; };
 		366C8CF11271721F0082CB57 /* MixVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF01271721F0082CB57 /* MixVector.m */; };
 		366C8CF4127173C70082CB57 /* Matrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF3127173C70082CB57 /* Matrix.m */; };
 		366C8CF7127173CE0082CB57 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF6127173CE0082CB57 /* Camera.m */; };
@@ -44,6 +43,7 @@
 		36876BD1128BFA2A00C416F5 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCC128BFA2A00C416F5 /* ARViewController.m */; };
 		36876BD2128BFA2A00C416F5 /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCE128BFA2A00C416F5 /* ARCoordinate.m */; };
 		36876BD4128BFFCC00C416F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36876BD3128BFFCC00C416F5 /* QuartzCore.framework */; };
+		3699ACF2129532FD00EED276 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3699ACF1129532FD00EED276 /* NotificationView.xib */; };
 		369EA5E8129145E7008EA31B /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 369EA5E7129145E7008EA31B /* list.png */; };
 		369EA5EC12915B9A008EA31B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 369EA5EB12915B9A008EA31B /* circle.png */; };
 		369EA5EF1291678D008EA31B /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 369EA5EE1291678D008EA31B /* DataSource.m */; };
@@ -105,7 +105,6 @@
 		363F69DE1275B8E200D7B002 /* CamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CamViewController.m; sourceTree = "<group>"; };
 		36521011128015C0009F5862 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		36521012128015C0009F5862 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		365FD7FF129119AB00DA1F1B /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		366C8CEF1271721F0082CB57 /* MixVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixVector.h; sourceTree = "<group>"; };
 		366C8CF01271721F0082CB57 /* MixVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixVector.m; sourceTree = "<group>"; };
 		366C8CF2127173C70082CB57 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		36876BCD128BFA2A00C416F5 /* ARCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoordinate.h; sourceTree = "<group>"; };
 		36876BCE128BFA2A00C416F5 /* ARCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoordinate.m; sourceTree = "<group>"; };
 		36876BD3128BFFCC00C416F5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3699ACF1129532FD00EED276 /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		369EA5E7129145E7008EA31B /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		369EA5EB12915B9A008EA31B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		369EA5ED1291678D008EA31B /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
@@ -221,11 +221,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				365FD7FF129119AB00DA1F1B /* MenuView.xib */,
 				2840D7CD1179279E00D7F93C /* FirstView.xib */,
 				3626B93A12840B1600B52201 /* SourceCell.xib */,
 				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
 				36A31584128D6E15002D1C57 /* WebView.xib */,
+				3699ACF1129532FD00EED276 /* NotificationView.xib */,
 				8D1107310486CEB800E47090 /* Mixare-Info.plist */,
 			);
 			name = Resources;
@@ -440,9 +440,9 @@
 				3626B93B12840B1600B52201 /* SourceCell.xib in Resources */,
 				3626B9401284170100B52201 /* buzz_logo.png in Resources */,
 				36A31585128D6E15002D1C57 /* WebView.xib in Resources */,
-				365FD800129119AB00DA1F1B /* MenuView.xib in Resources */,
 				369EA5E8129145E7008EA31B /* list.png in Resources */,
 				369EA5EC12915B9A008EA31B /* circle.png in Resources */,
+				3699ACF2129532FD00EED276 /* NotificationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

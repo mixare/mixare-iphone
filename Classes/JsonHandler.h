@@ -23,5 +23,8 @@
 	SBJsonParser * parser;
 }
 -(NSMutableArray*)processWikipediaJSONData: (NSString*) jsonData;
+-(NSMutableArray*)processMixareJSONData: (NSString*) jsonData;
+-(NSMutableArray*)processTwitterJSONData: (NSString*) jsonData;
+-(NSMutableArray*)processBuzzJSONData: (NSString*) jsonData;
 @end
 
