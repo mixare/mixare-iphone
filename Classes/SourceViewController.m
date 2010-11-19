@@ -84,7 +84,7 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 //
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 62.0;
+	return 55.0;
 }
 
 // to determine which UITableViewCell to be used on a given row.
@@ -103,7 +103,6 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 		}
 	}
 	
-	
 	if(dataSourceArray != nil){
 		cell.sourceLabel.text = [dataSourceArray objectAtIndex:indexPath.row];
 		if(indexPath.row == 1){
@@ -117,6 +116,9 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 	}else{
 		
 	}
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:cell.sourceLabel.text] isEqualToString:@"TRUE"]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
 	return cell;
 }
 
@@ -127,6 +129,7 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 		if (cell.accessoryType == UITableViewCellAccessoryNone){
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 			[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:cell.sourceLabel.text];
+            //[[NSUserDefaults standardUserDefaults] setObject:@"CHANGED" forKey:@"changeStatus";
 		}else{
 			cell.accessoryType = UITableViewCellAccessoryNone;
 			[[NSUserDefaults standardUserDefaults] setObject:@"FALSE" forKey:cell.sourceLabel.text];

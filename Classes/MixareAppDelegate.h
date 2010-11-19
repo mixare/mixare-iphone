@@ -28,6 +28,7 @@
 #import "ARGeoViewController.h"
 #import "JsonHandler.h"
 #import "MapViewController.h"
+#import "MarkerView.h"
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
 	UIButton *_closeButton;
@@ -36,7 +37,7 @@
 	CMMotionManager *motionManager;
 	ListViewController * _listViewController;
 	MapViewController * _mapViewController;
-	ARGeoViewController *viewController;
+	ARGeoViewController *augViewController;
 	NSMutableArray * _data;
 	JsonHandler * jHandler;
 	UISlider * _slider;
@@ -61,4 +62,5 @@
 -(void)mapData;
 -(void)downloadData;
 -(void) initControls;
+-(BOOL)checkIfDataSourceIsEanabled: (NSString *)source;
 @end

@@ -15,14 +15,14 @@
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <http://www.gnu.org/licenses/> */
 #import <UIKit/UIKit.h>
-
+#import "MarkerView.h"
 #import <CoreLocation/CoreLocation.h>
 
 #import "ARCoordinate.h"
 
 @protocol ARViewDelegate
 
-- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate;
+- (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate;
 
 @end
 
@@ -54,7 +54,7 @@
 	
 	NSTimer *_updateTimer;
 	
-	UIView *ar_overlayView;
+	MarkerView *ar_overlayView;
 	
 	UILabel *ar_debugView;
 	

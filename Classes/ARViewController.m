@@ -174,6 +174,7 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    NSLog(@"ROTATE");
 	return (interfaceOrientation == UIInterfaceOrientationPortrait)||(interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 -(void)stopListening{
@@ -181,6 +182,12 @@
 		[locationManager stopUpdatingHeading];
 	}
 }
+
+
+-(void)markerClick:(id)sender{
+    NSLog(@"MARKER");
+}
+
 - (void)startListening {
 	
 	//start our heading readings and our accelerometer readings.

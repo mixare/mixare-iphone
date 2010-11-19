@@ -43,6 +43,7 @@
 		36876BD1128BFA2A00C416F5 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCC128BFA2A00C416F5 /* ARViewController.m */; };
 		36876BD2128BFA2A00C416F5 /* ARCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36876BCE128BFA2A00C416F5 /* ARCoordinate.m */; };
 		36876BD4128BFFCC00C416F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36876BD3128BFFCC00C416F5 /* QuartzCore.framework */; };
+		368AF7601296DA5D0070F915 /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 368AF75F1296DA5C0070F915 /* MarkerView.m */; };
 		3699ACF2129532FD00EED276 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3699ACF1129532FD00EED276 /* NotificationView.xib */; };
 		369EA5E8129145E7008EA31B /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 369EA5E7129145E7008EA31B /* list.png */; };
 		369EA5EC12915B9A008EA31B /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 369EA5EB12915B9A008EA31B /* circle.png */; };
@@ -127,6 +128,8 @@
 		36876BCD128BFA2A00C416F5 /* ARCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoordinate.h; sourceTree = "<group>"; };
 		36876BCE128BFA2A00C416F5 /* ARCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoordinate.m; sourceTree = "<group>"; };
 		36876BD3128BFFCC00C416F5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		368AF75E1296DA5C0070F915 /* MarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerView.h; sourceTree = "<group>"; };
+		368AF75F1296DA5C0070F915 /* MarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerView.m; sourceTree = "<group>"; };
 		3699ACF1129532FD00EED276 /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		369EA5E7129145E7008EA31B /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
 		369EA5EB12915B9A008EA31B /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
@@ -310,6 +313,8 @@
 				36803990127583E300D62D31 /* Circle.m */,
 				3601BFD11275D10F00B01A06 /* Marker.h */,
 				3601BFD21275D10F00B01A06 /* Marker.m */,
+				368AF75E1296DA5C0070F915 /* MarkerView.h */,
+				368AF75F1296DA5C0070F915 /* MarkerView.m */,
 				361F4592127AAC8500F6C521 /* MarkerObject.h */,
 				361F4593127AAC8500F6C521 /* MarkerObject.m */,
 				363F69DD1275B8E100D7B002 /* CamViewController.h */,
@@ -483,6 +488,7 @@
 				36876BD2128BFA2A00C416F5 /* ARCoordinate.m in Sources */,
 				36A3158B128D6F85002D1C57 /* WebViewController.m in Sources */,
 				369EA5EF1291678D008EA31B /* DataSource.m in Sources */,
+				368AF7601296DA5D0070F915 /* MarkerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

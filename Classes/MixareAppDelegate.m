@@ -23,7 +23,9 @@
 #import "JsonHandler.h"
 #import "ARGeoCoordinate.h"
 #import "DataSource.h"
-#define TWITTER_BASE_URL @"http://search.twitter.com/search.json"
+
+ 
+
 @implementation MixareAppDelegate
 @synthesize mapViewController = _mapViewController;
 @synthesize window;
@@ -39,28 +41,41 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 	NSLog(@"the url: %@", [url absoluteString]);
 	if (!url) {  return NO; }
-	
     NSString *URLString = [url absoluteString];
     [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"url"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 #pragma mark -
 #pragma mark Application lifecycle
-
+#define RADIUS 3.0
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	//[window addSubview:_tabBarController.view];
 	[self initLocationManager];
 	//[NSThread detachNewThreadSelector:@selector(downloadData) toTarget:self withObject:nil];
-	
+    NSLog(@"before");
+	[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"Wikipedia"];
+    NSLog(@"after");
 	[self downloadData];
 	[self iniARView];
+    
+    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 60, 60)];
+    UIButton * test = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIImage * markerImage;
+    [test setBackgroundColor:[UIColor clearColor]];
+    markerImage = [UIImage imageNamed:@"circle.png"];
+    [test setBackgroundImage:markerImage forState:UIControlStateNormal];
+	[test addTarget:augViewController action:@selector(markerClick:) forControlEvents:UIControlEventTouchUpInside];
+    [tempView addSubview:test];
+    [augViewController.view addSubview:tempView];
+    [test release];
 	[window makeKeyAndVisible];
+    
     return YES;
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-	if(viewController != nil){
+	if(augViewController != nil){
 		CLLocation *newCenter = _locManager.location;
-		viewController.centerLocation = newCenter;
+		augViewController.centerLocation = newCenter;
 		[newCenter release];
 	}
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location manager" message:@"Your Location changed for 3 meters "  delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
@@ -68,29 +83,36 @@
 	//[alert release];
 }
 
+
+-(void)markerClick:(id)sender{
+    NSLog(@"MARKER");
+}
+
+
 -(void) iniARView{
-    //if(viewController == nil){
-        viewController = [[ARGeoViewController alloc] init];
+    //if(augViewController == nil){
+        augViewController = [[ARGeoViewController alloc] init];
     //}
-	viewController.debugMode = NO;
+	augViewController.debugMode = NO;
 	
-	viewController.delegate = self;
+	augViewController.delegate = self;
 	
-	viewController.scaleViewsBasedOnDistance = YES;
-	viewController.minimumScaleFactor = .2;
+	augViewController.scaleViewsBasedOnDistance = YES;
+	augViewController.minimumScaleFactor = .2;
 	
-	viewController.rotateViewsBasedOnPerspective = YES;
+	augViewController.rotateViewsBasedOnPerspective = YES;
 	
 	[self mapData];
     
 	if(_locManager != nil){
-		viewController.centerLocation = _locManager.location;
+		augViewController.centerLocation = _locManager.location;
 	}
     [self initControls];
-    [viewController.view addSubview:_menuButton];
-    [viewController.view addSubview:_slider];
-	[viewController startListening];
-	[window addSubview:viewController.view];
+    [augViewController.view addSubview:_menuButton];
+    [augViewController.view addSubview:_slider];
+	[augViewController startListening];
+	//[window addSubview:augViewController.view];
+    window.rootViewController = augViewController;
     
 }
 
@@ -154,37 +176,83 @@
 			[tempLocationArray addObject:tempCoordinate];
 			[tempLocation release];
 		}
-		[viewController addCoordinates:tempLocationArray];
+		[augViewController addCoordinates:tempLocationArray];
 		[tempLocationArray release];
 	}else NSLog(@"no data received");
 }
 
+//Method wich manages the download of data specified by the user. The standard source is wikipedia. By selecting the different sources in the sources
+//menu the appropriate data will be downloaded
+-(BOOL)checkIfDataSourceIsEanabled: (NSString *)source{
+    BOOL ret = NO;
+    if(![source isEqualToString:@""]){
+        if([[NSUserDefaults standardUserDefaults] objectForKey:source]!=nil){
+            if([[[NSUserDefaults standardUserDefaults] objectForKey:source] isEqualToString:@"TRUE"]){
+                ret = YES;
+            }
+        }
+    }
+    return ret;
+}
 -(void)downloadData{
 	//NSAutoreleasePool * pool = [[NSAutoreleasePool alloc]init];
 	jHandler = [[JsonHandler alloc]init];
 	CLLocation * pos = _locManager.location;
 	NSString * wikiData;
-	//jsonData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://mixare.org/geotest.php"]];
+    NSString * mixareData;
+    NSString * twitterData;
 	NSString * buzzData;
-	if(_slider != nil){
-		NSLog(@"%@",[NSString stringWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"]);
-		wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
-		
-		buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:_slider.value Lang:@"de"]]];
-		
-	}else{
-        NSLog(@"%@",[NSString stringWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"]);
-		wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
-		buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:5.0 Lang:@"de"]]];
-	}
+    float radius = 3.5;
+    if(_slider != nil){
+        radius = _slider.value;
+    }
+    
+    if([self checkIfDataSourceIsEanabled:@"Wikipedia"]){
+        wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:@"de"]] encoding:NSUTF8StringEncoding error:nil];
+    }else {
+        wikiData = nil;
+    }
+    if([self checkIfDataSourceIsEanabled:@"Buzz"]){
+        buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
+    }else {
+        buzzData = nil;
+    }
+    if([self checkIfDataSourceIsEanabled:@"Twitter"]){
+        twitterData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"TWITTER" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
+    }else {
+        twitterData = nil;
+    }
+    if([self checkIfDataSourceIsEanabled:@"Mixare"]){
+        mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
+    }else {
+        mixareData = nil;
+    }
+ 
     [_data removeAllObjects];
-    NSLog(@"data count: %d", [_data count]);
-	_data= [jHandler processMixareJSONData:wikiData];
-    NSLog(@"data count: %d", [_data count]);
-	[_data addObjectsFromArray:[jHandler processBuzzJSONData:buzzData]];
-    NSLog(@"data count: %d", [_data count]);	
-    //_data = [jHandler processBuzzJSONData:buzzData];
-	[wikiData release];
+    if(wikiData != nil){
+        _data= [jHandler processWikipediaJSONData:wikiData];
+        NSLog(@"data count: %d", [_data count]);
+        [wikiData release];
+    }
+    if(buzzData != nil){
+        [_data addObjectsFromArray:[jHandler processBuzzJSONData:buzzData]];
+        NSLog(@"data count: %d", [_data count]);
+        [buzzData release];
+    }
+    if(twitterData != nil && ![twitterData isEqualToString:@""]){
+       [_data addObjectsFromArray:[jHandler processTwitterJSONData:twitterData]]; 
+        NSLog(@"data count: %d", [_data count]);
+        [twitterData release];
+    }
+    if(mixareData != nil && ![mixareData isEqualToString:@""]){
+        [_data addObjectsFromArray:[jHandler processMixareJSONData:mixareData]];
+        NSLog(@"data count: %d", [_data count]);
+        [mixareData release];
+    }
+	
+    
+    
+    
 	[jHandler release];
 	//[pool release];
 }
@@ -192,10 +260,10 @@
 -(void)valueChanged:(id)sender{
 	NSLog(@"val: %f",_slider.value);
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
-	[viewController removeCoordinates:_data];
+	[augViewController removeCoordinates:_data];
 	[self downloadData];
     [self iniARView];
-    [viewController startListening];
+    [augViewController startListening];
     
 	NSLog(@"POIS CHANGED");
 	
@@ -205,11 +273,11 @@
 	//imgPicker.view.hidden = YES;
 	//tabBarController.tabBar.hidden = NO;
 	if(_menuButton.selectedSegmentIndex == 0){
-		[viewController closeCameraView];
+		[augViewController closeCameraView];
 		[_menuButton removeFromSuperview];
 		[_menuButton release];
-		[viewController.view removeFromSuperview];
-		[viewController release];
+		[augViewController.view removeFromSuperview];
+		[augViewController release];
 		_tabBarController.selectedIndex = 1;
 		[UIApplication sharedApplication].statusBarHidden = NO;
 		[window  addSubview:_tabBarController.view];
@@ -218,25 +286,36 @@
 	}
 }
 
+
+
 #define BOX_WIDTH 150
 #define BOX_HEIGHT 100
 
-- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate {
+- (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate {
 	
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	UIView *tempView = [[UIView alloc] initWithFrame:theFrame];
-	
-	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
+	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
+	UIButton * imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIImage * markerImage;
+	//UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [imageButton setBackgroundColor:[UIColor clearColor]];
 	if([coordinate.source isEqualToString:@"WIKIPEDIA"]|| [coordinate.source isEqualToString:@"MIXARE"]){
-		pointView.image = [UIImage imageNamed:@"circle.png"];
+        markerImage = [UIImage imageNamed:@"circle.png"];
+        [imageButton setBackgroundImage:markerImage forState:UIControlStateNormal];
+		//pointView.image = [UIImage imageNamed:@"circle.png"];
 	}else if([coordinate.source isEqualToString:@"TWITTER"]){
-		pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
+        markerImage = [UIImage imageNamed:@"twitter_logo.png"];
+        [imageButton setBackgroundImage:markerImage forState:UIControlStateNormal];
+		//pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
 	}else if([coordinate.source isEqualToString:@"BUZZ"]){
-		pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
+        markerImage = [UIImage imageNamed:@"buzz_logo.png"];
+        [imageButton setBackgroundImage:markerImage forState:UIControlStateNormal];
+		//pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
 	}
 	
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0-pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
-	
+    
+	//pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0-pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
+	imageButton.frame = CGRectMake((int)(BOX_WIDTH / 2.0-markerImage.size.width / 2.0), 0, markerImage.size.width, markerImage.size.height);
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
@@ -245,7 +324,7 @@
 	titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
 	titleLabel.numberOfLines = 0;
 	//[titleLabel sizeToFit];
-	
+	//[imageButton addTarget:augViewController action:@selector(markerClick:) forControlEvents:UIControlEventTouchUpInside];
 	
 	CGRect frame = [titleLabel frame];
     CGSize size = [titleLabel.text sizeWithFont:titleLabel.font	constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeClip];
@@ -253,16 +332,21 @@
     frame.size.height = size.height;
     [titleLabel setFrame:frame];
 	
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
+	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  markerImage.size.height + 5, titleLabel.frame.size.width , titleLabel.frame.size.height);
 	
 	
-	
+	UIButton * touch = [[UIButton alloc]initWithFrame:tempView.frame];
+    [touch setBackgroundColor:[UIColor clearColor]];
+    [touch addTarget:augViewController action:@selector(markerClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [tempView addSubview:touch];
+    
 	[tempView addSubview:titleLabel];
-	[tempView addSubview:pointView];
+	[tempView addSubview:imageButton];
 	
 	[titleLabel release];
-	[pointView release];
-	
+	[touch release];
+	//[imageButton release];
 	return [tempView autorelease];
 }
 
@@ -312,22 +396,24 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 	if(tabBarController.tabBar.selectedItem.title ==@"Camera"){
 		NSLog(@"cam mode on ");
-		[self.locManager startUpdatingHeading];
+		//[self.locManager startUpdatingHeading];
 	}else{
-		[self.locManager stopUpdatingHeading];
+		//[self.locManager stopUpdatingHeading];
 	}
 	if (tabBarController.selectedIndex == 1) {
-
-		
-		
+        if(_listViewController.dataSourceArray != nil){
+            _listViewController.dataSourceArray =nil;
+        }
 	}
 	if(tabBarController.selectedIndex == 2 ){
-		NSLog(@"inlist");
 		if(_data != nil){
+            _listViewController.dataSourceArray =nil;
 			NSLog(@"data set");
 			[_listViewController setDataSourceArray:_data];
-            NSLog(@"elements in data: %d", [_data count]);
-		}
+            NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
+		}else{
+            NSLog(@"data NOOOOT set");
+        }
 	}
 	if(tabBarController.selectedIndex == 3 ){
 		NSLog(@"map");
@@ -338,7 +424,10 @@
 		}
 	}
 	if(tabBarController.selectedIndex == 0 ){
-		[self iniARView];
+		[augViewController removeCoordinates:_data];
+        [self downloadData];
+        [self iniARView];
+        [augViewController startListening];
 	}
 	
 }
@@ -365,6 +454,9 @@
     [window release];
     [super dealloc];
 }
+
+
+
 -(void) setManualMarkers{
     NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:10];
 	
@@ -434,7 +526,7 @@
 	[tempLocationArray addObject:tempCoordinate];
 	[tempLocation release];
 	
-	[viewController addCoordinates:tempLocationArray];
+	[augViewController addCoordinates:tempLocationArray];
 	[tempLocationArray release];
 }
 @end
