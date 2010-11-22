@@ -10,7 +10,16 @@
 
 
 @interface MarkerView : UIView {
-
+    UIView * viewTouched;
+    NSString * _url;
 }
+@property (nonatomic, retain) UIView * viewTouched;
+@property (nonatomic, retain) NSString * url;
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

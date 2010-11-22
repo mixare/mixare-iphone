@@ -38,6 +38,9 @@
     [super viewDidLoad];
 	
 }
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
 
 // called after the view controller's view is released and set to nil.
 // For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
@@ -67,6 +70,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
 	return (source != nil) ? [source count] :0;
 }
 
@@ -95,11 +99,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"in select row");
 	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
-	if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"BUZZ"] || [[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"TWITTER"]){
-		targetViewController.url = [NSString stringWithFormat:@"%@",[[source objectAtIndex:indexPath.row]valueForKey:@"url"]];
-	}else{
-		targetViewController.url = [NSString stringWithFormat:@"http://%@",[[source objectAtIndex:indexPath.row]valueForKey:@"url"]];
-	}
+    targetViewController.url = [NSString stringWithFormat:@"http://%@",[[source objectAtIndex:indexPath.row]valueForKey:@"url"]];
+	
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 

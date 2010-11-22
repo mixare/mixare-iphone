@@ -29,6 +29,8 @@
 #import "JsonHandler.h"
 #import "MapViewController.h"
 #import "MarkerView.h"
+#import "Radar.h"
+
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
 	UIButton *_closeButton;
@@ -57,7 +59,7 @@
 
 -(void)initCameraView;
 -(void) iniARView;
-- (UIView *)viewForCoordinate:(ARCoordinate *)coordinate;
+- (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate;
 -(void)initLocationManager;
 -(void)mapData;
 -(void)downloadData;

@@ -55,9 +55,11 @@
 	double radialDistance;
 	double inclination;
 	double azimuth;
+    NSString *_url;
 	NSString *_source;
 	NSString *title;
 	NSString *subtitle;
+    CGPoint _radarPos;
 }
 
 - (NSUInteger)hash;
@@ -72,5 +74,7 @@
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic) CGPoint radarPos;
 
 @end

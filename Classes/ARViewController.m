@@ -67,9 +67,9 @@
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
-	self.minimumScaleFactor = 0.7;
+	self.minimumScaleFactor = 0.067;
 	
-	self.rotateViewsBasedOnPerspective = NO;
+	self.rotateViewsBasedOnPerspective = YES;
 	self.maximumRotationAngle = M_PI / 6.0;
 	
 	self.wantsFullScreenLayout = NO;
@@ -109,8 +109,10 @@
 		
 		[ar_overlayView addSubview:ar_debugView];
 	}
-		
+	radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];	
+    
 	self.view = ar_overlayView;
+    [self.view addSubview:radarView];
 }
 
 - (void)setUpdateFrequency:(double)newUpdateFrequency {
@@ -174,9 +176,9 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    NSLog(@"ROTATE");
-	return (interfaceOrientation == UIInterfaceOrientationPortrait)||(interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+	return YES;
 }
+
 -(void)stopListening{
 	if(self.locationManager != nil){
 		[locationManager stopUpdatingHeading];
@@ -216,7 +218,7 @@
 	}
 }
 
-- (CGPoint)pointInView:(UIView *)realityView forCoordinate:(ARCoordinate *)coordinate {
+- (CGPoint)pointInView:(MarkerView *)realityView forCoordinate:(ARCoordinate *)coordinate {
 	
 	CGPoint point;
 	
@@ -342,14 +344,17 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 	ar_debugView.text = [self.centerCoordinate description];
 	
 	int index = 0;
+    NSMutableArray * radarPointValues= [[NSMutableArray alloc]initWithCapacity:[ar_coordinates count]];
+    
 	for (ARCoordinate *item in ar_coordinates) {
 		
-		UIView *viewToDraw = [ar_coordinateViews objectAtIndex:index];
+		MarkerView *viewToDraw = [ar_coordinateViews objectAtIndex:index];
 		
 		if ([self viewportContainsCoordinate:item]) {
 			
 			CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
-			
+            item.radarPos = loc;
+			[radarPointValues addObject:item];
 			CGFloat scaleFactor = 1.5;
 			if (self.scaleViewsBasedOnDistance) {
 				scaleFactor = 1.0 - self.minimumScaleFactor * (item.radialDistance / self.maximumScaleDistance);
@@ -387,13 +392,21 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 				[ar_overlayView addSubview:viewToDraw];
 				[ar_overlayView sendSubviewToBack:viewToDraw];
 			}
-			
 		} else {
 			[viewToDraw removeFromSuperview];
 			viewToDraw.transform = CGAffineTransformIdentity;
 		}
 		index++;
 	}
+    float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
+    if(radius <= 0 || radius > 100){
+        radius = 5.0;
+    }
+    
+    radarView.pois = radarPointValues;
+    radarView.radius = radius;
+    [radarView setNeedsDisplay];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {

@@ -23,7 +23,7 @@
 #import "JsonHandler.h"
 #import "ARGeoCoordinate.h"
 #import "DataSource.h"
-
+#define degreesToRadian(x) (M_PI * (x) / 180.0)
  
 
 @implementation MixareAppDelegate
@@ -52,22 +52,13 @@
 	//[window addSubview:_tabBarController.view];
 	[self initLocationManager];
 	//[NSThread detachNewThreadSelector:@selector(downloadData) toTarget:self withObject:nil];
-    NSLog(@"before");
+   
 	[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"Wikipedia"];
-    NSLog(@"after");
+   
 	[self downloadData];
 	[self iniARView];
     
-    UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 60, 60)];
-    UIButton * test = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    UIImage * markerImage;
-    [test setBackgroundColor:[UIColor clearColor]];
-    markerImage = [UIImage imageNamed:@"circle.png"];
-    [test setBackgroundImage:markerImage forState:UIControlStateNormal];
-	[test addTarget:augViewController action:@selector(markerClick:) forControlEvents:UIControlEventTouchUpInside];
-    [tempView addSubview:test];
-    [augViewController.view addSubview:tempView];
-    [test release];
+    
 	[window makeKeyAndVisible];
     
     return YES;
@@ -98,7 +89,7 @@
 	augViewController.delegate = self;
 	
 	augViewController.scaleViewsBasedOnDistance = YES;
-	augViewController.minimumScaleFactor = .2;
+	augViewController.minimumScaleFactor = .05;
 	
 	augViewController.rotateViewsBasedOnPerspective = YES;
 	
@@ -111,9 +102,15 @@
     [augViewController.view addSubview:_menuButton];
     [augViewController.view addSubview:_slider];
 	[augViewController startListening];
+    Radar * radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
+    [augViewController.view addSubview:radarView];
 	//[window addSubview:augViewController.view];
     window.rootViewController = augViewController;
-    
+    /*if (augViewController.interfaceOrientation == UIInterfaceOrientationPortrait) {      
+        augViewController.view.transform = CGAffineTransformIdentity;
+        augViewController.view.transform = CGAffineTransformMakeRotation(degreesToRadian(90));
+        augViewController.view.bounds = CGRectMake(0.0, 0.0, 480, 320);
+    }*/
 }
 
 -(void) initControls{
@@ -173,6 +170,7 @@
 			tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
 			tempCoordinate.title = [poi valueForKey:@"title"];
 			tempCoordinate.source = [poi valueForKey:@"source"];
+            tempCoordinate.url = [poi valueForKey:@"url"];
 			[tempLocationArray addObject:tempCoordinate];
 			[tempLocation release];
 		}
@@ -280,6 +278,7 @@
 		[augViewController release];
 		_tabBarController.selectedIndex = 1;
 		[UIApplication sharedApplication].statusBarHidden = NO;
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 		[window  addSubview:_tabBarController.view];
 	}else if(_menuButton.selectedSegmentIndex ==  1){
 		_slider.hidden = NO;
@@ -295,58 +294,45 @@
 	
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
-	UIButton * imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    UIImage * markerImage;
-	//UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [imageButton setBackgroundColor:[UIColor clearColor]];
+	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    
 	if([coordinate.source isEqualToString:@"WIKIPEDIA"]|| [coordinate.source isEqualToString:@"MIXARE"]){
-        markerImage = [UIImage imageNamed:@"circle.png"];
-        [imageButton setBackgroundImage:markerImage forState:UIControlStateNormal];
-		//pointView.image = [UIImage imageNamed:@"circle.png"];
+		pointView.image = [UIImage imageNamed:@"circle.png"];
 	}else if([coordinate.source isEqualToString:@"TWITTER"]){
-        markerImage = [UIImage imageNamed:@"twitter_logo.png"];
-        [imageButton setBackgroundImage:markerImage forState:UIControlStateNormal];
-		//pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
+        pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
 	}else if([coordinate.source isEqualToString:@"BUZZ"]){
-        markerImage = [UIImage imageNamed:@"buzz_logo.png"];
-        [imageButton setBackgroundImage:markerImage forState:UIControlStateNormal];
-		//pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
+       pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
 	}
 	
     
-	//pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0-pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
-	imageButton.frame = CGRectMake((int)(BOX_WIDTH / 2.0-markerImage.size.width / 2.0), 0, markerImage.size.width, markerImage.size.height);
+	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0-pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = UITextAlignmentCenter;
 	titleLabel.text = coordinate.title;
-	titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
-	titleLabel.numberOfLines = 0;
-	//[titleLabel sizeToFit];
-	//[imageButton addTarget:augViewController action:@selector(markerClick:) forControlEvents:UIControlEventTouchUpInside];
+    if([coordinate.source isEqualToString:@"BUZZ"]){
+        //wrapping long buzz messages
+        titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+        titleLabel.numberOfLines = 0;
+        CGRect frame = [titleLabel frame];
+        CGSize size = [titleLabel.text sizeWithFont:titleLabel.font	constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeClip];
+        frame.size.height = size.height;
+        [titleLabel setFrame:frame];
+    }else{
+        //Markers get automatically resized
+        [titleLabel sizeToFit];
+	}
+	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
 	
-	CGRect frame = [titleLabel frame];
-    CGSize size = [titleLabel.text sizeWithFont:titleLabel.font	constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeClip];
-    //CGFloat delta = size.height - frame.size.height;
-    frame.size.height = size.height;
-    [titleLabel setFrame:frame];
 	
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  markerImage.size.height + 5, titleLabel.frame.size.width , titleLabel.frame.size.height);
-	
-	
-	UIButton * touch = [[UIButton alloc]initWithFrame:tempView.frame];
-    [touch setBackgroundColor:[UIColor clearColor]];
-    [touch addTarget:augViewController action:@selector(markerClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [tempView addSubview:touch];
-    
+    tempView.url = coordinate.url;
 	[tempView addSubview:titleLabel];
-	[tempView addSubview:imageButton];
+	[tempView addSubview:pointView];
 	
 	[titleLabel release];
-	[touch release];
-	//[imageButton release];
+    tempView.userInteractionEnabled = YES;
+    
 	return [tempView autorelease];
 }
 
@@ -410,6 +396,7 @@
             _listViewController.dataSourceArray =nil;
 			NSLog(@"data set");
 			[_listViewController setDataSourceArray:_data];
+            [_listViewController.tableView reloadData];
             NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
 		}else{
             NSLog(@"data NOOOOT set");

@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import "MarkerView.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import "Radar.h"
 #import "ARCoordinate.h"
 
 @protocol ARViewDelegate
@@ -55,7 +55,7 @@
 	NSTimer *_updateTimer;
 	
 	MarkerView *ar_overlayView;
-	
+	Radar * radarView;
 	UILabel *ar_debugView;
 	
 	NSMutableArray *ar_coordinates;

@@ -28,6 +28,7 @@
 		3626B93B12840B1600B52201 /* SourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3626B93A12840B1600B52201 /* SourceCell.xib */; };
 		3626B93E12840F7800B52201 /* SourceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626B93D12840F7800B52201 /* SourceTableCell.m */; };
 		3626B9401284170100B52201 /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3626B93F1284170100B52201 /* buzz_logo.png */; };
+		3629FF1D129AB0F200DA408D /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3629FF1C129AB0F200DA408D /* Radar.m */; };
 		363F69DF1275B8E500D7B002 /* CamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 363F69DE1275B8E200D7B002 /* CamViewController.m */; };
 		36521013128015C0009F5862 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36521012128015C0009F5862 /* MapViewController.m */; };
 		366C8CF11271721F0082CB57 /* MixVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF01271721F0082CB57 /* MixVector.m */; };
@@ -102,6 +103,8 @@
 		3626B93C12840F7800B52201 /* SourceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTableCell.h; sourceTree = "<group>"; };
 		3626B93D12840F7800B52201 /* SourceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTableCell.m; sourceTree = "<group>"; };
 		3626B93F1284170100B52201 /* buzz_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_logo.png; sourceTree = "<group>"; };
+		3629FF1B129AB0F200DA408D /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
+		3629FF1C129AB0F200DA408D /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		363F69DD1275B8E100D7B002 /* CamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CamViewController.h; sourceTree = "<group>"; };
 		363F69DE1275B8E200D7B002 /* CamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CamViewController.m; sourceTree = "<group>"; };
 		36521011128015C0009F5862 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -282,9 +285,9 @@
 		366FD7EC1270419C00EAC466 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				3621470C127FD0DC00E2C4CE /* JSON_Framework */,
 				369EA5ED1291678D008EA31B /* DataSource.h */,
 				369EA5EE1291678D008EA31B /* DataSource.m */,
-				3621470C127FD0DC00E2C4CE /* JSON_Framework */,
 				36FBD05912705F4000705201 /* XMLHandler.h */,
 				36FBD05A12705F4000705201 /* XMLHandler.m */,
 				36FBD05C12705F4D00705201 /* JsonHandler.h */,
@@ -299,6 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				36876BC6128BF9CF00C416F5 /* AR */,
+				3629FF1B129AB0F200DA408D /* Radar.h */,
+				3629FF1C129AB0F200DA408D /* Radar.m */,
 				36A31589128D6F85002D1C57 /* WebViewController.h */,
 				36A3158A128D6F85002D1C57 /* WebViewController.m */,
 				3626B93C12840F7800B52201 /* SourceTableCell.h */,
@@ -489,6 +494,7 @@
 				36A3158B128D6F85002D1C57 /* WebViewController.m in Sources */,
 				369EA5EF1291678D008EA31B /* DataSource.m in Sources */,
 				368AF7601296DA5D0070F915 /* MarkerView.m in Sources */,
+				3629FF1D129AB0F200DA408D /* Radar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,7 +21,7 @@
 
 @synthesize radialDistance, inclination, azimuth;
 
-@synthesize title  , subtitle , source= _source;
+@synthesize title  , subtitle , source= _source , url = _url, radarPos = _radarPos;
 
 + (ARCoordinate *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
 	ARCoordinate *newCoordinate = [[ARCoordinate alloc] init];
