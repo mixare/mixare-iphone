@@ -30,6 +30,7 @@
 #import "MapViewController.h"
 #import "MarkerView.h"
 #import "Radar.h"
+#import "MoreViewController.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
@@ -45,6 +46,7 @@
 	UISlider * _slider;
 	UISegmentedControl *_menuButton;
 	IBOutlet UIView * menuView;
+    MoreViewController * _moreViewController;
 	
 }
 
@@ -56,6 +58,7 @@
 @property (nonatomic, retain) IBOutlet MapViewController* mapViewController;
 @property (nonatomic, retain) IBOutlet UISlider * slider;
 @property (nonatomic, retain) IBOutlet UISegmentedControl * menuButton;
+@property (nonatomic, retain) IBOutlet MoreViewController *moreViewController;
 
 -(void)initCameraView;
 -(void) iniARView;

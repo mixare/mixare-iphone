@@ -26,6 +26,7 @@ static NSString *kSummaryKey = @"sum";
 static NSString *kUrlKey = @"url";
 static NSString *kUserKey = @"user";
 static NSString *kSourceKey = @"source";
+static NSString *kReferenceKey = @"reference"; 
 
 @implementation JsonHandler
 
@@ -62,6 +63,16 @@ static NSString *kSourceKey = @"source";
         height += 1000;
 	}
 	return ret;
+}
+
+-(NSMutableArray*)processGooglePlacesData: (NSString*) jsonData{
+    NSDictionary* data = [jsonData JSONValue];
+    NSMutableArray * ret = [[NSMutableArray alloc]init];
+    NSArray * googlePlaces = [data objectForKey:@"results"];
+    for(NSDictionary *place in googlePlaces){
+        [ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:[place objectForKey:@"name"],kTitleKey,[place objectForKey:@"reference"],kReferenceKey, nil]];
+    }
+    return ret;
 }
 
 -(NSMutableArray*)processBuzzJSONData: (NSString*) jsonData{

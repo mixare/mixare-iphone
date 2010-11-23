@@ -35,6 +35,7 @@
 @synthesize listViewController = _listViewController;
 @synthesize slider = _slider;
 @synthesize menuButton = _menuButton;
+@synthesize moreViewController = _moreViewController;
 
 #pragma mark -
 #pragma  mark URL Handler
@@ -44,10 +45,12 @@
     NSString *URLString = [url absoluteString];
     [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"url"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    return YES;
 }
 #pragma mark -
 #pragma mark Application lifecycle
-#define RADIUS 3.0
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
 	//[window addSubview:_tabBarController.view];
 	[self initLocationManager];
@@ -89,7 +92,7 @@
 	augViewController.delegate = self;
 	
 	augViewController.scaleViewsBasedOnDistance = YES;
-	augViewController.minimumScaleFactor = .05;
+	augViewController.minimumScaleFactor = 1.5;
 	
 	augViewController.rotateViewsBasedOnPerspective = YES;
 	
@@ -116,7 +119,7 @@
 -(void) initControls{
     
     //if(_slider == nil){
-        _slider = [[UISlider alloc]initWithFrame:CGRectMake(0, 5, 170, 23)];
+        _slider = [[UISlider alloc]initWithFrame:CGRectMake(40, 5, 170, 23)];
         _slider.alpha = 0.7;  
         [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
         _slider.hidden = YES;
@@ -206,22 +209,30 @@
     }
     
     if([self checkIfDataSourceIsEanabled:@"Wikipedia"]){
+        NSLog(@"Downloading WIki data");
         wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:@"de"]] encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"Download done");
     }else {
         wikiData = nil;
     }
     if([self checkIfDataSourceIsEanabled:@"Buzz"]){
+        NSLog(@"Downloading Buzz data");
         buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"Download done");
     }else {
         buzzData = nil;
     }
     if([self checkIfDataSourceIsEanabled:@"Twitter"]){
+        NSLog(@"Downloading Twitter data");
         twitterData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"TWITTER" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"Download done");
     }else {
         twitterData = nil;
     }
     if([self checkIfDataSourceIsEanabled:@"Mixare"]){
+        NSLog(@"Downloading Mixare data");
         mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"Download done");
     }else {
         mixareData = nil;
     }
@@ -287,15 +298,15 @@
 
 
 
-#define BOX_WIDTH 150
-#define BOX_HEIGHT 100
+#define BOX_WIDTH 50
+#define BOX_HEIGHT 30
 
 - (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate {
 	
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    
+    //tempView.backgroundColor = [UIColor grayColor];
 	if([coordinate.source isEqualToString:@"WIKIPEDIA"]|| [coordinate.source isEqualToString:@"MIXARE"]){
 		pointView.image = [UIImage imageNamed:@"circle.png"];
 	}else if([coordinate.source isEqualToString:@"TWITTER"]){
@@ -416,6 +427,10 @@
         [self iniARView];
         [augViewController startListening];
 	}
+    if(tabBarController.selectedIndex == 4 ){
+        NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
+        [_moreViewController showGPSInfo:augViewController.locationManager.location.coordinate.latitude lng:augViewController.locationManager.location.coordinate.longitude alt:augViewController.locationManager.location.altitude speed:augViewController.locationManager.location.speed date:augViewController.locationManager.location.timestamp];
+    }
 	
 }
 

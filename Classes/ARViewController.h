@@ -19,7 +19,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Radar.h"
 #import "ARCoordinate.h"
-
+#import "RadarViewPortView.h"
 @protocol ARViewDelegate
 
 - (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate;
@@ -51,11 +51,12 @@
 	
 @private
 	BOOL ar_debugMode;
-	
+	int oldHeading;
 	NSTimer *_updateTimer;
 	
 	MarkerView *ar_overlayView;
 	Radar * radarView;
+    RadarViewPortView * radarViewPort;
 	UILabel *ar_debugView;
 	
 	NSMutableArray *ar_coordinates;

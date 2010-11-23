@@ -25,11 +25,11 @@
 //Then, when an event is fired, we log this one and then send it back to the viewTouched we kept, and voilà!!! :)
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"Touch Began");
-    [viewTouched touchesBegan:touches withEvent:event];
+    //[viewTouched touchesBegan:touches withEvent:event];
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"Touch Moved");
-    [viewTouched touchesMoved:touches withEvent:event];
+    //[viewTouched touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {

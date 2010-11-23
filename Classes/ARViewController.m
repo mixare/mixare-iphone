@@ -67,13 +67,13 @@
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
-	self.minimumScaleFactor = 0.067;
+	self.minimumScaleFactor = 1.5;
 	
 	self.rotateViewsBasedOnPerspective = YES;
 	self.maximumRotationAngle = M_PI / 6.0;
 	
 	self.wantsFullScreenLayout = NO;
-	
+	oldHeading = 0;
 	return self;
 }
 
@@ -109,10 +109,12 @@
 		
 		[ar_overlayView addSubview:ar_debugView];
 	}
-	radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];	
+	radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];	
+    radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     
 	self.view = ar_overlayView;
     [self.view addSubview:radarView];
+    [self.view addSubview:radarViewPort];
 }
 
 - (void)setUpdateFrequency:(double)newUpdateFrequency {
@@ -353,8 +355,6 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 		if ([self viewportContainsCoordinate:item]) {
 			
 			CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
-            item.radarPos = loc;
-			[radarPointValues addObject:item];
 			CGFloat scaleFactor = 1.5;
 			if (self.scaleViewsBasedOnDistance) {
 				scaleFactor = 1.0 - self.minimumScaleFactor * (item.radialDistance / self.maximumScaleDistance);
@@ -396,6 +396,9 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 			[viewToDraw removeFromSuperview];
 			viewToDraw.transform = CGAffineTransformIdentity;
 		}
+        CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
+        item.radarPos = loc;
+        [radarPointValues addObject:item];
 		index++;
 	}
     float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
@@ -412,7 +415,9 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
 		
 	self.centerCoordinate.azimuth = fmod(newHeading.magneticHeading, 360.0) * (2 * (M_PI / 360.0));
-	
+	radarViewPort.transform = CGAffineTransformMakeRotation(newHeading.trueHeading-oldHeading);
+    //[radarView setNeedsDisplay];
+    oldHeading = newHeading.trueHeading;
 	if (self.locationDelegate && [self.locationDelegate respondsToSelector:@selector(locationManager:didUpdateHeading:)]) {
 		//forward the call.
 		[self.locationDelegate locationManager:manager didUpdateHeading:newHeading];
