@@ -55,6 +55,7 @@
 		369EA5EF1291678D008EA31B /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 369EA5EE1291678D008EA31B /* DataSource.m */; };
 		36A31585128D6E15002D1C57 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A31584128D6E15002D1C57 /* WebView.xib */; };
 		36A3158B128D6F85002D1C57 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3158A128D6F85002D1C57 /* WebViewController.m */; };
+		36A43B86129CFF9D0016119D /* mixare_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A43B85129CFF9D0016119D /* mixare_button.png */; };
 		36A83E61125B0AB200D0D53D /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A83E60125B0AB200D0D53D /* 103-map.png */; };
 		36A83E63125B0AC500D0D53D /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A83E62125B0AC500D0D53D /* 86-camera.png */; };
 		36A83E67125B0E9700D0D53D /* source.png in Resources */ = {isa = PBXBuildFile; fileRef = 36A83E66125B0E9700D0D53D /* source.png */; };
@@ -151,6 +152,7 @@
 		36A31584128D6E15002D1C57 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 		36A31589128D6F85002D1C57 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		36A3158A128D6F85002D1C57 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		36A43B85129CFF9D0016119D /* mixare_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mixare_button.png; sourceTree = "<group>"; };
 		36A83E60125B0AB200D0D53D /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
 		36A83E62125B0AC500D0D53D /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		36A83E66125B0E9700D0D53D /* source.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = source.png; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 		36A83E5F125B0A4300D0D53D /* img */ = {
 			isa = PBXGroup;
 			children = (
+				36A43B85129CFF9D0016119D /* mixare_button.png */,
 				366A0508129BF41B00F46BC3 /* logo_mixare_round.png */,
 				366A0500129BE4FD00F46BC3 /* mixare_512x512px.png */,
 				369EA5EB12915B9A008EA31B /* circle.png */,
@@ -479,6 +482,7 @@
 				3699ACF2129532FD00EED276 /* NotificationView.xib in Resources */,
 				366A0501129BE4FD00F46BC3 /* mixare_512x512px.png in Resources */,
 				366A0509129BF41B00F46BC3 /* logo_mixare_round.png in Resources */,
+				36A43B86129CFF9D0016119D /* mixare_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

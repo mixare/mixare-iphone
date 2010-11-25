@@ -31,6 +31,7 @@
 #import "MarkerView.h"
 #import "Radar.h"
 #import "MoreViewController.h"
+#import "SourceViewController.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
@@ -47,6 +48,9 @@
 	UISegmentedControl *_menuButton;
 	IBOutlet UIView * menuView;
     MoreViewController * _moreViewController;
+    SourceViewController * _sourceViewController;
+    @private
+    BOOL beforeWasLandscape;
 	
 }
 
@@ -59,6 +63,7 @@
 @property (nonatomic, retain) IBOutlet UISlider * slider;
 @property (nonatomic, retain) IBOutlet UISegmentedControl * menuButton;
 @property (nonatomic, retain) IBOutlet MoreViewController *moreViewController;
+@property (nonatomic, retain) IBOutlet SourceViewController * sourceViewController;
 
 -(void)initCameraView;
 -(void) iniARView;
@@ -68,4 +73,6 @@
 -(void)downloadData;
 -(void) initControls;
 -(BOOL)checkIfDataSourceIsEanabled: (NSString *)source;
+-(void)setViewToLandscape:(UIView*)viewObject;
+-(void)setViewToPortrait:(UIView*)viewObject;
 @end

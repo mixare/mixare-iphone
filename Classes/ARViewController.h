@@ -86,7 +86,7 @@
 //removing coordinates
 - (void)removeCoordinate:(ARCoordinate *)coordinate;
 - (void)removeCoordinate:(ARCoordinate *)coordinate animated:(BOOL)animated;
-
+-(CGPoint) rotatePointAboutOrigin:(CGPoint) point angle: (float) angle;
 - (void)removeCoordinates:(NSArray *)coordinates;
 
 - (id)initWithLocationManager:(CLLocationManager *)manager;

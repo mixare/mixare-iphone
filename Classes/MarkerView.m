@@ -36,7 +36,6 @@
     NSLog(@"Touch Ended");
     //[viewTouched touchesEnded:touches withEvent:event];
     UIButton * closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    closeButton.frame = CGRectMake(260, 0, 60, 20);
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
     closeButton.titleLabel.text = @"Close";
     //closeButton.titleLabel.backgroundColor = [UIColor grayColor];
@@ -44,8 +43,19 @@
     closeButton.alpha = .6;
     closeButton.titleLabel.textColor = [UIColor blackColor];
     [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIView * infoView = [[UIView alloc]initWithFrame:CGRectMake(0, 480, 0, 0)];
-    UIWebView * webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, 320, 220)];
+    CGRect infoFrame;
+    CGRect webFrame;
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait){
+        infoFrame = CGRectMake(0, 480, 0, 0);
+        webFrame = CGRectMake(0, 20, 320, 220);
+        closeButton.frame = CGRectMake(260, 0, 60, 20);
+    }else{
+        closeButton.frame = CGRectMake(420, 0, 60, 20);
+        infoFrame = CGRectMake(0, 320, 0, 0);
+        webFrame = CGRectMake(0, 20, 480, 160);
+    }
+    UIView * infoView = [[UIView alloc]initWithFrame:infoFrame];
+    UIWebView * webView = [[UIWebView alloc]initWithFrame:webFrame];
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_url]];
@@ -59,7 +69,11 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.5]; 
     [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
-    infoView.frame= CGRectMake(0, 240, 320, 240);
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait){
+        infoView.frame= CGRectMake(0, 240, 320, 240);
+    }else{
+       infoView.frame= CGRectMake(0, 160, 480, 160); 
+    }
     infoView.alpha = .8;
     [[self superview] addSubview:infoView];
     [infoView addSubview:closeButton];

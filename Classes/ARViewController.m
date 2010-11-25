@@ -19,7 +19,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define VIEWPORT_WIDTH_RADIANS .5
+#define VIEWPORT_WIDTH_RADIANS 0.5
 #define VIEWPORT_HEIGHT_RADIANS .7392
 
 @implementation ARViewController
@@ -109,8 +109,8 @@
 		
 		[ar_overlayView addSubview:ar_debugView];
 	}
-	radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];	
-    radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+	radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 61, 61)];	
+    radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(0, 0, 61, 61)];
     
 	self.view = ar_overlayView;
     [self.view addSubview:radarView];
@@ -249,8 +249,14 @@
 	double topInclination = self.centerCoordinate.inclination - VIEWPORT_HEIGHT_RADIANS / 2.0;
 	
 	point.y = realityView.frame.size.height - ((pointInclination - topInclination) / VIEWPORT_HEIGHT_RADIANS) * realityView.frame.size.height;
-	
+    
 	return point;
+}
+
+-(CGPoint) rotatePointAboutOrigin:(CGPoint) point angle: (float) angle{
+    float s = sinf(angle);
+    float c = cosf(angle);
+    return CGPointMake(c * point.x - s * point.y, s * point.x + c * point.y);
 }
 
 #define kFilteringFactor 0.05
@@ -265,10 +271,13 @@ UIAccelerationValue rollingX, rollingZ;
 	//NSLog(@"x: %f y: %f z: %f", acceleration.x, acceleration.y, acceleration.z);
 	
 	//this should be different based on orientation.
-	
-	rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
-    rollingX = (acceleration.y * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
-	
+	if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+        rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
+        rollingX = (acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+    }else{
+        rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
+        rollingX = (acceleration.y * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+	}
 	if (rollingZ > 0.0) {
 		self.centerCoordinate.inclination = atan(rollingX / rollingZ) + M_PI / 2.0;
 	} else if (rollingZ < 0.0) {
@@ -413,9 +422,17 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-		
 	self.centerCoordinate.azimuth = fmod(newHeading.magneticHeading, 360.0) * (2 * (M_PI / 360.0));
-	radarViewPort.transform = CGAffineTransformMakeRotation(newHeading.trueHeading-oldHeading);
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+        if(self.centerCoordinate.azimuth <(3*M_PI/2)){
+            self.centerCoordinate.azimuth += (M_PI/2);
+        }else{
+            self.centerCoordinate.azimuth = fmod(self.centerCoordinate.azimuth + (M_PI/2),360);
+            
+        }
+        
+    }
+	//radarViewPort.transform = CGAffineTransformMakeRotation(newHeading.trueHeading-oldHeading);
     //[radarView setNeedsDisplay];
     oldHeading = newHeading.trueHeading;
 	if (self.locationDelegate && [self.locationDelegate respondsToSelector:@selector(locationManager:didUpdateHeading:)]) {

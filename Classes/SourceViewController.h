@@ -18,10 +18,12 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface SourceViewController : UITableViewController  {
-	NSArray *dataSourceArray;
+@interface SourceViewController : UITableViewController <UITextFieldDelegate,UIAlertViewDelegate> {
+	NSMutableArray *dataSourceArray;
 	int keyboardHeight;	
+    IBOutlet UIBarButtonItem * addButton;
+    NSString * sourceURL;
 }
-
-@property (nonatomic, retain) NSArray *dataSourceArray;
+-(IBAction)addSource;
+@property (nonatomic, retain) NSMutableArray *dataSourceArray;
 @end

@@ -36,6 +36,10 @@
 	[locmng release];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
+
 -(void) mapDataToMapAnnotations{
 	if(_data != nil){
 		PhysicalPlace * tmpPlace;

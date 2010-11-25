@@ -27,7 +27,7 @@
 #define kTweenMargin			11.0
 
 #define kTextFieldHeight		30.0
-static NSString *kSectionTitleKey = @"sectionTitleKey";
+
 
 
 @implementation SourceViewController
@@ -41,13 +41,57 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 	[super dealloc];
 }
 
-
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	return YES;
+}
 
 - (void)viewDidLoad{	
     [super viewDidLoad];
-	dataSourceArray = [[NSArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
+	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
 }
 
+-(IBAction)addSource{
+    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:@"Add Source" message:@"\n\n\n Insert your Source address " delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    CGRect frame = CGRectMake(0, 20, addAlert.frame.size.width, addAlert.frame.size.height);
+    addAlert.frame = frame;
+    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
+    addressLabel.font = [UIFont systemFontOfSize:16];
+    addressLabel.textColor = [UIColor whiteColor];
+    addressLabel.backgroundColor = [UIColor clearColor];
+    addressLabel.shadowColor = [UIColor blackColor];
+    addressLabel.shadowOffset = CGSizeMake(0,-1);
+    addressLabel.textAlignment = UITextAlignmentCenter;
+    addressLabel.text = @"www.example.com - It have to be a Mixare datasource!";
+    [addAlert addSubview:addressLabel];
+    UITextField *addressField = [[UITextField alloc] initWithFrame:CGRectMake(16,83,252,25)];
+    addressField.borderStyle = UITextBorderStyleRoundedRect;
+    addressField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    addressField.delegate = self;
+    [addressField becomeFirstResponder];
+    [addAlert addSubview:addressField];
+    
+    //[addAlert setTransform:CGAffineTransformMakeTranslation(0,109)];
+    [addAlert show];
+    [addAlert release];
+    [addressField release];
+    [addressLabel release];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    sourceURL = textField.text;
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==1){
+        //User pressed OK button
+        NSLog(@"URL: %@",sourceURL);
+        [dataSourceArray addObject:sourceURL];
+        [self.tableView reloadData];
+    }
+    
+}
 
 // called after the view controller's view is released and set to nil.
 // For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
@@ -112,7 +156,9 @@ static NSString *kSectionTitleKey = @"sectionTitleKey";
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}else if(indexPath.row == 2){
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"buzz_logo.png"]];
-		}
+		}else if(indexPath.row > 2 ){
+          [cell.sourceLogoView  setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
+        }
 	}else{
 		
 	}

@@ -36,6 +36,7 @@
 @synthesize slider = _slider;
 @synthesize menuButton = _menuButton;
 @synthesize moreViewController = _moreViewController;
+@synthesize sourceViewController = _sourceViewController;
 
 #pragma mark -
 #pragma  mark URL Handler
@@ -60,10 +61,11 @@
    
 	[self downloadData];
 	[self iniARView];
-    
+    beforeWasLandscape = NO;
     
 	[window makeKeyAndVisible];
-    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     return YES;
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
@@ -77,6 +79,44 @@
 	//[alert release];
 }
 
+-(void) didRotate:(NSNotification *)notification{ 
+    //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
+    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+        [self setViewToLandscape:augViewController.view];
+        beforeWasLandscape = YES;
+    }
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape){
+        [self setViewToPortrait:augViewController.view];
+        beforeWasLandscape = NO;
+    }
+    NSLog(@"DID ROTATE");
+    
+}
+
+-(void)setViewToLandscape:(UIView*)viewObject {
+    [viewObject setCenter:CGPointMake(160, 240)];
+    CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
+    viewObject.transform = cgCTM;
+    viewObject.bounds = CGRectMake(0, 0, 480, 320);
+    _slider.frame = CGRectMake(62, 5, 288, 23);
+    _menuButton.frame = CGRectMake(350, 0, 130, 30);
+}
+
+-(void)setViewToPortrait:(UIView*)viewObject{
+    CGAffineTransform tr = viewObject.transform; // get current transform (portrait)
+    tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
+    viewObject.transform = tr; // set current transform 
+    CGRectMake(0, 0, 320, 480);
+    [viewObject setCenter:CGPointMake(240, 160)];
+    _menuButton.frame =  CGRectMake(190, 0, 130, 30);
+    _slider.frame = CGRectMake(62, 5, 128, 23);
+    //viewObject.center = window.center;
+    /*[viewObject setCenter:CGPointMake(240, 160)];
+    CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(270));
+    viewObject.transform = cgCTM;
+    viewObject.bounds = CGRectMake(0, 0, 320, 480);*/
+}
 
 -(void)markerClick:(id)sender{
     NSLog(@"MARKER");
@@ -92,7 +132,7 @@
 	augViewController.delegate = self;
 	
 	augViewController.scaleViewsBasedOnDistance = YES;
-	augViewController.minimumScaleFactor = 1.5;
+	augViewController.minimumScaleFactor = 0.8;
 	
 	augViewController.rotateViewsBasedOnPerspective = YES;
 	
@@ -105,8 +145,8 @@
     [augViewController.view addSubview:_menuButton];
     [augViewController.view addSubview:_slider];
 	[augViewController startListening];
-    Radar * radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 80, 80)];
-    [augViewController.view addSubview:radarView];
+    //Radar * radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 61, 61)];
+    //[augViewController.view addSubview:radarView];
 	//[window addSubview:augViewController.view];
     window.rootViewController = augViewController;
     /*if (augViewController.interfaceOrientation == UIInterfaceOrientationPortrait) {      
@@ -117,22 +157,24 @@
 }
 
 -(void) initControls{
+    _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Menü", @"Radius",nil]];
+    _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
+    CGRect buttonFrame;
+    CGRect sliderFrame;
+    buttonFrame = CGRectMake(190, 0, 130, 30);
+    sliderFrame = CGRectMake(62, 5, 228, 23);
     
-    //if(_slider == nil){
-        _slider = [[UISlider alloc]initWithFrame:CGRectMake(40, 5, 170, 23)];
-        _slider.alpha = 0.7;  
-        [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-        _slider.hidden = YES;
-        _slider.minimumValue = 1.0;
-        _slider.maximumValue = 20.0;
-        _slider.continuous= NO;
-    //}
-	//if(_menuButton == nil){
-        _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Menü", @"Radius",nil]];
-        _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
-        _menuButton.frame = CGRectMake(190, 0, 130, 30);
-        _menuButton.alpha = 0.65;
-        [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
+    _menuButton.frame = buttonFrame;
+    _menuButton.alpha = 0.65;
+    [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
+    
+    _slider = [[UISlider alloc]initWithFrame:sliderFrame];
+    _slider.alpha = 0.7;  
+    [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    _slider.hidden = YES;
+    _slider.minimumValue = 1.0;
+    _slider.maximumValue = 80.0;
+    _slider.continuous= NO;
 	//}
     float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
     if(radius <= 0 || radius > 100){
@@ -229,10 +271,32 @@
     }else {
         twitterData = nil;
     }
-    if([self checkIfDataSourceIsEanabled:@"Mixare"]){
+    //User specific Sources .. 
+    if(_sourceViewController != nil && [_sourceViewController.dataSourceArray count]>3){
+        //datasource contains sources added by the user
         NSLog(@"Downloading Mixare data");
-        mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
-        NSLog(@"Download done");
+        //mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
+        //getting selected Source
+        NSString * customURL;
+        for(int i=3;i< [_sourceViewController.dataSourceArray count];i++){
+            if([self checkIfDataSourceIsEanabled:[_sourceViewController.dataSourceArray objectAtIndex:i]]){
+                customURL = [NSString stringWithFormat:@"http://%@",[_sourceViewController.dataSourceArray objectAtIndex:i]];
+            }
+        }
+        NSURL * customDsURL;
+        @try {
+            customDsURL = [NSURL URLWithString:customURL];
+            mixareData = [[NSString alloc]initWithContentsOfURL:customDsURL];
+            NSLog(@"Download done");
+        }
+        @catch (NSException *exception) {
+            NSLog(@"ERROR Downloading custom ds");
+        }
+        @finally {
+            
+        }
+        
+        
     }else {
         mixareData = nil;
     }
@@ -277,6 +341,7 @@
 	NSLog(@"POIS CHANGED");
 	
 }
+
 -(void)buttonClick:(id)sender{
 	NSLog(@"Close button pressed");
 	//imgPicker.view.hidden = YES;
@@ -290,7 +355,10 @@
 		_tabBarController.selectedIndex = 1;
 		[UIApplication sharedApplication].statusBarHidden = NO;
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-		[window  addSubview:_tabBarController.view];
+		//[window  addSubview:_tabBarController.view];
+        window.rootViewController = _tabBarController;
+        [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 	}else if(_menuButton.selectedSegmentIndex ==  1){
 		_slider.hidden = NO;
 	}
@@ -298,8 +366,8 @@
 
 
 
-#define BOX_WIDTH 50
-#define BOX_HEIGHT 30
+#define BOX_WIDTH 150
+#define BOX_HEIGHT 100
 
 - (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate {
 	
@@ -426,6 +494,8 @@
         [self downloadData];
         [self iniARView];
         [augViewController startListening];
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 	}
     if(tabBarController.selectedIndex == 4 ){
         NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
