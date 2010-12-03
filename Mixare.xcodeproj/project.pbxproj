@@ -13,7 +13,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2840D7CE1179279E00D7F93C /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2840D7CD1179279E00D7F93C /* FirstView.xib */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
-		28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		3601BFD31275D10F00B01A06 /* Marker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3601BFD21275D10F00B01A06 /* Marker.m */; };
 		360E7EDA1283FB930061C67C /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360E7ED91283FB930061C67C /* ListViewController.m */; };
 		361F4594127AAC8500F6C521 /* MarkerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 361F4593127AAC8500F6C521 /* MarkerObject.m */; };
@@ -37,6 +36,8 @@
 		366C8CF11271721F0082CB57 /* MixVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF01271721F0082CB57 /* MixVector.m */; };
 		366C8CF4127173C70082CB57 /* Matrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF3127173C70082CB57 /* Matrix.m */; };
 		366C8CF7127173CE0082CB57 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF6127173CE0082CB57 /* Camera.m */; };
+		367574A612A7D78F004AD1C3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367574A512A7D78F004AD1C3 /* MainWindow.xib */; };
+		367574C912A7E7C5004AD1C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 367574C812A7E7C5004AD1C3 /* Localizable.strings */; };
 		367ADBAE1280598900324124 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367ADBAD1280598900324124 /* CoreMotion.framework */; };
 		36803991127583E300D62D31 /* Circle.m in Sources */ = {isa = PBXBuildFile; fileRef = 36803990127583E300D62D31 /* Circle.m */; };
 		3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
@@ -81,7 +82,7 @@
 		2840D7CD1179279E00D7F93C /* FirstView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstView.xib; sourceTree = "<group>"; };
 		288765070DF74369002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AB4B0D9B1048005BE974 /* Mixare_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixare_Prefix.pch; sourceTree = "<group>"; };
-		28AD73870D9D96C1002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28AD73870D9D96C1002E5188 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3601BFD11275D10F00B01A06 /* Marker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marker.h; sourceTree = "<group>"; };
 		3601BFD21275D10F00B01A06 /* Marker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Marker.m; sourceTree = "<group>"; };
@@ -124,6 +125,11 @@
 		366C8CF3127173C70082CB57 /* Matrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix.m; sourceTree = "<group>"; };
 		366C8CF5127173CE0082CB57 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		366C8CF6127173CE0082CB57 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		367574A712A7D802004AD1C3 /* German */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = German; path = German.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		367574C512A7E7BC004AD1C3 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		367574CA12A7E7EC004AD1C3 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
+		367574E912A7F2F0004AD1C3 /* it */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = it; path = it.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		367574FF12A7F473004AD1C3 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		367ADBAD1280598900324124 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Xcode4/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3680398F127583E200D62D31 /* Circle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Circle.h; sourceTree = "<group>"; };
 		36803990127583E300D62D31 /* Circle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Circle.m; sourceTree = "<group>"; };
@@ -239,9 +245,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				367574C812A7E7C5004AD1C3 /* Localizable.strings */,
 				2840D7CD1179279E00D7F93C /* FirstView.xib */,
 				3626B93A12840B1600B52201 /* SourceCell.xib */,
-				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
+				367574A512A7D78F004AD1C3 /* MainWindow.xib */,
 				36A31584128D6E15002D1C57 /* WebView.xib */,
 				3699ACF1129532FD00EED276 /* NotificationView.xib */,
 				8D1107310486CEB800E47090 /* Mixare-Info.plist */,
@@ -446,6 +453,8 @@
 				Japanese,
 				French,
 				German,
+				Italian,
+				it,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Mixare */;
 			projectDirPath = "";
@@ -461,7 +470,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD73880D9D96C1002E5188 /* MainWindow.xib in Resources */,
+				367574A612A7D78F004AD1C3 /* MainWindow.xib in Resources */,
 				2840D7CE1179279E00D7F93C /* FirstView.xib in Resources */,
 				36A83E61125B0AB200D0D53D /* 103-map.png in Resources */,
 				36A83E63125B0AC500D0D53D /* 86-camera.png in Resources */,
@@ -483,6 +492,7 @@
 				366A0501129BE4FD00F46BC3 /* mixare_512x512px.png in Resources */,
 				366A0509129BF41B00F46BC3 /* logo_mixare_round.png in Resources */,
 				36A43B86129CFF9D0016119D /* mixare_button.png in Resources */,
+				367574C912A7E7C5004AD1C3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +541,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		367574A512A7D78F004AD1C3 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28AD73870D9D96C1002E5188 /* English */,
+				367574A712A7D802004AD1C3 /* German */,
+				367574E912A7F2F0004AD1C3 /* it */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		367574C812A7E7C5004AD1C3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				367574C512A7E7BC004AD1C3 /* English */,
+				367574CA12A7E7EC004AD1C3 /* German */,
+				367574FF12A7F473004AD1C3 /* it */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

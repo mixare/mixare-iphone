@@ -407,6 +407,11 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
 		}
         CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
         item.radarPos = loc;
+//        if( fmod((locationManager.heading.trueHeading+item.azimuth),360)==0){
+//            item.azimuth= locationManager.heading.trueHeading+item.azimuth;
+//        }else{
+//            item.azimuth=fmod((locationManager.heading.trueHeading+item.azimuth),360);
+//        }
         [radarPointValues addObject:item];
 		index++;
 	}
@@ -432,8 +437,10 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
         }
         
     }
-	//radarViewPort.transform = CGAffineTransformMakeRotation(newHeading.trueHeading-oldHeading);
-    //[radarView setNeedsDisplay];
+    int gradToRotate= newHeading.trueHeading-oldHeading;
+    float rad = gradToRotate*M_PI/180;
+	radarView.transform = CGAffineTransformMakeRotation(rad);
+    [radarView setNeedsDisplay];
     oldHeading = newHeading.trueHeading;
 	if (self.locationDelegate && [self.locationDelegate respondsToSelector:@selector(locationManager:didUpdateHeading:)]) {
 		//forward the call.

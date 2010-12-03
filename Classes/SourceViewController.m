@@ -51,7 +51,7 @@
 }
 
 -(IBAction)addSource{
-    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:@"Add Source" message:@"\n\n\n Insert your Source address " delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) message:@"\n\n\n Insert your Source address " delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
     CGRect frame = CGRectMake(0, 20, addAlert.frame.size.width, addAlert.frame.size.height);
     addAlert.frame = frame;
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
@@ -61,7 +61,7 @@
     addressLabel.shadowColor = [UIColor blackColor];
     addressLabel.shadowOffset = CGSizeMake(0,-1);
     addressLabel.textAlignment = UITextAlignmentCenter;
-    addressLabel.text = @"www.example.com - It have to be a Mixare datasource!";
+    addressLabel.text = NSLocalizedString(@"Format:www.example.com", nil) ;
     [addAlert addSubview:addressLabel];
     UITextField *addressField = [[UITextField alloc] initWithFrame:CGRectMake(16,83,252,25)];
     addressField.borderStyle = UITextBorderStyleRoundedRect;

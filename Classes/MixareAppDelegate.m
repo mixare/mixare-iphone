@@ -157,12 +157,12 @@
 }
 
 -(void) initControls{
-    _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Menü", @"Radius",nil]];
+    _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
     CGRect buttonFrame;
     CGRect sliderFrame;
     buttonFrame = CGRectMake(190, 0, 130, 30);
-    sliderFrame = CGRectMake(62, 5, 228, 23);
+    sliderFrame = CGRectMake(62, 5, 128, 23);
     
     _menuButton.frame = buttonFrame;
     _menuButton.alpha = 0.65;

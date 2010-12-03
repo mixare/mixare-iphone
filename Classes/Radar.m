@@ -50,13 +50,13 @@
                 x = RADIUS + cosf(poi.azimuth- (M_PI/2))*(poi.radialDistance/scale);
                 y = RADIUS + sinf(poi.azimuth- (M_PI/2))*(poi.radialDistance/scale); 
                 
-            }else if(poi.azimuth >M_PI/2 && poi.azimuth<M_PI){
+            }else if(poi.azimuth >M_PI && poi.azimuth<(3*M_PI/2)){
                 //case3: azimiut is in the 3 quadrant of the radar
                 
                 x = RADIUS - cosf((3*M_PI/2)-poi.azimuth)*(poi.radialDistance/scale);
                 y = RADIUS + sinf((3*M_PI/2)-poi.azimuth)*(poi.radialDistance/scale); 
                 
-            }else if(poi.azimuth >M_PI/2 && poi.azimuth<M_PI){
+            }else if(poi.azimuth >(3*M_PI/2) && poi.azimuth<(2*M_PI)){
                 //case4: azimiut is in the 4 quadrant of the radar
                 
                 x = RADIUS - cosf(poi.azimuth - (3*M_PI/2))*(poi.radialDistance/scale);
@@ -70,10 +70,10 @@
                 y = RADIUS;
             }else if(poi.azimuth == (3*M_PI/2)){
                 x = RADIUS;
-                y = RADIUS+ poi.radialDistance/scale;;
+                y = RADIUS+ poi.radialDistance/scale;
             }else if(poi.azimuth == (3*M_PI/2)){
-                x = RADIUS;
-                y = RADIUS+ poi.radialDistance/scale;;
+                x = RADIUS -poi.radialDistance/scale;
+                y = RADIUS;
             }
             //drawing the radar point
             CGContextFillEllipseInRect(contextRef, CGRectMake(x,y, 2, 2)); 
