@@ -48,10 +48,11 @@
 - (void)viewDidLoad{	
     [super viewDidLoad];
 	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
+    self.navigationItem.title = NSLocalizedString(@"Sources", nil);
 }
 
 -(IBAction)addSource{
-    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) message:@"\n\n\n Insert your Source address " delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) message:NSLocalizedString(@"\n\n\n Insert your Source address",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
     CGRect frame = CGRectMake(0, 20, addAlert.frame.size.width, addAlert.frame.size.height);
     addAlert.frame = frame;
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
@@ -183,6 +184,27 @@
 	}else NSLog(@"NOT WORKING");
 
 }
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if(indexPath.row >2){
+            [dataSourceArray removeObjectAtIndex:indexPath.row];
+            [tableView reloadData];
+        }else{
+            UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Not Allowed",nil) message:@"You can only delete own sources!" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+            [addAlert show];
+            [addAlert release];
+        }
+    }
+}
 
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
+}
+    
 @end
 

@@ -42,66 +42,6 @@
 	self.altitude = place.altitude;
 }
 
-CGFloat degreesToRadians(CGFloat degrees){
-	return degrees * M_PI / 180;
-};
-
-CGFloat radiansToDegrees(CGFloat radians){
-	return radians * 180 / M_PI;
-};
-
-+(void)calcDestinationWithLat1: (CGFloat) lat1Deg lon1: (CGFloat) lon1Deg bear: (CGFloat) bear destination: (CGFloat) d place: (PhysicalPlace*) pl{
-	CGFloat brng = degreesToRadians(bear) ;
-	CGFloat lat1 = degreesToRadians(lat1Deg);
-	CGFloat lon1 = degreesToRadians(lon1Deg);
-	CGFloat R =  6371.0 * 1000.0; 
-	CGFloat lat2 = asinf((sinf(lat1)* cosf(d/R)) + (cosf(lat1)* sinf(d/R) * cosf(brng)));
-	CGFloat lon2 = lon1 + atan2f(sinf(brng) * sinf(d/R) * cosf(lat1) , cosf(d/R) - sinf(lat1)*sinf(lat2));
-	[pl setLat:radiansToDegrees(lat2)];
-	[pl setLon:radiansToDegrees(lon2)];
-}
-+(CGFloat)distanceBetweenLong1: (CGFloat) long1 lat1: (CGFloat) lat1 long2: (CGFloat)long2 lat2: (CGFloat)lat2{
-	CGFloat r = 6371.0 * 1000.0;
-	CGFloat deltaLat= degreesToRadians(lat2-lat1);
-	CGFloat deltaLon = degreesToRadians(long2 - long1);
-	CGFloat a = sinf(deltaLat/2)*sinf(deltaLat/2)+ cosf(degreesToRadians(lat1))*cosf(degreesToRadians(lat2))*sinf(deltaLon/2)*sinf(deltaLon/2);
-	CGFloat c = 2* atan2f(sqrtf(a),sqrtf(1-a));
-	return  r*c;
-}
-
-+(MixVector*)convLocToVecWithLocation: (CLLocation*) org place: (PhysicalPlace*) gp {
-	//CLLocation * gpToLoc = [[[CLLocation alloc]initWithLatitude:gp.lat longitude:gp.lon]autorelease];
-	CGFloat distanceZ = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:org.coordinate.longitude lat2:gp.lat];
-	CGFloat distanceX = [self distanceBetweenLong1:org.coordinate.longitude lat1:org.coordinate.latitude long2:gp.lon lat2:org.coordinate.latitude];
-	CGFloat y = gp.altitude - org.altitude;
-	if(org.coordinate.latitude >gp.lat){
-		distanceZ = distanceZ*-1.0;
-	}
-	if(org.coordinate.longitude > gp.lon){
-		distanceX = distanceX*-1;
-	}
-	MixVector * ret  = [MixVector initWithX:distanceX y:y z:distanceZ];
-	return    ret;
-}
-
-+(void) convVec: (MixVector*)v toLocation:(CLLocation*) org gp: (CLLocation*)gp{
-	CGFloat brngNS = 0;
-	CGFloat brngEW = 90;
-	if(v.z>0){
-		brngNS = 180;
-	}
-	if(v.x <0) {
-		brngEW = 270;
-	}
-	PhysicalPlace * tmp1Loc = [[[PhysicalPlace alloc]init]autorelease];
-	PhysicalPlace * tmp2Loc = [[[PhysicalPlace alloc]init]autorelease];
-	[PhysicalPlace calcDestinationWithLat1:org.coordinate.latitude lon1:org.coordinate.longitude bear:brngNS destination:abs(v.z) place:tmp2Loc];
-	[PhysicalPlace calcDestinationWithLat1:tmp1Loc.lat lon1:tmp1Loc.lon bear:brngEW destination:abs(v.x) place:tmp2Loc];
-	[gp initWithCoordinate:CLLocationCoordinate2DMake(tmp2Loc.lat, tmp2Loc.lon) altitude:org.altitude+v.y horizontalAccuracy:0 verticalAccuracy:0 timestamp:nil];
-	//gp.altitude = org.altitude + v.y;
-}
-
-
 -(void)dealloc {
 	[self.title release];
 	[self.subTitle release];
@@ -119,7 +59,7 @@ CGFloat radiansToDegrees(CGFloat radians){
 		position.latitude=0.0;
 		position.longitude=0.0;
 	}
-	
+    
     return position; 
 }
 @end

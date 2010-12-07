@@ -6,6 +6,7 @@
 		<string key="IBDocument.InterfaceBuilderVersion">1222</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<array key="IBDocument.IntegratedClassDependencies">
+			<string>IBUICustomObject</string>
 			<string>IBUIActivityIndicatorView</string>
 			<string>IBUIView</string>
 			<string>IBUILabel</string>
@@ -33,7 +34,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{42, 20}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="449398318"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="825837037"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -46,7 +46,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{11, 69}, {99, 21}}</string>
 						<reference key="NSSuperview" ref="449398318"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -70,24 +69,34 @@
 				</array>
 				<string key="NSFrameSize">{120, 120}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="583916186"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC4xMDAxODU5ODQ1IDAuMDI4NTM5MTMyMTcgMC4xMTQxMzA0MzQ4IDAuNTIAA</bytes>
 				</object>
-				<bool key="IBUIOpaque">NO</bool>
-				<float key="IBUIAlpha">0.60000002384185791</float>
+				<float key="IBUIAlpha">0.5</float>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+			</object>
+			<object class="IBUICustomObject" id="837684747">
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<array key="connectionRecords" id="0"/>
+			<array key="connectionRecords">
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">view</string>
+						<reference key="source" ref="837684747"/>
+						<reference key="destination" ref="449398318"/>
+					</object>
+					<int key="connectionID">6</int>
+				</object>
+			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
 					<object class="IBObjectRecord">
 						<int key="objectID">0</int>
-						<reference key="object" ref="0"/>
+						<array key="object" id="0"/>
 						<reference key="children" ref="1000"/>
 						<nil key="parent"/>
 					</object>
@@ -121,18 +130,25 @@
 						<reference key="object" ref="825837037"/>
 						<reference key="parent" ref="449398318"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5</int>
+						<reference key="object" ref="837684747"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="5.CustomClassName">NotificationViewController</string>
+				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">4</int>
+			<int key="maxID">6</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

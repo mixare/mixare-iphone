@@ -109,8 +109,8 @@
 		
 		[ar_overlayView addSubview:ar_debugView];
 	}
-	radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 61, 61)];	
-    radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(0, 0, 61, 61)];
+	radarView = [[Radar alloc]initWithFrame:CGRectMake(2, 2, 61, 61)];	
+    radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(2, 2, 61, 61)];
     
 	self.view = ar_overlayView;
     [self.view addSubview:radarView];
@@ -437,10 +437,15 @@ NSComparisonResult LocationSortClosestFirst(ARCoordinate *s1, ARCoordinate *s2, 
         }
         
     }
-    int gradToRotate= newHeading.trueHeading-oldHeading;
-    float rad = gradToRotate*M_PI/180;
-	radarView.transform = CGAffineTransformMakeRotation(rad);
-    [radarView setNeedsDisplay];
+    int gradToRotate= newHeading.trueHeading-90-22.5;
+    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+        gradToRotate+=90;
+    }
+    if(gradToRotate <0){
+        gradToRotate= 360+gradToRotate;
+    }
+	radarViewPort.referenceAngle = gradToRotate;
+    [radarViewPort setNeedsDisplay];
     oldHeading = newHeading.trueHeading;
 	if (self.locationDelegate && [self.locationDelegate respondsToSelector:@selector(locationManager:didUpdateHeading:)]) {
 		//forward the call.

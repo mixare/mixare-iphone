@@ -18,8 +18,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WebViewController : UIViewController {
+@interface WebViewController : UIViewController <UIWebViewDelegate>{
 	NSString * _url;
+    IBOutlet UIWebView * _webView;
+    IBOutlet UIView * loadView;
 }
 @property (nonatomic, retain) NSString * url;
 @end

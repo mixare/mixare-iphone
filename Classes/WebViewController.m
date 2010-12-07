@@ -34,6 +34,15 @@
 - (void)loadView {
 }
 */
+#pragma mark WebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    loadView.center = _webView.center;
+    [_webView addSubview:loadView];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [loadView removeFromSuperview];
+}
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -47,8 +56,9 @@
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 	
 	//Load the request in the UIWebView.
-	[self.view loadRequest:requestObj];
+	[_webView loadRequest:requestObj];
 }
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;

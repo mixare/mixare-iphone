@@ -22,7 +22,7 @@
 @synthesize title = _title, url = _url;
 @synthesize mGeoLoc = _mGeoLoc;
 @synthesize locationVector = _locationVector;
-@synthesize markerView = _markerView;
+//@synthesize markerView = _markerView;
 
 +(Marker*) initMarkerWithTitle: (NSString*) title latitude: (float) lat longitude: (float) lon altitude: (float) alt url: (NSString*) url{
 	Marker * marker = [[[Marker alloc]init]autorelease];
@@ -34,7 +34,7 @@
 	marker.mGeoLoc.altitude = alt;
 	marker.url = url;
 	//marker.markerView = [[MarkerObject alloc]init];
-	marker.markerView.text = title;
+	//marker.markerView.text = title;
 	
 	//marker.
 	return marker;
@@ -55,7 +55,7 @@
 	upV = [[MixVector alloc]init];
 	[upV setVector:[MixVector initWithX:0.0 y:1.0 z:0.0]];
 	pPt = [[ScreenLine alloc]init];
-	_markerView = [[MarkerObject alloc]init];
+	//_markerView = [[MarkerObject alloc]init];
 }
 - (void)dealloc {
 	[_url release];
@@ -111,12 +111,12 @@
 -(void) updateWithLocation: (CLLocation*) curGPSFix{
 	if([self mGeoLoc].altitude == 0.0){
 		_mGeoLoc.altitude= curGPSFix.altitude;
-		[PhysicalPlace convLocToVecWithLocation:curGPSFix place:_mGeoLoc vector:_locationVector];
+		//[PhysicalPlace convLocToVecWithLocation:curGPSFix place:_mGeoLoc vector:_locationVector];
 	}
 }
 
 -(void) calcpaintWithCamera: (Camera*) viewCam addX: (float) addX addY: (float) addY{
-	[self cCMarkerWithOrigPoint:origin camera:viewCam addX:addX addY:addY];
+	//self cCMarkerWithOrigPoint:origin camera:viewCam addX:addX addY:addY];
 	[self calcVWithCam:viewCam];
 }
 

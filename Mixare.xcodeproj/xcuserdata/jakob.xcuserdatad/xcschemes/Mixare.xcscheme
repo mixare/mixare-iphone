@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Scheme>
+<Scheme
+   version = "1.1">
    <BuildAction
-      buildConfiguration = "Debug"
-      parallelizeBuildables = "NO">
+      parallelizeBuildables = "NO"
+      buildImplicitDependencies = "YES">
    </BuildAction>
    <TestAction
-      failureAction = "0">
+      buildConfiguration = "Debug">
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
       loadSymbolsForSpecifiedModules = "NO"
       displayScaleIsEnabled = "NO"
-      displayScale = "1.00">
+      displayScale = "1.00"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
       <BuildableProductRunnable>
-         <BuildableProductReference
+         <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "Mixare.app"
+            BlueprintName = "Mixare"
             ReferencedContainer = "container:Mixare.xcodeproj">
-         </BuildableProductReference>
+         </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
@@ -34,13 +42,17 @@
       persistedCurrentAnalysisToolIdentifier = ""
       displayScaleIsEnabled = "NO"
       displayScale = "1.00"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
       <BuildableProductRunnable>
-         <BuildableProductReference
+         <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
+            BuildableName = "Mixare.app"
+            BlueprintName = "Mixare"
             ReferencedContainer = "container:Mixare.xcodeproj">
-         </BuildableProductReference>
+         </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
@@ -50,11 +62,7 @@
          </EnvironmentVariable>
       </EnvironmentVariables>
    </ProfileAction>
-   <ArchiveAction>
-      <ArchivingStrategy
-         StrategyType = "Xcode.IDEStandardArchivingStrategies.ArchivingStrategyType.DiskImage">
-         <StrategyContent>
-         </StrategyContent>
-      </ArchivingStrategy>
+   <ArchiveAction
+      buildConfiguration = "Release">
    </ArchiveAction>
 </Scheme>

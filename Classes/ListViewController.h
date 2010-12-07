@@ -25,7 +25,6 @@
 	NSMutableArray * source;
 	
 }
--(void)initDataSourceWithJSONData;
 
 @property (nonatomic, retain) IBOutlet NSMutableArray *dataSourceArray;
 @end

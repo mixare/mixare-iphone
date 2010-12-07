@@ -12,7 +12,9 @@
 @interface RadarViewPortView : UIView {
     @private
     BOOL isFirstAccess;
-
+    float newAngle;
+    float referenceAngle;
 }
-
+@property (nonatomic) float newAngle;
+@property (nonatomic) float referenceAngle;
 @end

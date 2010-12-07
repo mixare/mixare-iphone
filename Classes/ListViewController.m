@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad{	
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"Poi List", nil);
 	
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -62,15 +63,13 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 1;
 }
 
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
 	return (source != nil) ? [source count] :0;
 }
@@ -90,6 +89,16 @@
 	if(source != nil){
 		cell.textLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"title"];
 		cell.detailTextLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"sum"];
+        //adding custom label to each row according to their source
+        if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"WIKIPEDIA"]){
+            cell.imageView.image = [UIImage imageNamed:@"wikipedia_logo_small.png"];
+        }else if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"BUZZ"]){
+            cell.imageView.image = [UIImage imageNamed:@"buzz_logo_small.png"];
+        }else if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"TWITTER"]){
+            cell.imageView.image = [UIImage imageNamed:@"twitter_logo_small.png"];
+        }else if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"MIXARE"]){
+            cell.imageView.image = [UIImage imageNamed:@"logo_mixare_round.png"];
+        }
     }
 	return cell;
 }
@@ -100,7 +109,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"in select row");
 	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
-    targetViewController.url = [NSString stringWithFormat:@"http://%@",[[source objectAtIndex:indexPath.row]valueForKey:@"url"]];
+    targetViewController.url = [[source objectAtIndex:indexPath.row]valueForKey:@"url"];
 	
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }

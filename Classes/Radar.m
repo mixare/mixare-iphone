@@ -35,7 +35,6 @@
     _range = _radius *1000;
     float scale = _range / RADIUS;
     if(_pois != nil){
-        CGContextSetRGBFillColor(contextRef, 0, 255, 0, 1);
         for(ARGeoCoordinate * poi in _pois){
             float x,y;
             //case1: azimiut is in the 1 quadrant of the radar
@@ -76,7 +75,14 @@
                 y = RADIUS;
             }
             //drawing the radar point
-            CGContextFillEllipseInRect(contextRef, CGRectMake(x,y, 2, 2)); 
+            if([poi.source isEqualToString:@"WIKIPEDIA"]){
+                CGContextSetRGBFillColor(contextRef, 255, 0, 0, 1);
+            }else if([poi.source isEqualToString:@"BUZZ"]){
+                CGContextSetRGBFillColor(contextRef, 0, 255, 0, 1);
+            }
+            if(x <= RADIUS*2 && x>=0 && y>=0 && y <= RADIUS*2){
+                CGContextFillEllipseInRect(contextRef, CGRectMake(x,y, 2, 2)); 
+            }
         }
     }
 	

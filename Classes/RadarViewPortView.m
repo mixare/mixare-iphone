@@ -10,7 +10,7 @@
 #define radians(x) (M_PI * (x) / 180.0)
 
 @implementation RadarViewPortView
-
+@synthesize newAngle, referenceAngle;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
@@ -18,6 +18,8 @@
     }
     self.backgroundColor = [UIColor clearColor];
     isFirstAccess = YES;
+    newAngle = 45.0;
+    referenceAngle = 247.5;
     return self;
 }
 
@@ -29,12 +31,12 @@
     CGContextSetRGBFillColor(contextRef, 0, 0, 115, 0.3);
     
     // view port 
-    if(isFirstAccess){
-        CGContextMoveToPoint(contextRef, RADIUS-1, RADIUS-1);
-        CGContextAddArc(contextRef, RADIUS, RADIUS, RADIUS,  radians(247.522), radians(292.5),0); 
+//    if(isFirstAccess){
+        CGContextMoveToPoint(contextRef, RADIUS, RADIUS);
+        CGContextAddArc(contextRef, RADIUS, RADIUS, RADIUS,  radians(referenceAngle), radians(referenceAngle+newAngle),0); 
         CGContextClosePath(contextRef); 
         CGContextFillPath(contextRef);
-    }
+//    }
     isFirstAccess = NO;
 }
 

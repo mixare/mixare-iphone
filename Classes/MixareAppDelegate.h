@@ -18,11 +18,9 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "CamViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
 #import "Circle.h"
-#import "MarkerObject.h" 
 #import "ListViewController.h"
 #import "Marker.h"
 #import "ARGeoViewController.h"
@@ -35,7 +33,6 @@
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
-	UIButton *_closeButton;
 	CLLocationManager * _locManager;
 	UITabBarController *_tabBarController;
 	CMMotionManager *motionManager;
@@ -47,10 +44,14 @@
 	UISlider * _slider;
 	UISegmentedControl *_menuButton;
 	IBOutlet UIView * menuView;
+    UILabel * _valueLabel;
+    UILabel * nordLabel;
+    UILabel * maxRadiusLabel;
     MoreViewController * _moreViewController;
     SourceViewController * _sourceViewController;
     @private
     BOOL beforeWasLandscape;
+    IBOutlet UIView * notificationView;
 	
 }
 
@@ -64,8 +65,9 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl * menuButton;
 @property (nonatomic, retain) IBOutlet MoreViewController *moreViewController;
 @property (nonatomic, retain) IBOutlet SourceViewController * sourceViewController;
+@property (nonatomic, retain) IBOutlet UILabel * valueLabel;
 
--(void)initCameraView;
+
 -(void) iniARView;
 - (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate;
 -(void)initLocationManager;

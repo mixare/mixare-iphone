@@ -56,9 +56,10 @@
     }
     UIView * infoView = [[UIView alloc]initWithFrame:infoFrame];
     UIWebView * webView = [[UIWebView alloc]initWithFrame:webFrame];
+    webView.delegate = self;
     webView.alpha = .7;
     [infoView addSubview:webView];
-    NSURL *requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",_url]];
+    NSURL *requestURL = [NSURL URLWithString:_url];
 	NSLog(@"URL IN WEBVIEW: %@",_url);
 	//URL Requst Object
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
@@ -67,7 +68,7 @@
 	[webView loadRequest:requestObj]; 
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.5]; 
+    [UIView setAnimationDuration:1]; 
     [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
     if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait){
         infoView.frame= CGRectMake(0, 240, 320, 240);
@@ -96,12 +97,44 @@
     
 }
 
-//-(void)removeAllInfoViews
 
 - (void)dealloc {
     [super dealloc];
     [viewTouched release];
 }
+
+
+#pragma mark WebViewDelegate
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    loadView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)]autorelease];
+    loadView.center = webView.center;
+    UIActivityIndicatorView * ai = [[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
+    ai.frame = CGRectMake(42, 20, 37, 37);
+    [ai startAnimating];
+    [loadView addSubview:ai];
+    UILabel* label = [[[UILabel alloc]initWithFrame:CGRectMake(30, 65, 61, 21)]autorelease];
+    label.text = @"Loading";
+    label.backgroundColor=[UIColor grayColor];
+    [loadView addSubview:label];
+    loadView.center =webView.center;
+    loadView.backgroundColor = [UIColor grayColor];
+    loadView.alpha = 0.8;
+    label.alpha = 0.8;
+    [webView addSubview:loadView];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    @try {
+        [loadView removeFromSuperview];
+    }
+    @catch (NSException *exception) {
+    
+    }
+    @finally {
+    
+    }
+}
+
 
 
 @end

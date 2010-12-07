@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MarkerView : UIView {
+@interface MarkerView : UIView <UIWebViewDelegate>{
     UIView * viewTouched;
     NSString * _url;
+    UIView* loadView;
 }
 @property (nonatomic, retain) UIView * viewTouched;
 @property (nonatomic, retain) NSString * url;

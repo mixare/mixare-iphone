@@ -37,6 +37,7 @@
 @synthesize menuButton = _menuButton;
 @synthesize moreViewController = _moreViewController;
 @synthesize sourceViewController = _sourceViewController;
+@synthesize valueLabel = _valueLabel;
 
 #pragma mark -
 #pragma  mark URL Handler
@@ -66,6 +67,20 @@
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Sources", @"2 tabbar icon");
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"List View", @"3 tabbar icon");
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:3]).title = NSLocalizedString(@"Map", @"4 tabbar icon");
+    
+//    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) 
+//                    message:@"Copyright (C) 2010- Peer internet solutions\n
+//                             This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n
+//                             
+//                             This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+//                             for more details. \n
+//                             
+//                             You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    
     return YES;
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
@@ -101,6 +116,7 @@
     viewObject.bounds = CGRectMake(0, 0, 480, 320);
     _slider.frame = CGRectMake(62, 5, 288, 23);
     _menuButton.frame = CGRectMake(350, 0, 130, 30);
+    maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
 }
 
 -(void)setViewToPortrait:(UIView*)viewObject{
@@ -111,11 +127,6 @@
     [viewObject setCenter:CGPointMake(240, 160)];
     _menuButton.frame =  CGRectMake(190, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
-    //viewObject.center = window.center;
-    /*[viewObject setCenter:CGPointMake(240, 160)];
-    CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(270));
-    viewObject.transform = cgCTM;
-    viewObject.bounds = CGRectMake(0, 0, 320, 480);*/
 }
 
 -(void)markerClick:(id)sender{
@@ -142,18 +153,15 @@
 		augViewController.centerLocation = _locManager.location;
 	}
     [self initControls];
+    [notificationView removeFromSuperview];
     [augViewController.view addSubview:_menuButton];
     [augViewController.view addSubview:_slider];
+    [augViewController.view addSubview:_valueLabel];
+    [augViewController.view addSubview:nordLabel];
+    [augViewController.view addSubview:maxRadiusLabel];
 	[augViewController startListening];
-    //Radar * radarView = [[Radar alloc]initWithFrame:CGRectMake(0, 0, 61, 61)];
-    //[augViewController.view addSubview:radarView];
-	//[window addSubview:augViewController.view];
+    
     window.rootViewController = augViewController;
-    /*if (augViewController.interfaceOrientation == UIInterfaceOrientationPortrait) {      
-        augViewController.view.transform = CGAffineTransformIdentity;
-        augViewController.view.transform = CGAffineTransformMakeRotation(degreesToRadian(90));
-        augViewController.view.bounds = CGRectMake(0.0, 0.0, 480, 320);
-    }*/
 }
 
 -(void) initControls{
@@ -161,9 +169,10 @@
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
     CGRect buttonFrame;
     CGRect sliderFrame;
+    CGRect valueFrame;
     buttonFrame = CGRectMake(190, 0, 130, 30);
     sliderFrame = CGRectMake(62, 5, 128, 23);
-    
+    valueFrame = CGRectMake(16, 64, 35, 10);
     _menuButton.frame = buttonFrame;
     _menuButton.alpha = 0.65;
     [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
@@ -175,13 +184,37 @@
     _slider.minimumValue = 1.0;
     _slider.maximumValue = 80.0;
     _slider.continuous= NO;
-	//}
+    
+    _valueLabel = [[UILabel alloc] initWithFrame:valueFrame];
+    _valueLabel.backgroundColor = [UIColor blackColor];
+    _valueLabel.textColor= [UIColor whiteColor];
+    _valueLabel.font = [UIFont systemFontOfSize:8.0];
+    _valueLabel.textAlignment= UITextAlignmentCenter;
+    
+    nordLabel = [[UILabel alloc]initWithFrame:CGRectMake(26, 2, 10, 10)];
+    nordLabel.backgroundColor = [UIColor blackColor];
+    nordLabel.textColor= [UIColor whiteColor];
+    nordLabel.font = [UIFont systemFontOfSize:8.0];
+    nordLabel.textAlignment= UITextAlignmentCenter;
+    nordLabel.text = @"N";
+    nordLabel.alpha = 0.8;
+	
+    maxRadiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 28, 30, 10)];
+    maxRadiusLabel.backgroundColor = [UIColor blackColor];
+    maxRadiusLabel.textColor= [UIColor whiteColor];
+    maxRadiusLabel.font = [UIFont systemFontOfSize:8.0];
+    maxRadiusLabel.textAlignment= UITextAlignmentCenter;
+    maxRadiusLabel.text = @"80 km";
+    maxRadiusLabel.hidden = YES;
+    
     float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
     if(radius <= 0 || radius > 100){
         _slider.value = 5.0;
+        _valueLabel.text= @"5.0 km";
     }else{
         _slider.value = radius;
         NSLog(@"RADIUS VALUE: %f", radius);
+        _valueLabel.text= [NSString stringWithFormat:@"%.2f km",radius];
     }
     
         
@@ -332,6 +365,7 @@
 
 -(void)valueChanged:(id)sender{
 	NSLog(@"val: %f",_slider.value);
+    _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
 	[augViewController removeCoordinates:_data];
 	[self downloadData];
@@ -361,6 +395,8 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 	}else if(_menuButton.selectedSegmentIndex ==  1){
 		_slider.hidden = NO;
+        _valueLabel.hidden = NO;
+        maxRadiusLabel.hidden=NO;
 	}
 }
 
@@ -424,10 +460,7 @@
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
-     */
+    
 }
 
 
@@ -465,41 +498,48 @@
 	}else{
 		//[self.locManager stopUpdatingHeading];
 	}
-	if (tabBarController.selectedIndex == 1) {
-        if(_listViewController.dataSourceArray != nil){
-            _listViewController.dataSourceArray =nil;
-        }
-	}
-	if(tabBarController.selectedIndex == 2 ){
-		if(_data != nil){
-            _listViewController.dataSourceArray =nil;
-			NSLog(@"data set");
-			[_listViewController setDataSourceArray:_data];
-            [_listViewController.tableView reloadData];
-            NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
-		}else{
-            NSLog(@"data NOOOOT set");
-        }
-	}
-	if(tabBarController.selectedIndex == 3 ){
-		NSLog(@"map");
-		if(_data != nil){
-			NSLog(@"data map set");
-			[_mapViewController setData:_data];
-			[_mapViewController mapDataToMapAnnotations];
-		}
-	}
-	if(tabBarController.selectedIndex == 0 ){
+    
+    if(tabBarController.selectedIndex == 0 ){
+        notificationView.center = window.center;
+        [window addSubview:notificationView];
 		[augViewController removeCoordinates:_data];
         [self downloadData];
         [self iniARView];
         [augViewController startListening];
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-	}
-    if(tabBarController.selectedIndex == 4 ){
-        NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
-        [_moreViewController showGPSInfo:augViewController.locationManager.location.coordinate.latitude lng:augViewController.locationManager.location.coordinate.longitude alt:augViewController.locationManager.location.altitude speed:augViewController.locationManager.location.speed date:augViewController.locationManager.location.timestamp];
+	}else{
+        [augViewController.locationManager stopUpdatingHeading];
+        [augViewController.locationManager stopUpdatingLocation];
+        [_locManager stopUpdatingLocation];
+        if (tabBarController.selectedIndex == 1) {
+            if(_listViewController.dataSourceArray != nil){
+                _listViewController.dataSourceArray =nil;
+            }
+        }
+        if(tabBarController.selectedIndex == 2 ){
+            if(_data != nil){
+                _listViewController.dataSourceArray =nil;
+                NSLog(@"data set");
+                [_listViewController setDataSourceArray:_data];
+                [_listViewController.tableView reloadData];
+                NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
+            }else{
+                NSLog(@"data NOOOOT set");
+            }
+        }
+        if(tabBarController.selectedIndex == 3 ){
+            NSLog(@"map");
+            if(_data != nil){
+                NSLog(@"data map set");
+                [_mapViewController setData:_data];
+                [_mapViewController mapDataToMapAnnotations];
+            }
+        }
+        if(tabBarController.selectedIndex == 4 ){
+            NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
+            [_moreViewController showGPSInfo:augViewController.locationManager.location.coordinate.latitude lng:augViewController.locationManager.location.coordinate.longitude alt:augViewController.locationManager.location.altitude speed:augViewController.locationManager.location.speed date:augViewController.locationManager.location.timestamp];
+        }
     }
 	
 }
@@ -528,78 +568,5 @@
 }
 
 
-
--(void) setManualMarkers{
-    NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:10];
-	
-	CLLocation *tempLocation;
-	ARGeoCoordinate *tempCoordinate;
-	
-	CLLocationCoordinate2D location;
-	location.latitude = 46.479722;
-	location.longitude = 11.305693;
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:location altitude:260 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:[NSDate date]];
-	
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"MMM MUSEUM";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	
-	//tempLocation = [[CLLocation alloc] initWithLatitude: longitude:];
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.478917, 11.344097) altitude:383 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Hasel Burg";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	//tempLocation = [[CLLocation alloc] initWithLatitude:46.43893 longitude:11.21706 ]; 
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.43893, 11.21706) altitude:1737 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude = 1737;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Penegal";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.615, 11.46083) altitude:2260 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Rittner Horn";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-    
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.51159, 11.57452) altitude:2563 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude =2563;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Schlern";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.475468, 11.285145) altitude:293 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude =2563;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Kugel";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(46.4782, 11.2966) altitude:263 horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-	//tempLocation.altitude =2563;
-	tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
-	tempCoordinate.title = @"Kirche";
-	
-	[tempLocationArray addObject:tempCoordinate];
-	[tempLocation release];
-	
-	[augViewController addCoordinates:tempLocationArray];
-	[tempLocationArray release];
-}
 @end
 

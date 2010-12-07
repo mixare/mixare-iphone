@@ -27,6 +27,8 @@
         [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents: UIControlEventTouchUpInside];
     }
     generalInfoView.hidden=YES;
+    [tabSwitch setTitle:NSLocalizedString(@"License", nil) forSegmentAtIndex:0];
+    [tabSwitch setTitle:NSLocalizedString(@"General Info", nil) forSegmentAtIndex:1];
 }
 
 -(IBAction)switchView:(id) sender{
