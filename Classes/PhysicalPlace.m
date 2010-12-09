@@ -1,5 +1,4 @@
-/*
- * Copyright (C) 2010- Peer internet solutions
+/* Copyright (C) 2010- Peer internet solutions
  * 
  * This file is part of mixare.
  * 
@@ -14,53 +13,57 @@
  * for more details. 
  * 
  * You should have received a copy of the GNU General Public License along with 
- * this program. If not, see <http://www.gnu.org/licenses/>
- */
+ * this program. If not, see <http://www.gnu.org/licenses/> */
 
 #import "PhysicalPlace.h"
 
 
 @implementation PhysicalPlace
-@synthesize coordinate;
-@synthesize lat=_lat,lon=_lon,altitude= _altitude;
-@synthesize subTitle= _subTitle, title= _title;
 
-#pragma mark methods for class PhysicalPlace
--(PhysicalPlace*)intWithLatitude: (CGFloat) latitude longitude: (CGFloat) longitude altitude: (CGFloat) alt title: (NSString*) title subTitle: (NSString*) subTitle{
-	PhysicalPlace * place = [[[PhysicalPlace alloc]init]autorelease];
-	place.lat = latitude;
-	place.lon = longitude;
-	place.altitude = alt;
-	place.title = title;
-	place.subTitle= subTitle;
-	return  place;
+@synthesize geoLocation;
+
+- (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second {
+	float longitudinalDifference = second.longitude - first.longitude;
+	float latitudinalDifference = second.latitude - first.latitude;
+	float possibleAzimuth = (M_PI * .5f) - atan(latitudinalDifference / longitudinalDifference);
+	if (longitudinalDifference > 0) return possibleAzimuth;
+	else if (longitudinalDifference < 0) return possibleAzimuth + M_PI;
+	else if (latitudinalDifference < 0) return M_PI;
+	
+	return 0.0f;
 }
 
--(void)setDataWithPlace: (PhysicalPlace*)place{
-	self.lon = place.lon;
-	self.lat = place.lat;
-	self.altitude = place.altitude;
+- (void)calibrateUsingOrigin:(CLLocation *)origin {
+	
+	if (!self.geoLocation) return;
+	
+	double baseDistance = [origin distanceFromLocation: self.geoLocation];
+	
+	self.radialDistance = sqrt(pow(origin.altitude - self.geoLocation.altitude, 2) + pow(baseDistance, 2));
+		
+	float angle = sin(ABS(origin.altitude - self.geoLocation.altitude) / self.radialDistance);
+	
+	if (origin.altitude > self.geoLocation.altitude) angle = -angle;
+	
+	self.inclination = angle;
+	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
 }
 
--(void)dealloc {
-	[self.title release];
-	[self.subTitle release];
-    [super dealloc];
++ (PhysicalPlace *)coordinateWithLocation:(CLLocation *)location {
+	PhysicalPlace *newCoordinate = [[PhysicalPlace alloc] init];
+	newCoordinate.geoLocation = location;
+	
+	newCoordinate.title = @"";
+	
+	return [newCoordinate autorelease];
 }
 
-
-#pragma mark MKAnnotation protocol
-- (CLLocationCoordinate2D)coordinate;{
-    CLLocationCoordinate2D position;
-	if (_lat != 0.0 && _lon != 0.0) {
-		position.latitude = _lat;
-		position.longitude = _lon;
-	}else {
-		position.latitude=0.0;
-		position.longitude=0.0;
-	}
-    
-    return position; 
++ (PhysicalPlace *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin {
+	PhysicalPlace *newCoordinate = [PhysicalPlace coordinateWithLocation:location];
+	
+	[newCoordinate calibrateUsingOrigin:origin];
+		
+	return newCoordinate;
 }
+
 @end
-
