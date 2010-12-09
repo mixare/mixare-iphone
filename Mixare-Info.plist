@@ -12,9 +12,8 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>logo_114.png</string>
-		<string>mixare-logo_57x57_72_dpi.png</string>
 		<string>mixare-logo_114x114_72_dpi.png</string>
+		<string>mixare-logo_57x57_72_dpi.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>org.mixare.mixare${:rfc1034identifier}</string>
@@ -42,7 +41,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>

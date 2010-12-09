@@ -21,7 +21,7 @@
 #define CAMERA_TRANSFORM 1.12412
 #import "SourceViewController.h"
 #import "JsonHandler.h"
-#import "ARGeoCoordinate.h"
+#import "PhysicalPlace.h"
 #import "DataSource.h"
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
@@ -135,7 +135,7 @@
 
 -(void) iniARView{
     //if(augViewController == nil){
-        augViewController = [[ARGeoViewController alloc] init];
+        augViewController = [[AugmentedGeoViewController alloc] init];
     //}
 	augViewController.debugMode = NO;
 	
@@ -234,7 +234,7 @@
 	if(_data != nil){
 		NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:[_data count]];
 		CLLocation *tempLocation;
-		ARGeoCoordinate *tempCoordinate;
+		PhysicalPlace *tempCoordinate;
 		for(NSDictionary *poi in _data){
 			CGFloat alt = [[poi valueForKey:@"alt"]floatValue];
 			if(alt ==0.0){
@@ -244,7 +244,7 @@
 			float lon = [[poi valueForKey:@"lon"]floatValue];
 			
 			tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat, lon) altitude:alt horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-			tempCoordinate = [ARGeoCoordinate coordinateWithLocation:tempLocation];
+			tempCoordinate = [PhysicalPlace coordinateWithLocation:tempLocation];
 			tempCoordinate.title = [poi valueForKey:@"title"];
 			tempCoordinate.source = [poi valueForKey:@"source"];
             tempCoordinate.url = [poi valueForKey:@"url"];
@@ -406,7 +406,7 @@
 #define BOX_WIDTH 150
 #define BOX_HEIGHT 100
 
-- (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate {
+- (MarkerView *)viewForCoordinate:(PoiItem *)coordinate {
 	
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
@@ -445,7 +445,7 @@
     tempView.url = coordinate.url;
 	[tempView addSubview:titleLabel];
 	[tempView addSubview:pointView];
-	
+	[pointView release];
 	[titleLabel release];
     tempView.userInteractionEnabled = YES;
     

@@ -18,7 +18,6 @@
  */
 
 #import "JSON.h"
-#import "Marker.h"
 @interface JsonHandler : NSObject {
 	SBJsonParser * parser;
 }

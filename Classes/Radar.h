@@ -19,7 +19,7 @@
 
 #import <UIKit/UIKit.h>
 #define RADIUS 30.0
-#import "ARGeoCoordinate.h"
+#import "PhysicalPlace.h"
 @interface Radar : UIView {
     NSArray * _pois;
     float _range;

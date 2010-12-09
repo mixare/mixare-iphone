@@ -20,10 +20,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
-#import "Circle.h"
 #import "ListViewController.h"
-#import "Marker.h"
-#import "ARGeoViewController.h"
+#import "AugmentedGeoViewController.h"
 #import "JsonHandler.h"
 #import "MapViewController.h"
 #import "MarkerView.h"
@@ -38,7 +36,7 @@
 	CMMotionManager *motionManager;
 	ListViewController * _listViewController;
 	MapViewController * _mapViewController;
-	ARGeoViewController *augViewController;
+	AugmentedGeoViewController *augViewController;
 	NSMutableArray * _data;
 	JsonHandler * jHandler;
 	UISlider * _slider;
@@ -69,7 +67,7 @@
 
 
 -(void) iniARView;
-- (MarkerView *)viewForCoordinate:(ARCoordinate *)coordinate;
+- (MarkerView *)viewForCoordinate:(PoiItem *)coordinate;
 -(void)initLocationManager;
 -(void)mapData;
 -(void)downloadData;
