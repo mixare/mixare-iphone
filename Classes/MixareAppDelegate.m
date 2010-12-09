@@ -45,7 +45,7 @@
 	NSLog(@"the url: %@", [url absoluteString]);
 	if (!url) {  return NO; }
     NSString *URLString = [url absoluteString];
-    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"url"];
+    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
@@ -71,15 +71,13 @@
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Sources", @"2 tabbar icon");
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"List View", @"3 tabbar icon");
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:3]).title = NSLocalizedString(@"Map", @"4 tabbar icon");
-    
-//    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) 
-//                    message:@"Copyright (C) 2010- Peer internet solutions\n
-//                             This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n
-//                             
-//                             This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License 
-//                             for more details. \n
-//                             
-//                             You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    NSString* licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLounch"];
+    if([licenseText isEqualToString:@""] || licenseText ==nil ) {
+        UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"License",nil)message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+        [addAlert show];
+        [addAlert release];
+        [[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"mixaresFirstLounch"];
+    }
     
     return YES;
 }
@@ -127,6 +125,7 @@
     [viewObject setCenter:CGPointMake(240, 160)];
     _menuButton.frame =  CGRectMake(190, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
+    maxRadiusLabel.frame= CGRectMake(158, 25, 30, 12);
 }
 
 -(void)markerClick:(id)sender{
@@ -143,7 +142,7 @@
 	augViewController.delegate = self;
 	
 	augViewController.scaleViewsBasedOnDistance = YES;
-	augViewController.minimumScaleFactor = 0.8;
+	augViewController.minimumScaleFactor = 0.6;
 	
 	augViewController.rotateViewsBasedOnPerspective = YES;
 	
@@ -172,7 +171,7 @@
     CGRect valueFrame;
     buttonFrame = CGRectMake(190, 0, 130, 30);
     sliderFrame = CGRectMake(62, 5, 128, 23);
-    valueFrame = CGRectMake(16, 64, 35, 10);
+    valueFrame = CGRectMake(8.5, 64, 45, 12);
     _menuButton.frame = buttonFrame;
     _menuButton.alpha = 0.65;
     [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
@@ -188,10 +187,10 @@
     _valueLabel = [[UILabel alloc] initWithFrame:valueFrame];
     _valueLabel.backgroundColor = [UIColor blackColor];
     _valueLabel.textColor= [UIColor whiteColor];
-    _valueLabel.font = [UIFont systemFontOfSize:8.0];
+    _valueLabel.font = [UIFont systemFontOfSize:10.0];
     _valueLabel.textAlignment= UITextAlignmentCenter;
     
-    nordLabel = [[UILabel alloc]initWithFrame:CGRectMake(26, 2, 10, 10)];
+    nordLabel = [[UILabel alloc]initWithFrame:CGRectMake(28, 2, 10, 10)];
     nordLabel.backgroundColor = [UIColor blackColor];
     nordLabel.textColor= [UIColor whiteColor];
     nordLabel.font = [UIFont systemFontOfSize:8.0];
@@ -199,10 +198,10 @@
     nordLabel.text = @"N";
     nordLabel.alpha = 0.8;
 	
-    maxRadiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(160, 28, 30, 10)];
+    maxRadiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(158, 25, 30, 12)];
     maxRadiusLabel.backgroundColor = [UIColor blackColor];
     maxRadiusLabel.textColor= [UIColor whiteColor];
-    maxRadiusLabel.font = [UIFont systemFontOfSize:8.0];
+    maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
     maxRadiusLabel.textAlignment= UITextAlignmentCenter;
     maxRadiusLabel.text = @"80 km";
     maxRadiusLabel.hidden = YES;
@@ -285,7 +284,9 @@
     
     if([self checkIfDataSourceIsEanabled:@"Wikipedia"]){
         NSLog(@"Downloading WIki data");
-        wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:@"de"]] encoding:NSUTF8StringEncoding error:nil];
+        NSString   *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        NSLog(@"Language: %@",language);
+        wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:language]] encoding:NSUTF8StringEncoding error:nil];
         NSLog(@"Download done");
     }else {
         wikiData = nil;
@@ -479,10 +480,7 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    /*
-     Called when the application is about to terminate.
-     See also applicationDidEnterBackground:.
-     */
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"extern_url"];
 }
 
 

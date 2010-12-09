@@ -1,10 +1,21 @@
-//
-//  MarkerView.m
-//  Mixare
-//
-//  Created by Obkircher Jakob on 19.11.10.
-//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
-//
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ * 
+ * This file is part of mixare.
+ * 
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 #import "MarkerView.h"
 
@@ -37,26 +48,31 @@
     //[viewTouched touchesEnded:touches withEvent:event];
     UIButton * closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+	[closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     closeButton.titleLabel.text = @"Close";
     //closeButton.titleLabel.backgroundColor = [UIColor grayColor];
     //closeButton.backgroundColor = [UIColor grayColor];
     closeButton.alpha = .6;
     closeButton.titleLabel.textColor = [UIColor blackColor];
-    [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     CGRect infoFrame;
     CGRect webFrame;
+	CGRect buttobFrame;
     if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait){
         infoFrame = CGRectMake(0, 480, 0, 0);
-        webFrame = CGRectMake(0, 20, 320, 220);
-        closeButton.frame = CGRectMake(260, 0, 60, 20);
+        webFrame = CGRectMake(0, 25, 320, 220);
+        closeButton.frame = CGRectMake(260, 0, 60, 25);
+		buttobFrame= CGRectMake(0, 0, 320, 240);
     }else{
-        closeButton.frame = CGRectMake(420, 0, 60, 20);
+        closeButton.frame = CGRectMake(420, 0, 60, 25);
         infoFrame = CGRectMake(0, 320, 0, 0);
-        webFrame = CGRectMake(0, 20, 480, 160);
+        webFrame = CGRectMake(0, 25, 480, 160);
+		buttobFrame= CGRectMake(0, 0, 480, 160);
     }
     UIView * infoView = [[UIView alloc]initWithFrame:infoFrame];
     UIWebView * webView = [[UIWebView alloc]initWithFrame:webFrame];
-    webView.delegate = self;
+	//UIButton * transparentButton = [[UIButton alloc]initWithFrame:buttobFrame];
+	//[transparentButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    //webView.delegate = self;
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:_url];
@@ -78,6 +94,7 @@
     infoView.alpha = .8;
     [[self superview] addSubview:infoView];
     [infoView addSubview:closeButton];
+	//[infoView addSubview:transparentButton];
     [UIView commitAnimations];
 }
 
@@ -105,7 +122,7 @@
 
 
 #pragma mark WebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView *)webView{
+/*- (void)webViewDidStartLoad:(UIWebView *)webView{
     loadView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)]autorelease];
     loadView.center = webView.center;
     UIActivityIndicatorView * ai = [[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
@@ -134,7 +151,7 @@
     
     }
 }
-
+*/
 
 
 @end

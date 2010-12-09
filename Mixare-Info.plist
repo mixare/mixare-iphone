@@ -10,8 +10,6 @@
 	<array/>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>logo.png</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>logo_114.png</string>
@@ -31,6 +29,10 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string>mixare-logo_57x57_72_dpi</string>
 			<key>CFBundleURLName</key>
 			<string>org.mixare.mixare</string>
 			<key>CFBundleURLSchemes</key>
@@ -45,10 +47,22 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>wifi</string>
+		<string>still-camera</string>
+		<string>accelerometer</string>
+		<string>location-services</string>
+		<string>gps</string>
+		<string>magnetometer</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array/>

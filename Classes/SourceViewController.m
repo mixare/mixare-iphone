@@ -49,6 +49,11 @@
     [super viewDidLoad];
 	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
+//    NSString * custom_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"extern_url"];
+//    NSLog(@"EXTERN URL %@",custom_url);
+//    if(custom_url != nil){
+//        [dataSourceArray addObject:custom_url];
+//    }
 }
 
 -(IBAction)addSource{
@@ -80,14 +85,11 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     sourceURL = textField.text;
-    
-    
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(buttonIndex==1){
         //User pressed OK button
-        NSLog(@"URL: %@",sourceURL);
         [dataSourceArray addObject:sourceURL];
         [self.tableView reloadData];
     }

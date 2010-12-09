@@ -1,10 +1,21 @@
-//
-//  RadarViewPortView.m
-//  Mixare
-//
-//  Created by Obkircher Jakob on 23.11.10.
-//  Copyright (c) 2010 __MyCompanyName__. All rights reserved.
-//
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ * 
+ * This file is part of mixare.
+ * 
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 #import "RadarViewPortView.h"
 #define radians(x) (M_PI * (x) / 180.0)
@@ -28,7 +39,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(contextRef, 0, 0, 115, 0.3);
+    CGContextSetRGBFillColor(contextRef, 0, 255, 115, 0.3);
     
     // view port 
 //    if(isFirstAccess){

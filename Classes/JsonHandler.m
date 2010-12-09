@@ -37,6 +37,7 @@ static NSString *kReferenceKey = @"reference";
 	for(NSDictionary *geoname in geonames){
 		//NSLog(@"Title: %@", [geoname objectForKey:@"title"]);
 		//[ret addObject:[geoname objectForKey:@"title"]];
+        
 		[ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:[geoname objectForKey:@"title"],kTitleKey, [geoname objectForKey:@"summary"],kSummaryKey,[NSString stringWithFormat:@"http://%@",[geoname objectForKey:@"wikipediaUrl"]],kUrlKey,[geoname objectForKey:@"lng"],kLonKey,[geoname objectForKey:@"lat"],kLatKey,[geoname objectForKey:@"elevation"],kAltKey, @"WIKIPEDIA",kSourceKey, nil]];
 	}
 	return ret;
