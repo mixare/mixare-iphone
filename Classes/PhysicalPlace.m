@@ -1,93 +1,69 @@
-//
-//  PhysicalPlace.m
-//  Mixare
-//
-//  Created by jakob on 21.10.10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+/* Copyright (C) 2010- Peer internet solutions
+ * 
+ * This file is part of mixare.
+ * 
+ * This program is free software: you can redistribute it and/or modify it 
+ * under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, either version 3 of the License, or 
+ * (at your option) any later version. 
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
+ * for more details. 
+ * 
+ * You should have received a copy of the GNU General Public License along with 
+ * this program. If not, see <http://www.gnu.org/licenses/> */
 
 #import "PhysicalPlace.h"
 
 
 @implementation PhysicalPlace
-@synthesize coordinate;
-@synthesize lat,lon,altitude;
-@synthesize subTitle, title;
 
-#pragma mark methods for class PhysicalPlace
--(PhysicalPlace*)intWithLatitude: (NSString*) latitude longitude: (NSString*) longitude altitude: (NSString*) alt title: (NSString*) title subTitle: (NSString*) subTitle{
-	PhysicalPlace * place = [[[PhysicalPlace alloc]init]autorelease];
-	place.lat = latitude;
-	place.lon = longitude;
-	place.altitude = alt;
-	place.title = title;
-	place.subTitle= subTitle;
-	return  place;
-}
+@synthesize geoLocation;
 
--(void)setDataWithPlace: (PhysicalPlace*)place{
-	self.lon = place.lon;
-	self.lat = place.lat;
-	self.altitude = place.altitude;
-}
-
-/*
-public static void calcDestination(double lat1Deg, double lon1Deg,
-								   double bear, double d, PhysicalPlace dest) {
-	/** see http://en.wikipedia.org/wiki/Great-circle_distance */
+- (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second {
+	float longitudinalDifference = second.longitude - first.longitude;
+	float latitudinalDifference = second.latitude - first.latitude;
+	float possibleAzimuth = (M_PI * .5f) - atan(latitudinalDifference / longitudinalDifference);
+	if (longitudinalDifference > 0) return possibleAzimuth;
+	else if (longitudinalDifference < 0) return possibleAzimuth + M_PI;
+	else if (latitudinalDifference < 0) return M_PI;
 	
-/*	double brng = Math.toRadians(bear);
-	double lat1 = Math.toRadians(lat1Deg);
-	double lon1 = Math.toRadians(lon1Deg);
-	double R = 6371.0 * 1000.0; 
+	return 0.0f;
+}
+
+- (void)calibrateUsingOrigin:(CLLocation *)origin {
 	
-	double lat2 = Math.asin(Math.sin(lat1) * Math.cos(d / R)
-							+ Math.cos(lat1) * Math.sin(d / R) * Math.cos(brng));
-	double lon2 = lon1
-	+ Math.atan2(Math.sin(brng) * Math.sin(d / R) * Math.cos(lat1),
-				 Math.cos(d / R) - Math.sin(lat1) * Math.sin(lat2));
+	if (!self.geoLocation) return;
 	
-	dest.setLatitude(Math.toDegrees(lat2));
-	dest.setLongitude(Math.toDegrees(lon2));
-}*/
-
-+(void)calcDestinationWithLat1: (float) lat1Deg lon1: (float) lon1Deg bear: (float) bear destination: (float) d place: (PhysicalPlace*) pl{
-	//float brng = degreesToRadiants(bear);
-}
-
-+ (float)degreesToRadians:(float)degrees{
-	return degrees / 57.2958;
-}
-
--(void)dealloc {
-    [self.lat release];
-	[self.lon release];
-	[self.altitude release];
-	[self.title release];
-	[self.subTitle release];
-    [super dealloc];
-}
-
-
-#pragma mark MKAnnotation protocol
-- (CLLocationCoordinate2D)coordinate;{
-    CLLocationCoordinate2D position;
-	if (lat != nil && lon != nil) {
-		position.latitude = [lat floatValue];
-		position.longitude = [lon floatValue];
-	}else {
-		position.latitude=0.0;
-		position.longitude=0.0;
-	}
+	double baseDistance = [origin distanceFromLocation: self.geoLocation];
 	
-    return position; 
+	self.radialDistance = sqrt(pow(origin.altitude - self.geoLocation.altitude, 2) + pow(baseDistance, 2));
+		
+	float angle = sin(ABS(origin.altitude - self.geoLocation.altitude) / self.radialDistance);
+	
+	if (origin.altitude > self.geoLocation.altitude) angle = -angle;
+	
+	self.inclination = angle;
+	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
 }
 
--(NSString*)title{
-	return title;
++ (PhysicalPlace *)coordinateWithLocation:(CLLocation *)location {
+	PhysicalPlace *newCoordinate = [[PhysicalPlace alloc] init];
+	newCoordinate.geoLocation = location;
+	
+	newCoordinate.title = @"";
+	
+	return [newCoordinate autorelease];
 }
--(NSString*)subTitle{
-	return subTitle;
+
++ (PhysicalPlace *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin {
+	PhysicalPlace *newCoordinate = [PhysicalPlace coordinateWithLocation:location];
+	
+	[newCoordinate calibrateUsingOrigin:origin];
+		
+	return newCoordinate;
 }
+
 @end
-
