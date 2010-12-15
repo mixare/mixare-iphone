@@ -35,9 +35,6 @@
 		366A0501129BE4FD00F46BC3 /* mixare_512x512px.png in Resources */ = {isa = PBXBuildFile; fileRef = 366A0500129BE4FD00F46BC3 /* mixare_512x512px.png */; };
 		366A0509129BF41B00F46BC3 /* logo_mixare_round.png in Resources */ = {isa = PBXBuildFile; fileRef = 366A0508129BF41B00F46BC3 /* logo_mixare_round.png */; };
 		366A0512129BF50100F46BC3 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A0511129BF50100F46BC3 /* MoreViewController.m */; };
-		366C8CF11271721F0082CB57 /* MixVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF01271721F0082CB57 /* MixVector.m */; };
-		366C8CF4127173C70082CB57 /* Matrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF3127173C70082CB57 /* Matrix.m */; };
-		366C8CF7127173CE0082CB57 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C8CF6127173CE0082CB57 /* Camera.m */; };
 		367ADBAE1280598900324124 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367ADBAD1280598900324124 /* CoreMotion.framework */; };
 		3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
@@ -117,12 +114,6 @@
 		366A0508129BF41B00F46BC3 /* logo_mixare_round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_mixare_round.png; sourceTree = "<group>"; };
 		366A0510129BF50100F46BC3 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		366A0511129BF50100F46BC3 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
-		366C8CEF1271721F0082CB57 /* MixVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixVector.h; sourceTree = "<group>"; };
-		366C8CF01271721F0082CB57 /* MixVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixVector.m; sourceTree = "<group>"; };
-		366C8CF2127173C70082CB57 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
-		366C8CF3127173C70082CB57 /* Matrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Matrix.m; sourceTree = "<group>"; };
-		366C8CF5127173CE0082CB57 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		366C8CF6127173CE0082CB57 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
 		367ADBAD1280598900324124 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Xcode4/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.1.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3685BA2B1275653F005FF922 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3685BA2D12756566005FF922 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -189,7 +180,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				366C8CEE127172030082CB57 /* render */,
 				366FD7EE127041BE00EAC466 /* reality */,
 				366FD7ED127041A500EAC466 /* gui */,
 				366FD7EC1270419C00EAC466 /* data */,
@@ -273,19 +263,6 @@
 				36214717127FD11D00E2C4CE /* SBJsonWriter.m */,
 			);
 			name = JSON_Framework;
-			sourceTree = "<group>";
-		};
-		366C8CEE127172030082CB57 /* render */ = {
-			isa = PBXGroup;
-			children = (
-				366C8CF5127173CE0082CB57 /* Camera.h */,
-				366C8CF6127173CE0082CB57 /* Camera.m */,
-				366C8CF2127173C70082CB57 /* Matrix.h */,
-				366C8CF3127173C70082CB57 /* Matrix.m */,
-				366C8CEF1271721F0082CB57 /* MixVector.h */,
-				366C8CF01271721F0082CB57 /* MixVector.m */,
-			);
-			name = render;
 			sourceTree = "<group>";
 		};
 		366FD7EC1270419C00EAC466 /* data */ = {
@@ -494,9 +471,6 @@
 				36FBD05812705F3900705201 /* DataHandler.m in Sources */,
 				36FBD05B12705F4000705201 /* XMLHandler.m in Sources */,
 				36FBD05E12705F4D00705201 /* JsonHandler.m in Sources */,
-				366C8CF11271721F0082CB57 /* MixVector.m in Sources */,
-				366C8CF4127173C70082CB57 /* Matrix.m in Sources */,
-				366C8CF7127173CE0082CB57 /* Camera.m in Sources */,
 				36214718127FD11D00E2C4CE /* NSObject+SBJSON.m in Sources */,
 				36214719127FD11D00E2C4CE /* NSString+SBJSON.m in Sources */,
 				3621471A127FD11D00E2C4CE /* SBJsonBase.m in Sources */,

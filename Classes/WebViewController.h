@@ -17,10 +17,14 @@
 
 #import <UIKit/UIKit.h>
 
-
+//View controller for the webview when tapping on a poi in the listview
+//confrom to the UIWebViewDelegate protocol so the webview can stop showing the loading information when all data is downloaded
 @interface WebViewController : UIViewController <UIWebViewDelegate>{
+    //url which will be opened
 	NSString * _url;
+    //the webview
     IBOutlet UIWebView * _webView;
+    //Loading view with activity indicator
     IBOutlet UIView * loadView;
 }
 @property (nonatomic, retain) NSString * url;

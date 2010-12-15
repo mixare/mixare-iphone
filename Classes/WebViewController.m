@@ -19,27 +19,15 @@
 
 @implementation WebViewController
 @synthesize url = _url;
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
+
 #pragma mark WebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     loadView.center = _webView.center;
     [_webView addSubview:loadView];
 }
 
+//When the webpage has been loaded successfully the loading view will be removed
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [loadView removeFromSuperview];
 }
@@ -48,7 +36,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"in webview : %@",_url);
 	//Create a URL object.
 	NSURL *url = [NSURL URLWithString:_url];
 	
@@ -63,13 +50,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

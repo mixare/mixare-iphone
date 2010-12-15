@@ -18,12 +18,10 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "JsonHandler.h"
+
+//Viewcontroller for the listview on the tabbar
 @interface ListViewController : UITableViewController<UITableViewDelegate>  {
-	NSMutableArray *dataSourceArray;
-	int keyboardHeight;
-	//data
 	NSMutableArray * source;
-	
 }
 
 @property (nonatomic, retain) IBOutlet NSMutableArray *dataSourceArray;

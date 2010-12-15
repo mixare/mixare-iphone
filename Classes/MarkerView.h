@@ -19,7 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+//Info view of a poi. Shoved when tapping on a por in the cam view. opens a webview of the poi
 @interface MarkerView : UIView {
     UIView * viewTouched;
     NSString * _url;

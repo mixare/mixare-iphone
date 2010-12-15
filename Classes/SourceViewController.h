@@ -18,9 +18,9 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
+//ViewController for the source tabbarsection 
 @interface SourceViewController : UITableViewController <UITextFieldDelegate,UIAlertViewDelegate> {
 	NSMutableArray *dataSourceArray;
-	int keyboardHeight;	
     IBOutlet UIBarButtonItem * addButton;
     NSString * sourceURL;
 }

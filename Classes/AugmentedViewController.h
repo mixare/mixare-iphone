@@ -50,14 +50,12 @@
 	double maximumRotationAngle;
 	
 @private
-	BOOL ar_debugMode;
 	int oldHeading;
 	NSTimer *_updateTimer;
 	
 	MarkerView *ar_overlayView;
 	Radar * radarView;
     RadarViewPortView * radarViewPort;
-	UILabel *ar_debugView;
 	
 	NSMutableArray *ar_coordinates;
 	NSMutableArray *ar_coordinateViews;
@@ -65,7 +63,6 @@
 
 @property (readonly) NSArray *coordinates;
 
-@property BOOL debugMode;
 
 @property BOOL scaleViewsBasedOnDistance;
 @property double maximumScaleDistance;

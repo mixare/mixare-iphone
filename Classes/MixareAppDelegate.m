@@ -137,7 +137,6 @@
     //if(augViewController == nil){
         augViewController = [[AugmentedGeoViewController alloc] init];
     //}
-	augViewController.debugMode = NO;
 	
 	augViewController.delegate = self;
 	

@@ -17,7 +17,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+//Custom TableViewCell which contains a bigger image for the source logo and a label
 @interface SourceTableCell : UITableViewCell {
 	UILabel * _sourceLabel;
 	UIImageView * _sourceLogoView;

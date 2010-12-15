@@ -24,20 +24,19 @@
 @synthesize loc = _loc;
 
 
-
-
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     if(tabSwitch != nil){
+        //adding action method when tapping on button
         [tabSwitch addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventValueChanged];
     }
     if(logoButton != nil){
+        //adding action metho to logobutton
         [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents: UIControlEventTouchUpInside];
     }
+    //hidden because license info is shown firts
     generalInfoView.hidden=YES;
+    //Will be generate key values in the language files which can be traduced later in every language 
     [tabSwitch setTitle:NSLocalizedString(@"License", nil) forSegmentAtIndex:0];
     [tabSwitch setTitle:NSLocalizedString(@"General Info", nil) forSegmentAtIndex:1];
 }
@@ -46,9 +45,7 @@
     if(tabSwitch.selectedSegmentIndex == 1){
         // licenseInfo part
         textView.hidden = YES;
-        generalInfoView.hidden = NO;
-        NSLog(@"latitude: %f", _loc.coordinate.latitude);
-        
+        generalInfoView.hidden = NO;        
     }else if (tabSwitch.selectedSegmentIndex==0){
         //General Text
         textView.hidden = NO;
@@ -57,6 +54,7 @@
 }
 
 -(IBAction)buttonClick: (id) sender{
+    //open the mixare webpage
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mixare.org"]];
 }
 
@@ -76,9 +74,11 @@
     date.text = [dateFormatter stringFromDate:stamp];
     
 }
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
