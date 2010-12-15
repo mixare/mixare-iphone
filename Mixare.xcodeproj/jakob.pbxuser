@@ -91,8 +91,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 313590077;
-			PBXWorkspaceStateSaveDate = 313590077;
+			PBXPerProjectTemplateStateSaveDate = 313600244;
+			PBXWorkspaceStateSaveDate = 313600244;
 		};
 		perUserProjectItems = {
 			365F944A12AE676100286824 /* PBXBookmark */ = 365F944A12AE676100286824 /* PBXBookmark */;
@@ -152,8 +152,8 @@
 			36B68F3312B1011300DBF527 /* PBXTextBookmark */ = 36B68F3312B1011300DBF527 /* PBXTextBookmark */;
 			36B68F3412B1011300DBF527 /* PBXBookmark */ = 36B68F3412B1011300DBF527 /* PBXBookmark */;
 			36B68F3512B1011300DBF527 /* PBXBookmark */ = 36B68F3512B1011300DBF527 /* PBXBookmark */;
-			36B68F3712B1011300DBF527 /* PlistBookmark */ = 36B68F3712B1011300DBF527 /* PlistBookmark */;
 			36B68F4712B1056A00DBF527 /* PlistBookmark */ = 36B68F4712B1056A00DBF527 /* PlistBookmark */;
+			36E83BA912B12907007B5267 /* PlistBookmark */ = 36E83BA912B12907007B5267 /* PlistBookmark */;
 			36FB933A12B0CACF002225C9 /* PBXTextBookmark */ = 36FB933A12B0CACF002225C9 /* PBXTextBookmark */;
 			36FB933B12B0CACF002225C9 /* PBXTextBookmark */ = 36FB933B12B0CACF002225C9 /* PBXTextBookmark */;
 			36FB933C12B0CACF002225C9 /* PBXTextBookmark */ = 36FB933C12B0CACF002225C9 /* PBXTextBookmark */;
@@ -999,19 +999,18 @@
 		isa = PBXBookmark;
 		fRef = 365C5C2C12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png */;
 	};
-	36B68F3712B1011300DBF527 /* PlistBookmark */ = {
+	36B68F4712B1056A00DBF527 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D1107310486CEB800E47090 /* Mixare-Info.plist */;
 		fallbackIsa = PBXBookmark;
 		isK = 0;
 		kPath = (
-			CFBundleVersion,
 		);
 		name = "/Users/jakob/Documents/iPhoneSDKWorkspace/mixare-iphone/Mixare-Info.plist";
 		rLen = 0;
 		rLoc = 9223372036854775808;
 	};
-	36B68F4712B1056A00DBF527 /* PlistBookmark */ = {
+	36E83BA912B12907007B5267 /* PlistBookmark */ = {
 		isa = PlistBookmark;
 		fRef = 8D1107310486CEB800E47090 /* Mixare-Info.plist */;
 		fallbackIsa = PBXBookmark;
