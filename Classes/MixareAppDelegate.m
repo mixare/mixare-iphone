@@ -20,9 +20,9 @@
 #import "MixareAppDelegate.h"
 #define CAMERA_TRANSFORM 1.12412
 #import "SourceViewController.h"
-#import "JsonHandler.h"
-#import "PhysicalPlace.h"
-#import "DataSource.h"
+#import "data/JsonHandler.h"
+#import "reality/PhysicalPlace.h"
+#import "data/DataSource.h"
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
 

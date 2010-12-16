@@ -44,12 +44,10 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIWindow" id="380026005">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">-2147482332</int>
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{320, 480}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor" id="388338193">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -422,7 +420,6 @@ A</string>
 										<string key="NSFrame">{{150, 193}, {101, 21}}</string>
 										<reference key="NSSuperview" ref="925690613"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="709503856"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>
@@ -488,7 +485,7 @@ A</string>
 							<string key="IBUITitle">Camera</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">86-camera.png</string>
+								<string key="NSResourceName">camera.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar" ref="709503856"/>
@@ -547,6 +544,7 @@ A</string>
 									<float key="IBUISectionFooterHeight">22</float>
 								</object>
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="738252914">
+									<reference key="IBUINavigationBar"/>
 									<string key="IBUITitle">Sources</string>
 									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="485642304">
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -633,6 +631,7 @@ A</string>
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{0, 20}, {320, 411}}</string>
+							<reference key="NSNextKeyView" ref="709503856"/>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -643,7 +642,7 @@ A</string>
 							<string key="IBUITitle">Map</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">103-map.png</string>
+								<string key="NSResourceName">map.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar" ref="709503856"/>
@@ -665,6 +664,7 @@ A</string>
 					<string key="NSFrame">{{0, 431}, {320, 49}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MCAwAA</bytes>
@@ -681,7 +681,7 @@ A</string>
 				</object>
 			</object>
 			<object class="IBUIView" id="1019770978">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIActivityIndicatorView" id="427740949">
@@ -689,7 +689,6 @@ A</string>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{42, 20}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="1019770978"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="253486312"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -701,7 +700,6 @@ A</string>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{31, 79}, {99, 21}}</string>
 						<reference key="NSSuperview" ref="1019770978"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -724,8 +722,6 @@ A</string>
 					</object>
 				</array>
 				<string key="NSFrameSize">{120, 120}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="427740949"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -1280,6 +1276,7 @@ A</string>
 				<string key="138.IBEditorWindowLastContentRect">{{874, 774}, {320, 480}}</string>
 				<string key="138.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="139.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="140.CustomClassName">SourceViewController</string>
 				<string key="140.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="144.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="145.CustomClassName">MapViewController</string>
@@ -1473,10 +1470,10 @@ A</string>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../Mixare.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="103-map.png">{26, 21}</string>
-			<string key="86-camera.png">{24, 18}</string>
+			<string key="camera.png">{24, 18}</string>
 			<string key="icon_datasource.png">{30, 30}</string>
 			<string key="list.png">{30, 24}</string>
+			<string key="map.png">{26, 21}</string>
 			<string key="mixare_button.png">{413, 113}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">106</string>
