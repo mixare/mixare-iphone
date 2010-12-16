@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -329,7 +331,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36B68F4712B1056A00DBF527</string>
+										<string>36E83BA912B12907007B5267</string>
 										<key>history</key>
 										<array>
 											<string>36A83E7F125B8AC500D0D53D</string>
@@ -394,7 +396,7 @@
 											<string>36B68F3312B1011300DBF527</string>
 											<string>36B68F3412B1011300DBF527</string>
 											<string>36B68F3512B1011300DBF527</string>
-											<string>36B68F3712B1011300DBF527</string>
+											<string>36B68F4712B1056A00DBF527</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -406,14 +408,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {2264, 1158}}</string>
+								<string>{{0, 0}, {2264, 1156}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 2560 1359 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>1158pt</string>
+							<string>1156pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -426,14 +428,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 1163}, {2264, 155}}</string>
+								<string>{{0, 1161}, {2264, 157}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 2560 1359 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>155pt</string>
+							<string>157pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -452,9 +454,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>36B68F4812B1056A00DBF527</string>
+				<string>36E83BA612B12907007B5267</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>36B68F4912B1056A00DBF527</string>
+				<string>36E83BA712B12907007B5267</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -592,7 +594,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>36A83E5A125B08D700D0D53D</string>
 		<string>/Users/jakob/Documents/iPhoneSDKWorkspace/mixare-iphone/Mixare.xcodeproj</string>
 	</array>
@@ -674,7 +675,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>36A83E5A125B08D700D0D53D</string>
-				<string>36B68F4A12B1056A00DBF527</string>
+				<string>36E83BA812B12907007B5267</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

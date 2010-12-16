@@ -539,6 +539,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jakob Obkircher (93F9TFBHS4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -547,6 +548,7 @@
 				INFOPLIST_FILE = "Mixare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = Mixare;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -560,6 +562,7 @@
 				INFOPLIST_FILE = "Mixare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = Mixare;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B30E2057-D0BA-4990-ABD1-1FD1E105A62B";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
