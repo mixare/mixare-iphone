@@ -47,6 +47,7 @@ static NSString *kReferenceKey = @"reference";
         NSDictionary* data = [jsonData JSONValue];
         NSMutableArray* ret = [[NSMutableArray alloc]init];
         NSArray* geonames = [data objectForKey:@"results"];
+		NSLog(@"IN PROCESS MIXARE DATA: %@", geonames);
         for(NSDictionary *geoname in geonames){
             [ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:[geoname objectForKey:@"title"],kTitleKey, [geoname objectForKey:@"webpage"],kUrlKey,[geoname objectForKey:@"lng"],kLonKey,[geoname objectForKey:@"lat"],kLatKey,[geoname objectForKey:@"elevation"],kAltKey,@"MIXARE",kSourceKey, nil]];
         }

@@ -42,11 +42,12 @@
 #pragma mark -
 #pragma  mark URL Handler
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	NSLog(@"the url: %@", [url absoluteString]);
+	NSLog(@"the url: %@", [url absoluteURL]);
 	if (!url) {  return NO; }
     NSString *URLString = [url absoluteString];
     [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+	[self downloadData];
     return YES;
 }
 #pragma mark -
@@ -103,7 +104,7 @@
         [self setViewToPortrait:augViewController.view];
         beforeWasLandscape = NO;
     }
-    NSLog(@"DID ROTATE");
+//    deletNSLog(@"DID ROTATE");
     
 }
 
@@ -269,7 +270,7 @@
     return ret;
 }
 -(void)downloadData{
-	//NSAutoreleasePool * pool = [[NSAutoreleasePool alloc]init];
+	//Adding logic if mixare is called outside by specific url
 	jHandler = [[JsonHandler alloc]init];
 	CLLocation * pos = _locManager.location;
 	NSString * wikiData;
@@ -280,87 +281,101 @@
     if(_slider != nil){
         radius = _slider.value;
     }
-    
-    if([self checkIfDataSourceIsEanabled:@"Wikipedia"]){
-        NSLog(@"Downloading WIki data");
-        NSString   *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-        NSLog(@"Language: %@",language);
-        wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:language]] encoding:NSUTF8StringEncoding error:nil];
-        NSLog(@"Download done");
-    }else {
-        wikiData = nil;
-    }
-    if([self checkIfDataSourceIsEanabled:@"Buzz"]){
-        NSLog(@"Downloading Buzz data");
-        buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
-        NSLog(@"Download done");
-    }else {
-        buzzData = nil;
-    }
-    if([self checkIfDataSourceIsEanabled:@"Twitter"]){
-        NSLog(@"Downloading Twitter data");
-        twitterData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"TWITTER" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
-        NSLog(@"Download done");
-    }else {
-        twitterData = nil;
-    }
-    //User specific Sources .. 
-    if(_sourceViewController != nil && [_sourceViewController.dataSourceArray count]>3){
-        //datasource contains sources added by the user
-        NSLog(@"Downloading Mixare data");
-        //mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
-        //getting selected Source
-        NSString * customURL;
-        for(int i=3;i< [_sourceViewController.dataSourceArray count];i++){
-            if([self checkIfDataSourceIsEanabled:[_sourceViewController.dataSourceArray objectAtIndex:i]]){
-                customURL = [NSString stringWithFormat:@"http://%@",[_sourceViewController.dataSourceArray objectAtIndex:i]];
-            }
-        }
-        NSURL * customDsURL;
-        @try {
-            customDsURL = [NSURL URLWithString:customURL];
-            mixareData = [[NSString alloc]initWithContentsOfURL:customDsURL];
-            NSLog(@"Download done");
-        }
-        @catch (NSException *exception) {
-            NSLog(@"ERROR Downloading custom ds");
-        }
-        @finally {
-            
-        }
-        
-        
-    }else {
-        mixareData = nil;
-    }
- 
-    [_data removeAllObjects];
-    if(wikiData != nil){
-        _data= [jHandler processWikipediaJSONData:wikiData];
-        NSLog(@"data count: %d", [_data count]);
-        [wikiData release];
-    }
-    if(buzzData != nil){
-        [_data addObjectsFromArray:[jHandler processBuzzJSONData:buzzData]];
-        NSLog(@"data count: %d", [_data count]);
-        [buzzData release];
-    }
-    if(twitterData != nil && ![twitterData isEqualToString:@""]){
-       [_data addObjectsFromArray:[jHandler processTwitterJSONData:twitterData]]; 
-        NSLog(@"data count: %d", [_data count]);
-        [twitterData release];
-    }
-    if(mixareData != nil && ![mixareData isEqualToString:@""]){
-        [_data addObjectsFromArray:[jHandler processMixareJSONData:mixareData]];
-        NSLog(@"data count: %d", [_data count]);
-        [mixareData release];
-    }
-	
-    
-    
+   // NSString * external_url;
+//	NSString * external_url = [[NSUserDefaults standardUserDefaults] objectForKey:@"extern_url"];
+//	//NSLog(@"EXTERNAL URL IN DOWNLOAD: %@", external_url);
+//	
+//	if(external_url != nil){
+//		//Application is called with a url starting with mixare://
+//		NSLog(@"Downloading Mixare data");
+//		NSURL * url = [NSURL URLWithString:[external_url stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"mixare://"]]];
+//		NSLog(@"URL %@", url );
+//		mixareData = [[NSString alloc]initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+//		NSLog(@"Downloading Mixare done %@", mixareData);
+//		if(mixareData != nil && ![mixareData isEqualToString:@""]){
+//			[_data addObjectsFromArray:[jHandler processMixareJSONData:mixareData]];
+//			NSLog(@"data count: %d", [_data count]);
+//			[mixareData release];
+//		}
+//	}else{
+		//Application is called normally
+		if([self checkIfDataSourceIsEanabled:@"Wikipedia"]){
+			NSLog(@"Downloading WIki data");
+			NSString   *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+			NSLog(@"Language: %@",language);
+			wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:language]] encoding:NSUTF8StringEncoding error:nil];
+			NSLog(@"Download done");
+		}else {
+			wikiData = nil;
+		}
+		if([self checkIfDataSourceIsEanabled:@"Buzz"]){
+			NSLog(@"Downloading Buzz data");
+			buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
+			NSLog(@"Download done");
+		}else {
+			buzzData = nil;
+		}
+		if([self checkIfDataSourceIsEanabled:@"Twitter"]){
+			NSLog(@"Downloading Twitter data");
+			twitterData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"TWITTER" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
+			NSLog(@"Download done");
+		}else {
+			twitterData = nil;
+		}
+		//User specific Sources .. 
+		if(_sourceViewController != nil && [_sourceViewController.dataSourceArray count]>3){
+			//datasource contains sources added by the user
+			NSLog(@"Downloading Mixare data");
+			//mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
+			//getting selected Source
+			NSString * customURL;
+			for(int i=3;i< [_sourceViewController.dataSourceArray count];i++){
+				if([self checkIfDataSourceIsEanabled:[_sourceViewController.dataSourceArray objectAtIndex:i]]){
+					customURL = [NSString stringWithFormat:@"http://%@",[_sourceViewController.dataSourceArray objectAtIndex:i]];
+				}
+			}
+			NSURL * customDsURL;
+			@try {
+				customDsURL = [NSURL URLWithString:customURL];
+				mixareData = [[NSString alloc]initWithContentsOfURL:customDsURL encoding:NSUTF8StringEncoding error:nil];
+				NSLog(@"Download done");
+			}
+			@catch (NSException *exception) {
+				NSLog(@"ERROR Downloading custom ds");
+			}
+			@finally {
+				
+			}
+			
+			
+		}else {
+			mixareData = nil;
+		}
+		
+		[_data removeAllObjects];
+		if(wikiData != nil){
+			_data= [jHandler processWikipediaJSONData:wikiData];
+			NSLog(@"data count: %d", [_data count]);
+			[wikiData release];
+		}
+		if(buzzData != nil){
+			[_data addObjectsFromArray:[jHandler processBuzzJSONData:buzzData]];
+			NSLog(@"data count: %d", [_data count]);
+			[buzzData release];
+		}
+		if(twitterData != nil && ![twitterData isEqualToString:@""]){
+			[_data addObjectsFromArray:[jHandler processTwitterJSONData:twitterData]]; 
+			NSLog(@"data count: %d", [_data count]);
+			[twitterData release];
+		}
+		if(mixareData != nil && ![mixareData isEqualToString:@""]){
+			[_data addObjectsFromArray:[jHandler processMixareJSONData:mixareData]];
+			NSLog(@"data count: %d", [_data count]);
+			[mixareData release];
+		}
+//	}
     
 	[jHandler release];
-	//[pool release];
 }
 
 -(void)valueChanged:(id)sender{
