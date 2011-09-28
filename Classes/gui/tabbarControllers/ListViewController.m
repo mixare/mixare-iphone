@@ -25,8 +25,6 @@
 - (void)dealloc
 {	
 	//dealloc mem
-	
-	[dataSourceArray release];
 	[source release];
 	
 	[super dealloc];
@@ -87,6 +85,7 @@
 	UITableViewCell *cell = nil;
 	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
 	if(source != nil){
+        //setting the corresponding title for each row .. source array gets set in the app delegate class when downloading new data
 		cell.textLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"title"];
 		cell.detailTextLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"sum"];
         //adding custom label to each row according to their source
@@ -105,7 +104,7 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
-// the table's selection has changed, switch to that item's UIViewController
+// the table's selection has changed, switch to that item's UIViewController -> opens the webpage of the item/poi
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"in select row");
 	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];

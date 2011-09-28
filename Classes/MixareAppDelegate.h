@@ -22,7 +22,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
-#import "JsonHandler.h"
+#import "data/JsonHandler.h"
 #import "MapViewController.h"
 #import "MarkerView.h"
 #import "Radar.h"

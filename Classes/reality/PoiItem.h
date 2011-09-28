@@ -22,6 +22,7 @@
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 
+//This class represents a POI with all the needed information
 @class PoiItem;
 
 @protocol ARPersistentItem
@@ -52,14 +53,19 @@
 
 
 @interface PoiItem : NSObject {
+    //distance from device to poi
 	double radialDistance;
 	double inclination;
+    //value of how many degrees the poi is away from north in radiants
 	double azimuth;
+    //associated url to the poi (wikipedia, buzz …)
     NSString *_url;
+    //string which describes from which source the poi comes from (WIKIPEDIA, BUZZ, TWITTER, MIXARE)
 	NSString *_source;
+    //title of the poi
 	NSString *title;
+    //subtitle of the poi
 	NSString *subtitle;
-    CGPoint _radarPos;
 }
 
 - (NSUInteger)hash;

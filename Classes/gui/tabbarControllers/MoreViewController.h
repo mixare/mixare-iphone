@@ -19,24 +19,41 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-
+//Is the Viewcontroller for the more tab in the tabbar
 @interface MoreViewController : UIViewController {
+    //button for swiutching between license and general info
     IBOutlet UISegmentedControl * tabSwitch;
+    //contains the license information
     IBOutlet UITextView * textView;
+    //custom button with the mixare logo .. oens the mixare webpage
     IBOutlet UIButton * logoButton;
+    //view which display the general info like gps position accuracy gpos timestamop ,...
     IBOutlet UIView * generalInfoView;
+    //Label which contains the latitude value
     IBOutlet UILabel * lat;
+    //Label which contains the longitude value
     IBOutlet UILabel * lon;
+    //Label which contains the altitude value
     IBOutlet UILabel * alt;
+    //Label which contains the accuracy value
     IBOutlet UILabel * accuracy;
+    //Label which contains the speed value
     IBOutlet UILabel * speed;
+    //Label which contains the date value of the last valid gps signal
     IBOutlet UILabel * date;
+    //location position
     CLLocation * _loc;
     
 }
 @property (nonatomic, retain) CLLocation* loc;
+
+//action method which is added to the logobutton .. open the mixare webpage
 -(void)buttonClick: (id) sender;
+
+//action method which switches between general info and license info 
 -(void)switchView:(id) sender;
+
+//method which write gps information in the according labels
 -(void)showGPSInfo:(float)lat lng: (float)lon alt: (float) alt speed:(float) speed date: (NSDate*) date;
 @end
  

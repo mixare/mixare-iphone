@@ -47,6 +47,7 @@
 
 - (void)viewDidLoad{	
     [super viewDidLoad];
+    //initialisation of the datasource with the default sources
 	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
 //    NSString * custom_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"extern_url"];
@@ -56,6 +57,8 @@
 //    }
 }
 
+//called when user is pressing the plsu symbol on the top right of the navigationbar
+//open a dialog to insert a custom data source
 -(IBAction)addSource{
     UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) message:NSLocalizedString(@"\n\n\n Insert your Source address",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
     CGRect frame = CGRectMake(0, 20, addAlert.frame.size.width, addAlert.frame.size.height);
@@ -75,8 +78,6 @@
     addressField.delegate = self;
     [addressField becomeFirstResponder];
     [addAlert addSubview:addressField];
-    
-    //[addAlert setTransform:CGAffineTransformMakeTranslation(0,109)];
     [addAlert show];
     [addAlert release];
     [addressField release];
@@ -171,6 +172,7 @@
 	return cell;
 }
 
+//TODO: keeping track if the user changes sources to not have to download data
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	//static NSString * CellIdentifier = @"SourceCell";
 	SourceTableCell *cell =  (SourceTableCell *) [tableView cellForRowAtIndexPath:indexPath];
@@ -187,6 +189,7 @@
 
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if(indexPath.row >2){
             [dataSourceArray removeObjectAtIndex:indexPath.row];

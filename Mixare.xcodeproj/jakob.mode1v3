@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -331,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36E83BA912B12907007B5267</string>
+										<string>3698C20412B907E600DD44B0</string>
 										<key>history</key>
 										<array>
 											<string>36A83E7F125B8AC500D0D53D</string>
@@ -396,7 +394,7 @@
 											<string>36B68F3312B1011300DBF527</string>
 											<string>36B68F3412B1011300DBF527</string>
 											<string>36B68F3512B1011300DBF527</string>
-											<string>36B68F4712B1056A00DBF527</string>
+											<string>36BFCB1112B8FD2300998F22</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -408,16 +406,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {2264, 1156}}</string>
+								<string>{{0, 0}, {2264, 1150}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 2560 1359 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>1156pt</string>
+							<string>1150pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -428,14 +428,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 1161}, {2264, 157}}</string>
+								<string>{{0, 1155}, {2264, 163}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 2560 1359 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>157pt</string>
+							<string>163pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -454,9 +454,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>36E83BA612B12907007B5267</string>
+				<string>3698C1FB12B907DA00DD44B0</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>36E83BA712B12907007B5267</string>
+				<string>3698C1FC12B907DA00DD44B0</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -594,6 +594,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>36A83E5A125B08D700D0D53D</string>
 		<string>/Users/jakob/Documents/iPhoneSDKWorkspace/mixare-iphone/Mixare.xcodeproj</string>
 	</array>
@@ -675,7 +676,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>36A83E5A125B08D700D0D53D</string>
-				<string>36E83BA812B12907007B5267</string>
+				<string>3698C1FD12B907DA00DD44B0</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -797,13 +798,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>36B68F4B12B1056A00DBF527</string>
+				<string>3698C1FE12B907DA00DD44B0</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>36B68F4C12B1056A00DBF527</string>
-				<string>36B68F4D12B1056A00DBF527</string>
-				<string>36B68F4E12B1056A00DBF527</string>
-				<string>36B68F4F12B1056A00DBF527</string>
-				<string>36B68F5012B1056A00DBF527</string>
+				<string>3698C1FF12B907DA00DD44B0</string>
+				<string>3698C20012B907DA00DD44B0</string>
+				<string>3698C20112B907DA00DD44B0</string>
+				<string>3698C20212B907DA00DD44B0</string>
+				<string>3698C20312B907DA00DD44B0</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -957,7 +958,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>36B68F3A12B1011300DBF527</string>
+				<string>36BFCB0612B8FC2300998F22</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

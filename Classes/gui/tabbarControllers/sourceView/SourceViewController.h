@@ -17,14 +17,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "JsonHandler.h"
-@interface ListViewController : UITableViewController<UITableViewDelegate>  {
-	NSMutableArray *dataSourceArray;
-	int keyboardHeight;
-	//data
-	NSMutableArray * source;
-	
-}
 
-@property (nonatomic, retain) IBOutlet NSMutableArray *dataSourceArray;
+//ViewController for the source tabbarsection 
+@interface SourceViewController : UITableViewController <UITextFieldDelegate,UIAlertViewDelegate> {
+	NSMutableArray *dataSourceArray;
+    IBOutlet UIBarButtonItem * addButton;
+    NSString * sourceURL;
+}
+-(IBAction)addSource;
+@property (nonatomic, retain) NSMutableArray *dataSourceArray;
 @end
