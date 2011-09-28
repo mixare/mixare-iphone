@@ -17,15 +17,15 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface SourceTableCell : UITableViewCell {
-	UILabel * _sourceLabel;
-	UIImageView * _sourceLogoView;
-	//UISwitch * _sourceSwitch;
-
+//View controller for the webview when tapping on a poi in the listview
+//confrom to the UIWebViewDelegate protocol so the webview can stop showing the loading information when all data is downloaded
+@interface WebViewController : UIViewController <UIWebViewDelegate>{
+    //url which will be opened
+	NSString * _url;
+    //the webview
+    IBOutlet UIWebView * _webView;
+    //Loading view with activity indicator
+    IBOutlet UIView * loadView;
 }
-@property (nonatomic, retain) IBOutlet UILabel * sourceLabel;
-//@property (nonatomic, retain) IBOutlet UISwitch * sourceSwitch;
-@property (nonatomic, retain) IBOutlet UIImageView * sourceLogoView;
-
+@property (nonatomic, retain) NSString * url;
 @end

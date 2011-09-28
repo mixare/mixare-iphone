@@ -33,8 +33,6 @@
 
 @synthesize updateFrequency;
 
-@synthesize debugMode = ar_debugMode;
-
 @synthesize coordinates = ar_coordinates;
 
 @synthesize delegate, locationDelegate, accelerometerDelegate;
@@ -43,11 +41,9 @@
 
 - (id)init {
 	if (!(self = [super init])) return nil;
-	
-	ar_debugView = nil;
+
 	ar_overlayView = nil;
 	
-	ar_debugMode = NO;
 	
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
@@ -99,16 +95,7 @@
 - (void)loadView {
 	[ar_overlayView release];
 	ar_overlayView = [[UIView alloc] initWithFrame:CGRectZero];
-	
-	[ar_debugView release];
-	
-	if (self.debugMode) {
-		ar_debugView = [[UILabel alloc] initWithFrame:CGRectZero];
-		ar_debugView.textAlignment = UITextAlignmentCenter;
-		ar_debugView.text = @"Waiting...";
 		
-		[ar_overlayView addSubview:ar_debugView];
-	}
 	radarView = [[Radar alloc]initWithFrame:CGRectMake(2, 2, 61, 61)];	
     radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(2, 2, 61, 61)];
     
@@ -133,17 +120,6 @@
 													repeats:YES] retain];
 }
 
-- (void)setDebugMode:(BOOL)flag {
-	if (self.debugMode == flag) return;
-	
-	ar_debugMode = flag;
-	
-	//we don't need to update the view.
-	if (![self isViewLoaded]) return;
-	
-	if (self.debugMode) [ar_overlayView addSubview:ar_debugView];
-	else [ar_debugView removeFromSuperview];
-}
 
 - (BOOL)viewportContainsCoordinate:(PoiItem *)coordinate {
 	double centerAzimuth = self.centerCoordinate.azimuth;
@@ -352,7 +328,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 		return;
 	}
 	
-	ar_debugView.text = [self.centerCoordinate description];
+	
 	
 	int index = 0;
     NSMutableArray * radarPointValues= [[NSMutableArray alloc]initWithCapacity:[ar_coordinates count]];
@@ -405,13 +381,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 			[viewToDraw removeFromSuperview];
 			viewToDraw.transform = CGAffineTransformIdentity;
 		}
-        CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
-        item.radarPos = loc;
-//        if( fmod((locationManager.heading.trueHeading+item.azimuth),360)==0){
-//            item.azimuth= locationManager.heading.trueHeading+item.azimuth;
-//        }else{
-//            item.azimuth=fmod((locationManager.heading.trueHeading+item.azimuth),360);
-//        }
         [radarPointValues addObject:item];
 		index++;
 	}
@@ -497,17 +466,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	
-	if (self.debugMode) {
-		[ar_debugView sizeToFit];
-		[ar_debugView setFrame:CGRectMake(0,
-										  ar_overlayView.frame.size.height - ar_debugView.frame.size.height,
-										  ar_overlayView.frame.size.width,
-										  ar_debugView.frame.size.height)];
-	}
-	
-	
+	[super viewWillAppear:animated];	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -525,9 +484,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 }
 
 
-- (void)dealloc {
-	[ar_debugView release];
-	
+- (void)dealloc {	
 	[ar_coordinateViews release];
 	[ar_coordinates release];
 	

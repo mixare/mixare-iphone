@@ -17,26 +17,21 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface MixVector : NSObject {
-	float _x;
-	float _y;
-	float _z;
+//Info view of a poi. Shoved when tapping on a por in the cam view. opens a webview of the poi
+@interface MarkerView : UIView {
+    UIView * viewTouched;
+    NSString * _url;
+    UIView* loadView;
 }
-@property (nonatomic) float x,y,z;
+@property (nonatomic, retain) UIView * viewTouched;
+@property (nonatomic, retain) NSString * url;
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
 
-+(MixVector*) initWithX: (float)x y:(float) y z:(float) z;
--(void) addVectorX: (float) x y:(float) y z: (float) z;
--(void) addVector: (MixVector*) vector;
--(void) subX: (float) x y:(float) y z: (float) z;
--(void) subVector: (MixVector*) vector;
--(void) multWithScalar: (float) s;
--(void) divideVectorWithScale: (float) s ;
--(float) length;
--(void) norm;
--(void) crossWithVectorA: (MixVector*) u VectorB: (MixVector*) v;
--(void) setVector: (MixVector*) vector;
--(void) prodWithVec1: (MixVector*) v1 vec2: (MixVector*) v2 vec3: (MixVector*) v3;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

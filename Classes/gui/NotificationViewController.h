@@ -12,6 +12,4 @@
 @interface NotificationViewController : UIViewController {
     IBOutlet UIActivityIndicatorView *indicator;
 }
--(void)start;
--(void)stop;
 @end

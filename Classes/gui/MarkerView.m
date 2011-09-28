@@ -28,21 +28,19 @@
 //The basic idea here is to intercept the view which is sent back as the firstresponder in hitTest.
 //We keep it preciously in the property viewTouched and we return our view as the firstresponder.
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
-    NSLog(@"Hit Test");
     viewTouched = [super hitTest:point withEvent:event];
     return self;
 }
 
 //Then, when an event is fired, we log this one and then send it back to the viewTouched we kept, and voilà!!! :)
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Touch Began");
-    //[viewTouched touchesBegan:touches withEvent:event];
+
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Touch Moved");
-    //[viewTouched touchesMoved:touches withEvent:event];
+
 }
 
+//Touch ended -> showing info view with animation. 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"Touch Ended");
     //[viewTouched touchesEnded:touches withEvent:event];
@@ -50,8 +48,6 @@
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
 	[closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     closeButton.titleLabel.text = @"Close";
-    //closeButton.titleLabel.backgroundColor = [UIColor grayColor];
-    //closeButton.backgroundColor = [UIColor grayColor];
     closeButton.alpha = .6;
     closeButton.titleLabel.textColor = [UIColor blackColor];
     CGRect infoFrame;
@@ -70,13 +66,10 @@
     }
     UIView * infoView = [[UIView alloc]initWithFrame:infoFrame];
     UIWebView * webView = [[UIWebView alloc]initWithFrame:webFrame];
-	//UIButton * transparentButton = [[UIButton alloc]initWithFrame:buttobFrame];
-	//[transparentButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    //webView.delegate = self;
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:_url];
-	NSLog(@"URL IN WEBVIEW: %@",_url);
+    
 	//URL Requst Object
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
 	
@@ -94,7 +87,6 @@
     infoView.alpha = .8;
     [[self superview] addSubview:infoView];
     [infoView addSubview:closeButton];
-	//[infoView addSubview:transparentButton];
     [UIView commitAnimations];
 }
 

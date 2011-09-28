@@ -17,11 +17,15 @@
 
 #import <UIKit/UIKit.h>
 
+//Custom TableViewCell which contains a bigger image for the source logo and a label
+@interface SourceTableCell : UITableViewCell {
+	UILabel * _sourceLabel;
+	UIImageView * _sourceLogoView;
+	//UISwitch * _sourceSwitch;
 
-@interface WebViewController : UIViewController <UIWebViewDelegate>{
-	NSString * _url;
-    IBOutlet UIWebView * _webView;
-    IBOutlet UIView * loadView;
 }
-@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) IBOutlet UILabel * sourceLabel;
+//@property (nonatomic, retain) IBOutlet UISwitch * sourceSwitch;
+@property (nonatomic, retain) IBOutlet UIImageView * sourceLogoView;
+
 @end
