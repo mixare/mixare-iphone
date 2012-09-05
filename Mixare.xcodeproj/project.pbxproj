@@ -150,6 +150,7 @@
 		36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo.png; sourceTree = "<group>"; };
 		36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo_small.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +421,8 @@
 				German,
 				Italian,
 				it,
+				de,
+				nl,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Mixare */;
 			projectDirPath = "";
@@ -505,6 +508,7 @@
 				365F945A12AE735A00286824 /* English */,
 				365F945F12AE738400286824 /* German */,
 				365F946012AE738A00286824 /* Italian */,
+				E2CBF67915F7985800983C98 /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
