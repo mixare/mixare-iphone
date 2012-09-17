@@ -39,11 +39,20 @@
 @synthesize sourceViewController = _sourceViewController;
 @synthesize valueLabel = _valueLabel;
 
+/***
+ *
+ *  App: Open URL
+ *  @param application
+ *  @param URL
+ *
+ ***/
 #pragma mark -
 #pragma  mark URL Handler
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
 	NSLog(@"the url: %@", [url absoluteURL]);
-	if (!url) {  return NO; }
+	if (!url) {
+        return NO;
+    }
     NSString *URLString = [url absoluteString];
     [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -53,35 +62,81 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	//[window addSubview:_tabBarController.view];
+/***
+ *
+ *  Starting app: init application
+ *  @param application
+ *  @param launch options dictionary
+ *
+ ***/
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"STARTING");
 	[self initLocationManager];
-	//[NSThread detachNewThreadSelector:@selector(downloadData) toTarget:self withObject:nil];
-   
 	[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"Wikipedia"];
-   
 	[self downloadData];
 	[self iniARView];
     beforeWasLandscape = NO;
-    
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didRotate:)
+                                                 name:@"UIDeviceOrientationDidChangeNotification"
+                                               object:nil];
+    [self initUIBarTitles];
+    [self firstBootLicenseText];
+    return YES;
+}
+
+/***
+ *
+ *  Initialize location manager
+ *
+ ***/
+-(void) initLocationManager{
+	if (_locManager == nil){
+		_locManager = [[CLLocationManager alloc]init];
+		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
+		_locManager.delegate = self;
+		_locManager.distanceFilter = 3.0;
+		//[_locManager startUpdatingLocation];
+	}
+}
+
+/***
+ *
+ *  Initialize UIBarTitles
+ *
+ ***/
+- (void) initUIBarTitles {
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Sources", @"2 tabbar icon");
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"List View", @"3 tabbar icon");
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:3]).title = NSLocalizedString(@"Map", @"4 tabbar icon");
-    NSString* licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLounch"];
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
+    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
+}
+
+/***
+ *
+ *  License text at first start
+ *
+ ***/
+- (void) firstBootLicenseText {
+    NSString* licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLaunch"];
     if([licenseText isEqualToString:@""] || licenseText ==nil ) {
         UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"License",nil)message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
         [addAlert show];
         [addAlert release];
-        [[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"mixaresFirstLounch"];
+        [[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"mixaresFirstLaunch"];
     }
-    
-    return YES;
 }
+
+/***
+ *
+ *  Update location position
+ *  @param location manager
+ *  @param new location
+ *  @param old location
+ *
+ ***/
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
 	if(augViewController != nil){
 		CLLocation *newCenter = _locManager.location;
@@ -93,6 +148,12 @@
 	//[alert release];
 }
 
+/***
+ *
+ *  Device rotation check
+ *  @param notification
+ *
+ ***/
 -(void) didRotate:(NSNotification *)notification{ 
     //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
     //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -108,6 +169,12 @@
     
 }
 
+/***
+ *
+ *  Transform view to landscape
+ *  @param viewObject
+ *
+ ***/
 -(void)setViewToLandscape:(UIView*)viewObject {
     [viewObject setCenter:CGPointMake(160, 240)];
     CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
@@ -118,6 +185,12 @@
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
 }
 
+/***
+ *
+ *  Transform view to portrait
+ *  @param viewObject
+ *
+ ***/
 -(void)setViewToPortrait:(UIView*)viewObject{
     CGAffineTransform tr = viewObject.transform; // get current transform (portrait)
     tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
@@ -129,11 +202,21 @@
     maxRadiusLabel.frame= CGRectMake(158, 25, 30, 12);
 }
 
+/***
+ *
+ *  Response after click at marker
+ *
+ ***/
 -(void)markerClick:(id)sender{
     NSLog(@"MARKER");
 }
 
 
+/***
+ *
+ *  Initialize ARView
+ *
+ ***/
 -(void) iniARView{
     //if(augViewController == nil){
         augViewController = [[AugmentedGeoViewController alloc] init];
@@ -163,6 +246,11 @@
     window.rootViewController = augViewController;
 }
 
+/***
+ *
+ *  Initialize UI controls
+ *
+ ***/
 -(void) initControls{
     _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -215,22 +303,14 @@
         NSLog(@"RADIUS VALUE: %f", radius);
         _valueLabel.text= [NSString stringWithFormat:@"%.2f km",radius];
     }
-    
-        
-    
 }
 
--(void) initLocationManager{
-	if (_locManager == nil){
-		_locManager = [[CLLocationManager alloc]init];
-		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
-		_locManager.delegate = self;
-		_locManager.distanceFilter = 3.0;
-		//[_locManager startUpdatingLocation];
-	}
-}
-
--(void)mapData{
+/***
+ *
+ *  Get map data
+ *
+ ***/
+-(void) mapData{
 	if(_data != nil){
 		NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:[_data count]];
 		CLLocation *tempLocation;
@@ -256,9 +336,16 @@
 	}else NSLog(@"no data received");
 }
 
-//Method wich manages the download of data specified by the user. The standard source is wikipedia. By selecting the different sources in the sources
-//menu the appropriate data will be downloaded
--(BOOL)checkIfDataSourceIsEanabled: (NSString *)source{
+/***
+ *
+ *  Method wich manages the download of data specified by the user. 
+ *  The standard source is wikipedia.
+ *  By selecting the different sources in the sources menu the appropriate 
+ *  data will be downloaded.
+ *  @param source
+ *
+ ***/
+-(BOOL)checkIfDataSourceIsEnabled: (NSString *)source{
     BOOL ret = NO;
     if(![source isEqualToString:@""]){
         if([[NSUserDefaults standardUserDefaults] objectForKey:source]!=nil){
@@ -269,6 +356,12 @@
     }
     return ret;
 }
+
+/***
+ *
+ *  Download data of the selected sources
+ *
+ ***/
 -(void)downloadData{
 	//Adding logic if mixare is called outside by specific url
 	jHandler = [[JsonHandler alloc]init];
@@ -299,7 +392,7 @@
 //		}
 //	}else{
 		//Application is called normally
-		if([self checkIfDataSourceIsEanabled:@"Wikipedia"]){
+		if([self checkIfDataSourceIsEnabled:@"Wikipedia"]){
 			NSLog(@"Downloading WIki data");
 			NSString   *language = [[NSLocale preferredLanguages] objectAtIndex:0];
 			NSLog(@"Language: %@",language);
@@ -308,14 +401,14 @@
 		}else {
 			wikiData = nil;
 		}
-		if([self checkIfDataSourceIsEanabled:@"Buzz"]){
+		if([self checkIfDataSourceIsEnabled:@"Buzz"]){
 			NSLog(@"Downloading Buzz data");
 			buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
 			NSLog(@"Download done");
 		}else {
 			buzzData = nil;
 		}
-		if([self checkIfDataSourceIsEanabled:@"Twitter"]){
+		if([self checkIfDataSourceIsEnabled:@"Twitter"]){
 			NSLog(@"Downloading Twitter data");
 			twitterData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"TWITTER" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
 			NSLog(@"Download done");
@@ -330,7 +423,7 @@
 			//getting selected Source
 			NSString * customURL;
 			for(int i=3;i< [_sourceViewController.dataSourceArray count];i++){
-				if([self checkIfDataSourceIsEanabled:[_sourceViewController.dataSourceArray objectAtIndex:i]]){
+				if([self checkIfDataSourceIsEnabled:[_sourceViewController.dataSourceArray objectAtIndex:i]]){
 					customURL = [NSString stringWithFormat:@"http://%@",[_sourceViewController.dataSourceArray objectAtIndex:i]];
 				}
 			}
@@ -378,6 +471,11 @@
 	[jHandler release];
 }
 
+/***
+ *
+ *  Response when radius value has been changed
+ *
+ ***/
 -(void)valueChanged:(id)sender{
 	NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
@@ -391,35 +489,61 @@
 	
 }
 
+/***
+ *
+ *  Response when menu button has been pressed
+ *
+ ***/
 -(void)buttonClick:(id)sender{
-	NSLog(@"Close button pressed");
-	//imgPicker.view.hidden = YES;
-	//tabBarController.tabBar.hidden = NO;
-	if(_menuButton.selectedSegmentIndex == 0){
-		[augViewController closeCameraView];
-		[_menuButton removeFromSuperview];
-		[_menuButton release];
-		[augViewController.view removeFromSuperview];
-		[augViewController release];
-		_tabBarController.selectedIndex = 1;
-		[UIApplication sharedApplication].statusBarHidden = NO;
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-		//[window  addSubview:_tabBarController.view];
-        window.rootViewController = _tabBarController;
-        [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-	}else if(_menuButton.selectedSegmentIndex ==  1){
-		_slider.hidden = NO;
-        _valueLabel.hidden = NO;
-        maxRadiusLabel.hidden=NO;
-	}
+    switch (_menuButton.selectedSegmentIndex) {
+        case 0:
+            [self openMenu];
+            break;
+        case 1:
+            [self openRadiusSlide];
+        default:
+            break;
+    }
 }
 
+/***
+ *
+ *  OPEN MENU
+ *
+ ***/
+- (void) openMenu {
+    [augViewController closeCameraView];
+    [_menuButton removeFromSuperview];
+    [_menuButton release];
+    [augViewController.view removeFromSuperview];
+    [augViewController release];
+    _tabBarController.selectedIndex = 1;
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+    window.rootViewController = _tabBarController;
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+}
 
+/***
+ *
+ *  OPEN RADIUS SLIDE
+ *
+ ***/
+- (void) openRadiusSlide {
+    _slider.hidden = NO;
+    _valueLabel.hidden = NO;
+    maxRadiusLabel.hidden=NO;
+}
 
+/***
+ *
+ *  Marker image view at located positions of active sources
+ *  @param coordinate
+ *
+ ***/
 #define BOX_WIDTH 150
 #define BOX_HEIGHT 100
-
 - (MarkerView *)viewForCoordinate:(PoiItem *)coordinate {
 	
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
@@ -431,7 +555,7 @@
 	}else if([coordinate.source isEqualToString:@"TWITTER"]){
         pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
 	}else if([coordinate.source isEqualToString:@"BUZZ"]){
-       pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
+        pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
 	}
 	
     
@@ -449,7 +573,7 @@
         CGSize size = [titleLabel.text sizeWithFont:titleLabel.font	constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeClip];
         frame.size.height = size.height;
         [titleLabel setFrame:frame];
-    }else{
+    } else {
         //Markers get automatically resized
         [titleLabel sizeToFit];
 	}
@@ -464,6 +588,121 @@
     tempView.userInteractionEnabled = YES;
     
 	return [tempView autorelease];
+}
+
+#pragma mark -
+#pragma mark UITabBarControllerDelegate methods
+
+/***
+ *
+ *  Optional UITabBarControllerDelegate method
+ *  Tab pages
+ *  @param tabBarController
+ *  @param viewController
+ *
+ ***/
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {    
+    if (tabBarController.selectedIndex != 0) {
+        [augViewController.locationManager stopUpdatingHeading];
+        [augViewController.locationManager stopUpdatingLocation];
+        [_locManager stopUpdatingLocation];
+    }
+    
+    switch (tabBarController.selectedIndex) {
+        case 0:
+            NSLog(@"Opened camera tab");
+            [self openTabCamera];
+            break;
+        case 1:
+            NSLog(@"Opened source tab");
+            [self openTabSources];
+            break;
+        case 2:
+            NSLog(@"Opened POI list tab");
+            [self openTabPOI];
+            break;
+        case 3:
+            NSLog(@"Opened map tab");
+            [self openTabMap];
+            break;
+        case 4:
+            NSLog(@"Opened more info tab");
+            [self openTabMore];
+            break;
+        default:
+            NSLog(@"Out of range");
+            break;
+    }
+}
+
+/***
+ *
+ *  TAB 0: CAMERA
+ *
+ ***/
+- (void) openTabCamera {
+    notificationView.center = window.center;
+    [window addSubview:notificationView];
+    [augViewController removeCoordinates:_data];
+    [self downloadData];
+    [self iniARView];
+    [augViewController startListening];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+}
+
+/***
+ *
+ *  TAB 1: SOURCE LIST
+ *
+ ***/
+- (void) openTabSources {
+    if(_listViewController.dataSourceArray != nil){
+        _listViewController.dataSourceArray = nil;
+    }
+}
+
+/***
+ *
+ *  TAB 2: POI LIST
+ *
+ ***/
+- (void) openTabPOI {
+    if (_data != nil) {
+        _listViewController.dataSourceArray =nil;
+        NSLog(@"data set");
+        [_listViewController setDataSourceArray:_data];
+        [_listViewController.tableView reloadData];
+        NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
+    } else {
+        NSLog(@"data NOOOOT set");
+    }
+}
+
+/***
+ *
+ *  TAB 3: MAP
+ *
+ ***/
+- (void) openTabMap {
+    if(_data != nil){
+        NSLog(@"data map set");
+        [_mapViewController setData:_data];
+        [_mapViewController mapDataToMapAnnotations];
+    }
+}
+
+/***
+ *
+ *  TAB 4: MORE
+ *
+ ***/
+- (void) openTabMore {
+    NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
+    [_moreViewController showGPSInfo:augViewController.locationManager.location.coordinate.latitude
+                                 lng:augViewController.locationManager.location.coordinate.longitude
+                                 alt:augViewController.locationManager.location.altitude
+                               speed:augViewController.locationManager.location.speed date:augViewController.locationManager.location.timestamp];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -497,75 +736,14 @@
     [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"extern_url"];
 }
 
-
-#pragma mark -
-#pragma mark UITabBarControllerDelegate methods
-
-
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-	if(tabBarController.tabBar.selectedItem.title ==@"Camera"){
-		NSLog(@"cam mode on ");
-		//[self.locManager startUpdatingHeading];
-	}else{
-		//[self.locManager stopUpdatingHeading];
-	}
-    
-    if(tabBarController.selectedIndex == 0 ){
-        notificationView.center = window.center;
-        [window addSubview:notificationView];
-		[augViewController removeCoordinates:_data];
-        [self downloadData];
-        [self iniARView];
-        [augViewController startListening];
-        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-	}else{
-        [augViewController.locationManager stopUpdatingHeading];
-        [augViewController.locationManager stopUpdatingLocation];
-        [_locManager stopUpdatingLocation];
-        if (tabBarController.selectedIndex == 1) {
-            if(_listViewController.dataSourceArray != nil){
-                _listViewController.dataSourceArray =nil;
-            }
-        }
-        if(tabBarController.selectedIndex == 2 ){
-            if(_data != nil){
-                _listViewController.dataSourceArray =nil;
-                NSLog(@"data set");
-                [_listViewController setDataSourceArray:_data];
-                [_listViewController.tableView reloadData];
-                NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
-            }else{
-                NSLog(@"data NOOOOT set");
-            }
-        }
-        if(tabBarController.selectedIndex == 3 ){
-            NSLog(@"map");
-            if(_data != nil){
-                NSLog(@"data map set");
-                [_mapViewController setData:_data];
-                [_mapViewController mapDataToMapAnnotations];
-            }
-        }
-        if(tabBarController.selectedIndex == 4 ){
-            NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
-            [_moreViewController showGPSInfo:augViewController.locationManager.location.coordinate.latitude lng:augViewController.locationManager.location.coordinate.longitude alt:augViewController.locationManager.location.altitude speed:augViewController.locationManager.location.speed date:augViewController.locationManager.location.timestamp];
-        }
-    }
-	
-}
-
 /*
 // Optional UITabBarControllerDelegate method.
 - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
 }
 */
 
-
 #pragma mark -
 #pragma mark Memory management
-
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
     /*
      Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.

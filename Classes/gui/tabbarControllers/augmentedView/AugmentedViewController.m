@@ -76,6 +76,7 @@
 -(void)closeCameraView{
 	[self.cameraController.view removeFromSuperview];
 	[self.cameraController release];
+    self.cameraController = nil;
 }
 
 - (id)initWithLocationManager:(CLLocationManager *)manager {
@@ -327,9 +328,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	if (!ar_coordinateViews || ar_coordinateViews.count == 0) {
 		return;
 	}
-	
-	
-	
+
 	int index = 0;
     NSMutableArray * radarPointValues= [[NSMutableArray alloc]initWithCapacity:[ar_coordinates count]];
     

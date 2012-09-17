@@ -50,7 +50,6 @@
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView * notificationView;
-	
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -72,7 +71,7 @@
 -(void)mapData;
 -(void)downloadData;
 -(void) initControls;
--(BOOL)checkIfDataSourceIsEanabled: (NSString *)source;
+-(BOOL)checkIfDataSourceIsEnabled: (NSString *)source;
 -(void)setViewToLandscape:(UIView*)viewObject;
 -(void)setViewToPortrait:(UIView*)viewObject;
 @end

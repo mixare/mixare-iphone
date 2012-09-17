@@ -19,22 +19,18 @@
 #import "SourceTableCell.h"
 //Cons
 
-#define kTextFieldWidth	180.0
+#define kTextFieldWidth         180.0
 #define kViewTag				1
 #define kLeftMargin				100.0
 #define kTopMargin				20.0
 #define kRightMargin			20.0
 #define kTweenMargin			11.0
-
 #define kTextFieldHeight		30.0
-
-
 
 @implementation SourceViewController
 @synthesize dataSourceArray; 
 
-- (void)dealloc
-{	
+- (void)dealloc {	
 	//dealloc mem
 	
 	[dataSourceArray release];	
@@ -57,10 +53,33 @@
 //    }
 }
 
-//called when user is pressing the plsu symbol on the top right of the navigationbar
-//open a dialog to insert a custom data source
--(IBAction)addSource{
-    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil) message:NSLocalizedString(@"\n\n\n Insert your Source address",nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+/***
+ *
+ *  Alert dialog called when user is pressing the plus symbol on the top right of the navigationbar
+ *
+ ***/
+-(IBAction)addSource {
+    UIAlertView *addOptionAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add source",nil)
+                                                             message:NSLocalizedString(@"Choose an option to insert source", nil)
+                                                            delegate:self
+                                                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                   otherButtonTitles:NSLocalizedString(@"Insert link", nil), NSLocalizedString(@"Scan QR code", nil),       nil];
+    [addOptionAlert setTag:1];
+    [addOptionAlert show];
+}
+
+/***
+ *
+ *  Open an alert dialog to insert a custom data source by link
+ *
+ ***/
+- (void)insertLinkAlert {
+    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil)
+                                                      message:NSLocalizedString(@"\n\n\n Insert your Source address",nil)
+                                                     delegate:self
+                                            cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                            otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    
     CGRect frame = CGRectMake(0, 20, addAlert.frame.size.width, addAlert.frame.size.height);
     addAlert.frame = frame;
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
@@ -76,6 +95,7 @@
     addressField.borderStyle = UITextBorderStyleRoundedRect;
     addressField.keyboardAppearance = UIKeyboardAppearanceAlert;
     addressField.delegate = self;
+    [addAlert setTag:2];
     [addressField becomeFirstResponder];
     [addAlert addSubview:addressField];
     [addAlert show];
@@ -84,25 +104,81 @@
     [addressLabel release];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     sourceURL = textField.text;
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==1){
-        //User pressed OK button
-        [dataSourceArray addObject:sourceURL];
-        [self.tableView reloadData];
+/***
+ *
+ *  Responses of both Alert Dialogs
+ *
+ ***/
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ([alertView tag] == 1) {
+        // Alert dialog: Source options
+        if(buttonIndex == 0) {
+            NSLog(@"Canceled");
+        }
+        else if(buttonIndex == 1) {
+            [self insertLinkAlert];
+            NSLog(@"Insert link selected.");
+        }
+        else if(buttonIndex == 2) {
+            [self openScanView];
+            NSLog(@"Scan QR code selected.");
+        }
+    } else if ([alertView tag] == 2) {
+        // Alert dialog: Insert link
+        if(buttonIndex == 1) {
+            //User pressed OK button
+            [dataSourceArray addObject:sourceURL];
+            [self.tableView reloadData];
+        }
     }
-    
 }
 
-// called after the view controller's view is released and set to nil.
-// For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
-// So release any properties that are loaded in viewDidLoad or can be recreated lazily.
-//
-- (void)viewDidUnload 
-{
+/***
+ *
+ *  Open Scanview
+ *
+ ***/
+- (void)openScanView {
+    NSLog(@"Scan barcode");
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    ZBarImageScanner *scanner = reader.scanner;
+    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
+    [self presentModalViewController:reader animated:YES];
+    [reader release];
+}
+
+/***
+ *
+ *  Process scanned data
+ *
+ ***/
+- (void) imagePickerController:(UIImagePickerController *) reader didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for (symbol in results) {
+        break;
+    }
+    sourceURL = symbol.data;
+    [reader dismissModalViewControllerAnimated:YES];
+    [dataSourceArray addObject:sourceURL];
+    [self.tableView reloadData];
+}
+
+/***
+ *
+ *  Called after the view controller's view is released and set to nil.
+ *  For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
+ *  So release any properties that are loaded in viewDidLoad or can be recreated lazily.
+ *
+ ***/
+- (void)viewDidUnload {
     [super viewDidUnload];
 	
 	// release the controls and set them nil in case they were ever created
@@ -115,29 +191,32 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
 
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [dataSourceArray count] ;
 }
 
-// to determine specific row height for each cell, override this.
-// In this example, each row is determined by its subviews that are embedded.
-//
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+/***
+ *
+ *  To determine specific row height for each cell, override this.
+ *  In this example, each row is determined by its subviews that are embedded.
+ *
+ ***/
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 55.0;
 }
 
-// to determine which UITableViewCell to be used on a given row.
-//
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+/***
+ *
+ *  To determine which UITableViewCell to be used on a given row.
+ *
+ ***/
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString * CellIdentifier = @"SourceCell";
 	SourceTableCell *cell =  (SourceTableCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if(cell == nil){
@@ -151,7 +230,7 @@
 		}
 	}
 	
-	if(dataSourceArray != nil){
+	if(dataSourceArray != nil) {
 		cell.sourceLabel.text = [dataSourceArray objectAtIndex:indexPath.row];
 		if(indexPath.row == 1){
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"twitter_logo.png"]];
@@ -163,17 +242,22 @@
 		}else if(indexPath.row > 2 ){
           [cell.sourceLogoView  setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }
-	}else{
+	} else {
 		
 	}
+    
     if([[[NSUserDefaults standardUserDefaults] objectForKey:cell.sourceLabel.text] isEqualToString:@"TRUE"]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 	return cell;
 }
 
-//TODO: keeping track if the user changes sources to not have to download data
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+/***
+ *
+ *  TODO: keeping track if the user changes sources to not have to download data
+ *
+ ***/
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	//static NSString * CellIdentifier = @"SourceCell";
 	SourceTableCell *cell =  (SourceTableCell *) [tableView cellForRowAtIndexPath:indexPath];
 	if(cell != nil){
@@ -188,12 +272,12 @@
 	}else NSLog(@"NOT WORKING");
 
 }
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if(indexPath.row >2){
             [dataSourceArray removeObjectAtIndex:indexPath.row];
-            [tableView reloadData];
+            [self.tableView reloadData];
         }else{
             UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Not Allowed",nil) message:@"You can only delete own sources!" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
             [addAlert show];
@@ -203,11 +287,11 @@
 }
 
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellEditingStyleDelete;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
     
