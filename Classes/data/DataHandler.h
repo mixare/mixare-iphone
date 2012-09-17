@@ -17,10 +17,22 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 
-
+#import "JsonHandler.h"
+#import "DataSource.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface DataHandler : NSObject {
-
+    JsonHandler *json;
+    CLLocationManager *locManager;
+    NSMutableArray * _dataArray;
+    CLLocation *pos;
+    float radius;
+    NSString *language;
 }
+
+@property (nonatomic, retain) NSMutableArray *_dataArray;
+
+-(id)initWithLocationManager:(CLLocationManager *)loc initRadius:(float)rad;
+-(NSMutableArray *)retrieveAvailableSources;
 
 @end

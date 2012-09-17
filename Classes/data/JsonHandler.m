@@ -30,6 +30,12 @@ static NSString *kReferenceKey = @"reference";
 
 @implementation JsonHandler
 
+-(NSMutableArray *) processJSONData:(NSString *) jsonData sourceName:(NSString *)sourceName {
+    if ([sourceName isEqualToString:@"WIKIPEDIA"]) {
+        return [self processWikipediaJSONData:sourceName];
+    }
+}
+
 -(NSMutableArray*)processWikipediaJSONData: (NSString*) jsonData{
 	NSDictionary* data = [jsonData JSONValue];
 	NSMutableArray* ret = [[NSMutableArray alloc]init];

@@ -218,19 +218,12 @@
  *
  ***/
 -(void) iniARView{
-    //if(augViewController == nil){
-        augViewController = [[AugmentedGeoViewController alloc] init];
-    //}
-	
+    augViewController = [[AugmentedGeoViewController alloc] init];
 	augViewController.delegate = self;
-	
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
-	
 	augViewController.rotateViewsBasedOnPerspective = YES;
-	
 	[self mapData];
-    
 	if(_locManager != nil){
 		augViewController.centerLocation = _locManager.location;
 	}
@@ -242,7 +235,6 @@
     [augViewController.view addSubview:nordLabel];
     [augViewController.view addSubview:maxRadiusLabel];
 	[augViewController startListening];
-    
     window.rootViewController = augViewController;
 }
 
@@ -362,7 +354,16 @@
  *  Download data of the selected sources
  *
  ***/
--(void)downloadData{
+-(void)downloadData {
+    float radius = 3.5;
+    if (_slider != nil) {
+        radius = _slider.value;
+    }
+    _dataHandler = [[DataHandler alloc] initWithLocationManager:_locManager initRadius:radius];
+    _data = [_dataHandler retrieveAvailableSources];
+}
+
+-(void)downloadDataOLDMETHOD {
 	//Adding logic if mixare is called outside by specific url
 	jHandler = [[JsonHandler alloc]init];
 	CLLocation * pos = _locManager.location;
@@ -481,12 +482,11 @@
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
 	[augViewController removeCoordinates:_data];
+    [augViewController closeCameraView];
+    [augViewController release];
 	[self downloadData];
-    [self iniARView];
-    [augViewController startListening];
-    
+    [self iniARView];    
 	NSLog(@"POIS CHANGED");
-	
 }
 
 /***
@@ -643,10 +643,10 @@
 - (void) openTabCamera {
     notificationView.center = window.center;
     [window addSubview:notificationView];
-    [augViewController removeCoordinates:_data];
-    [self downloadData];
+    //[augViewController removeCoordinates:_data];
+    //[self downloadData];
     [self iniARView];
-    [augViewController startListening];
+    //[augViewController startListening];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }

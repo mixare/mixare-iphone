@@ -28,6 +28,7 @@
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
+#import "data/DataHandler.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     UIWindow *window;
@@ -50,6 +51,7 @@
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView * notificationView;
+    DataHandler * _dataHandler;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
