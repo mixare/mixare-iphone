@@ -16,15 +16,29 @@
  * this program. If not, see <http://www.gnu.org/licenses/> */
 
 #import <Foundation/Foundation.h>
-#define WIKI_BASE_URL @"http://ws.geonames.org/findNearbyWikipediaJSON"
-#define TWITTER_BASE_URL  @"http://search.twitter.com/search.json"
-#define BUZZ_BASE_URL @"https://www.googleapis.com/buzz/v1/activities/search?alt=json&max-results=20"
-#define OSM_BASE_URL @"http://osmxapi.hypercube.telascience.org/api/0.6/node[railway=station]"
-typedef enum  {WIKIPEDIA, BUZZ, TWITTER, OWNURL,OSM} DATASOURCE;
+#import <CoreLocation/CoreLocation.h>
+#import "JsonHandler.h"
+#import "Positions.h"
 
 @interface DataSource : NSObject {
-	
-
+	CLLocationManager *_locationManager;
+    
+    NSString *title;
+    NSString *jsonUrl;
+    BOOL *activated;
+    NSMutableArray *positions;
+    NSMutableDictionary *urlValueData;
+    
+    JsonHandler *jHandler;
 }
-+(NSString *) createRequestURLFromDataSource: (NSString*) source Lat: (float) lat Lon: (float) lon Alt: (float) alt radius: (float) rad Lang: (NSString *) lang;
+
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *jsonUrl;
+@property (nonatomic, assign) BOOL *activated;
+
+-(DataSource*) initWithLocationManager:(CLLocationManager*)loc title:(NSString*)tit jsonUrl:(NSString*)url;
+-(void) refreshPositions;
+
+
+//+(NSString *) createRequestURLFromDataSource: (NSString*) source Lat: (float) lat Lon: (float) lon Alt: (float) alt radius: (float) rad Lang: (NSString *) lang;
 @end

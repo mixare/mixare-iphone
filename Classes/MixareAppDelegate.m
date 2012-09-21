@@ -485,7 +485,7 @@
     [augViewController closeCameraView];
     [augViewController release];
 	[self downloadData];
-    [self iniARView];    
+    [self iniARView];
 	NSLog(@"POIS CHANGED");
 }
 
