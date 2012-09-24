@@ -18,7 +18,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 #import "JsonHandler.h"
-#import "Positions.h"
+#import "Position.h"
 
 @interface DataSource : NSObject {
 	CLLocationManager *_locationManager;
@@ -35,6 +35,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *jsonUrl;
 @property (nonatomic, assign) BOOL *activated;
+@property (nonatomic, retain) NSMutableArray *positions;
 
 -(DataSource*) initWithLocationManager:(CLLocationManager*)loc title:(NSString*)tit jsonUrl:(NSString*)url;
 -(void) refreshPositions;

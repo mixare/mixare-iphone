@@ -125,7 +125,7 @@
             NSLog(@"Insert link selected.");
         }
         else if(buttonIndex == 2) {
-            [self openScanView];
+            //[self openScanView];
             NSLog(@"Scan QR code selected.");
         }
     } else if ([alertView tag] == 2) {
@@ -142,7 +142,7 @@
  *
  *  Open Scanview
  *
- ***/
+ **
 - (void)openScanView {
     NSLog(@"Scan barcode");
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
@@ -153,12 +153,13 @@
     [self presentModalViewController:reader animated:YES];
     [reader release];
 }
+*/
 
 /***
  *
  *  Process scanned data
  *
- ***/
+ **
 - (void) imagePickerController:(UIImagePickerController *) reader didFinishPickingMediaWithInfo:(NSDictionary *)info {
     id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
     ZBarSymbol *symbol = nil;
@@ -169,7 +170,7 @@
     [reader dismissModalViewControllerAnimated:YES];
     [dataSourceArray addObject:sourceURL];
     [self.tableView reloadData];
-}
+}*/
 
 /***
  *

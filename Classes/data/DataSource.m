@@ -19,7 +19,7 @@
 
 @implementation DataSource
 
-@synthesize title, jsonUrl, activated;
+@synthesize title, jsonUrl, activated, positions;
 
 /***
  *
@@ -49,7 +49,7 @@
 -(void) initUrlValues {
     float radius = 3.5;
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    urlValueData = [NSMutableDictionary alloc];
+    urlValueData = [[NSMutableDictionary alloc] init];
     [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",_locationManager.location.coordinate.latitude] forKey:@"PARAM_LAT"];
     [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",_locationManager.location.coordinate.longitude] forKey:@"PARAM_LON"];
     [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",_locationManager.location.altitude] forKey:@"PARAM_ALT"];
@@ -69,7 +69,7 @@
         if (alt == 0.0) {
             alt = _locationManager.location.altitude+50;
         }
-        Positions* newPosition = [[Positions alloc] initWithTitle:[poi valueForKey:@"title"] initWithSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:[[poi valueForKey:@"lat"]floatValue] withLongitude:[[poi valueForKey:@"lon"]floatValue] withAltitude:alt];
+        Position* newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:[[poi valueForKey:@"lat"]floatValue] withLongitude:[[poi valueForKey:@"lon"]floatValue] withAltitude:alt];
         
         [positions addObject:newPosition];
     }
@@ -102,6 +102,7 @@
         NSString* value = [urlValueData objectForKey:key];
         stringURL = [self url:stringURL urlInfoFiller:key urlInfoReplacer:value];
     }
+    NSLog(@"GENERATED DATA URL: %@", stringURL);
     NSURL *url = [NSURL URLWithString:stringURL];
     return url;
 }

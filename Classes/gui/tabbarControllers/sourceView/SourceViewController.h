@@ -19,7 +19,7 @@
 #import <Foundation/Foundation.h>
 
 //ViewController for the source tabbarsection 
-@interface SourceViewController : UITableViewController <ZBarReaderDelegate,UITextFieldDelegate,UIAlertViewDelegate> {
+@interface SourceViewController : UITableViewController </*ZBarReaderDelegate,*/UITextFieldDelegate,UIAlertViewDelegate> {
 	NSMutableArray *dataSourceArray;
     IBOutlet UIBarButtonItem * addButton;
     NSString * sourceURL;
