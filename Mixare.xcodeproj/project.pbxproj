@@ -90,6 +90,8 @@
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AB94111607268E006F8884 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */; };
+		E2B63079161F1A57001F1844 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B63078161F1A57001F1844 /* MapViewAnnotation.m */; };
+		E2B6307D161F2CEA001F1844 /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6307C161F2CEA001F1844 /* DataSourceManager.m */; };
 		E2DFCF83160B25470045A6C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */; };
 		E2DFCF84160B25470045A6C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		E2DFCF85160B25470045A6C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -240,7 +242,7 @@
 		E246F36C1610557D0006EA40 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVFoundation.framework; sourceTree = "<group>"; };
 		E246F36D1610557D0006EA40 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreMedia.framework; sourceTree = "<group>"; };
 		E246F36E1610557D0006EA40 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreVideo.framework; sourceTree = "<group>"; };
-		E246F36F1610557D0006EA40 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; path = libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E246F36F1610557D0006EA40 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E246F3701610557D0006EA40 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuartzCore.framework; sourceTree = "<group>"; };
 		E246F3711610557D0006EA40 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E246F3731610557D0006EA40 /* German */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = German; path = German.lproj/MainWindow.xib; sourceTree = "<group>"; };
@@ -288,6 +290,10 @@
 		E2AB940C16071F7E006F8884 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Frameworks/AVFoundation.framework; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Frameworks/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E2B63077161F1A57001F1844 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
+		E2B63078161F1A57001F1844 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		E2B6307B161F2CEA001F1844 /* DataSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceManager.h; sourceTree = "<group>"; };
+		E2B6307C161F2CEA001F1844 /* DataSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManager.m; sourceTree = "<group>"; };
 		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2DFCF81160B25470045A6C4 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -431,10 +437,14 @@
 			children = (
 				365B605E12B9F7740014850C /* DataHandler.h */,
 				365B605F12B9F7740014850C /* DataHandler.m */,
+				E2B6307B161F2CEA001F1844 /* DataSourceManager.h */,
+				E2B6307C161F2CEA001F1844 /* DataSourceManager.m */,
 				365B606012B9F7740014850C /* DataSource.h */,
 				365B606112B9F7740014850C /* DataSource.m */,
 				E246F3AA161061CB0006EA40 /* Position.h */,
 				E246F3AB161061CB0006EA40 /* Position.m */,
+				E2B63077161F1A57001F1844 /* MapViewAnnotation.h */,
+				E2B63078161F1A57001F1844 /* MapViewAnnotation.m */,
 				365B606212B9F7740014850C /* json */,
 				365B606E12B9F7740014850C /* JsonHandler.h */,
 				365B606F12B9F7740014850C /* JsonHandler.m */,
@@ -1008,6 +1018,8 @@
 				365B60A312B9F9100014850C /* WebViewController.m in Sources */,
 				36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */,
 				E246F3AC161061CB0006EA40 /* Position.m in Sources */,
+				E2B63079161F1A57001F1844 /* MapViewAnnotation.m in Sources */,
+				E2B6307D161F2CEA001F1844 /* DataSourceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

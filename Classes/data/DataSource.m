@@ -14,6 +14,13 @@
  * 
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <http://www.gnu.org/licenses/> */
+//
+//  DataSource.m
+//  Mixare
+//
+//  Created by Aswin Ly on 24-09-12.
+//  Copyright (c) 2012 Peer GmbH. All rights reserved.
+//
 
 #import "DataSource.h"
 

@@ -15,28 +15,29 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/> */
 //
-//  Position.h
+//  MapAnnotation.m
 //  Mixare
 //
-//  Created by Aswin Ly on 24-09-12.
+//  Created by Aswin Ly on 05-10-12.
 //  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MapViewAnnotation.h"
 
-@interface Position : NSObject {
-    NSString* title;
-    NSString* summary;
-    NSString* url;
-    CGFloat latitude;
-    CGFloat longitude;
-    CGFloat altitude;
-    MapViewAnnotation* mapViewAnnotation;
+@implementation MapViewAnnotation
+
+@synthesize coordinate;
+
+- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon {
+    [super init];
+    if (lat != 0.0 && lon != 0.0) {
+		coordinate.latitude = lat;
+		coordinate.longitude = lon;
+	} else {
+		coordinate.latitude=0.0;
+		coordinate.longitude=0.0;
+	}
+    return self;
 }
-
-@property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
-
--(Position*) initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt;
 
 @end

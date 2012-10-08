@@ -14,6 +14,13 @@
  * 
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <http://www.gnu.org/licenses/> */
+//
+//  DataSource.h
+//  Mixare
+//
+//  Created by Aswin Ly on 24-09-12.
+//  Copyright (c) 2012 Peer GmbH. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
@@ -25,7 +32,7 @@
     
     NSString *title;
     NSString *jsonUrl;
-    BOOL *activated;
+    BOOL activated;
     NSMutableArray *positions;
     NSMutableDictionary *urlValueData;
     
@@ -34,7 +41,7 @@
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *jsonUrl;
-@property (nonatomic, assign) BOOL *activated;
+@property (nonatomic, assign) BOOL activated;
 @property (nonatomic, retain) NSMutableArray *positions;
 
 -(DataSource*) initWithLocationManager:(CLLocationManager*)loc title:(NSString*)tit jsonUrl:(NSString*)url;
