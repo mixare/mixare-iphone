@@ -26,6 +26,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DataConvertor : NSObject
+@interface DataConvertor : NSObject 
+
++(DataConvertor*) init;
++(NSArray*) dataProcessors;
 
 @end

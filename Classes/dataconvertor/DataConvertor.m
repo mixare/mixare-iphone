@@ -25,7 +25,34 @@
 //
 
 #import "DataConvertor.h"
+#import "TwitterProcessor.h"
+#import "WikipediaProcessor.h"
+#import "MixareProcessor.h"
+
+static NSMutableArray* dataProcessors;
+static DataConvertor* instance;
 
 @implementation DataConvertor
+
++(DataConvertor*) init {
+    if (dataProcessors == nil) {
+        dataProcessors = [NSMutableArray alloc];
+        [self initDataProcessors];
+    }
+    if (instance == nil) {
+        instance = [DataConvertor alloc];
+    }
+    return instance;
+}
+
++(void) initDataProcessors {
+    [dataProcessors addObject:[TwitterProcessor alloc]];
+    [dataProcessors addObject:[WikipediaProcessor alloc]];
+    [dataProcessors addObject:[MixareProcessor alloc]];
+}
+
++(NSArray*) dataProcessors {
+    return dataProcessors;
+}
 
 @end
