@@ -24,11 +24,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import "DownloadManager.h"
 #import "JsonHandler.h"
 #import "Position.h"
 
 @interface DataSource : NSObject {
 	CLLocationManager *_locationManager;
+    DownloadManager *_downloadManager;
     
     NSString *title;
     NSString *jsonUrl;
@@ -44,7 +46,7 @@
 @property (nonatomic, assign) BOOL activated;
 @property (nonatomic, retain) NSMutableArray *positions;
 
--(DataSource*) initWithLocationManager:(CLLocationManager*)loc title:(NSString*)tit jsonUrl:(NSString*)url;
+-(DataSource*) initWithLocationManager:(CLLocationManager*)loc downloadManager:(DownloadManager*)downloadManager title:(NSString*)tit jsonUrl:(NSString*)url;
 -(void) refreshPositions;
 
 

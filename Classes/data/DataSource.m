@@ -33,10 +33,11 @@
  *  CONSTRUCTOR
  *
  ***/
--(DataSource*) initWithLocationManager:(CLLocationManager *)loc title:(NSString *)tit jsonUrl:(NSString *)url {
+-(DataSource*) initWithLocationManager:(CLLocationManager *)loc downloadManager:(DownloadManager*)downloadManager title:(NSString *)tit jsonUrl:(NSString *)url {
     self = [super init];
     if(self) {
         _locationManager = loc;
+        _downloadManager = downloadManager;
         title = tit;
         jsonUrl = url;
         activated = NO;

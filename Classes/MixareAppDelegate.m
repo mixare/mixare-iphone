@@ -27,10 +27,14 @@
  
 
 @implementation MixareAppDelegate
+
+@synthesize locManager = _locManager;
+@synthesize dataSourceManager = _dataSourceManager;
+@synthesize downloadManager = _downloadManager;
+
 @synthesize mapViewController = _mapViewController;
 @synthesize window;
 @synthesize tabBarController = _tabBarController;
-@synthesize locManager = _locManager;
 @synthesize data = _data;
 @synthesize listViewController = _listViewController;
 @synthesize slider = _slider;
@@ -71,7 +75,7 @@
  ***/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"STARTING");
-	[self initLocationManager];
+	[self initManagers];
 	[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"Wikipedia"];
 	[self downloadData];
 	[self iniARView];
@@ -85,6 +89,17 @@
     [self initUIBarTitles];
     [self firstBootLicenseText];
     return YES;
+}
+
+/***
+ *
+ *  Initialize managers
+ *
+ ***/
+-(void) initManagers{
+    [self initLocationManager];
+    _downloadManager = [[DownloadManager alloc] init];
+    _dataSourceManager = [[DataSourceManager alloc] initWithLocationManager:_locManager initWithDownloadManager:_downloadManager];
 }
 
 /***
@@ -130,7 +145,7 @@
 }
 
 /***
- *
+ *  XXX
  *  Update location position
  *  @param location manager
  *  @param new location

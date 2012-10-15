@@ -20,6 +20,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
+#import "manager/DataSourceManager.h"
+#import "manager/DownloadManager.h"
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
 #import "data/JsonHandler.h"
@@ -31,8 +33,12 @@
 #import "data/DataHandler.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
+    
+    CLLocationManager *_locManager;
+    DataSourceManager *_dataSourceManager;
+    DownloadManager *_downloadManager;
+    
     UIWindow *window;
-	CLLocationManager * _locManager;
 	UITabBarController *_tabBarController;
 	CMMotionManager *motionManager;
 	ListViewController * _listViewController;
@@ -56,7 +62,9 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) CLLocationManager * locManager;
+@property (nonatomic, retain) CLLocationManager *locManager;
+@property (nonatomic, retain) DataSourceManager *dataSourceManager;
+@property (nonatomic, retain) DownloadManager *downloadManager;
 @property (nonatomic, retain) IBOutlet ListViewController * listViewController;
 @property (nonatomic, retain) IBOutlet NSMutableArray * data;
 @property (nonatomic, retain) IBOutlet MapViewController* mapViewController;
@@ -69,10 +77,9 @@
 
 -(void) iniARView;
 - (MarkerView *)viewForCoordinate:(PoiItem *)coordinate;
--(void)initLocationManager;
 -(void)mapData;
 -(void)downloadData;
--(void) initControls;
+-(void)initControls;
 -(BOOL)checkIfDataSourceIsEnabled: (NSString *)source;
 -(void)setViewToLandscape:(UIView*)viewObject;
 -(void)setViewToPortrait:(UIView*)viewObject;

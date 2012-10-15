@@ -91,11 +91,13 @@
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AB94111607268E006F8884 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */; };
 		E2B63079161F1A57001F1844 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B63078161F1A57001F1844 /* MapViewAnnotation.m */; };
-		E2B6307D161F2CEA001F1844 /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6307C161F2CEA001F1844 /* DataSourceManager.m */; };
 		E2DFCF83160B25470045A6C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */; };
 		E2DFCF84160B25470045A6C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		E2DFCF85160B25470045A6C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		E2DFCF8B160B25470045A6C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DFCF89160B25470045A6C4 /* InfoPlist.strings */; };
+		E2E3ECA6162C2B1700A28F2B /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
+		E2E3ECA9162C369A00A28F2B /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
+		E2E3ECAD162C4F7100A28F2B /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -292,14 +294,19 @@
 		E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Frameworks/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E2B63077161F1A57001F1844 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		E2B63078161F1A57001F1844 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
-		E2B6307B161F2CEA001F1844 /* DataSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceManager.h; sourceTree = "<group>"; };
-		E2B6307C161F2CEA001F1844 /* DataSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManager.m; sourceTree = "<group>"; };
 		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2DFCF81160B25470045A6C4 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E2DFCF88160B25470045A6C4 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		E2DFCF8A160B25470045A6C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E2DFCF8F160B25470045A6C4 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		E2E3ECA4162C2B1700A28F2B /* DataSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSourceManager.h; path = manager/DataSourceManager.h; sourceTree = "<group>"; };
+		E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceManager.m; path = manager/DataSourceManager.m; sourceTree = "<group>"; };
+		E2E3ECA7162C369A00A28F2B /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DownloadManager.h; path = manager/DownloadManager.h; sourceTree = "<group>"; };
+		E2E3ECA8162C369A00A28F2B /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DownloadManager.m; path = manager/DownloadManager.m; sourceTree = "<group>"; };
+		E2E3ECAB162C4F7100A28F2B /* WikipediaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikipediaProcessor.h; path = dataconvertor/WikipediaProcessor.h; sourceTree = "<group>"; };
+		E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikipediaProcessor.m; path = dataconvertor/WikipediaProcessor.m; sourceTree = "<group>"; };
+		E2E3ECAE162C4FA700A28F2B /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = dataconvertor/DataProcessor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,9 +350,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */,
 				36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */,
+				36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */,
 				365B607B12B9F9100014850C /* gui */,
+				E2E3ECA3162C2ACB00A28F2B /* manager */,
+				E2E3ECAA162C4EEB00A28F2B /* dataconvertor */,
 				365B605D12B9F7740014850C /* data */,
 				365B605612B9F7230014850C /* reality */,
 			);
@@ -435,14 +444,12 @@
 		365B605D12B9F7740014850C /* data */ = {
 			isa = PBXGroup;
 			children = (
-				365B605E12B9F7740014850C /* DataHandler.h */,
-				365B605F12B9F7740014850C /* DataHandler.m */,
-				E2B6307B161F2CEA001F1844 /* DataSourceManager.h */,
-				E2B6307C161F2CEA001F1844 /* DataSourceManager.m */,
 				365B606012B9F7740014850C /* DataSource.h */,
 				365B606112B9F7740014850C /* DataSource.m */,
 				E246F3AA161061CB0006EA40 /* Position.h */,
 				E246F3AB161061CB0006EA40 /* Position.m */,
+				365B605E12B9F7740014850C /* DataHandler.h */,
+				365B605F12B9F7740014850C /* DataHandler.m */,
 				E2B63077161F1A57001F1844 /* MapViewAnnotation.h */,
 				E2B63078161F1A57001F1844 /* MapViewAnnotation.m */,
 				365B606212B9F7740014850C /* json */,
@@ -851,6 +858,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E2E3ECA3162C2ACB00A28F2B /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				E2E3ECA4162C2B1700A28F2B /* DataSourceManager.h */,
+				E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */,
+				E2E3ECA7162C369A00A28F2B /* DownloadManager.h */,
+				E2E3ECA8162C369A00A28F2B /* DownloadManager.m */,
+			);
+			name = manager;
+			sourceTree = "<group>";
+		};
+		E2E3ECAA162C4EEB00A28F2B /* dataconvertor */ = {
+			isa = PBXGroup;
+			children = (
+				E2E3ECAE162C4FA700A28F2B /* DataProcessor.h */,
+				E2E3ECAB162C4F7100A28F2B /* WikipediaProcessor.h */,
+				E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */,
+			);
+			name = dataconvertor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1019,7 +1047,9 @@
 				36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */,
 				E246F3AC161061CB0006EA40 /* Position.m in Sources */,
 				E2B63079161F1A57001F1844 /* MapViewAnnotation.m in Sources */,
-				E2B6307D161F2CEA001F1844 /* DataSourceManager.m in Sources */,
+				E2E3ECA6162C2B1700A28F2B /* DataSourceManager.m in Sources */,
+				E2E3ECA9162C369A00A28F2B /* DownloadManager.m in Sources */,
+				E2E3ECAD162C4F7100A28F2B /* WikipediaProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

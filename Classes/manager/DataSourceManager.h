@@ -17,23 +17,25 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataSourceTest.h
+//  DataSourceManager.h
 //  Mixare
 //
-//  Created by Aswin Ly on 24-09-12.
+//  Created by Aswin Ly on 05-10-12.
 //  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import "DownloadManager.h"
+#import <Foundation/Foundation.h>
 #import "DataSource.h"
+#import "DownloadManager.h"
 
-@interface DataSourceTest : SenTestCase {
-    CLLocationManager *_locationManager;
+@interface DataSourceManager : NSObject{
+	CLLocationManager *_locationManager;
     DownloadManager *_downloadManager;
-    DataSource *wikipedia;
-    DataSource *twitter;
+    NSMutableArray *dataSources;
 }
+
+@property (nonatomic, retain) NSMutableArray *dataSources;
+
+-(DataSourceManager*) initWithLocationManager:(CLLocationManager*)loc initWithDownloadManager:(DownloadManager*)downloadManager;
 
 @end
