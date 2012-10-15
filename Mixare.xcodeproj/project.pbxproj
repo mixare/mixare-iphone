@@ -90,7 +90,6 @@
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AB94111607268E006F8884 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */; };
-		E2B63079161F1A57001F1844 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B63078161F1A57001F1844 /* MapViewAnnotation.m */; };
 		E2DFCF83160B25470045A6C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */; };
 		E2DFCF84160B25470045A6C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		E2DFCF85160B25470045A6C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -98,6 +97,10 @@
 		E2E3ECA6162C2B1700A28F2B /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2E3ECA9162C369A00A28F2B /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
 		E2E3ECAD162C4F7100A28F2B /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */; };
+		E2E3ECB3162C552D00A28F2B /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECB2162C552D00A28F2B /* TwitterProcessor.m */; };
+		E2E3ECB6162C55E500A28F2B /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECB5162C55E500A28F2B /* MixareProcessor.m */; };
+		E2E3ECB9162C56A500A28F2B /* DataConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECB8162C56A400A28F2B /* DataConvertor.m */; };
+		E2E3ECBD162C59A800A28F2B /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -292,8 +295,6 @@
 		E2AB940C16071F7E006F8884 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Frameworks/AVFoundation.framework; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Frameworks/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
-		E2B63077161F1A57001F1844 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
-		E2B63078161F1A57001F1844 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
 		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2DFCF81160B25470045A6C4 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -307,6 +308,14 @@
 		E2E3ECAB162C4F7100A28F2B /* WikipediaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikipediaProcessor.h; path = dataconvertor/WikipediaProcessor.h; sourceTree = "<group>"; };
 		E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikipediaProcessor.m; path = dataconvertor/WikipediaProcessor.m; sourceTree = "<group>"; };
 		E2E3ECAE162C4FA700A28F2B /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = dataconvertor/DataProcessor.h; sourceTree = "<group>"; };
+		E2E3ECB1162C552D00A28F2B /* TwitterProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterProcessor.h; path = dataconvertor/TwitterProcessor.h; sourceTree = "<group>"; };
+		E2E3ECB2162C552D00A28F2B /* TwitterProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterProcessor.m; path = dataconvertor/TwitterProcessor.m; sourceTree = "<group>"; };
+		E2E3ECB4162C55E500A28F2B /* MixareProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixareProcessor.h; path = dataconvertor/MixareProcessor.h; sourceTree = "<group>"; };
+		E2E3ECB5162C55E500A28F2B /* MixareProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixareProcessor.m; path = dataconvertor/MixareProcessor.m; sourceTree = "<group>"; };
+		E2E3ECB7162C56A400A28F2B /* DataConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataConvertor.h; path = dataconvertor/DataConvertor.h; sourceTree = "<group>"; };
+		E2E3ECB8162C56A400A28F2B /* DataConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataConvertor.m; path = dataconvertor/DataConvertor.m; sourceTree = "<group>"; };
+		E2E3ECBA162C599300A28F2B /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
+		E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -433,6 +442,8 @@
 		365B605612B9F7230014850C /* reality */ = {
 			isa = PBXGroup;
 			children = (
+				E2E3ECBA162C599300A28F2B /* MapViewAnnotation.h */,
+				E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */,
 				365B605712B9F7230014850C /* PhysicalPlace.h */,
 				365B605812B9F7230014850C /* PhysicalPlace.m */,
 				365B605912B9F7230014850C /* PoiItem.h */,
@@ -450,8 +461,6 @@
 				E246F3AB161061CB0006EA40 /* Position.m */,
 				365B605E12B9F7740014850C /* DataHandler.h */,
 				365B605F12B9F7740014850C /* DataHandler.m */,
-				E2B63077161F1A57001F1844 /* MapViewAnnotation.h */,
-				E2B63078161F1A57001F1844 /* MapViewAnnotation.m */,
 				365B606212B9F7740014850C /* json */,
 				365B606E12B9F7740014850C /* JsonHandler.h */,
 				365B606F12B9F7740014850C /* JsonHandler.m */,
@@ -872,9 +881,15 @@
 		E2E3ECAA162C4EEB00A28F2B /* dataconvertor */ = {
 			isa = PBXGroup;
 			children = (
+				E2E3ECB7162C56A400A28F2B /* DataConvertor.h */,
+				E2E3ECB8162C56A400A28F2B /* DataConvertor.m */,
 				E2E3ECAE162C4FA700A28F2B /* DataProcessor.h */,
+				E2E3ECB1162C552D00A28F2B /* TwitterProcessor.h */,
+				E2E3ECB2162C552D00A28F2B /* TwitterProcessor.m */,
 				E2E3ECAB162C4F7100A28F2B /* WikipediaProcessor.h */,
 				E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */,
+				E2E3ECB4162C55E500A28F2B /* MixareProcessor.h */,
+				E2E3ECB5162C55E500A28F2B /* MixareProcessor.m */,
 			);
 			name = dataconvertor;
 			sourceTree = "<group>";
@@ -1046,10 +1061,13 @@
 				365B60A312B9F9100014850C /* WebViewController.m in Sources */,
 				36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */,
 				E246F3AC161061CB0006EA40 /* Position.m in Sources */,
-				E2B63079161F1A57001F1844 /* MapViewAnnotation.m in Sources */,
 				E2E3ECA6162C2B1700A28F2B /* DataSourceManager.m in Sources */,
 				E2E3ECA9162C369A00A28F2B /* DownloadManager.m in Sources */,
 				E2E3ECAD162C4F7100A28F2B /* WikipediaProcessor.m in Sources */,
+				E2E3ECB3162C552D00A28F2B /* TwitterProcessor.m in Sources */,
+				E2E3ECB6162C55E500A28F2B /* MixareProcessor.m in Sources */,
+				E2E3ECB9162C56A500A28F2B /* DataConvertor.m in Sources */,
+				E2E3ECBD162C59A800A28F2B /* MapViewAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

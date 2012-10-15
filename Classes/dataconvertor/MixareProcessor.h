@@ -17,7 +17,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  WikipediaProcessor.h
+//  MixareProcessor.h
 //  Mixare
 //
 //  Created by Aswin Ly on 15-10-12.
@@ -27,6 +27,6 @@
 #import <Foundation/Foundation.h>
 #import "DataProcessor.h"
 
-@interface WikipediaProcessor : NSObject <DataProcessor>
+@interface MixareProcessor : NSObject <DataProcessor>
 
 @end

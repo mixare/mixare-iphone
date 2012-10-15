@@ -17,16 +17,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  WikipediaProcessor.h
+//  TwitterProcessor.m
 //  Mixare
 //
 //  Created by Aswin Ly on 15-10-12.
 //  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "DataProcessor.h"
+#import "TwitterProcessor.h"
 
-@interface WikipediaProcessor : NSObject <DataProcessor>
+@implementation TwitterProcessor
 
 @end
