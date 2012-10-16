@@ -30,21 +30,29 @@
 
 @synthesize dataSources;
 
--(DataSourceManager*)initWithLocationManager:(CLLocationManager *)loc initWithDownloadManager:(DownloadManager *)downloadManager {
+-(DataSourceManager*)init {
     [super init];
-    _locationManager = loc;
-    _downloadManager = downloadManager;
     [self initDataSources];
     return self;
 }
 
 -(void)initDataSources {
-    DataSource *wikipedia = [[DataSource alloc] initWithLocationManager:_locationManager title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-    DataSource *twitter = [[DataSource alloc] initWithLocationManager:_locationManager title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+    DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
     wikipedia.activated = YES;
     
     [dataSources addObject: wikipedia];
     [dataSources addObject: twitter];
+}
+
+-(NSMutableArray*) getActivatedSources {
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    for(DataSource *source in dataSources){
+        if (source.activated) {
+            [sources addObject:source];
+        }
+    }
+    return sources;
 }
 
 @end

@@ -28,4 +28,6 @@
 
 @protocol DataProcessor
 
+-(NSMutableArray*) convert:(NSString*)dataString;
+
 @end

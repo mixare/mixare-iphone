@@ -25,8 +25,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JsonData.h"
 #import "DataProcessor.h"
 
-@interface MixareProcessor : NSObject <DataProcessor>
+@interface MixareProcessor : JsonData <DataProcessor>
+
+-(NSMutableArray*) convert:(NSString *)dataString;
 
 @end

@@ -25,18 +25,22 @@
 //
 
 #import "DownloadManager.h"
+#import "DataConvertor.h"
 
 @implementation DownloadManager
 
--(DownloadManager*)init {
+-(DownloadManager*) init {
     [super init];
+    [DataConvertor ins];
     return self;
 }
 
--(NSDictionary*)download:(NSString*)sourceUrl {
-    NSDictionary *sourceResult = [[NSDictionary alloc] init];
-    
-    return sourceResult;
+-(void) loadCurrentLocation:(CLLocation *)loc {
+    currentLocation = loc;
+}
+
+-(void) download:(DataSource*)data {
+    [DataConvertor convertData:data currentLocation:currentLocation];
 }
 
 @end

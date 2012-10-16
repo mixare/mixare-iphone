@@ -25,16 +25,18 @@
 //
 
 #import "DataConvertor.h"
+#import "DataProcessor.h"
 #import "TwitterProcessor.h"
 #import "WikipediaProcessor.h"
 #import "MixareProcessor.h"
 
 static NSMutableArray* dataProcessors;
+static NSMutableDictionary* urlValueData;
 static DataConvertor* instance;
 
 @implementation DataConvertor
 
-+(DataConvertor*) init {
++(DataConvertor*) ins {
     if (dataProcessors == nil) {
         dataProcessors = [NSMutableArray alloc];
         [self initDataProcessors];
@@ -42,17 +44,95 @@ static DataConvertor* instance;
     if (instance == nil) {
         instance = [DataConvertor alloc];
     }
+    if (urlValueData == nil) {
+        urlValueData = [[NSMutableDictionary alloc] init];
+    }
     return instance;
 }
 
+/***
+ *
+ *  Get available data processors
+ *
+ ***/
 +(void) initDataProcessors {
     [dataProcessors addObject:[TwitterProcessor alloc]];
     [dataProcessors addObject:[WikipediaProcessor alloc]];
     [dataProcessors addObject:[MixareProcessor alloc]];
 }
 
-+(NSArray*) dataProcessors {
-    return dataProcessors;
+/***
+ *
+ *  PUBLIC: Get actual json-source url with current location
+ *  AND convert json-source to useable Position objects IN the given DataSource object.
+ *  @param DataSource
+ *  @param CLLocation
+ *
+ ***/
++(void) convertData:(DataSource*)data currentLocation:(CLLocation*)loc {
+    id <DataProcessor> processor = [self matchProcessor:data.title];
+    [data refreshPositions:[processor convert:[[NSString alloc] initWithContentsOfURL:[self urlWithLocationFix:data.jsonUrl location:loc] encoding:NSUTF8StringEncoding error:nil]]];
+}
+
+/***
+ *
+ *  Get the right DataProcessor for the specific source
+ *
+ ***/
++(id) matchProcessor:(NSString*)title {
+    id <DataProcessor> processor = nil;
+    if ([title rangeOfString:@"Wikipedia"].location != NSNotFound) {
+        processor = [[WikipediaProcessor alloc] init];
+    } else if ([title rangeOfString:@"Twitter"].location != NSNotFound) {
+        processor = [[TwitterProcessor alloc] init];
+    } else {
+        processor = [[MixareProcessor alloc] init];
+    }
+    return processor;
+}
+
+/***
+ *
+ *  Generate sourceURL with actual received location data
+ *
+ ***/
++(NSURL*) urlWithLocationFix:(NSString*)jsonUrl location:(CLLocation*)loc {
+    [self initUrlValues:loc];
+    NSString* stringURL = [[NSString alloc] initWithString:jsonUrl];
+    for (NSString* key in urlValueData) {
+        NSString* value = [urlValueData objectForKey:key];
+        stringURL = [self url:stringURL urlInfoFiller:key urlInfoReplacer:value];
+    }
+    NSLog(@"GENERATED DATA URL: %@", stringURL);
+    NSURL *url = [NSURL URLWithString:stringURL];
+    return url;
+}
+
+/***
+ *
+ *  Initialize location data for URL
+ *
+ ***/
++(void) initUrlValues:(CLLocation*)loc {
+    float radius = 3.5;
+    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.latitude] forKey:@"PARAM_LAT"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.longitude] forKey:@"PARAM_LON"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.altitude] forKey:@"PARAM_ALT"];
+    [urlValueData setObject:language forKey:@"PARAM_LANG"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",radius] forKey:@"PARAM_RAD"];
+}
+
+/***
+ *
+ *  Parse URL with actual parameters (replaces the parameter names of the URL)
+ *
+ ***/
++(NSString*) url:(NSString*)url urlInfoFiller:(NSString*)target urlInfoReplacer:(NSString*)replacer {
+    if ([url rangeOfString:target].location != NSNotFound) {
+        url = [url stringByReplacingOccurrencesOfString:target withString:replacer];
+    }
+    return url;
 }
 
 @end

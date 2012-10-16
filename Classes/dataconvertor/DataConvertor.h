@@ -25,10 +25,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataSource.h"
 
 @interface DataConvertor : NSObject 
 
-+(DataConvertor*) init;
-+(NSArray*) dataProcessors;
++(DataConvertor*) ins;
++(void) convertData:(DataSource*)data currentLocation:(CLLocation*)loc;
 
 @end

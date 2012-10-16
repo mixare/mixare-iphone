@@ -17,19 +17,19 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  TwitterProcessor.h
+//  JsonData.h
 //  Mixare
 //
-//  Created by Aswin Ly on 15-10-12.
+//  Created by Aswin Ly on 16-10-12.
 //  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "JsonData.h"
-#import "DataProcessor.h"
+#import "JSON.h"
+#import "JsonHandler.h" //TEMPORARY - NEED REFIX
 
-@interface TwitterProcessor : JsonData <DataProcessor>
+@interface JsonData : NSObject {
 
--(NSMutableArray*) convert:(NSString *)dataString;
+}
 
 @end

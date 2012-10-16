@@ -25,9 +25,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataSource.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface DownloadManager : NSObject
+@interface DownloadManager : NSObject {
+    CLLocation *currentLocation;
+}
 
--(NSDictionary*) download:(NSString*)sourceUrl;
+-(void) loadCurrentLocation:(CLLocation*)loc;
+-(void) download:(DataSource*)data;
 
 @end

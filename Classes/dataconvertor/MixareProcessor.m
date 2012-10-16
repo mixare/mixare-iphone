@@ -25,7 +25,14 @@
 //
 
 #import "MixareProcessor.h"
+#import "JsonHandler.h"
 
 @implementation MixareProcessor
+
+-(NSMutableArray*) convert:(NSString *)dataString {
+    // TODO REFIX
+    JsonHandler *jHandler = [[JsonHandler alloc] init];
+    return [jHandler processMixareJSONData:dataString];
+}
 
 @end

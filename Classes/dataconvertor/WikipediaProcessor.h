@@ -26,7 +26,10 @@
 
 #import <Foundation/Foundation.h>
 #import "DataProcessor.h"
+#import "JsonData.h"
 
-@interface WikipediaProcessor : NSObject <DataProcessor>
+@interface WikipediaProcessor : JsonData <DataProcessor>
+
+-(NSMutableArray*) convert:(NSString *)dataString;
 
 @end

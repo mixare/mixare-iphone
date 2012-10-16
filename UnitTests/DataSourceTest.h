@@ -26,12 +26,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "DownloadManager.h"
 #import "DataSource.h"
 
 @interface DataSourceTest : SenTestCase {
-    CLLocationManager *_locationManager;
-    DownloadManager *_downloadManager;
+    CLLocation *location;
     DataSource *wikipedia;
     DataSource *twitter;
 }

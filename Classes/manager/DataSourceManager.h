@@ -26,16 +26,14 @@
 
 #import <Foundation/Foundation.h>
 #import "DataSource.h"
-#import "DownloadManager.h"
 
 @interface DataSourceManager : NSObject{
-	CLLocationManager *_locationManager;
-    DownloadManager *_downloadManager;
     NSMutableArray *dataSources;
 }
 
 @property (nonatomic, retain) NSMutableArray *dataSources;
 
--(DataSourceManager*) initWithLocationManager:(CLLocationManager*)loc initWithDownloadManager:(DownloadManager*)downloadManager;
+-(DataSourceManager*) init;
+-(NSMutableArray*) getActivatedSources;
 
 @end

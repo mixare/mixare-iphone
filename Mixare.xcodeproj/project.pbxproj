@@ -44,7 +44,6 @@
 		365F947112AE7C7000286824 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
-		36876BD4128BFFCC00C416F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36876BD3128BFFCC00C416F5 /* QuartzCore.framework */; };
 		36A31585128D6E15002D1C57 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A31584128D6E15002D1C57 /* WebView.xib */; };
 		36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
 		36B3DC9412B9FCF100670FCF /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8512B9FCF100670FCF /* buzz_logo.png */; };
@@ -62,34 +61,51 @@
 		36B3DCA012B9FCF100670FCF /* wikipedia_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */; };
 		36B3DCA112B9FCF100670FCF /* wikipedia_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */; };
 		E246F31516104AFF0006EA40 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */; };
-		E246F31616104B140006EA40 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
-		E246F31716104B140006EA40 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940C16071F7E006F8884 /* AVFoundation.framework */; };
-		E246F31816104B140006EA40 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940A16071F6E006F8884 /* CoreVideo.framework */; };
-		E246F31916104B140006EA40 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940816071F63006F8884 /* CoreMedia.framework */; };
-		E246F31A16104B140006EA40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940516071F4C006F8884 /* QuartzCore.framework */; };
-		E246F31B16104B140006EA40 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36876BD3128BFFCC00C416F5 /* QuartzCore.framework */; };
 		E246F31C16104B140006EA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
 		E246F31D16104B140006EA40 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E246F3201610554B0006EA40 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
 		E246F39E1610558A0006EA40 /* JsonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606F12B9F7740014850C /* JsonHandler.m */; };
-		E246F39F161057AE0006EA40 /* JSON.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F32B1610557D0006EA40 /* JSON.h */; };
-		E246F3A0161057AE0006EA40 /* NSObject+SBJSON.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F32C1610557D0006EA40 /* NSObject+SBJSON.h */; };
 		E246F3A1161057AE0006EA40 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F32D1610557D0006EA40 /* NSObject+SBJSON.m */; };
-		E246F3A2161057AE0006EA40 /* NSString+SBJSON.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F32E1610557D0006EA40 /* NSString+SBJSON.h */; };
 		E246F3A3161057AE0006EA40 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F32F1610557D0006EA40 /* NSString+SBJSON.m */; };
-		E246F3A4161057AE0006EA40 /* SBJsonBase.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F3301610557D0006EA40 /* SBJsonBase.h */; };
 		E246F3A5161057AE0006EA40 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3311610557D0006EA40 /* SBJsonBase.m */; };
-		E246F3A6161057AE0006EA40 /* SBJsonParser.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F3321610557D0006EA40 /* SBJsonParser.h */; };
 		E246F3A7161057AE0006EA40 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3331610557D0006EA40 /* SBJsonParser.m */; };
-		E246F3A8161057AE0006EA40 /* SBJsonWriter.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F3341610557D0006EA40 /* SBJsonWriter.h */; };
 		E246F3A9161057AE0006EA40 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3351610557D0006EA40 /* SBJsonWriter.m */; };
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
-		E246F3AD161062550006EA40 /* Position.h in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AA161061CB0006EA40 /* Position.h */; };
 		E246F3AE1610625A0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AB94111607268E006F8884 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */; };
+		E2BE2935162D86F9009CF67D /* JsonData.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BE2934162D86F9009CF67D /* JsonData.m */; };
+		E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
+		E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
+		E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
+		E2BE293F162D9531009CF67D /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607D12B9F9100014850C /* MarkerView.m */; };
+		E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
+		E2BE2943162D953B009CF67D /* DataConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECB8162C56A400A28F2B /* DataConvertor.m */; };
+		E2BE2945162D953B009CF67D /* JsonData.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BE2934162D86F9009CF67D /* JsonData.m */; };
+		E2BE2948162D953B009CF67D /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECB2162C552D00A28F2B /* TwitterProcessor.m */; };
+		E2BE294A162D953B009CF67D /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */; };
+		E2BE294C162D953B009CF67D /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECB5162C55E500A28F2B /* MixareProcessor.m */; };
+		E2BE294F162D9547009CF67D /* DataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605F12B9F7740014850C /* DataHandler.m */; };
+		E2BE2952162D954C009CF67D /* XMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607112B9F7740014850C /* XMLHandler.m */; };
+		E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
+		E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605812B9F7230014850C /* PhysicalPlace.m */; };
+		E2BE2957162D9559009CF67D /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
+		E2BE2959162D9583009CF67D /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608812B9F9100014850C /* AugmentedGeoViewController.m */; };
+		E2BE295B162D9583009CF67D /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608A12B9F9100014850C /* AugmentedViewController.m */; };
+		E2BE295D162D9583009CF67D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
+		E2BE295F162D9583009CF67D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608E12B9F9100014850C /* MapViewController.m */; };
+		E2BE2961162D9583009CF67D /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609012B9F9100014850C /* MoreViewController.m */; };
+		E2BE2963162D958A009CF67D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609712B9F9100014850C /* WebViewController.m */; };
+		E2BE2965162D9592009CF67D /* SourceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609312B9F9100014850C /* SourceTableCell.m */; };
+		E2BE2967162D9592009CF67D /* SourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609512B9F9100014850C /* SourceViewController.m */; };
+		E2BE2969162D959F009CF67D /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608212B9F9100014850C /* Radar.m */; };
+		E2BE296B162D959F009CF67D /* RadarViewPortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608412B9F9100014850C /* RadarViewPortView.m */; };
+		E2BE296F162D9E17009CF67D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
+		E2BE2973162D9F32009CF67D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE2972162D9F32009CF67D /* QuartzCore.framework */; };
+		E2BE2975162D9F7C009CF67D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE2972162D9F32009CF67D /* QuartzCore.framework */; };
+		E2BE2978162DADD3009CF67D /* DataConvertorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BE2977162DADD3009CF67D /* DataConvertorTest.m */; };
 		E2DFCF83160B25470045A6C4 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */; };
 		E2DFCF84160B25470045A6C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		E2DFCF85160B25470045A6C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -169,7 +185,6 @@
 		365F946012AE738A00286824 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3685BA2B1275653F005FF922 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3685BA2D12756566005FF922 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		36876BD3128BFFCC00C416F5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		36A31584128D6E15002D1C57 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 		36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixareAppDelegate.m; sourceTree = "<group>"; };
 		36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixareAppDelegate.h; sourceTree = "<group>"; };
@@ -289,12 +304,16 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
-		E2AB940516071F4C006F8884 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Frameworks/QuartzCore.framework; sourceTree = "<group>"; };
 		E2AB940816071F63006F8884 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Frameworks/CoreMedia.framework; sourceTree = "<group>"; };
 		E2AB940A16071F6E006F8884 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Frameworks/CoreVideo.framework; sourceTree = "<group>"; };
 		E2AB940C16071F7E006F8884 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Frameworks/AVFoundation.framework; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Frameworks/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E2BE2933162D86F9009CF67D /* JsonData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonData.h; path = dataconvertor/JsonData.h; sourceTree = "<group>"; };
+		E2BE2934162D86F9009CF67D /* JsonData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonData.m; path = dataconvertor/JsonData.m; sourceTree = "<group>"; };
+		E2BE2972162D9F32009CF67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E2BE2976162DADD3009CF67D /* DataConvertorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataConvertorTest.h; sourceTree = "<group>"; };
+		E2BE2977162DADD3009CF67D /* DataConvertorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataConvertorTest.m; sourceTree = "<group>"; };
 		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2DFCF81160B25470045A6C4 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DFCF82160B25470045A6C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -323,8 +342,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BE2975162D9F7C009CF67D /* QuartzCore.framework in Frameworks */,
 				E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */,
-				36876BD4128BFFCC00C416F5 /* QuartzCore.framework in Frameworks */,
 				3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */,
 				3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -337,18 +356,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2BE2973162D9F32009CF67D /* QuartzCore.framework in Frameworks */,
+				E2BE296F162D9E17009CF67D /* CoreMotion.framework in Frameworks */,
 				E246F31516104AFF0006EA40 /* libiconv.2.4.0.dylib in Frameworks */,
-				E246F31616104B140006EA40 /* CoreMotion.framework in Frameworks */,
-				E246F31716104B140006EA40 /* AVFoundation.framework in Frameworks */,
-				E246F31816104B140006EA40 /* CoreVideo.framework in Frameworks */,
-				E246F31916104B140006EA40 /* CoreMedia.framework in Frameworks */,
-				E246F31A16104B140006EA40 /* QuartzCore.framework in Frameworks */,
-				E246F31B16104B140006EA40 /* QuartzCore.framework in Frameworks */,
+				E2DFCF83160B25470045A6C4 /* SenTestingKit.framework in Frameworks */,
 				E246F31C16104B140006EA40 /* MapKit.framework in Frameworks */,
 				E246F31D16104B140006EA40 /* CoreLocation.framework in Frameworks */,
 				E2DFCF85160B25470045A6C4 /* Foundation.framework in Frameworks */,
 				E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */,
-				E2DFCF83160B25470045A6C4 /* SenTestingKit.framework in Frameworks */,
 				E2DFCF84160B25470045A6C4 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,8 +376,8 @@
 			children = (
 				36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */,
 				36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */,
-				365B607B12B9F9100014850C /* gui */,
 				E2E3ECA3162C2ACB00A28F2B /* manager */,
+				365B607B12B9F9100014850C /* gui */,
 				E2E3ECAA162C4EEB00A28F2B /* dataconvertor */,
 				365B605D12B9F7740014850C /* data */,
 				365B605612B9F7230014850C /* reality */,
@@ -423,12 +438,11 @@
 			isa = PBXGroup;
 			children = (
 				E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */,
+				E2BE2972162D9F32009CF67D /* QuartzCore.framework */,
 				E2AB940E1607208F006F8884 /* CoreMotion.framework */,
 				E2AB940C16071F7E006F8884 /* AVFoundation.framework */,
 				E2AB940A16071F6E006F8884 /* CoreVideo.framework */,
 				E2AB940816071F63006F8884 /* CoreMedia.framework */,
-				E2AB940516071F4C006F8884 /* QuartzCore.framework */,
-				36876BD3128BFFCC00C416F5 /* QuartzCore.framework */,
 				3685BA2D12756566005FF922 /* MapKit.framework */,
 				3685BA2B1275653F005FF922 /* CoreLocation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -853,6 +867,8 @@
 				E2DFCF87160B25470045A6C4 /* Supporting Files */,
 				E246F3B21610AE8C0006EA40 /* DataSourceTest.h */,
 				E246F3B31610AE8C0006EA40 /* DataSourceTest.m */,
+				E2BE2976162DADD3009CF67D /* DataConvertorTest.h */,
+				E2BE2977162DADD3009CF67D /* DataConvertorTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -883,6 +899,8 @@
 			children = (
 				E2E3ECB7162C56A400A28F2B /* DataConvertor.h */,
 				E2E3ECB8162C56A400A28F2B /* DataConvertor.m */,
+				E2BE2933162D86F9009CF67D /* JsonData.h */,
+				E2BE2934162D86F9009CF67D /* JsonData.m */,
 				E2E3ECAE162C4FA700A28F2B /* DataProcessor.h */,
 				E2E3ECB1162C552D00A28F2B /* TwitterProcessor.h */,
 				E2E3ECB2162C552D00A28F2B /* TwitterProcessor.m */,
@@ -1035,6 +1053,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				365B605B12B9F7230014850C /* PhysicalPlace.m in Sources */,
 				365B605C12B9F7230014850C /* PoiItem.m in Sources */,
@@ -1059,7 +1078,6 @@
 				365B60A112B9F9100014850C /* SourceTableCell.m in Sources */,
 				365B60A212B9F9100014850C /* SourceViewController.m in Sources */,
 				365B60A312B9F9100014850C /* WebViewController.m in Sources */,
-				36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */,
 				E246F3AC161061CB0006EA40 /* Position.m in Sources */,
 				E2E3ECA6162C2B1700A28F2B /* DataSourceManager.m in Sources */,
 				E2E3ECA9162C369A00A28F2B /* DownloadManager.m in Sources */,
@@ -1068,6 +1086,7 @@
 				E2E3ECB6162C55E500A28F2B /* MixareProcessor.m in Sources */,
 				E2E3ECB9162C56A500A28F2B /* DataConvertor.m in Sources */,
 				E2E3ECBD162C59A800A28F2B /* MapViewAnnotation.m in Sources */,
+				E2BE2935162D86F9009CF67D /* JsonData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,22 +1094,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E246F39F161057AE0006EA40 /* JSON.h in Sources */,
-				E246F3A0161057AE0006EA40 /* NSObject+SBJSON.h in Sources */,
+				E2BE2965162D9592009CF67D /* SourceTableCell.m in Sources */,
+				E2BE2967162D9592009CF67D /* SourceViewController.m in Sources */,
+				E2BE2963162D958A009CF67D /* WebViewController.m in Sources */,
+				E2BE2959162D9583009CF67D /* AugmentedGeoViewController.m in Sources */,
+				E2BE295B162D9583009CF67D /* AugmentedViewController.m in Sources */,
+				E2BE295D162D9583009CF67D /* ListViewController.m in Sources */,
+				E2BE2969162D959F009CF67D /* Radar.m in Sources */,
+				E2BE296B162D959F009CF67D /* RadarViewPortView.m in Sources */,
+				E2BE295F162D9583009CF67D /* MapViewController.m in Sources */,
+				E2BE2961162D9583009CF67D /* MoreViewController.m in Sources */,
+				E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */,
+				E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */,
+				E2BE2957162D9559009CF67D /* PoiItem.m in Sources */,
+				E2BE293F162D9531009CF67D /* MarkerView.m in Sources */,
+				E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */,
 				E246F3A1161057AE0006EA40 /* NSObject+SBJSON.m in Sources */,
-				E246F3A2161057AE0006EA40 /* NSString+SBJSON.h in Sources */,
 				E246F3A3161057AE0006EA40 /* NSString+SBJSON.m in Sources */,
-				E246F3A4161057AE0006EA40 /* SBJsonBase.h in Sources */,
 				E246F3A5161057AE0006EA40 /* SBJsonBase.m in Sources */,
-				E246F3A6161057AE0006EA40 /* SBJsonParser.h in Sources */,
 				E246F3A7161057AE0006EA40 /* SBJsonParser.m in Sources */,
-				E246F3A8161057AE0006EA40 /* SBJsonWriter.h in Sources */,
 				E246F3A9161057AE0006EA40 /* SBJsonWriter.m in Sources */,
-				E246F3201610554B0006EA40 /* DataSource.m in Sources */,
 				E246F39E1610558A0006EA40 /* JsonHandler.m in Sources */,
-				E246F3AD161062550006EA40 /* Position.h in Sources */,
+				E2BE2952162D954C009CF67D /* XMLHandler.m in Sources */,
+				E246F3201610554B0006EA40 /* DataSource.m in Sources */,
 				E246F3AE1610625A0006EA40 /* Position.m in Sources */,
+				E2BE294F162D9547009CF67D /* DataHandler.m in Sources */,
+				E2BE2943162D953B009CF67D /* DataConvertor.m in Sources */,
+				E2BE2945162D953B009CF67D /* JsonData.m in Sources */,
+				E2BE2948162D953B009CF67D /* TwitterProcessor.m in Sources */,
+				E2BE294A162D953B009CF67D /* WikipediaProcessor.m in Sources */,
+				E2BE294C162D953B009CF67D /* MixareProcessor.m in Sources */,
+				E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */,
+				E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */,
+				E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */,
 				E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */,
+				E2BE2978162DADD3009CF67D /* DataConvertorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1175,7 +1213,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/data/ZBarSDK\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
@@ -1203,7 +1240,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/data/ZBarSDK\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
@@ -1282,7 +1318,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/data/ZBarSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
@@ -1312,7 +1347,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/data/ZBarSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
@@ -1361,7 +1395,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Classes/data/ZBarSDK\"",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Frameworks\"",
 				);
@@ -1406,7 +1439,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/data/ZBarSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"TEST_HOST[sdk=*]" = "$(BUNDLE_LOADER)";

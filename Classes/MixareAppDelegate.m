@@ -99,7 +99,7 @@
 -(void) initManagers{
     [self initLocationManager];
     _downloadManager = [[DownloadManager alloc] init];
-    _dataSourceManager = [[DataSourceManager alloc] initWithLocationManager:_locManager initWithDownloadManager:_downloadManager];
+    _dataSourceManager = [[DataSourceManager alloc] init];
 }
 
 /***
@@ -115,6 +115,18 @@
 		_locManager.distanceFilter = 3.0;
 		//[_locManager startUpdatingLocation];
 	}
+}
+
+/***
+ *
+ *  Refresh Application [HEAD]
+ *
+ ***/
+-(void) refresh {
+    [_downloadManager loadCurrentLocation:_locManager.location];
+    for (DataSource* source in [_dataSourceManager getActivatedSources]) {
+        [_downloadManager download:source];
+    }
 }
 
 /***
@@ -145,7 +157,7 @@
 }
 
 /***
- *  XXX
+ *  
  *  Update location position
  *  @param location manager
  *  @param new location
