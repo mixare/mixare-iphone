@@ -35,7 +35,7 @@ static NSMutableDictionary* urlValueData;
 
 @implementation DataConvertor
 
-+(void) initialize {
++ (void)initialize {
     if (dataProcessors == nil) {
         dataProcessors = [[NSMutableArray alloc] init];
         [self initDataProcessors];
@@ -50,7 +50,7 @@ static NSMutableDictionary* urlValueData;
  *  Get available data processors
  *
  ***/
-+(void) initDataProcessors {
++ (void)initDataProcessors {
     [dataProcessors addObject:[TwitterProcessor alloc]];
     [dataProcessors addObject:[WikipediaProcessor alloc]];
     [dataProcessors addObject:[MixareProcessor alloc]];
@@ -64,7 +64,7 @@ static NSMutableDictionary* urlValueData;
  *  @param CLLocation
  *
  ***/
-+(void) convertData:(DataSource*)data currentLocation:(CLLocation*)loc {
++ (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc {
     id <DataProcessor> processor = [self matchProcessor:data.title];
     [data refreshPositions:[processor convert:[[NSString alloc] initWithContentsOfURL:[self urlWithLocationFix:data.jsonUrl location:loc] encoding:NSUTF8StringEncoding error:nil]]];
 }
@@ -74,7 +74,7 @@ static NSMutableDictionary* urlValueData;
  *  Get the right DataProcessor for the specific source
  *
  ***/
-+(id) matchProcessor:(NSString*)title {
++ (id)matchProcessor:(NSString*)title {
     id <DataProcessor> processor = nil;
     if ([title rangeOfString:@"Wikipedia"].location != NSNotFound) {
         processor = [[WikipediaProcessor alloc] init];
@@ -91,7 +91,7 @@ static NSMutableDictionary* urlValueData;
  *  Generate sourceURL with actual received location data
  *
  ***/
-+(NSURL*) urlWithLocationFix:(NSString*)jsonUrl location:(CLLocation*)loc {
++ (NSURL*)urlWithLocationFix:(NSString*)jsonUrl location:(CLLocation*)loc {
     [self initUrlValues:loc];
     NSString* stringURL = [[NSString alloc] initWithString:jsonUrl];
     for (NSString* key in urlValueData) {
@@ -108,7 +108,7 @@ static NSMutableDictionary* urlValueData;
  *  Initialize location data for URL
  *
  ***/
-+(void) initUrlValues:(CLLocation*)loc {
++ (void)initUrlValues:(CLLocation*)loc {
     float radius = 1;
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.latitude] forKey:@"PARAM_LAT"];
@@ -123,7 +123,7 @@ static NSMutableDictionary* urlValueData;
  *  Parse URL with actual parameters (replaces the parameter names of the URL)
  *
  ***/
-+(NSString*) url:(NSString*)url urlInfoFiller:(NSString*)target urlInfoReplacer:(NSString*)replacer {
++ (NSString*)url:(NSString*)url urlInfoFiller:(NSString*)target urlInfoReplacer:(NSString*)replacer {
     if ([url rangeOfString:target].location != NSNotFound) {
         url = [url stringByReplacingOccurrencesOfString:target withString:replacer];
     }

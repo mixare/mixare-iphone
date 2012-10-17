@@ -40,6 +40,6 @@
 @property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
 
--(Position*) initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt;
+- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt;
 
 @end

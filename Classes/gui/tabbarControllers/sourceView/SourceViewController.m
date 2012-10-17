@@ -44,7 +44,7 @@
 - (void)viewDidLoad{	
     [super viewDidLoad];
     //initialisation of the datasource with the default sources
-	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",@"Buzz",nil];
+	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",nil];
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
 //    NSString * custom_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"extern_url"];
 //    NSLog(@"EXTERN URL %@",custom_url);

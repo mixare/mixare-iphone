@@ -579,9 +579,9 @@
  *
  ***/
 - (void) openTabSources {
-    /*if(_listViewController.dataSourceArray != nil){
+    if(_listViewController.dataSourceArray != nil){
         _listViewController.dataSourceArray = nil;
-    }*/
+    }
 }
 
 /***
@@ -597,7 +597,6 @@
         }
         NSLog(@"data set");
         [_listViewController.tableView reloadData];
-        //NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
     } else {
         NSLog(@"Data POI List not set");
     }

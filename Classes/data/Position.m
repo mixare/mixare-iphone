@@ -28,7 +28,7 @@
 
 @synthesize mapViewAnnotation, title, summary, url;
 
--(Position*) initWithTitle:(NSString *)tit withSummary:(NSString *)sum withUrl:(NSString *)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt {
+- (Position*)initWithTitle:(NSString *)tit withSummary:(NSString *)sum withUrl:(NSString *)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt {
     self = [super init];
     if(self) {
         title = tit;
@@ -42,11 +42,11 @@
     return self;
 }
 
--(void) initMarkerAndMapAnnotation {
+- (void)initMarkerAndMapAnnotation {
     mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude andLongitude:longitude];
 }
 
--(void) dealloc {
+- (void)dealloc {
     [super dealloc];
 }
 

@@ -29,20 +29,20 @@
 
 @implementation DownloadManager
 
--(DownloadManager*) init {
+- (DownloadManager*)init {
     [super init];
     return self;
 }
 
--(void) loadCurrentLocation:(CLLocation *)loc {
+- (void)loadCurrentLocation:(CLLocation *)loc {
     currentLocation = loc;
 }
 
--(void) download:(DataSource*)data {
+- (void)download:(DataSource*)data {
     [DataConvertor convertData:data currentLocation:currentLocation];
 }
 
--(void) dealloc {
+- (void)dealloc {
     [super dealloc];
 }
 

@@ -29,7 +29,7 @@
 
 @interface DataConvertor : NSObject 
 
-+(void) initialize;
-+(void) convertData:(DataSource*)data currentLocation:(CLLocation*)loc;
++ (void)initialize;
++ (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc;
 
 @end

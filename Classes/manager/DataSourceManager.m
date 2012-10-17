@@ -30,13 +30,13 @@
 
 @synthesize dataSources;
 
--(DataSourceManager*)init {
+- (DataSourceManager*)init {
     [super init];
     [self initDataSources];
     return self;
 }
 
--(void)initDataSources {
+- (void)initDataSources {
     dataSources = [[NSMutableArray alloc] init];
     DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
     DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
@@ -46,7 +46,7 @@
     [dataSources addObject: twitter];
 }
 
--(NSMutableArray*) getActivatedSources {
+- (NSMutableArray*)getActivatedSources {
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for(DataSource *source in dataSources){
         if (source.activated) {
@@ -56,7 +56,7 @@
     return sources;
 }
 
--(void) dealloc {
+- (void)dealloc {
     [super dealloc];
 }
 

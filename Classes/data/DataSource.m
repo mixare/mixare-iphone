@@ -33,7 +33,7 @@
  *  CONSTRUCTOR
  *
  ***/
--(DataSource*) title:(NSString *)tit jsonUrl:(NSString *)url {
+- (DataSource*)title:(NSString *)tit jsonUrl:(NSString *)url {
     self = [super init];
     if(self) {
         title = tit;
@@ -49,7 +49,7 @@
  *  PUBLIC: (Re)create the position objects (for Markers and MapAnnotations views)
  *
  ***/
--(void) refreshPositions:(NSMutableArray*)results {
+- (void)refreshPositions:(NSMutableArray*)results {
     [positions removeAllObjects];
     for(NSDictionary *poi in results){
         CGFloat alt = [[poi valueForKey:@"alt"]floatValue];

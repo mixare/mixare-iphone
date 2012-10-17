@@ -76,6 +76,8 @@
 		E2B0166F162EBAC700C93C91 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01665162EBA5500C93C91 /* SBJsonWriter.m */; };
 		E2B01670162EBC3C00C93C91 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
 		E2B01671162EBC3F00C93C91 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
+		E2B01674162EFE0200C93C91 /* DataSourceManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */; };
+		E2B0167A162F03EB00C93C91 /* PositionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01679162F03EA00C93C91 /* PositionTest.m */; };
 		E2BE2935162D86F9009CF67D /* JsonData.m in Sources */ = {isa = PBXBuildFile; fileRef = E2BE2934162D86F9009CF67D /* JsonData.m */; };
 		E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
@@ -210,6 +212,10 @@
 		E2B01663162EBA5500C93C91 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		E2B01664162EBA5500C93C91 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		E2B01665162EBA5500C93C91 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		E2B01672162EFE0200C93C91 /* DataSourceManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceManagerTest.h; sourceTree = "<group>"; };
+		E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManagerTest.m; sourceTree = "<group>"; };
+		E2B01678162F03EA00C93C91 /* PositionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTest.h; sourceTree = "<group>"; };
+		E2B01679162F03EA00C93C91 /* PositionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionTest.m; sourceTree = "<group>"; };
 		E2BE2933162D86F9009CF67D /* JsonData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonData.h; path = dataconvertor/JsonData.h; sourceTree = "<group>"; };
 		E2BE2934162D86F9009CF67D /* JsonData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonData.m; path = dataconvertor/JsonData.m; sourceTree = "<group>"; };
 		E2BE2972162D9F32009CF67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -498,10 +504,14 @@
 			isa = PBXGroup;
 			children = (
 				E2DFCF87160B25470045A6C4 /* Supporting Files */,
+				E2B01672162EFE0200C93C91 /* DataSourceManagerTest.h */,
+				E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */,
 				E246F3B21610AE8C0006EA40 /* DataSourceTest.h */,
 				E246F3B31610AE8C0006EA40 /* DataSourceTest.m */,
 				E2BE2976162DADD3009CF67D /* DataConvertorTest.h */,
 				E2BE2977162DADD3009CF67D /* DataConvertorTest.m */,
+				E2B01678162F03EA00C93C91 /* PositionTest.h */,
+				E2B01679162F03EA00C93C91 /* PositionTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -755,6 +765,8 @@
 				E2BE2978162DADD3009CF67D /* DataConvertorTest.m in Sources */,
 				E2B01670162EBC3C00C93C91 /* DataSource.m in Sources */,
 				E2B01671162EBC3F00C93C91 /* Position.m in Sources */,
+				E2B01674162EFE0200C93C91 /* DataSourceManagerTest.m in Sources */,
+				E2B0167A162F03EB00C93C91 /* PositionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

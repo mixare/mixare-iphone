@@ -32,7 +32,7 @@
     CLLocation *currentLocation;
 }
 
--(void) loadCurrentLocation:(CLLocation*)loc;
--(void) download:(DataSource*)data;
+- (void)loadCurrentLocation:(CLLocation*)loc;
+- (void)download:(DataSource*)data;
 
 @end

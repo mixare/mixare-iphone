@@ -30,6 +30,6 @@
 
 @interface MixareProcessor : JsonData <DataProcessor>
 
--(NSMutableArray*) convert:(NSString *)dataString;
+- (NSMutableArray*)convert:(NSString *)dataString;
 
 @end

@@ -38,7 +38,7 @@
 @property (nonatomic, assign) BOOL activated;
 @property (nonatomic, retain) NSMutableArray *positions;
 
--(DataSource*) title:(NSString*)tit jsonUrl:(NSString*)url;
--(void) refreshPositions:(NSMutableArray*)results;
+- (DataSource*)title:(NSString*)tit jsonUrl:(NSString*)url;
+- (void)refreshPositions:(NSMutableArray*)results;
 
 @end

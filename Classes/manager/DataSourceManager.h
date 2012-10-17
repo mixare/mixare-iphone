@@ -33,7 +33,7 @@
 
 @property (nonatomic, retain) NSMutableArray *dataSources;
 
--(DataSourceManager*) init;
--(NSMutableArray*) getActivatedSources;
+- (DataSourceManager*)init;
+- (NSMutableArray*)getActivatedSources;
 
 @end
