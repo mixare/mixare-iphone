@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ *
+ * This file is part of mixare.
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 //
 //  DataConvertorTest.m
 //  Mixare
@@ -14,7 +32,6 @@
 - (void)setUp {
     [super setUp];
     // Set-up code here.
-    [DataConvertor ins];
     wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
     [wikipedia setActivated:YES];
 }
@@ -28,6 +45,7 @@
 -(void) testConvertData {
     CLLocation *location = [[[CLLocationManager alloc] init] location];
     [DataConvertor convertData:wikipedia currentLocation:location];
+    STAssertNotNil(wikipedia.positions, @"No positions found");
 }
 
 @end

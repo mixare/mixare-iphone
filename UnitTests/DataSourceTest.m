@@ -33,7 +33,6 @@
     [super setUp];
     // Set-up code here.
     location = [[[CLLocationManager alloc] init] location];
-    [DataConvertor ins];
 }
 
 - (void)tearDown {

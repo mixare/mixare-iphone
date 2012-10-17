@@ -37,10 +37,11 @@
 }
 
 -(void)initDataSources {
+    dataSources = [[NSMutableArray alloc] init];
     DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
     DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
     wikipedia.activated = YES;
-    
+    twitter.activated = YES;
     [dataSources addObject: wikipedia];
     [dataSources addObject: twitter];
 }
@@ -53,6 +54,10 @@
         }
     }
     return sources;
+}
+
+-(void) dealloc {
+    [super dealloc];
 }
 
 @end

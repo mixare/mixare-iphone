@@ -32,22 +32,17 @@
 
 static NSMutableArray* dataProcessors;
 static NSMutableDictionary* urlValueData;
-static DataConvertor* instance;
 
 @implementation DataConvertor
 
-+(DataConvertor*) ins {
++(void) initialize {
     if (dataProcessors == nil) {
-        dataProcessors = [NSMutableArray alloc];
+        dataProcessors = [[NSMutableArray alloc] init];
         [self initDataProcessors];
-    }
-    if (instance == nil) {
-        instance = [DataConvertor alloc];
     }
     if (urlValueData == nil) {
         urlValueData = [[NSMutableDictionary alloc] init];
     }
-    return instance;
 }
 
 /***
@@ -114,7 +109,7 @@ static DataConvertor* instance;
  *
  ***/
 +(void) initUrlValues:(CLLocation*)loc {
-    float radius = 3.5;
+    float radius = 1;
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
     [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.latitude] forKey:@"PARAM_LAT"];
     [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.longitude] forKey:@"PARAM_LON"];

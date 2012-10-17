@@ -31,7 +31,6 @@
 
 -(DownloadManager*) init {
     [super init];
-    [DataConvertor ins];
     return self;
 }
 
@@ -41,6 +40,10 @@
 
 -(void) download:(DataSource*)data {
     [DataConvertor convertData:data currentLocation:currentLocation];
+}
+
+-(void) dealloc {
+    [super dealloc];
 }
 
 @end

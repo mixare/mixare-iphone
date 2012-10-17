@@ -26,7 +26,7 @@
 
 @implementation Position
 
-@synthesize mapViewAnnotation;
+@synthesize mapViewAnnotation, title, summary, url;
 
 -(Position*) initWithTitle:(NSString *)tit withSummary:(NSString *)sum withUrl:(NSString *)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt {
     self = [super init];

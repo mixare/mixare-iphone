@@ -88,7 +88,7 @@
     addressLabel.backgroundColor = [UIColor clearColor];
     addressLabel.shadowColor = [UIColor blackColor];
     addressLabel.shadowOffset = CGSizeMake(0,-1);
-    addressLabel.textAlignment = UITextAlignmentCenter;
+    addressLabel.textAlignment = NSTextAlignmentCenter;
     addressLabel.text = NSLocalizedString(@"Format:www.example.com", nil) ;
     [addAlert addSubview:addressLabel];
     UITextField *addressField = [[UITextField alloc] initWithFrame:CGRectMake(16,83,252,25)];

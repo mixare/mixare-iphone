@@ -35,7 +35,6 @@
 @synthesize mapViewController = _mapViewController;
 @synthesize window;
 @synthesize tabBarController = _tabBarController;
-@synthesize data = _data;
 @synthesize listViewController = _listViewController;
 @synthesize slider = _slider;
 @synthesize menuButton = _menuButton;
@@ -53,14 +52,16 @@
 #pragma mark -
 #pragma  mark URL Handler
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	NSLog(@"the url: %@", [url absoluteURL]);
+	/*NSLog(@"the url: %@", [url absoluteURL]);
 	if (!url) {
         return NO;
     }
     NSString *URLString = [url absoluteString];
     [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-	[self downloadData];
+    [[NSUserDefaults standardUserDefaults] synchronize];*/
+	//[self downloadData];
+    [self refresh];
+    [self openMenu];
     return YES;
 }
 #pragma mark -
@@ -77,8 +78,10 @@
     NSLog(@"STARTING");
 	[self initManagers];
 	[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"Wikipedia"];
-	[self downloadData];
-	[self iniARView];
+	//[self downloadData];
+    [self refresh];
+    [self openMenu];
+	/*[self iniARView];
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -86,6 +89,7 @@
                                              selector:@selector(didRotate:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
+     */
     [self initUIBarTitles];
     [self firstBootLicenseText];
     return YES;
@@ -250,7 +254,7 @@
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
 	augViewController.rotateViewsBasedOnPerspective = YES;
-	[self mapData];
+	//[self mapData];
 	if(_locManager != nil){
 		augViewController.centerLocation = _locManager.location;
 	}
@@ -295,13 +299,13 @@
     _valueLabel.backgroundColor = [UIColor blackColor];
     _valueLabel.textColor= [UIColor whiteColor];
     _valueLabel.font = [UIFont systemFontOfSize:10.0];
-    _valueLabel.textAlignment= UITextAlignmentCenter;
+    _valueLabel.textAlignment= NSTextAlignmentCenter;
     
     nordLabel = [[UILabel alloc]initWithFrame:CGRectMake(28, 2, 10, 10)];
     nordLabel.backgroundColor = [UIColor blackColor];
     nordLabel.textColor= [UIColor whiteColor];
     nordLabel.font = [UIFont systemFontOfSize:8.0];
-    nordLabel.textAlignment= UITextAlignmentCenter;
+    nordLabel.textAlignment= NSTextAlignmentCenter;
     nordLabel.text = @"N";
     nordLabel.alpha = 0.8;
 	
@@ -309,7 +313,7 @@
     maxRadiusLabel.backgroundColor = [UIColor blackColor];
     maxRadiusLabel.textColor= [UIColor whiteColor];
     maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
-    maxRadiusLabel.textAlignment= UITextAlignmentCenter;
+    maxRadiusLabel.textAlignment= NSTextAlignmentCenter;
     maxRadiusLabel.text = @"80 km";
     maxRadiusLabel.hidden = YES;
     
@@ -330,7 +334,7 @@
  *
  ***/
 -(void) mapData{
-	if(_data != nil){
+	/*if(_data != nil){
 		NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:[_data count]];
 		CLLocation *tempLocation;
 		PhysicalPlace *tempCoordinate;
@@ -352,7 +356,7 @@
 		}
 		[augViewController addCoordinates:tempLocationArray];
 		[tempLocationArray release];
-	}else NSLog(@"no data received");
+	}else NSLog(@"no data received");*/
 }
 
 /***
@@ -386,117 +390,8 @@
     if (_slider != nil) {
         radius = _slider.value;
     }
-    _dataHandler = [[DataHandler alloc] initWithLocationManager:_locManager initRadius:radius];
-    _data = [_dataHandler retrieveAvailableSources];
-}
-
--(void)downloadDataOLDMETHOD {
-	//Adding logic if mixare is called outside by specific url
-	jHandler = [[JsonHandler alloc]init];
-	CLLocation * pos = _locManager.location;
-	NSString * wikiData;
-    NSString * mixareData;
-    NSString * twitterData;
-	NSString * buzzData;
-    float radius = 3.5;
-    if(_slider != nil){
-        radius = _slider.value;
-    }
-   // NSString * external_url;
-//	NSString * external_url = [[NSUserDefaults standardUserDefaults] objectForKey:@"extern_url"];
-//	//NSLog(@"EXTERNAL URL IN DOWNLOAD: %@", external_url);
-//	
-//	if(external_url != nil){
-//		//Application is called with a url starting with mixare://
-//		NSLog(@"Downloading Mixare data");
-//		NSURL * url = [NSURL URLWithString:[external_url stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"mixare://"]]];
-//		NSLog(@"URL %@", url );
-//		mixareData = [[NSString alloc]initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-//		NSLog(@"Downloading Mixare done %@", mixareData);
-//		if(mixareData != nil && ![mixareData isEqualToString:@""]){
-//			[_data addObjectsFromArray:[jHandler processMixareJSONData:mixareData]];
-//			NSLog(@"data count: %d", [_data count]);
-//			[mixareData release];
-//		}
-//	}else{
-		//Application is called normally
-		if([self checkIfDataSourceIsEnabled:@"Wikipedia"]){
-			NSLog(@"Downloading WIki data");
-			NSString   *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-			NSLog(@"Language: %@",language);
-			wikiData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"WIKIPEDIA" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:pos.altitude radius:radius Lang:language]] encoding:NSUTF8StringEncoding error:nil];
-			NSLog(@"Download done");
-		}else {
-			wikiData = nil;
-		}
-		if([self checkIfDataSourceIsEnabled:@"Buzz"]){
-			NSLog(@"Downloading Buzz data");
-			buzzData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"BUZZ" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
-			NSLog(@"Download done");
-		}else {
-			buzzData = nil;
-		}
-		if([self checkIfDataSourceIsEnabled:@"Twitter"]){
-			NSLog(@"Downloading Twitter data");
-			twitterData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:[DataSource createRequestURLFromDataSource:@"TWITTER" Lat:pos.coordinate.latitude Lon:pos.coordinate.longitude Alt:700 radius:radius Lang:@"de"]]encoding:NSUTF8StringEncoding error:nil];
-			NSLog(@"Download done");
-		}else {
-			twitterData = nil;
-		}
-		//User specific Sources .. 
-		if(_sourceViewController != nil && [_sourceViewController.dataSourceArray count]>3){
-			//datasource contains sources added by the user
-			NSLog(@"Downloading Mixare data");
-			//mixareData = [[NSString alloc]initWithContentsOfURL:[NSURL URLWithString:@"http://www.suedtirolerland.it/api/map/getARData/?client%5Blat%5D=46.47895932197436&client%5Blng%5D=11.295661926269203&client%5Brad%5D=100&lang_id=1&project_id=15&showTypes=13%2C14&key=51016f95291ef145e4b260c51b06af61"] encoding:NSUTF8StringEncoding error:nil];
-			//getting selected Source
-			NSString * customURL;
-			for(int i=3;i< [_sourceViewController.dataSourceArray count];i++){
-				if([self checkIfDataSourceIsEnabled:[_sourceViewController.dataSourceArray objectAtIndex:i]]){
-					customURL = [NSString stringWithFormat:@"http://%@",[_sourceViewController.dataSourceArray objectAtIndex:i]];
-				}
-			}
-			NSURL * customDsURL;
-			@try {
-				customDsURL = [NSURL URLWithString:customURL];
-				mixareData = [[NSString alloc]initWithContentsOfURL:customDsURL encoding:NSUTF8StringEncoding error:nil];
-				NSLog(@"Download done");
-			}
-			@catch (NSException *exception) {
-				NSLog(@"ERROR Downloading custom ds");
-			}
-			@finally {
-				
-			}
-			
-			
-		}else {
-			mixareData = nil;
-		}
-		
-		[_data removeAllObjects];
-		if(wikiData != nil){
-			_data= [jHandler processWikipediaJSONData:wikiData];
-			NSLog(@"data count: %d", [_data count]);
-			[wikiData release];
-		}
-		if(buzzData != nil){
-			[_data addObjectsFromArray:[jHandler processBuzzJSONData:buzzData]];
-			NSLog(@"data count: %d", [_data count]);
-			[buzzData release];
-		}
-		if(twitterData != nil && ![twitterData isEqualToString:@""]){
-			[_data addObjectsFromArray:[jHandler processTwitterJSONData:twitterData]]; 
-			NSLog(@"data count: %d", [_data count]);
-			[twitterData release];
-		}
-		if(mixareData != nil && ![mixareData isEqualToString:@""]){
-			[_data addObjectsFromArray:[jHandler processMixareJSONData:mixareData]];
-			NSLog(@"data count: %d", [_data count]);
-			[mixareData release];
-		}
-//	}
-    
-	[jHandler release];
+    /*_dataHandler = [[DataHandler alloc] initWithLocationManager:_locManager initRadius:radius];
+    _data = [_dataHandler retrieveAvailableSources];*/
 }
 
 /***
@@ -508,7 +403,7 @@
 	NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
-	[augViewController removeCoordinates:_data];
+	//[augViewController removeCoordinates:_data];
     [augViewController closeCameraView];
     [augViewController release];
 	[self downloadData];
@@ -590,14 +485,14 @@
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.textAlignment = UITextAlignmentCenter;
+	titleLabel.textAlignment = NSTextAlignmentCenter;
 	titleLabel.text = coordinate.title;
     if([coordinate.source isEqualToString:@"BUZZ"]){
         //wrapping long buzz messages
-        titleLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+        titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
         titleLabel.numberOfLines = 0;
         CGRect frame = [titleLabel frame];
-        CGSize size = [titleLabel.text sizeWithFont:titleLabel.font	constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:UILineBreakModeClip];
+        CGSize size = [titleLabel.text sizeWithFont:titleLabel.font	constrainedToSize:CGSizeMake(frame.size.width, 9999) lineBreakMode:NSLineBreakByClipping];
         frame.size.height = size.height;
         [titleLabel setFrame:frame];
     } else {
@@ -672,10 +567,10 @@
     [window addSubview:notificationView];
     //[augViewController removeCoordinates:_data];
     //[self downloadData];
-    [self iniARView];
+    /*[self iniARView];
     //[augViewController startListening];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];*/
 }
 
 /***
@@ -684,9 +579,9 @@
  *
  ***/
 - (void) openTabSources {
-    if(_listViewController.dataSourceArray != nil){
+    /*if(_listViewController.dataSourceArray != nil){
         _listViewController.dataSourceArray = nil;
-    }
+    }*/
 }
 
 /***
@@ -695,41 +590,47 @@
  *
  ***/
 - (void) openTabPOI {
-    if (_data != nil) {
-        _listViewController.dataSourceArray =nil;
+    if (_dataSourceManager.dataSources != nil) {
+        _listViewController.dataSourceArray = nil;
+        for (DataSource* data in _dataSourceManager.getActivatedSources) {
+            [_listViewController convertPositionsToListItems:data];
+        }
         NSLog(@"data set");
-        [_listViewController setDataSourceArray:_data];
         [_listViewController.tableView reloadData];
-        NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
+        //NSLog(@"elements in data: %d in datasource: %d", [_data count], [_listViewController.dataSourceArray count]);
     } else {
-        NSLog(@"data NOOOOT set");
+        NSLog(@"Data POI List not set");
     }
 }
 
 /***
  *
  *  TAB 3: MAP
+ *  Fill actual Data Positions to map
  *
  ***/
 - (void) openTabMap {
-    if(_data != nil){
-        NSLog(@"data map set");
-        [_mapViewController setData:_data];
-        [_mapViewController mapDataToMapAnnotations];
+    if(_dataSourceManager.dataSources != nil){
+        NSLog(@"Data Annotations map set");
+        for (DataSource* data in _dataSourceManager.getActivatedSources) {
+            [_mapViewController addAnnotationsFromDataSource:data];
+        }
     }
 }
 
 /***
  *
  *  TAB 4: MORE
+ *  Get current position data
  *
  ***/
 - (void) openTabMore {
-    NSLog(@"latitude: %f", augViewController.locationManager.location.coordinate.latitude);
-    [_moreViewController showGPSInfo:augViewController.locationManager.location.coordinate.latitude
-                                 lng:augViewController.locationManager.location.coordinate.longitude
-                                 alt:augViewController.locationManager.location.altitude
-                               speed:augViewController.locationManager.location.speed date:augViewController.locationManager.location.timestamp];
+    NSLog(@"latitude: %f", _locManager.location.coordinate.latitude);
+    [_moreViewController showGPSInfo:_locManager.location.coordinate.latitude
+                                 lng:_locManager.location.coordinate.longitude
+                                 alt:_locManager.location.altitude
+                               speed:_locManager.location.speed
+                                date:_locManager.location.timestamp];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

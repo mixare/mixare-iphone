@@ -17,12 +17,15 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "JsonHandler.h"
+#import "DataSource.h"
 
 //Viewcontroller for the listview on the tabbar
 @interface ListViewController : UITableViewController<UITableViewDelegate>  {
-	NSMutableArray * source;
+	NSMutableArray * dataSourceArray;
 }
 
-@property (nonatomic, retain) IBOutlet NSMutableArray *dataSourceArray;
+@property (nonatomic, retain) NSMutableArray *dataSourceArray;
+
+-(void) convertPositionsToListItems:(DataSource*)data;
+
 @end

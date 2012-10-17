@@ -35,6 +35,9 @@
     MapViewAnnotation* mapViewAnnotation;
 }
 
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *summary;
+@property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
 
 -(Position*) initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt;

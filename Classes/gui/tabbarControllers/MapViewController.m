@@ -17,7 +17,7 @@
 
 #import "MapViewController.h"
 
-
+/*
 @implementation MapAnnotation
 @synthesize coordinate;
 @synthesize lat=_lat,lon=_lon,altitude= _altitude;
@@ -39,10 +39,9 @@
 
 @end
 
-
+*/
 @implementation MapViewController
 @synthesize map  = _map;
-@synthesize data = _data;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -54,7 +53,6 @@
 	newRegion.span.latitudeDelta = 0.03;
 	newRegion.span.longitudeDelta = 0.03;
 	[self.map setRegion:newRegion animated:YES];
-	[self mapDataToMapAnnotations];
 	[locmng release];
 }
 
@@ -62,19 +60,10 @@
 	return YES;
 }
 
--(void) mapDataToMapAnnotations{
-	if(_data != nil){
-		MapAnnotation * tmpPlace;
-		for(NSDictionary * poi in _data){
-			tmpPlace = [[MapAnnotation alloc]init];
-			tmpPlace.title = [poi valueForKey:@"title"];
-			tmpPlace.subTitle = [poi valueForKey:@"sum"];
-			tmpPlace.lat = [[poi valueForKey:@"lat"]floatValue];
-			tmpPlace.lon = [[poi valueForKey:@"lon"]floatValue];
-            tmpPlace.source = [poi valueForKey:@"source"];
-            [self.map addAnnotation:tmpPlace];
-            //[_map setNeedsLayout];
-			[tmpPlace release];
+-(void) addAnnotationsFromDataSource:(DataSource *)data{
+	if(data.positions != nil){
+		for(Position *pos in data.positions){
+            [self.map addAnnotation:pos.mapViewAnnotation];
 		}
 	}
 }

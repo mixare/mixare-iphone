@@ -30,7 +30,6 @@
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
-#import "data/DataHandler.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
     
@@ -44,7 +43,6 @@
 	ListViewController * _listViewController;
 	MapViewController * _mapViewController;
 	AugmentedGeoViewController *augViewController;
-	NSMutableArray * _data;
 	JsonHandler * jHandler;
 	UISlider * _slider;
 	UISegmentedControl *_menuButton;
@@ -57,7 +55,6 @@
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView * notificationView;
-    DataHandler * _dataHandler;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -66,7 +63,6 @@
 @property (nonatomic, retain) DataSourceManager *dataSourceManager;
 @property (nonatomic, retain) DownloadManager *downloadManager;
 @property (nonatomic, retain) IBOutlet ListViewController * listViewController;
-@property (nonatomic, retain) IBOutlet NSMutableArray * data;
 @property (nonatomic, retain) IBOutlet MapViewController* mapViewController;
 @property (nonatomic, retain) IBOutlet UISlider * slider;
 @property (nonatomic, retain) IBOutlet UISegmentedControl * menuButton;
