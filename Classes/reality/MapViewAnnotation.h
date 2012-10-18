@@ -28,9 +28,15 @@
 
 @interface MapViewAnnotation : NSObject <MKAnnotation> {
 	CLLocationCoordinate2D coordinate;
+    NSString *title;
+	NSString *subTitle;
+    NSString *source;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *subTitle;
+@property (nonatomic, retain) NSString *source;
 
 - (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon;
 

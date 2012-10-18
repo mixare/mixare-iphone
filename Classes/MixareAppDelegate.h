@@ -76,7 +76,6 @@
 -(void)mapData;
 -(void)downloadData;
 -(void)initControls;
--(BOOL)checkIfDataSourceIsEnabled: (NSString *)source;
 -(void)setViewToLandscape:(UIView*)viewObject;
 -(void)setViewToPortrait:(UIView*)viewObject;
 @end

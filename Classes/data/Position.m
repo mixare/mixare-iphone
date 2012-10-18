@@ -44,6 +44,8 @@
 
 - (void)initMarkerAndMapAnnotation {
     mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude andLongitude:longitude];
+    [mapViewAnnotation setTitle:title];
+    [mapViewAnnotation setSubTitle:summary];
 }
 
 - (void)dealloc {
