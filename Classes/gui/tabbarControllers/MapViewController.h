@@ -17,26 +17,8 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
 #import "DataSource.h"
 
-/*
-@interface MapAnnotation : NSObject<MKAnnotation> {
-    CGFloat _lat;
-	CGFloat _lon;
-	CGFloat _altitude;
-	NSString * _title;
-	NSString * _subTitle;
-    NSString * _source;
-}
-@property (nonatomic) CGFloat lat; 
-@property (nonatomic) CGFloat lon;
-@property (nonatomic) CGFloat altitude; 
-@property (nonatomic,retain) NSString * title;
-@property (nonatomic,retain) NSString * subTitle;
-@property (nonatomic,retain) NSString *source;
-@end
-*/
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView* _map;
 	NSMutableArray *_data;

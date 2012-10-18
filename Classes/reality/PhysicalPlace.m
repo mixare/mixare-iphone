@@ -33,36 +33,26 @@
 	return 0.0f;
 }
 
-- (void)calibrateUsingOrigin:(CLLocation *)origin {
-	
+- (void)calibrateUsingOrigin:(CLLocation*)origin {
 	if (!self.geoLocation) return;
-	
 	double baseDistance = [origin distanceFromLocation: self.geoLocation];
-	
 	self.radialDistance = sqrt(pow(origin.altitude - self.geoLocation.altitude, 2) + pow(baseDistance, 2));
-		
 	float angle = sin(ABS(origin.altitude - self.geoLocation.altitude) / self.radialDistance);
-	
 	if (origin.altitude > self.geoLocation.altitude) angle = -angle;
-	
 	self.inclination = angle;
 	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
 }
 
-+ (PhysicalPlace *)coordinateWithLocation:(CLLocation *)location {
++ (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location {
 	PhysicalPlace *newCoordinate = [[PhysicalPlace alloc] init];
 	newCoordinate.geoLocation = location;
-	
 	newCoordinate.title = @"";
-	
 	return [newCoordinate autorelease];
 }
 
-+ (PhysicalPlace *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin {
++ (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
 	PhysicalPlace *newCoordinate = [PhysicalPlace coordinateWithLocation:location];
-	
 	[newCoordinate calibrateUsingOrigin:origin];
-		
 	return newCoordinate;
 }
 

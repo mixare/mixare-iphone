@@ -32,7 +32,6 @@
 
 - (void)dealloc {	
 	//dealloc mem
-	
 	[dataSourceArray release];	
 	[super dealloc];
 }
@@ -126,7 +125,7 @@
 }
 
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing:(UITextField*)textField {
     sourceURL = textField.text;
 }
 
@@ -135,7 +134,7 @@
  *  Responses of both Alert Dialogs
  *
  ***/
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ([alertView tag] == 1) {
         // Alert dialog: Source options
         if(buttonIndex == 0) {
@@ -213,11 +212,11 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
 	return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
 	return [dataSourceArray count] ;
 }
 
@@ -227,7 +226,7 @@
  *  In this example, each row is determined by its subviews that are embedded.
  *
  ***/
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
 	return 55.0;
 }
 
@@ -236,14 +235,14 @@
  *  To determine which UITableViewCell to be used on a given row.
  *
  ***/
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString * CellIdentifier = @"SourceCell";
-	SourceTableCell *cell =  (SourceTableCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+	static NSString *CellIdentifier = @"SourceCell";
+	SourceTableCell *cell =  (SourceTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if(cell == nil){
-		NSArray * topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
+		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
 		for(id currentObject in topLevelObjects){
 			if([currentObject isKindOfClass:[UITableViewCell class]]){
-				cell = (SourceTableCell *) currentObject;
+				cell = (SourceTableCell*)currentObject;
 				//[cell.sourceSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
 				break;
 			}
@@ -275,9 +274,9 @@
  *  Select source(s) for view
  *
  ***/
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//static NSString * CellIdentifier = @"SourceCell";
-	SourceTableCell *cell =  (SourceTableCell *) [tableView cellForRowAtIndexPath:indexPath];
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+	//static NSString *CellIdentifier = @"SourceCell";
+	SourceTableCell *cell =  (SourceTableCell*)[tableView cellForRowAtIndexPath:indexPath];
 	if(cell != nil){
 		if (cell.accessoryType == UITableViewCellAccessoryNone){
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -290,13 +289,13 @@
 	} else NSLog(@"NOT WORKING");
 
 }
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if(indexPath.row >2){
+        if (indexPath.row >2) {
             [dataSourceArray removeObjectAtIndex:indexPath.row];
             [self.tableView reloadData];
-        }else{
+        } else {
             UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Not Allowed",nil) message:@"You can only delete own sources!" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
             [addAlert show];
             [addAlert release];
@@ -305,11 +304,11 @@
 }
 
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath {
     return UITableViewCellEditingStyleDelete;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(UITableView*)tableView canMoveRowAtIndexPath:(NSIndexPath*)indexPath {
     return NO;
 }
     

@@ -19,13 +19,13 @@
 
 //Custom TableViewCell which contains a bigger image for the source logo and a label
 @interface SourceTableCell : UITableViewCell {
-	UILabel * _sourceLabel;
-	UIImageView * _sourceLogoView;
-	//UISwitch * _sourceSwitch;
+	UILabel *_sourceLabel;
+	UIImageView *_sourceLogoView;
+	//UISwitch *_sourceSwitch;
 
 }
-@property (nonatomic, retain) IBOutlet UILabel * sourceLabel;
-//@property (nonatomic, retain) IBOutlet UISwitch * sourceSwitch;
-@property (nonatomic, retain) IBOutlet UIImageView * sourceLogoView;
+@property (nonatomic, retain) IBOutlet UILabel *sourceLabel;
+//@property (nonatomic, retain) IBOutlet UISwitch *sourceSwitch;
+@property (nonatomic, retain) IBOutlet UIImageView *sourceLogoView;
 
 @end

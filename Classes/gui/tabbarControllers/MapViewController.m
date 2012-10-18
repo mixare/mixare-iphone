@@ -17,29 +17,6 @@
 
 #import "MapViewController.h"
 
-/*
-@implementation MapAnnotation
-@synthesize coordinate;
-@synthesize lat=_lat,lon=_lon,altitude= _altitude;
-@synthesize subTitle= _subTitle, title= _title, source=_source;
-
-
-- (CLLocationCoordinate2D)coordinate;{
-    CLLocationCoordinate2D position;
-	if (_lat != 0.0 && _lon != 0.0) {
-		position.latitude = _lat;
-		position.longitude = _lon;
-	}else {
-		position.latitude=0.0;
-		position.longitude=0.0;
-	}
-    
-    return position; 
-}
-
-@end
-
-*/
 @implementation MapViewController
 @synthesize map  = _map;
 

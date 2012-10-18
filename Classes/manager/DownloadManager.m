@@ -34,7 +34,7 @@
     return self;
 }
 
-- (void)loadCurrentLocation:(CLLocation *)loc {
+- (void)loadCurrentLocation:(CLLocation*)loc {
     currentLocation = loc;
 }
 

@@ -22,29 +22,28 @@
 
 @implementation MarkerView
 
-
 @synthesize viewTouched, url=_url;
 
 //The basic idea here is to intercept the view which is sent back as the firstresponder in hitTest.
 //We keep it preciously in the property viewTouched and we return our view as the firstresponder.
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event {
     viewTouched = [super hitTest:point withEvent:event];
     return self;
 }
 
 //Then, when an event is fired, we log this one and then send it back to the viewTouched we kept, and voilà!!! :)
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
 
 }
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
 
 }
 
 //Touch ended -> showing info view with animation. 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     NSLog(@"Touch Ended");
     //[viewTouched touchesEnded:touches withEvent:event];
-    UIButton * closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
 	[closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     closeButton.titleLabel.text = @"Close";
@@ -53,19 +52,19 @@
     CGRect infoFrame;
     CGRect webFrame;
 	CGRect buttobFrame;
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait){
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         infoFrame = CGRectMake(0, 480, 0, 0);
         webFrame = CGRectMake(0, 25, 320, 220);
         closeButton.frame = CGRectMake(260, 0, 60, 25);
 		buttobFrame= CGRectMake(0, 0, 320, 240);
-    }else{
+    } else {
         closeButton.frame = CGRectMake(420, 0, 60, 25);
         infoFrame = CGRectMake(0, 320, 0, 0);
         webFrame = CGRectMake(0, 25, 480, 160);
 		buttobFrame= CGRectMake(0, 0, 480, 160);
     }
-    UIView * infoView = [[UIView alloc]initWithFrame:infoFrame];
-    UIWebView * webView = [[UIWebView alloc]initWithFrame:webFrame];
+    UIView *infoView = [[UIView alloc]initWithFrame:infoFrame];
+    UIWebView *webView = [[UIWebView alloc]initWithFrame:webFrame];
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:_url];
@@ -90,7 +89,7 @@
     [UIView commitAnimations];
 }
 
--(void)buttonClick:(id) sender{
+-(void)buttonClick:(id)sender{
     UIView *viewToRemove = (UIView*)[sender superview];
     
     [UIView beginAnimations:nil context:nil];
@@ -102,7 +101,7 @@
     [UIView commitAnimations];
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {
     
 }
 

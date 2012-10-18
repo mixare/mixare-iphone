@@ -33,7 +33,7 @@
  *  CONSTRUCTOR
  *
  ***/
-- (DataSource*)title:(NSString *)tit jsonUrl:(NSString *)url {
+- (DataSource*)title:(NSString*)tit jsonUrl:(NSString*)url {
     self = [super init];
     if(self) {
         title = tit;

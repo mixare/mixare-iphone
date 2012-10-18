@@ -27,7 +27,7 @@
 @implementation MapViewAnnotation
 
 @synthesize coordinate;
-@synthesize subTitle, title, source;
+@synthesize subTitle, title;
 
 - (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon {
     [super init];

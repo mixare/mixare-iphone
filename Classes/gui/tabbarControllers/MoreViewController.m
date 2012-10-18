@@ -26,13 +26,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(tabSwitch != nil){
+    if (tabSwitch != nil) {
         //adding action method when tapping on button
         [tabSwitch addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventValueChanged];
     }
-    if(logoButton != nil){
+    if (logoButton != nil) {
         //adding action metho to logobutton
-        [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents: UIControlEventTouchUpInside];
+        [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     //hidden because license info is shown firts
     generalInfoView.hidden=YES;
@@ -41,25 +41,24 @@
     [tabSwitch setTitle:NSLocalizedString(@"General Info", nil) forSegmentAtIndex:1];
 }
 
--(IBAction)switchView:(id) sender{
-    if(tabSwitch.selectedSegmentIndex == 1){
+- (IBAction)switchView:(id)sender {
+    if (tabSwitch.selectedSegmentIndex == 1) {
         // licenseInfo part
         textView.hidden = YES;
         generalInfoView.hidden = NO;        
-    }else if (tabSwitch.selectedSegmentIndex==0){
+    } else if (tabSwitch.selectedSegmentIndex == 0) {
         //General Text
         textView.hidden = NO;
         generalInfoView.hidden = YES;
     }
 }
 
--(IBAction)buttonClick: (id) sender{
+- (IBAction)buttonClick:(id)sender {
     //open the mixare webpage
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mixare.org"]];
 }
 
 - (void)showGPSInfo:(CLLocation*)loc {
-    NSLog(@"show val latitude: %f", lat);
     lon.text = [NSString stringWithFormat:@"%f", loc.coordinate.longitude];
     lat.text = [NSString stringWithFormat:@"%f", loc.coordinate.latitude];
     alt.text = [NSString stringWithFormat:@"%f", loc.altitude];

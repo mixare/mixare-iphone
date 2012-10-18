@@ -22,8 +22,8 @@
 //ViewController for the source tabbarsection 
 @interface SourceViewController : UITableViewController </*ZBarReaderDelegate,*/UITextFieldDelegate,UIAlertViewDelegate> {
 	NSMutableArray *dataSourceArray;
-    IBOutlet UIBarButtonItem * addButton;
-    NSString * sourceURL;
+    IBOutlet UIBarButtonItem *addButton;
+    NSString *sourceURL;
     NSMutableArray *dataSources;
 }
 

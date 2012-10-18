@@ -22,7 +22,7 @@
 //@synthesize sourceSwitch = _sourceSwitch;
 @synthesize sourceLogoView = _sourceLogoView;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         // Initialization code
     }
@@ -31,9 +31,7 @@
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

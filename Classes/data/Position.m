@@ -28,7 +28,7 @@
 
 @synthesize mapViewAnnotation, title, summary, url;
 
-- (Position*)initWithTitle:(NSString *)tit withSummary:(NSString *)sum withUrl:(NSString *)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt {
+- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt {
     self = [super init];
     if(self) {
         title = tit;

@@ -28,7 +28,7 @@
 
 @implementation WikipediaProcessor
 
-- (NSMutableArray*)convert:(NSString *)dataString {
+- (NSMutableArray*)convert:(NSString*)dataString {
     // TODO REFIX
     JsonHandler *jHandler = [[JsonHandler alloc] init];
     return [jHandler processWikipediaJSONData:dataString];

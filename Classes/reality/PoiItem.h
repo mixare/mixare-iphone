@@ -32,8 +32,8 @@
 @optional
 
 // Title and subtitle for use by selection UI.
-- (NSString *)title;
-- (NSString *)subtitle;
+- (NSString*)title;
+- (NSString*)subtitle;
 
 @end
 
@@ -46,11 +46,10 @@
 @optional
 
 // Title and subtitle for use by selection UI.
-- (NSString *)title;
-- (NSString *)subtitle;
+- (NSString*)title;
+- (NSString*)subtitle;
 
 @end
-
 
 @interface PoiItem : NSObject {
     //distance from device to poi
@@ -70,17 +69,17 @@
 
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)other;
-- (BOOL)isEqualToCoordinate:(PoiItem *)otherCoordinate;
+- (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
 
-+ (PoiItem *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
++ (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, retain) NSString * source;
+@property (nonatomic, retain) NSString *source;
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;
-@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString *url;
 @property (nonatomic) CGPoint radarPos;
 
 @end

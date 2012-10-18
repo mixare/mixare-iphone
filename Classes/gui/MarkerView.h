@@ -21,17 +21,17 @@
 
 //Info view of a poi. Shoved when tapping on a por in the cam view. opens a webview of the poi
 @interface MarkerView : UIView {
-    UIView * viewTouched;
-    NSString * _url;
-    UIView* loadView;
+    UIView *viewTouched;
+    NSString *_url;
+    UIView *loadView;
 }
-@property (nonatomic, retain) UIView * viewTouched;
-@property (nonatomic, retain) NSString * url;
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
+@property (nonatomic, retain) UIView *viewTouched;
+@property (nonatomic, retain) NSString *url;
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event;
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event;
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;
+- (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event;
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event;
+- (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event;
 
 @end

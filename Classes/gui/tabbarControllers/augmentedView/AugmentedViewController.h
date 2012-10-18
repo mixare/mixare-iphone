@@ -30,71 +30,53 @@
 @interface AugmentedViewController : UIViewController <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
 	UIAccelerometer *accelerometerManager;
-	
 	PoiItem *centerCoordinate;
-	
 	UIImagePickerController *cameraController;
-	
 	NSObject<ARViewDelegate> *delegate;
 	NSObject<CLLocationManagerDelegate> *locationDelegate;
 	NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
-	
 	BOOL scaleViewsBasedOnDistance;
 	double maximumScaleDistance;
 	double minimumScaleFactor;
-	
 	//defaults to 20hz;
 	double updateFrequency;
-	
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
 	
 @private
 	int oldHeading;
 	NSTimer *_updateTimer;
-	
 	MarkerView *ar_overlayView;
 	Radar * radarView;
     RadarViewPortView * radarViewPort;
-	
 	NSMutableArray *ar_coordinates;
 	NSMutableArray *ar_coordinateViews;
 }
 
 @property (readonly) NSArray *coordinates;
-
-
 @property BOOL scaleViewsBasedOnDistance;
 @property double maximumScaleDistance;
 @property double minimumScaleFactor;
-
 @property BOOL rotateViewsBasedOnPerspective;
 @property double maximumRotationAngle;
-
 @property double updateFrequency;
 
 //adding coordinates to the underlying data model.
-- (void)addCoordinate:(PoiItem *)coordinate;
-- (void)addCoordinate:(PoiItem *)coordinate animated:(BOOL)animated;
-
-- (void)addCoordinates:(NSArray *)newCoordinates;
-
-
+- (void)addCoordinate:(PoiItem*)coordinate;
+- (void)addCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
+- (void)addCoordinates:(NSArray*)newCoordinates;
 //removing coordinates
-- (void)removeCoordinate:(PoiItem *)coordinate;
-- (void)removeCoordinate:(PoiItem *)coordinate animated:(BOOL)animated;
--(CGPoint) rotatePointAboutOrigin:(CGPoint) point angle: (float) angle;
-- (void)removeCoordinates:(NSArray *)coordinates;
-
-- (id)initWithLocationManager:(CLLocationManager *)manager;
-
+- (void)removeCoordinate:(PoiItem*)coordinate;
+- (void)removeCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
+- (CGPoint)rotatePointAboutOrigin:(CGPoint)point angle:(float)angle;
+- (void)removeCoordinates:(NSArray*)coordinates;
+- (id)initWithLocationManager:(CLLocationManager*)manager;
 - (void)startListening;
--(void) stopListening;
-- (void)updateLocations:(NSTimer *)timer;
--(void)closeCameraView;
-- (CGPoint)pointInView:(UIView *)realityView forCoordinate:(PoiItem *)coordinate;
-
-- (BOOL)viewportContainsCoordinate:(PoiItem *)coordinate;
+- (void)stopListening;
+- (void)updateLocations:(NSTimer*)timer;
+- (void)closeCameraView;
+- (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate;
+- (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
 @property (nonatomic, retain) UIImagePickerController *cameraController;
 

@@ -23,7 +23,7 @@
 
 @synthesize title  , subtitle , source= _source , url = _url, radarPos = _radarPos;
 
-+ (PoiItem *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
++ (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
 	PoiItem *newCoordinate = [[PoiItem alloc] init];
 	newCoordinate.radialDistance = newRadialDistance;
 	newCoordinate.inclination = newInclination;
@@ -46,7 +46,7 @@
     return [self isEqualToCoordinate:other];
 }
 
-- (BOOL)isEqualToCoordinate:(PoiItem *)otherCoordinate {
+- (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate {
     if (self == otherCoordinate) return YES;
     
 	BOOL equal = self.radialDistance == otherCoordinate.radialDistance;
@@ -68,7 +68,7 @@
 	[super dealloc];
 }
 
-- (NSString *)description {
+- (NSString*)description {
 	return [NSString stringWithFormat:@"%@ r: %.3fm φ: %.3f° θ: %.3f°", self.title, self.radialDistance, radiansToDegrees(self.azimuth), radiansToDegrees(self.inclination)];
 }
 

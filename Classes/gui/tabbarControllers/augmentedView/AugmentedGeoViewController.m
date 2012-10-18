@@ -22,7 +22,7 @@
 
 @synthesize centerLocation;
 
-- (void)setCenterLocation:(CLLocation *)newLocation {
+- (void)setCenterLocation:(CLLocation*)newLocation {
 	[centerLocation release];
 	centerLocation = [newLocation retain];
 	

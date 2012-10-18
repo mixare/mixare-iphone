@@ -22,13 +22,13 @@
 
 
 #pragma mark WebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView *)webView{
+- (void)webViewDidStartLoad:(UIWebView*)webView{
     loadView.center = _webView.center;
     [_webView addSubview:loadView];
 }
 
 //When the webpage has been loaded successfully the loading view will be removed
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
+- (void)webViewDidFinishLoad:(UIWebView*)webView{
     [loadView removeFromSuperview];
 }
 

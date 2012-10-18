@@ -30,7 +30,7 @@ static NSString *kReferenceKey = @"reference";
 
 @implementation JsonHandler
 
-- (NSMutableArray*)processWikipediaJSONData: (NSString*) jsonData{
+- (NSMutableArray*)processWikipediaJSONData:(NSString*)jsonData{
 	NSDictionary* data = [jsonData JSONValue];
 	NSMutableArray* ret = [[NSMutableArray alloc]init];
 	NSArray* geonames = [data objectForKey:@"geonames"];
@@ -49,7 +49,7 @@ static NSString *kReferenceKey = @"reference";
 	}
 	return ret;
 }
-- (NSMutableArray*)processMixareJSONData: (NSString*) jsonData{
+- (NSMutableArray*)processMixareJSONData:(NSString*)jsonData{
     if(! [jsonData isEqualToString:@""]){
         NSDictionary* data = [jsonData JSONValue];
         NSMutableArray* ret = [[NSMutableArray alloc]init];
@@ -69,7 +69,7 @@ static NSString *kReferenceKey = @"reference";
     }else return nil;
 }
 
-- (NSMutableArray*)processTwitterJSONData: (NSString*) jsonData{
+- (NSMutableArray*)processTwitterJSONData:(NSString*)jsonData{
 	NSDictionary * data = [jsonData JSONValue];
 	NSMutableArray* ret = [[NSMutableArray alloc]init];
 	NSArray* tweets = [data objectForKey:@"results"];
@@ -87,7 +87,7 @@ static NSString *kReferenceKey = @"reference";
 	return ret;
 }
 
-- (NSMutableArray*)processGooglePlacesData: (NSString*) jsonData{
+- (NSMutableArray*)processGooglePlacesData:(NSString*)jsonData{
     NSDictionary* data = [jsonData JSONValue];
     NSMutableArray * ret = [[NSMutableArray alloc]init];
     NSArray * googlePlaces = [data objectForKey:@"results"];
@@ -97,7 +97,7 @@ static NSString *kReferenceKey = @"reference";
     return ret;
 }
 
-- (NSMutableArray*)processBuzzJSONData: (NSString*) jsonData{
+- (NSMutableArray*)processBuzzJSONData:(NSString*)jsonData{
     if(jsonData != nil){
         NSDictionary * data = [jsonData JSONValue];
         NSMutableArray* ret = [[NSMutableArray alloc]init];
