@@ -32,14 +32,15 @@
 @synthesize dataSourceManager = _dataSourceManager;
 @synthesize downloadManager = _downloadManager;
 
-@synthesize mapViewController = _mapViewController;
 @synthesize window;
 @synthesize tabBarController = _tabBarController;
+@synthesize sourceViewController = _sourceViewController;
 @synthesize listViewController = _listViewController;
+@synthesize mapViewController = _mapViewController;
+@synthesize moreViewController = _moreViewController;
+
 @synthesize slider = _slider;
 @synthesize menuButton = _menuButton;
-@synthesize moreViewController = _moreViewController;
-@synthesize sourceViewController = _sourceViewController;
 @synthesize valueLabel = _valueLabel;
 
 /***
@@ -333,7 +334,7 @@
  *
  ***/
 - (void)mapData{
-	/*if(_data != nil){
+	/*if (_data != nil) {
 		NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:[_data count]];
 		CLLocation *tempLocation;
 		PhysicalPlace *tempCoordinate;
@@ -355,7 +356,7 @@
 		}
 		[augViewController addCoordinates:tempLocationArray];
 		[tempLocationArray release];
-	}else NSLog(@"no data received");*/
+	} else NSLog(@"no data received");*/
 }
 
 /***
