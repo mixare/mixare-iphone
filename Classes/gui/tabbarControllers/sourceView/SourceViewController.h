@@ -17,13 +17,18 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "DataSource.h"
 
 //ViewController for the source tabbarsection 
 @interface SourceViewController : UITableViewController </*ZBarReaderDelegate,*/UITextFieldDelegate,UIAlertViewDelegate> {
 	NSMutableArray *dataSourceArray;
     IBOutlet UIBarButtonItem * addButton;
     NSString * sourceURL;
+    NSMutableArray *dataSources;
 }
--(IBAction)addSource;
+
+- (IBAction)addSource;
+- (void)refresh:(NSMutableArray*)datas;
+
 @property (nonatomic, retain) NSMutableArray *dataSourceArray;
 @end

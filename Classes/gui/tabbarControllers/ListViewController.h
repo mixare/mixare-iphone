@@ -24,8 +24,6 @@
 	NSMutableArray * dataSourceArray;
 }
 
-@property (nonatomic, retain) NSMutableArray *dataSourceArray;
-
--(void) convertPositionsToListItems:(DataSource*)data;
+- (void)refresh:(NSMutableArray*)dataSources;
 
 @end

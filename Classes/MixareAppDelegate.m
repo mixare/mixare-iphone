@@ -77,7 +77,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"STARTING");
 	[self initManagers];
-	[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"Wikipedia"];
 	//[self downloadData];
     [self refresh];
     [self openMenu];
@@ -361,27 +360,6 @@
 
 /***
  *
- *  Method wich manages the download of data specified by the user. 
- *  The standard source is wikipedia.
- *  By selecting the different sources in the sources menu the appropriate 
- *  data will be downloaded.
- *  @param source
- *
- ***/
-- (BOOL)checkIfDataSourceIsEnabled: (NSString *)source{
-    BOOL ret = NO;
-    if(![source isEqualToString:@""]){
-        if([[NSUserDefaults standardUserDefaults] objectForKey:source]!=nil){
-            if([[[NSUserDefaults standardUserDefaults] objectForKey:source] isEqualToString:@"TRUE"]){
-                ret = YES;
-            }
-        }
-    }
-    return ret;
-}
-
-/***
- *
  *  Download data of the selected sources
  *
  ***/
@@ -445,6 +423,7 @@
     window.rootViewController = _tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [self openTabSources];
 }
 
 /***
@@ -464,10 +443,11 @@
  *  @param coordinate
  *
  ***/
+
 #define BOX_WIDTH 150
 #define BOX_HEIGHT 100
 - (MarkerView *)viewForCoordinate:(PoiItem *)coordinate {
-	
+	/*
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -509,6 +489,7 @@
     tempView.userInteractionEnabled = YES;
     
 	return [tempView autorelease];
+     */
 }
 
 #pragma mark -
@@ -578,8 +559,8 @@
  *
  ***/
 - (void)openTabSources {
-    if(_listViewController.dataSourceArray != nil){
-        _listViewController.dataSourceArray = nil;
+    if (_dataSourceManager.dataSources != nil) {
+        [_sourceViewController refresh:_dataSourceManager.dataSources];
     }
 }
 
@@ -590,12 +571,7 @@
  ***/
 - (void)openTabPOI {
     if (_dataSourceManager.dataSources != nil) {
-        _listViewController.dataSourceArray = nil;
-        for (DataSource* data in _dataSourceManager.getActivatedSources) {
-            [_listViewController convertPositionsToListItems:data];
-        }
-        NSLog(@"data set");
-        [_listViewController.tableView reloadData];
+        [_listViewController refresh:[_dataSourceManager getActivatedSources]];
     } else {
         NSLog(@"Data POI List not set");
     }
@@ -609,10 +585,8 @@
  ***/
 - (void)openTabMap {
     if(_dataSourceManager.dataSources != nil){
+        [_mapViewController refresh:[_dataSourceManager getActivatedSources]];
         NSLog(@"Data Annotations map set");
-        for (DataSource* data in _dataSourceManager.getActivatedSources) {
-            [_mapViewController addAnnotationsFromDataSource:data];
-        }
     }
 }
 

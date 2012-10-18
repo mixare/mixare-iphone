@@ -38,7 +38,7 @@
     if(self) {
         title = tit;
         jsonUrl = url;
-        activated = NO;
+        activated = YES;
         positions = [[NSMutableArray alloc] init];
     }
     return self;

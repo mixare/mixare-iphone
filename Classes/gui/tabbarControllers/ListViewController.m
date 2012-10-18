@@ -21,11 +21,20 @@
 
 
 @implementation ListViewController
-@synthesize dataSourceArray = source; 
 
--(void) convertPositionsToListItems:(DataSource*)data {
-    if (source == nil) {
-        source = [[NSMutableArray alloc] init];
+- (void)refresh:(NSMutableArray*)dataSources {
+    [dataSourceArray removeAllObjects];
+    if (dataSources != nil) {
+        for (DataSource *data in dataSources) {
+            [self convertPositionsToListItems:data];
+        }
+    }
+    [self.tableView reloadData];
+}
+
+- (void)convertPositionsToListItems:(DataSource*)data {
+    if (dataSourceArray == nil) {
+        dataSourceArray = [[NSMutableArray alloc] init];
     }
     for (Position *pos in data.positions) {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
@@ -33,17 +42,17 @@
         [dic setValue:pos.title forKey:@"title"];
         [dic setValue:pos.summary forKey:@"sum"];
         [dic setValue:pos.url forKey:@"url"];
-        [source addObject:dic];
+        [dataSourceArray addObject:dic];
     }
 }
 
--(void) viewDidLoad{	
+- (void)viewDidLoad{	
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"Poi List", nil);
 	
 }
 
--(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
@@ -51,55 +60,54 @@
 // For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
 // So release any properties that are loaded in viewDidLoad or can be recreated lazily.
 //
--(void) viewDidUnload 
+- (void)viewDidUnload 
 {
     [super viewDidUnload];
 	
 	// release the controls and set them nil in case they were ever created
 	// note: we can't use "self.xxx = nil" since they are read only properties
 	//
-	self.dataSourceArray = nil;	// this will release and set to nil
-	source = nil;
+	dataSourceArray = nil;	// this will release and set to nil
 }
 
 #pragma mark -
 #pragma mark UITableViewDataSource
 
--(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
 	return 1;
 }
 
 
 
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-	return (source != nil) ? [source count] :0;
+	return (dataSourceArray != nil) ? [dataSourceArray count] :0;
 }
 
 // to determine specific row height for each cell, override this.
 
--(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return ([indexPath row] == 0) ? 60.0 : 60.0;
 }
 
 // to determine which UITableViewCell to be used on a given row.
 //
--(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	UITableViewCell *cell = nil;
 	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
-	if(source != nil){
+	if(dataSourceArray != nil){
         //setting the corresponding title for each row .. source array gets set in the app delegate class when downloading new data
-		cell.textLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"title"];
-		cell.detailTextLabel.text = [[source objectAtIndex:indexPath.row]valueForKey:@"sum"];
+		cell.textLabel.text = [[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"title"];
+		cell.detailTextLabel.text = [[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"sum"];
         //adding custom label to each row according to their source
-        if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Wikipedia"]){
+        if([[[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Wikipedia"]){
             cell.imageView.image = [UIImage imageNamed:@"wikipedia_logo_small.png"];
-        }else if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Buzz"]){
+        }else if([[[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Buzz"]){
             cell.imageView.image = [UIImage imageNamed:@"buzz_logo_small.png"];
-        }else if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Twitter"]){
+        }else if([[[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Twitter"]){
             cell.imageView.image = [UIImage imageNamed:@"twitter_logo_small.png"];
-        }else if([[[source objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Mixare"]){
+        }else if([[[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"source"] isEqualToString:@"Mixare"]){
             cell.imageView.image = [UIImage imageNamed:@"logo_mixare_round.png"];
         }
     }
@@ -112,14 +120,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"in select row");
 	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
-    targetViewController.url = [[source objectAtIndex:indexPath.row]valueForKey:@"url"];
+    targetViewController.url = [[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"url"];
     
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }
 
--(void) dealloc {
+- (void)dealloc {
 	//dealloc mem
-	[source release];
+	[dataSourceArray release];
 	
 	[super dealloc];
 }

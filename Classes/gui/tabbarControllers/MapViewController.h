@@ -40,8 +40,9 @@
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView* _map;
 	NSMutableArray *_data;
+    NSMutableArray *_currentAnnotations;
 }
-@property(nonatomic,retain)MKMapView *map;
--(void) addAnnotationsFromDataSource:(DataSource*)data;
+@property (nonatomic, retain) MKMapView *map;
+- (void)refresh:(NSMutableArray*)dataSources;
 
 @end

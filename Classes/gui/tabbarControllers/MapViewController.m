@@ -54,18 +54,34 @@
 	newRegion.span.longitudeDelta = 0.03;
 	[self.map setRegion:newRegion animated:YES];
 	[locmng release];
+    if (_currentAnnotations == nil) {
+        _currentAnnotations = [[NSMutableArray alloc] init];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
--(void) addAnnotationsFromDataSource:(DataSource *)data{
+- (void)refresh:(NSMutableArray*)dataSources {
+    [self removeAllAnnotations];
+    for (DataSource* data in dataSources) {
+        [self addAnnotationsFromDataSource:data];
+    }
+}
+
+- (void)addAnnotationsFromDataSource:(DataSource *)data{
 	if(data.positions != nil){
 		for(Position *pos in data.positions){
             [self.map addAnnotation:pos.mapViewAnnotation];
+            [_currentAnnotations addObject:pos.mapViewAnnotation];
 		}
 	}
+}
+
+- (void)removeAllAnnotations {
+    [self.map removeAnnotations:_currentAnnotations];
+    [_currentAnnotations removeAllObjects];
 }
 
 //- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation{

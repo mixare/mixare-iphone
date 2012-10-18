@@ -41,10 +41,31 @@
 	return YES;
 }
 
-- (void)viewDidLoad{	
+- (void)refresh:(NSMutableArray*)datas {
+    dataSources = datas;
+    if (dataSourceArray == nil) {
+        dataSourceArray = [[NSMutableArray alloc] init];
+    }
+    [dataSourceArray removeAllObjects];
+    for (DataSource* data in datas) {
+        [dataSourceArray addObject:data.title];
+        NSLog(@"%@", data.title);
+    }
+    [self.tableView reloadData];
+}
+
+- (DataSource*)findDataSourceByTitle:(NSString*)title {
+    for (DataSource* data in dataSources) {
+        if ([data.title isEqualToString:title]) {
+            return data;
+        }
+    }
+    return nil;
+}
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     //initialisation of the datasource with the default sources
-	dataSourceArray = [[NSMutableArray alloc]initWithObjects:@"Wikipedia",@"Twitter",nil];
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
 //    NSString * custom_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"extern_url"];
 //    NSLog(@"EXTERN URL %@",custom_url);
@@ -58,7 +79,7 @@
  *  Alert dialog called when user is pressing the plus symbol on the top right of the navigationbar
  *
  ***/
--(IBAction)addSource {
+- (IBAction)addSource {
     UIAlertView *addOptionAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add source",nil)
                                                              message:NSLocalizedString(@"Choose an option to insert source", nil)
                                                             delegate:self
@@ -196,8 +217,6 @@
 	return 1;
 }
 
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [dataSourceArray count] ;
 }
@@ -231,23 +250,21 @@
 		}
 	}
 	
-	if(dataSourceArray != nil) {
+	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = [dataSourceArray objectAtIndex:indexPath.row];
 		if(indexPath.row == 1){
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"twitter_logo.png"]];
 		}else if(indexPath.row == 0){
 			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
-			cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		}else if(indexPath.row == 2){
-			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"buzz_logo.png"]];
-		}else if(indexPath.row > 2 ){
-          [cell.sourceLogoView  setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
+			//cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		}else if(indexPath.row > 1 ){
+            [cell.sourceLogoView  setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }
 	} else {
 		
 	}
     
-    if([[[NSUserDefaults standardUserDefaults] objectForKey:cell.sourceLabel.text] isEqualToString:@"TRUE"]) {
+    if ([self findDataSourceByTitle:cell.sourceLabel.text].activated) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 	return cell;
@@ -255,7 +272,7 @@
 
 /***
  *
- *  TODO: keeping track if the user changes sources to not have to download data
+ *  Select source(s) for view
  *
  ***/
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -264,13 +281,13 @@
 	if(cell != nil){
 		if (cell.accessoryType == UITableViewCellAccessoryNone){
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
-			[[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:cell.sourceLabel.text];
+            [self findDataSourceByTitle:cell.sourceLabel.text].activated = YES; //ACTIVATE DataSource
             //[[NSUserDefaults standardUserDefaults] setObject:@"CHANGED" forKey:@"changeStatus";
-		}else{
+		} else {
 			cell.accessoryType = UITableViewCellAccessoryNone;
-			[[NSUserDefaults standardUserDefaults] setObject:@"FALSE" forKey:cell.sourceLabel.text];
+            [self findDataSourceByTitle:cell.sourceLabel.text].activated = NO; //DEACTIVATE DataSource
 		}
-	}else NSLog(@"NOT WORKING");
+	} else NSLog(@"NOT WORKING");
 
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
