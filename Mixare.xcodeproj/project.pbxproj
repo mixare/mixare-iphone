@@ -63,6 +63,7 @@
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AB94111607268E006F8884 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */; };
+		E2AF6C2C162FEE29004E0625 /* WikipediaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */; };
 		E2B01581162EB2CF00C93C91 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B01580162EB2CF00C93C91 /* Default-568h@2x.png */; };
 		E2B01666162EBA5500C93C91 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0165D162EBA5500C93C91 /* NSObject+SBJSON.m */; };
 		E2B01667162EBA5500C93C91 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0165F162EBA5500C93C91 /* NSString+SBJSON.m */; };
@@ -200,6 +201,8 @@
 		E2AB940C16071F7E006F8884 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Frameworks/AVFoundation.framework; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AB94101607268E006F8884 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Frameworks/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E2AF6C2A162FEE29004E0625 /* WikipediaProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaProcessorTest.h; sourceTree = "<group>"; };
+		E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaProcessorTest.m; sourceTree = "<group>"; };
 		E2B01580162EB2CF00C93C91 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E2B0165B162EBA5500C93C91 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		E2B0165C162EBA5500C93C91 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -512,6 +515,8 @@
 				E2BE2977162DADD3009CF67D /* DataConvertorTest.m */,
 				E2B01678162F03EA00C93C91 /* PositionTest.h */,
 				E2B01679162F03EA00C93C91 /* PositionTest.m */,
+				E2AF6C2A162FEE29004E0625 /* WikipediaProcessorTest.h */,
+				E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -767,6 +772,7 @@
 				E2B01671162EBC3F00C93C91 /* Position.m in Sources */,
 				E2B01674162EFE0200C93C91 /* DataSourceManagerTest.m in Sources */,
 				E2B0167A162F03EB00C93C91 /* PositionTest.m in Sources */,
+				E2AF6C2C162FEE29004E0625 /* WikipediaProcessorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

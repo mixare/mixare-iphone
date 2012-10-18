@@ -100,7 +100,7 @@
  *  Initialize managers
  *
  ***/
--(void) initManagers{
+- (void)initManagers{
     [self initLocationManager];
     _downloadManager = [[DownloadManager alloc] init];
     _dataSourceManager = [[DataSourceManager alloc] init];
@@ -111,7 +111,7 @@
  *  Initialize location manager
  *
  ***/
--(void) initLocationManager{
+- (void)initLocationManager{
 	if (_locManager == nil){
 		_locManager = [[CLLocationManager alloc]init];
 		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -126,7 +126,7 @@
  *  Refresh Application [HEAD]
  *
  ***/
--(void) refresh {
+- (void)refresh {
     [_downloadManager loadCurrentLocation:_locManager.location];
     for (DataSource* source in [_dataSourceManager getActivatedSources]) {
         [_downloadManager download:source];
@@ -138,7 +138,7 @@
  *  Initialize UIBarTitles
  *
  ***/
-- (void) initUIBarTitles {
+- (void)initUIBarTitles {
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
     ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
@@ -150,7 +150,7 @@
  *  License text at first start
  *
  ***/
-- (void) firstBootLicenseText {
+- (void)firstBootLicenseText {
     NSString* licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLaunch"];
     if([licenseText isEqualToString:@""] || licenseText ==nil ) {
         UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"License",nil)message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
@@ -185,7 +185,7 @@
  *  @param notification
  *
  ***/
--(void) didRotate:(NSNotification *)notification{ 
+- (void)didRotate:(NSNotification *)notification{ 
     //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
     //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
@@ -206,7 +206,7 @@
  *  @param viewObject
  *
  ***/
--(void)setViewToLandscape:(UIView*)viewObject {
+- (void)setViewToLandscape:(UIView*)viewObject {
     [viewObject setCenter:CGPointMake(160, 240)];
     CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
     viewObject.transform = cgCTM;
@@ -222,7 +222,7 @@
  *  @param viewObject
  *
  ***/
--(void)setViewToPortrait:(UIView*)viewObject{
+- (void)setViewToPortrait:(UIView*)viewObject{
     CGAffineTransform tr = viewObject.transform; // get current transform (portrait)
     tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
     viewObject.transform = tr; // set current transform 
@@ -238,7 +238,7 @@
  *  Response after click at marker
  *
  ***/
--(void)markerClick:(id)sender{
+- (void)markerClick:(id)sender{
     NSLog(@"MARKER");
 }
 
@@ -248,7 +248,7 @@
  *  Initialize ARView
  *
  ***/
--(void) iniARView{
+- (void)iniARView{
     augViewController = [[AugmentedGeoViewController alloc] init];
 	augViewController.delegate = self;
 	augViewController.scaleViewsBasedOnDistance = YES;
@@ -274,7 +274,7 @@
  *  Initialize UI controls
  *
  ***/
--(void) initControls{
+- (void)initControls{
     _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
     CGRect buttonFrame;
@@ -333,7 +333,7 @@
  *  Get map data
  *
  ***/
--(void) mapData{
+- (void)mapData{
 	/*if(_data != nil){
 		NSMutableArray *tempLocationArray = [[NSMutableArray alloc] initWithCapacity:[_data count]];
 		CLLocation *tempLocation;
@@ -368,7 +368,7 @@
  *  @param source
  *
  ***/
--(BOOL)checkIfDataSourceIsEnabled: (NSString *)source{
+- (BOOL)checkIfDataSourceIsEnabled: (NSString *)source{
     BOOL ret = NO;
     if(![source isEqualToString:@""]){
         if([[NSUserDefaults standardUserDefaults] objectForKey:source]!=nil){
@@ -385,7 +385,7 @@
  *  Download data of the selected sources
  *
  ***/
--(void)downloadData {
+- (void)downloadData {
     float radius = 3.5;
     if (_slider != nil) {
         radius = _slider.value;
@@ -399,7 +399,7 @@
  *  Response when radius value has been changed
  *
  ***/
--(void)valueChanged:(id)sender{
+- (void)valueChanged:(id)sender{
 	NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
@@ -416,7 +416,7 @@
  *  Response when menu button has been pressed
  *
  ***/
--(void)buttonClick:(id)sender{
+- (void)buttonClick:(id)sender{
     switch (_menuButton.selectedSegmentIndex) {
         case 0:
             [self openMenu];
@@ -433,7 +433,7 @@
  *  OPEN MENU
  *
  ***/
-- (void) openMenu {
+- (void)openMenu {
     [augViewController closeCameraView];
     [_menuButton removeFromSuperview];
     [_menuButton release];
@@ -452,7 +452,7 @@
  *  OPEN RADIUS SLIDE
  *
  ***/
-- (void) openRadiusSlide {
+- (void)openRadiusSlide {
     _slider.hidden = NO;
     _valueLabel.hidden = NO;
     maxRadiusLabel.hidden=NO;
@@ -472,22 +472,21 @@
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     //tempView.backgroundColor = [UIColor grayColor];
-	if([coordinate.source isEqualToString:@"WIKIPEDIA"]|| [coordinate.source isEqualToString:@"MIXARE"]){
+	if([coordinate.source isEqualToString:@"WIKIPEDIA"]|| [coordinate.source isEqualToString:@"MIXARE"]) {
 		pointView.image = [UIImage imageNamed:@"circle.png"];
-	}else if([coordinate.source isEqualToString:@"TWITTER"]){
+	} else if([coordinate.source isEqualToString:@"TWITTER"]){
         pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
-	}else if([coordinate.source isEqualToString:@"BUZZ"]){
+	} else if([coordinate.source isEqualToString:@"BUZZ"]){
         pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
 	}
 	
-    
 	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0-pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
 	titleLabel.text = coordinate.title;
-    if([coordinate.source isEqualToString:@"BUZZ"]){
+    if ([coordinate.source isEqualToString:@"BUZZ"]) {
         //wrapping long buzz messages
         titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
         titleLabel.numberOfLines = 0;
@@ -562,7 +561,7 @@
  *  TAB 0: CAMERA
  *
  ***/
-- (void) openTabCamera {
+- (void)openTabCamera {
     notificationView.center = window.center;
     [window addSubview:notificationView];
     //[augViewController removeCoordinates:_data];
@@ -578,7 +577,7 @@
  *  TAB 1: SOURCE LIST
  *
  ***/
-- (void) openTabSources {
+- (void)openTabSources {
     if(_listViewController.dataSourceArray != nil){
         _listViewController.dataSourceArray = nil;
     }
@@ -589,7 +588,7 @@
  *  TAB 2: POI LIST
  *
  ***/
-- (void) openTabPOI {
+- (void)openTabPOI {
     if (_dataSourceManager.dataSources != nil) {
         _listViewController.dataSourceArray = nil;
         for (DataSource* data in _dataSourceManager.getActivatedSources) {
@@ -608,7 +607,7 @@
  *  Fill actual Data Positions to map
  *
  ***/
-- (void) openTabMap {
+- (void)openTabMap {
     if(_dataSourceManager.dataSources != nil){
         NSLog(@"Data Annotations map set");
         for (DataSource* data in _dataSourceManager.getActivatedSources) {
@@ -623,13 +622,9 @@
  *  Get current position data
  *
  ***/
-- (void) openTabMore {
+- (void)openTabMore {
     NSLog(@"latitude: %f", _locManager.location.coordinate.latitude);
-    [_moreViewController showGPSInfo:_locManager.location.coordinate.latitude
-                                 lng:_locManager.location.coordinate.longitude
-                                 alt:_locManager.location.altitude
-                               speed:_locManager.location.speed
-                                date:_locManager.location.timestamp];
+    [_moreViewController showGPSInfo:_locManager.location];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

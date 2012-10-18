@@ -47,6 +47,7 @@
 /***
  *
  *  PUBLIC: (Re)create the position objects (for Markers and MapAnnotations views)
+ *  (Called by DataConvertor)
  *
  ***/
 - (void)refreshPositions:(NSMutableArray*)results {

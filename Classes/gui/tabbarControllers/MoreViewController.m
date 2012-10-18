@@ -58,20 +58,20 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mixare.org"]];
 }
 
--(void)showGPSInfo:(float)latitude lng: (float)lng alt: (float) altitude speed:(float) sp date: (NSDate*) stamp {
+- (void)showGPSInfo:(CLLocation*)loc {
     NSLog(@"show val latitude: %f", lat);
-    lon.text = [NSString stringWithFormat:@"%f", lng];
-    lat.text = [NSString stringWithFormat:@"%f", latitude];
-    alt.text = [NSString stringWithFormat:@"%f", altitude];
-    speed.text = [NSString stringWithFormat:@"%f",sp];
-    //accuracy.text = [NSString stringWithFormat:@"%f", _locManager.desiredAccuracy];
+    lon.text = [NSString stringWithFormat:@"%f", loc.coordinate.longitude];
+    lat.text = [NSString stringWithFormat:@"%f", loc.coordinate.latitude];
+    alt.text = [NSString stringWithFormat:@"%f", loc.altitude];
+    speed.text = [NSString stringWithFormat:@"%f", loc.speed];
+    accuracy.text = [NSString stringWithFormat:@"%f", loc.horizontalAccuracy];
     
     [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4]; 
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease]; 
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];  
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
-    date.text = [dateFormatter stringFromDate:stamp];
+    date.text = [dateFormatter stringFromDate:loc.timestamp];
     
 }
 

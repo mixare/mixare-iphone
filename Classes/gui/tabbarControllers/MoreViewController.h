@@ -54,6 +54,6 @@
 -(void)switchView:(id) sender;
 
 //method which write gps information in the according labels
--(void)showGPSInfo:(float)lat lng: (float)lon alt: (float) alt speed:(float) speed date: (NSDate*) date;
+-(void)showGPSInfo:(CLLocation*)loc;
 @end
  
