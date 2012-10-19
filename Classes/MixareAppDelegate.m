@@ -76,7 +76,8 @@
     NSLog(@"STARTING");
 	[self initManagers];
     [self refresh];
-    [self iniARView];
+    //[self iniARView]; Temporary start with menu
+    [self openMenu];
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
