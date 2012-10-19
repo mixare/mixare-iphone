@@ -46,20 +46,22 @@
 
 /***
  *
- *  PUBLIC: (Re)create the position objects (for Markers and MapAnnotations views)
+ *  PUBLIC: (Re)create the position objects (for PoiItem and MapAnnotations views)
  *  (Called by DataConvertor)
  *
  ***/
 - (void)refreshPositions:(NSMutableArray*)results {
     [positions removeAllObjects];
-    for(NSDictionary *poi in results){
+    for (NSDictionary *poi in results) {
         CGFloat alt = [[poi valueForKey:@"alt"]floatValue];
         /*if (alt == 0.0) {
             alt = _locationManager.location.altitude+50;
         }*/
+        
         Position* newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:[[poi valueForKey:@"lat"]floatValue] withLongitude:[[poi valueForKey:@"lon"] floatValue] withAltitude:alt];
         
         [positions addObject:newPosition];
+
     }
     NSLog(@"positions count: %d", [positions count]);
 }

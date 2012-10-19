@@ -77,6 +77,7 @@ static NSString *kReferenceKey = @"reference";
 	for(NSDictionary *tweet in tweets){
 		[ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                         [tweet objectForKey:@"from_user"],kUserKey,
+                        [tweet objectForKey:@"from_user"],kSummaryKey,
                         [tweet objectForKey:@"text"],kTitleKey,
                         [NSString stringWithFormat:@"http://twitter.com/%@",
                          [tweet objectForKey:@"from_user"]],kUrlKey,

@@ -24,7 +24,6 @@
 #import "manager/DownloadManager.h"
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
-#import "data/JsonHandler.h"
 #import "MapViewController.h"
 #import "MarkerView.h"
 #import "Radar.h"
@@ -42,7 +41,6 @@
 	ListViewController *_listViewController;
 	MapViewController *_mapViewController;
 	AugmentedGeoViewController *augViewController;
-	JsonHandler *jHandler;
 	UISlider *_slider;
 	UISegmentedControl *_menuButton;
 	IBOutlet UIView *menuView;
@@ -72,7 +70,7 @@
 
 - (void)iniARView;
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate;
-- (void)mapData;
+- (void)refresh;
 - (void)initControls;
 - (void)setViewToLandscape:(UIView*)viewObject;
 - (void)setViewToPortrait:(UIView*)viewObject;

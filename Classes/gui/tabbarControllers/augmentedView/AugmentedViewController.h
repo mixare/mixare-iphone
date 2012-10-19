@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 #import "MarkerView.h"
 #import <CoreLocation/CoreLocation.h>
+#import "DataSource.h"
 #import "Radar.h"
 #import "PoiItem.h"
 #import "RadarViewPortView.h"
@@ -62,6 +63,7 @@
 @property double updateFrequency;
 
 //adding coordinates to the underlying data model.
+- (void)refresh:(NSMutableArray*)dataSources;
 - (void)addCoordinate:(PoiItem*)coordinate;
 - (void)addCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
 - (void)addCoordinates:(NSArray*)newCoordinates;

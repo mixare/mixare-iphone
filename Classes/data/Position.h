@@ -24,21 +24,24 @@
 
 #import <Foundation/Foundation.h>
 #import "MapViewAnnotation.h"
+#import "PhysicalPlace.h"
 
 @interface Position : NSObject {
-    NSString* title;
-    NSString* summary;
-    NSString* url;
+    NSString *title;
+    NSString *summary;
+    NSString *url;
     CGFloat latitude;
     CGFloat longitude;
     CGFloat altitude;
-    MapViewAnnotation* mapViewAnnotation;
+    MapViewAnnotation *mapViewAnnotation;
+    PhysicalPlace *poiItem;
 }
 
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *summary;
 @property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
+@property (nonatomic, readonly) PhysicalPlace* poiItem;
 
 - (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt;
 

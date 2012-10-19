@@ -29,7 +29,6 @@
 	if (longitudinalDifference > 0) return possibleAzimuth;
 	else if (longitudinalDifference < 0) return possibleAzimuth + M_PI;
 	else if (latitudinalDifference < 0) return M_PI;
-	
 	return 0.0f;
 }
 

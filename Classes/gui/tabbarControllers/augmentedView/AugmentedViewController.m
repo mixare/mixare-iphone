@@ -136,21 +136,18 @@
 	return YES;
 }
 
--(void)stopListening{
+-(void)stopListening {
 	if (self.locationManager != nil) {
 		[locationManager stopUpdatingHeading];
 	}
 }
 
-
--(void)markerClick:(id)sender{
+-(void)markerClick:(id)sender {
     NSLog(@"MARKER");
 }
 
 - (void)startListening {
-	
 	//start our heading readings and our accelerometer readings.
-	
 	if (!self.locationManager) {
 		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
 		
@@ -198,7 +195,7 @@
 	return point;
 }
 
-- (CGPoint)rotatePointAboutOrigin:(CGPoint)point angle:(float)angle{
+- (CGPoint)rotatePointAboutOrigin:(CGPoint)point angle:(float)angle {
     float s = sinf(angle);
     float c = cosf(angle);
     return CGPointMake(c * point.x - s * point.y, s * point.x + c * point.y);
@@ -249,6 +246,26 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	}
 }
 
+- (void)refresh:(NSMutableArray*)dataSources {
+    [ar_coordinates removeAllObjects];
+	[ar_coordinateViews removeAllObjects];
+    for (UIView * view in ar_overlayView.subviews){
+        [view removeFromSuperview];
+    }
+    for (DataSource* data in dataSources) {
+        [self addPoiItemsFromDataSource:data];
+    }
+}
+
+- (void)addPoiItemsFromDataSource:(DataSource *)data{
+	if(data.positions != nil){
+		for(Position *pos in data.positions){
+            [pos.poiItem setSource:data.title];
+            [self addCoordinate:pos.poiItem animated:NO];
+		}
+	}
+}
+
 - (void)addCoordinate:(PoiItem*)coordinate {
 	[self addCoordinate:coordinate animated:YES];
 }
@@ -256,17 +273,14 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (void)addCoordinate:(PoiItem*)coordinate animated:(BOOL)animated {
 	//do some kind of animation?
 	[ar_coordinates addObject:coordinate];
-		
 	if (coordinate.radialDistance > self.maximumScaleDistance) {
 		self.maximumScaleDistance = coordinate.radialDistance;
 	}
-	
 	//message the delegate.
 	[ar_coordinateViews addObject:[self.delegate viewForCoordinate:coordinate]];
 }
 
 - (void)addCoordinates:(NSArray*)newCoordinates {
-	
 	//go through and add each coordinate.
 	for (PoiItem *coordinate in newCoordinates) {
 		[self addCoordinate:coordinate animated:NO];
@@ -433,7 +447,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	[ar_overlayView release];
 	ar_overlayView = nil;
 }
-
 
 - (void)dealloc {	
 	[ar_coordinateViews release];

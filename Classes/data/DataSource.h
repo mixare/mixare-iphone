@@ -30,7 +30,6 @@
     NSString *jsonUrl;
     BOOL activated;
     NSMutableArray *positions;
-    NSMutableDictionary *urlValueData;
 }
 
 @property (nonatomic, retain) NSString *title;

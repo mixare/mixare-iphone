@@ -62,7 +62,7 @@ static NSMutableDictionary* urlValueData;
  *  AND convert json-source to useable Position objects IN the given DataSource object.
  *  @param DataSource
  *  @param CLLocation
- *  @param float
+ *  @param radius
  *
  ***/
 + (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad {
