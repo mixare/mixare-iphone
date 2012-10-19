@@ -30,9 +30,10 @@
 
 @interface DownloadManager : NSObject {
     CLLocation *currentLocation;
+    float currentRadius;
 }
 
-- (void)loadCurrentLocation:(CLLocation*)loc;
-- (void)download:(DataSource*)data;
+- (void)loadCurrentLocation:(CLLocation*)loc currentRadius:(float)rad;
+- (void)download:(NSMutableArray*)datas;
 
 @end

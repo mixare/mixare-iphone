@@ -123,14 +123,16 @@
 
 /***
  *
- *  Refresh Application [HEAD]
+ *  Refresh/Redownload data for Application [HEAD]
  *
  ***/
 - (void)refresh {
-    [_downloadManager loadCurrentLocation:_locManager.location];
-    for (DataSource* source in [_dataSourceManager getActivatedSources]) {
-        [_downloadManager download:source];
+    float radius = 3.5;
+    if (_slider != nil) {
+        radius = _slider.value;
     }
+    [_downloadManager loadCurrentLocation:_locManager.location currentRadius:radius];
+    [_downloadManager download:[_dataSourceManager getActivatedSources]];
 }
 
 /***
@@ -357,20 +359,6 @@
 		[augViewController addCoordinates:tempLocationArray];
 		[tempLocationArray release];
 	} else NSLog(@"no data received");*/
-}
-
-/***
- *
- *  Download data of the selected sources
- *
- ***/
-- (void)downloadData {
-    float radius = 3.5;
-    if (_slider != nil) {
-        radius = _slider.value;
-    }
-    /*_dataHandler = [[DataHandler alloc] initWithLocationManager:_locManager initRadius:radius];
-    _data = [_dataHandler retrieveAvailableSources];*/
 }
 
 /***

@@ -73,7 +73,6 @@
 - (void)iniARView;
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate;
 - (void)mapData;
-- (void)downloadData;
 - (void)initControls;
 - (void)setViewToLandscape:(UIView*)viewObject;
 - (void)setViewToPortrait:(UIView*)viewObject;

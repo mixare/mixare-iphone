@@ -62,8 +62,8 @@
 - (void)testCreatePositionsFromDatasource {
     [self testCreateWikipediaDatasource];
     [self testCreateTwitterDatasource];
-    [DataConvertor convertData:wikipedia currentLocation:location];
-    [DataConvertor convertData:twitter currentLocation:location];
+    [DataConvertor convertData:wikipedia currentLocation:location currentRadius:3.5];
+    [DataConvertor convertData:twitter currentLocation:location currentRadius:3.5];
     BOOL test = true;
     if ([wikipedia.positions count] == 0) {
         test = false;

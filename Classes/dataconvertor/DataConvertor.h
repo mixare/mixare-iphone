@@ -30,6 +30,6 @@
 @interface DataConvertor : NSObject 
 
 + (void)initialize;
-+ (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc;
++ (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad;
 
 @end

@@ -34,12 +34,15 @@
     return self;
 }
 
-- (void)loadCurrentLocation:(CLLocation*)loc {
+- (void)loadCurrentLocation:(CLLocation*)loc currentRadius:(float)rad {
     currentLocation = loc;
+    currentRadius = rad;
 }
 
-- (void)download:(DataSource*)data {
-    [DataConvertor convertData:data currentLocation:currentLocation];
+- (void)download:(NSMutableArray*)datas {
+    for (DataSource* data in datas) {
+        [DataConvertor convertData:data currentLocation:currentLocation currentRadius:currentRadius];
+    }
 }
 
 - (void)dealloc {

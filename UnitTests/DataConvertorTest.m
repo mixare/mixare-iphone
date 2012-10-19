@@ -44,7 +44,7 @@
 
 - (void)testConvertData {
     CLLocation *location = [[[CLLocationManager alloc] init] location];
-    [DataConvertor convertData:wikipedia currentLocation:location];
+    [DataConvertor convertData:wikipedia currentLocation:location currentRadius:3.5];
     STAssertNotNil(wikipedia.positions, @"No positions found");
 }
 
