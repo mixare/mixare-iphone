@@ -22,7 +22,7 @@
 
 @implementation MarkerView
 
-@synthesize viewTouched, url=_url;
+@synthesize viewTouched, url = _url;
 
 //The basic idea here is to intercept the view which is sent back as the firstresponder in hitTest.
 //We keep it preciously in the property viewTouched and we return our view as the firstresponder.
@@ -63,8 +63,8 @@
         webFrame = CGRectMake(0, 25, 480, 160);
 		buttobFrame= CGRectMake(0, 0, 480, 160);
     }
-    UIView *infoView = [[UIView alloc]initWithFrame:infoFrame];
-    UIWebView *webView = [[UIWebView alloc]initWithFrame:webFrame];
+    UIView *infoView = [[UIView alloc] initWithFrame:infoFrame];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:_url];
@@ -78,9 +78,9 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1]; 
     [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait){
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         infoView.frame= CGRectMake(0, 240, 320, 240);
-    }else{
+    } else {
        infoView.frame= CGRectMake(0, 160, 480, 160); 
     }
     infoView.alpha = .8;
@@ -89,7 +89,7 @@
     [UIView commitAnimations];
 }
 
--(void)buttonClick:(id)sender{
+- (void)buttonClick:(id)sender {
     UIView *viewToRemove = (UIView*)[sender superview];
     
     [UIView beginAnimations:nil context:nil];

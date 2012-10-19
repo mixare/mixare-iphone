@@ -76,6 +76,7 @@
     NSLog(@"STARTING");
 	[self initManagers];
     [self refresh];
+    [self iniARView];
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -84,7 +85,6 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     [self initUIBarTitles];
-    [self openMenu];
     [self firstBootLicenseText];
     return YES;
 }
@@ -94,7 +94,7 @@
  *  Initialize managers
  *
  ***/
-- (void)initManagers{
+- (void)initManagers {
     [self initLocationManager];
     _downloadManager = [[DownloadManager alloc] init];
     _dataSourceManager = [[DataSourceManager alloc] init];
@@ -105,9 +105,9 @@
  *  Initialize location manager
  *
  ***/
-- (void)initLocationManager{
-	if (_locManager == nil){
-		_locManager = [[CLLocationManager alloc]init];
+- (void)initLocationManager {
+	if (_locManager == nil) {
+		_locManager = [[CLLocationManager alloc] init];
 		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
 		_locManager.delegate = self;
 		_locManager.distanceFilter = 3.0;
@@ -176,7 +176,9 @@
  *
  ***/
 - (void)iniARView{
-    augViewController = [[AugmentedGeoViewController alloc] init];
+    if (augViewController == nil) {
+        augViewController = [[AugmentedGeoViewController alloc] init];
+    }
 	augViewController.delegate = self;
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
@@ -184,9 +186,7 @@
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
-	if(_locManager != nil){
-		augViewController.centerLocation = _locManager.location;
-	}
+    augViewController.centerLocation = _locManager.location;
     [self initControls];
     [notificationView removeFromSuperview];
     [augViewController.view addSubview:_menuButton];
@@ -206,7 +206,7 @@
 - (void)valueChanged:(id)sender {
 	NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value]  forKey:@"radius"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
     [augViewController closeCameraView];
     [augViewController release];
 	[self refresh];
@@ -243,12 +243,12 @@
     [augViewController.view removeFromSuperview];
     [augViewController release];
     _tabBarController.selectedIndex = 1;
+    [self openTabSources];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     window.rootViewController = _tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-    [self openTabSources];
 }
 
 /***
@@ -260,48 +260,6 @@
     _slider.hidden = NO;
     _valueLabel.hidden = NO;
     maxRadiusLabel.hidden = NO;
-}
-
-/***
- *
- *  Marker image view at located positions of active sources
- *  @param coordinate
- *
- ***/
-
-#define BOX_WIDTH 150
-#define BOX_HEIGHT 100
-- (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
-	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
-	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    //tempView.backgroundColor = [UIColor grayColor];
-	if([coordinate.source isEqualToString:@"Wikipedia"]|| [coordinate.source isEqualToString:@"Mixare"]) {
-		pointView.image = [UIImage imageNamed:@"circle.png"];
-	} else if([coordinate.source isEqualToString:@"Twitter"]){
-        pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
-	} else if([coordinate.source isEqualToString:@"Buzz"]){
-        pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
-	}
-	
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0-pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
-	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
-	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.text = coordinate.title;
-    //Markers get automatically resized
-    [titleLabel sizeToFit];
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-	
-    tempView.url = coordinate.url;
-	[tempView addSubview:titleLabel];
-	[tempView addSubview:pointView];
-	[pointView release];
-	[titleLabel release];
-    tempView.userInteractionEnabled = YES;
-    
-	return [tempView autorelease];
 }
 
 #pragma mark -
@@ -450,7 +408,7 @@
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"extern_url"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"extern_url"];
 }
 
 /*
@@ -516,7 +474,7 @@
     viewObject.transform = tr; // set current transform
     CGRectMake(0, 0, 320, 480);
     [viewObject setCenter:CGPointMake(240, 160)];
-    _menuButton.frame =  CGRectMake(190, 0, 130, 30);
+    _menuButton.frame = CGRectMake(190, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
     maxRadiusLabel.frame= CGRectMake(158, 25, 30, 12);
 }
@@ -527,7 +485,7 @@
  *
  ***/
 - (void)initControls{
-    _menuButton = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
+    _menuButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
     CGRect buttonFrame;
     CGRect sliderFrame;
@@ -539,7 +497,7 @@
     _menuButton.alpha = 0.65;
     [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
     
-    _slider = [[UISlider alloc]initWithFrame:sliderFrame];
+    _slider = [[UISlider alloc] initWithFrame:sliderFrame];
     _slider.alpha = 0.7;
     [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     _slider.hidden = YES;
@@ -551,33 +509,75 @@
     _valueLabel.backgroundColor = [UIColor blackColor];
     _valueLabel.textColor= [UIColor whiteColor];
     _valueLabel.font = [UIFont systemFontOfSize:10.0];
-    _valueLabel.textAlignment= NSTextAlignmentCenter;
+    _valueLabel.textAlignment = NSTextAlignmentCenter;
     
-    nordLabel = [[UILabel alloc]initWithFrame:CGRectMake(28, 2, 10, 10)];
+    nordLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
     nordLabel.backgroundColor = [UIColor blackColor];
     nordLabel.textColor= [UIColor whiteColor];
     nordLabel.font = [UIFont systemFontOfSize:8.0];
-    nordLabel.textAlignment= NSTextAlignmentCenter;
+    nordLabel.textAlignment = NSTextAlignmentCenter;
     nordLabel.text = @"N";
     nordLabel.alpha = 0.8;
 	
-    maxRadiusLabel = [[UILabel alloc]initWithFrame:CGRectMake(158, 25, 30, 12)];
+    maxRadiusLabel = [[UILabel alloc] initWithFrame:CGRectMake(158, 25, 30, 12)];
     maxRadiusLabel.backgroundColor = [UIColor blackColor];
     maxRadiusLabel.textColor= [UIColor whiteColor];
     maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
-    maxRadiusLabel.textAlignment= NSTextAlignmentCenter;
+    maxRadiusLabel.textAlignment = NSTextAlignmentCenter;
     maxRadiusLabel.text = @"80 km";
     maxRadiusLabel.hidden = YES;
     
     float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
-    if(radius <= 0 || radius > 100){
+    if (radius <= 0 || radius > 100) {
         _slider.value = 5.0;
         _valueLabel.text= @"5.0 km";
-    }else{
+    } else {
         _slider.value = radius;
         NSLog(@"RADIUS VALUE: %f", radius);
         _valueLabel.text= [NSString stringWithFormat:@"%.2f km",radius];
     }
+}
+
+/***
+ *
+ *  Marker image view at located positions of active sources
+ *  @param coordinate
+ *
+ ***/
+
+#define BOX_WIDTH 150
+#define BOX_HEIGHT 100
+- (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
+	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
+	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
+	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    //tempView.backgroundColor = [UIColor grayColor];
+	if([coordinate.source isEqualToString:@"Wikipedia"]|| [coordinate.source isEqualToString:@"Mixare"]) {
+		pointView.image = [UIImage imageNamed:@"circle.png"];
+	} else if([coordinate.source isEqualToString:@"Twitter"]){
+        pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
+	} else if([coordinate.source isEqualToString:@"Buzz"]){
+        pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
+	}
+	
+	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
+	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
+	titleLabel.textColor = [UIColor whiteColor];
+	titleLabel.textAlignment = NSTextAlignmentCenter;
+	titleLabel.text = coordinate.title;
+    //Markers get automatically resized
+    [titleLabel sizeToFit];
+	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
+	
+    tempView.url = coordinate.url;
+	[tempView addSubview:titleLabel];
+	[tempView addSubview:pointView];
+	[pointView release];
+	[titleLabel release];
+    tempView.userInteractionEnabled = YES;
+    
+	return [tempView autorelease];
 }
 
 - (void)dealloc {
@@ -592,9 +592,9 @@
  *
  ***/
 - (void)firstBootLicenseText {
-    NSString* licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLaunch"];
-    if([licenseText isEqualToString:@""] || licenseText ==nil ) {
-        UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"License",nil)message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+    NSString *licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLaunch"];
+    if ([licenseText isEqualToString:@""] || licenseText == nil) {
+        UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"License",nil) message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
         [addAlert show];
         [addAlert release];
         [[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"mixaresFirstLaunch"];

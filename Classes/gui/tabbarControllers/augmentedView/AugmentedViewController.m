@@ -88,7 +88,7 @@
     [self.view addSubview:radarViewPort];
 }
 
-- (void)setUpdateFrequency:(double)newUpdateFrequency {
+- (void)setsUpdateFrequency:(double)newUpdateFrequency {
 	updateFrequency = newUpdateFrequency;
 	if (!_updateTimer) return;
 	[_updateTimer invalidate];
@@ -356,7 +356,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     if (radius <= 0 || radius > 100) {
         radius = 5.0;
     }
-    
     radarView.pois = radarPointValues;
     radarView.radius = radius;
     [radarView setNeedsDisplay];
@@ -374,12 +373,12 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
         }
         
     }
-    int gradToRotate= newHeading.trueHeading-90-22.5;
+    int gradToRotate = newHeading.trueHeading - 90 - 22.5;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
-        gradToRotate+=90;
+        gradToRotate += 90;
     }
-    if (gradToRotate <0) {
-        gradToRotate= 360+gradToRotate;
+    if (gradToRotate < 0) {
+        gradToRotate = 360 + gradToRotate;
     }
 	radarViewPort.referenceAngle = gradToRotate;
     [radarViewPort setNeedsDisplay];
@@ -391,12 +390,10 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 }
 
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager*)manager {
-	
 	if (self.locationDelegate && [self.locationDelegate respondsToSelector:@selector(locationManagerShouldDisplayHeadingCalibration:)]) {
 		//forward the call.
 		return [self.locationDelegate locationManagerShouldDisplayHeadingCalibration:manager];
 	}
-	
 	return YES;
 }
 
@@ -437,7 +434,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
 	// Release any cached data, images, etc that aren't in use.
 }
 

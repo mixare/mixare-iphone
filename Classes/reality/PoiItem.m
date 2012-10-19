@@ -21,16 +21,14 @@
 
 @synthesize radialDistance, inclination, azimuth;
 
-@synthesize title  , subtitle , source= _source , url = _url, radarPos = _radarPos;
+@synthesize title, subtitle, source = _source, url = _url, radarPos = _radarPos;
 
 + (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
 	PoiItem *newCoordinate = [[PoiItem alloc] init];
 	newCoordinate.radialDistance = newRadialDistance;
 	newCoordinate.inclination = newInclination;
 	newCoordinate.azimuth = newAzimuth;
-	
 	newCoordinate.title = @"";
-	
 	return [newCoordinate autorelease];
 }
 
@@ -48,7 +46,6 @@
 
 - (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate {
     if (self == otherCoordinate) return YES;
-    
 	BOOL equal = self.radialDistance == otherCoordinate.radialDistance;
 	equal = equal && self.inclination == otherCoordinate.inclination;
 	equal = equal && self.azimuth == otherCoordinate.azimuth;
@@ -56,7 +53,6 @@
 	if ((self.title && otherCoordinate.title) || (self.title && !otherCoordinate.title) || (!self.title && otherCoordinate.title)) {
 		equal = equal && [self.title isEqualToString:otherCoordinate.title];
 	}
-	
 	return equal;
 }
 
