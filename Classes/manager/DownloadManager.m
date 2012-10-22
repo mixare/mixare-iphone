@@ -34,14 +34,20 @@
     return self;
 }
 
-- (void)loadCurrentLocation:(CLLocation*)loc currentRadius:(float)rad {
-    currentLocation = loc;
-    currentRadius = rad;
+- (BOOL)dataInputChanged:(NSMutableArray*)datas currentRadius:(float)rad {
+    if (![datas isEqual:lastDownloadedSources] || rad != lastDownloadedRadius) {
+        return YES;
+    }
+    return NO;
 }
 
-- (void)download:(NSMutableArray*)datas {
-    for (DataSource* data in datas) {
-        [DataConvertor convertData:data currentLocation:currentLocation currentRadius:currentRadius];
+- (void)download:(NSMutableArray*)datas currentLocation:(CLLocation*)loc currentRadius:(float)rad {
+    if ([self dataInputChanged:datas currentRadius:rad]) {
+        for (DataSource* data in datas) {
+            [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
+        }
+        lastDownloadedSources = datas;
+        lastDownloadedRadius = rad;
     }
 }
 

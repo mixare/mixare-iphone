@@ -54,6 +54,11 @@
     return sources;
 }
 
+- (BOOL)madeChanges {
+    
+    return YES;
+}
+
 - (void)dealloc {
     [super dealloc];
 }

@@ -76,8 +76,8 @@
     NSLog(@"STARTING");
 	[self initManagers];
     [self refresh];
-    //[self iniARView]; Temporary start with menu
-    [self openMenu];
+    [self iniARView]; 
+    //[self openMenu]; Start with ARview instead of menu
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -126,8 +126,7 @@
     if (_slider != nil) {
         radius = _slider.value;
     }
-    [_downloadManager loadCurrentLocation:_locManager.location currentRadius:radius];
-    [_downloadManager download:[_dataSourceManager getActivatedSources]];
+    [_downloadManager download:[_dataSourceManager getActivatedSources] currentLocation:_locManager.location currentRadius:radius];
 }
 
 /***

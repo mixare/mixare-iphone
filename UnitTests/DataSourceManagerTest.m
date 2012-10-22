@@ -61,4 +61,16 @@
     }
 }
 
+- (void)testArrayCompare {
+    NSMutableArray *array1 = [[NSMutableArray alloc] init];
+    NSMutableArray *array2 = [[NSMutableArray alloc] init];
+    [array1 addObject:@"1"];
+    [array1 addObject:@"0"];
+    [array1 addObject:@"0"];
+    [array2 addObject:@"1"];
+    [array2 addObject:@"0"];
+    [array2 addObject:@"0"];
+    STAssertEqualObjects(array1, array2, @"Not the same");
+}
+
 @end
