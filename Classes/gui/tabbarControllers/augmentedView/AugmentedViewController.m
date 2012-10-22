@@ -1,22 +1,23 @@
-/* Copyright (C) 2010- Peer internet solutions
- * 
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ *
  * This file is part of mixare.
- * 
- * This program is free software: you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version. 
- * 
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
- * for more details. 
- * 
- * You should have received a copy of the GNU General Public License along with 
- * this program. If not, see <http://www.gnu.org/licenses/> */
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 #import "AugmentedViewController.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 #define VIEWPORT_WIDTH_RADIANS 0.5
@@ -50,6 +51,8 @@
     //CGAffineTransformScale(self.cameraController.cameraViewTransform, 1.23f,  1.23f);
 	self.cameraController.showsCameraControls = NO;
 	self.cameraController.navigationBarHidden = YES;
+    [self.cameraController viewDidAppear:YES];
+    [self.cameraController loadView];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -62,7 +65,9 @@
 }
 
 - (void)closeCameraView {
+    [self.cameraController viewWillDisappear:YES];
 	[self.cameraController.view removeFromSuperview];
+    [self.cameraController.view release];
 	[self.cameraController release];
     self.cameraController = nil;
 }
@@ -79,10 +84,10 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
 	[ar_overlayView release];
-    //ar_overlayView = [[UIView alloc] initWithFrame:CGRectZero];
-	ar_overlayView = [[MarkerView alloc] initWithFrame:CGRectZero];
-	radarView = [[Radar alloc]initWithFrame:CGRectMake(2, 2, 61, 61)];	
-    radarViewPort = [[RadarViewPortView alloc]initWithFrame:CGRectMake(2, 2, 61, 61)];
+    ar_overlayView = [[UIView alloc] initWithFrame:CGRectZero];
+	//ar_overlayView = [[MarkerView alloc] initWithFrame:CGRectZero];
+	radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];	
+    radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
 	self.view = ar_overlayView;
     [self.view addSubview:radarView];
     [self.view addSubview:radarViewPort];
@@ -104,30 +109,22 @@
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate {
 	double centerAzimuth = self.centerCoordinate.azimuth;
 	double leftAzimuth = centerAzimuth - VIEWPORT_WIDTH_RADIANS / 2.0;
-	
 	if (leftAzimuth < 0.0) {
 		leftAzimuth = 2 * M_PI + leftAzimuth;
 	}
-	
 	double rightAzimuth = centerAzimuth + VIEWPORT_WIDTH_RADIANS / 2.0;
-	
 	if (rightAzimuth > 2 * M_PI) {
 		rightAzimuth = rightAzimuth - 2 * M_PI;
 	}
-	
 	BOOL result = (coordinate.azimuth > leftAzimuth && coordinate.azimuth < rightAzimuth);
-	
 	if (leftAzimuth > rightAzimuth) {
 		result = (coordinate.azimuth < rightAzimuth || coordinate.azimuth > leftAzimuth);
 	}
-	
 	double centerInclination = self.centerCoordinate.inclination;
 	double bottomInclination = centerInclination - VIEWPORT_HEIGHT_RADIANS / 2.0;
 	double topInclination = centerInclination + VIEWPORT_HEIGHT_RADIANS / 2.0;
-	
 	//check the height.
 	result = result && (coordinate.inclination > bottomInclination && coordinate.inclination < topInclination);
-	
 	//NSLog(@"coordinate: %@ result: %@", coordinate, result?@"YES":@"NO");
 	return result;
 }
@@ -142,7 +139,7 @@
 	}
 }
 
--(void)markerClick:(id)sender {
+- (void)markerClick:(id)sender {
     NSLog(@"MARKER");
 }
 
@@ -150,23 +147,18 @@
 	//start our heading readings and our accelerometer readings.
 	if (!self.locationManager) {
 		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-		
 		//we want every move.
 		self.locationManager.headingFilter = kCLHeadingFilterNone;
 		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-		
 		[self.locationManager startUpdatingHeading];
 	}
-	
 	//steal back the delegate.
 	self.locationManager.delegate = self;
-	
 	if (!self.accelerometerManager) {
 		self.accelerometerManager = [UIAccelerometer sharedAccelerometer];
 		self.accelerometerManager.updateInterval = 0.01;
 		self.accelerometerManager.delegate = self;
 	}
-	
 	if (!self.centerCoordinate) {
 		self.centerCoordinate = [PoiItem coordinateWithRadialDistance:0 inclination:0 azimuth:0];
 	}
@@ -191,7 +183,6 @@
 	double pointInclination = coordinate.inclination;
 	double topInclination = self.centerCoordinate.inclination - VIEWPORT_HEIGHT_RADIANS / 2.0;
 	point.y = realityView.frame.size.height - ((pointInclination - topInclination) / VIEWPORT_HEIGHT_RADIANS) * realityView.frame.size.height;
-    
 	return point;
 }
 
@@ -203,15 +194,11 @@
 
 #define kFilteringFactor 0.05
 UIAccelerationValue rollingX, rollingZ;
-
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration {
 	// -1 face down.
 	// 1 face up.
-	
 	//update the center coordinate.
-	
 	//NSLog(@"x: %f y: %f z: %f", acceleration.x, acceleration.y, acceleration.z);
-	
 	//this should be different based on orientation.
 	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
@@ -229,7 +216,6 @@ UIAccelerationValue rollingX, rollingZ;
 	} else if (rollingX >= 0) {
 		self.centerCoordinate.inclination = 3 * M_PI/2.0;
 	}
-	
 	if (self.accelerometerDelegate && [self.accelerometerDelegate respondsToSelector:@selector(accelerometer:didAccelerate:)]) {
 		//forward the acceleromter.
 		[self.accelerometerDelegate accelerometer:accelerometer didAccelerate:acceleration];
@@ -249,17 +235,17 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (void)refresh:(NSMutableArray*)dataSources {
     [ar_coordinates removeAllObjects];
 	[ar_coordinateViews removeAllObjects];
-    for (UIView * view in ar_overlayView.subviews){
+    for (UIView *view in ar_overlayView.subviews) {
         [view removeFromSuperview];
     }
-    for (DataSource* data in dataSources) {
+    for (DataSource *data in dataSources) {
         [self addPoiItemsFromDataSource:data];
     }
 }
 
-- (void)addPoiItemsFromDataSource:(DataSource *)data{
-	if(data.positions != nil){
-		for(Position *pos in data.positions){
+- (void)addPoiItemsFromDataSource:(DataSource *)data {
+	if (data.positions != nil) {
+		for (Position *pos in data.positions) {
             [pos.poiItem setSource:data.title];
             [self addCoordinate:pos.poiItem animated:NO];
 		}
@@ -299,7 +285,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (void)removeCoordinates:(NSMutableArray*)coordinates {	
 	[ar_coordinates removeAllObjects];
 	[ar_coordinateViews removeAllObjects];
-    for (UIView * view in ar_overlayView.subviews){
+    for (UIView *view in ar_overlayView.subviews) {
         [view removeFromSuperview];
     }
 }
@@ -310,7 +296,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 		return;
 	}
 	int index = 0;
-    NSMutableArray * radarPointValues = [[NSMutableArray alloc] initWithCapacity:[ar_coordinates count]];
+    NSMutableArray *radarPointValues = [[NSMutableArray alloc] initWithCapacity:[ar_coordinates count]];
 	for (PoiItem *item in ar_coordinates) {
 		MarkerView *viewToDraw = [ar_coordinateViews objectAtIndex:index];
 		if ([self viewportContainsCoordinate:item]) {
@@ -332,8 +318,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 				transform.m34 = 1.0 / 300.0;
 				double itemAzimuth = item.azimuth;
 				double centerAzimuth = self.centerCoordinate.azimuth;
-				if (itemAzimuth - centerAzimuth > M_PI) centerAzimuth += 2*M_PI;
-				if (itemAzimuth - centerAzimuth < -M_PI) itemAzimuth += 2*M_PI;
+				if (itemAzimuth - centerAzimuth > M_PI) centerAzimuth += 2 * M_PI;
+				if (itemAzimuth - centerAzimuth < -M_PI) itemAzimuth += 2 * M_PI;
 				
 				double angleDifference = itemAzimuth - centerAzimuth;
 				transform = CATransform3DRotate(transform, self.maximumRotationAngle * angleDifference / (VIEWPORT_HEIGHT_RADIANS / 2.0) , 0, 1, 0);
@@ -369,9 +355,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
             self.centerCoordinate.azimuth += (M_PI/2);
         } else {
             self.centerCoordinate.azimuth = fmod(self.centerCoordinate.azimuth + (M_PI/2),360);
-            
         }
-        
     }
     int gradToRotate = newHeading.trueHeading - 90 - 22.5;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {

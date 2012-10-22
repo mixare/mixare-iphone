@@ -91,7 +91,6 @@
 
 - (void)buttonClick:(id)sender {
     UIView *viewToRemove = (UIView*)[sender superview];
-    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5]; 
     [UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self.superview cache:YES];

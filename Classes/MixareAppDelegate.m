@@ -149,7 +149,7 @@
  *  @param new location
  *  @param old location
  *
- ***/
+ **
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
 	if(augViewController != nil){
 		CLLocation *newCenter = _locManager.location;
@@ -159,7 +159,7 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location manager" message:@"Your Location changed for 3 meters "  delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
 	[alert show];
 	//[alert release];
-}
+}*/
 
 /***
  *
@@ -176,7 +176,7 @@
  *  Initialize ARView
  *
  ***/
-- (void)iniARView{
+- (void)iniARView {
     if (augViewController == nil) {
         augViewController = [[AugmentedGeoViewController alloc] init];
     }
@@ -201,6 +201,19 @@
 
 /***
  *
+ *  Close ARView
+ *
+ ***/
+- (void)closeARView {
+    [augViewController closeCameraView];
+    [augViewController.view removeFromSuperview];
+    [augViewController release];
+    augViewController = nil;
+    window.rootViewController = nil;
+}
+
+/***
+ *
  *  Response when radius value has been changed
  *
  ***/
@@ -208,8 +221,7 @@
 	NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
-    [augViewController closeCameraView];
-    [augViewController release];
+    [self closeARView];
 	[self refresh];
     [self iniARView];
 	NSLog(@"POIS CHANGED");
@@ -238,11 +250,9 @@
  *
  ***/
 - (void)openMenu {
-    [augViewController closeCameraView];
     [_menuButton removeFromSuperview];
     [_menuButton release];
-    [augViewController.view removeFromSuperview];
-    [augViewController release];
+    [self closeARView];
     _tabBarController.selectedIndex = 1;
     [self openTabSources];
     [UIApplication sharedApplication].statusBarHidden = NO;
@@ -280,7 +290,6 @@
         [augViewController.locationManager stopUpdatingLocation];
         [_locManager stopUpdatingLocation];
     }
-    
     switch (tabBarController.selectedIndex) {
         case 0:
             NSLog(@"Opened camera tab");
@@ -432,7 +441,7 @@
  *  @param notification
  *
  ***/
-- (void)didRotate:(NSNotification *)notification{
+- (void)didRotate:(NSNotification *)notification {
     //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
     //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
@@ -469,7 +478,7 @@
  *  @param viewObject
  *
  ***/
-- (void)setViewToPortrait:(UIView*)viewObject{
+- (void)setViewToPortrait:(UIView*)viewObject {
     CGAffineTransform tr = viewObject.transform; // get current transform (portrait)
     tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
     viewObject.transform = tr; // set current transform
@@ -485,7 +494,7 @@
  *  Initialize UI controls
  *
  ***/
-- (void)initControls{
+- (void)initControls {
     _menuButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
     CGRect buttonFrame;
@@ -508,13 +517,13 @@
     
     _valueLabel = [[UILabel alloc] initWithFrame:valueFrame];
     _valueLabel.backgroundColor = [UIColor blackColor];
-    _valueLabel.textColor= [UIColor whiteColor];
+    _valueLabel.textColor = [UIColor whiteColor];
     _valueLabel.font = [UIFont systemFontOfSize:10.0];
     _valueLabel.textAlignment = NSTextAlignmentCenter;
     
     nordLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
     nordLabel.backgroundColor = [UIColor blackColor];
-    nordLabel.textColor= [UIColor whiteColor];
+    nordLabel.textColor = [UIColor whiteColor];
     nordLabel.font = [UIFont systemFontOfSize:8.0];
     nordLabel.textAlignment = NSTextAlignmentCenter;
     nordLabel.text = @"N";
@@ -522,7 +531,7 @@
 	
     maxRadiusLabel = [[UILabel alloc] initWithFrame:CGRectMake(158, 25, 30, 12)];
     maxRadiusLabel.backgroundColor = [UIColor blackColor];
-    maxRadiusLabel.textColor= [UIColor whiteColor];
+    maxRadiusLabel.textColor = [UIColor whiteColor];
     maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
     maxRadiusLabel.textAlignment = NSTextAlignmentCenter;
     maxRadiusLabel.text = @"80 km";
@@ -535,7 +544,7 @@
     } else {
         _slider.value = radius;
         NSLog(@"RADIUS VALUE: %f", radius);
-        _valueLabel.text= [NSString stringWithFormat:@"%.2f km",radius];
+        _valueLabel.text= [NSString stringWithFormat:@"%.2f km", radius];
     }
 }
 
@@ -553,31 +562,28 @@
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     //tempView.backgroundColor = [UIColor grayColor];
-	if([coordinate.source isEqualToString:@"Wikipedia"]|| [coordinate.source isEqualToString:@"Mixare"]) {
+	if ([coordinate.source isEqualToString:@"Wikipedia"] || [coordinate.source isEqualToString:@"Mixare"]) {
 		pointView.image = [UIImage imageNamed:@"circle.png"];
-	} else if([coordinate.source isEqualToString:@"Twitter"]){
+	} else if ([coordinate.source isEqualToString:@"Twitter"]) {
         pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
-	} else if([coordinate.source isEqualToString:@"Buzz"]){
+	} else if ([coordinate.source isEqualToString:@"Buzz"]) {
         pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
 	}
-	
 	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0 , BOX_WIDTH, 20.0)];
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0, BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
 	titleLabel.text = coordinate.title;
     //Markers get automatically resized
     [titleLabel sizeToFit];
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0,  pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-	
+	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
     tempView.url = coordinate.url;
 	[tempView addSubview:titleLabel];
 	[tempView addSubview:pointView];
 	[pointView release];
 	[titleLabel release];
     tempView.userInteractionEnabled = YES;
-    
 	return [tempView autorelease];
 }
 

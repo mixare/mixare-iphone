@@ -22,13 +22,13 @@
 
 
 #pragma mark WebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView*)webView{
+- (void)webViewDidStartLoad:(UIWebView*)webView {
     loadView.center = _webView.center;
     [_webView addSubview:loadView];
 }
 
 //When the webpage has been loaded successfully the loading view will be removed
-- (void)webViewDidFinishLoad:(UIWebView*)webView{
+- (void)webViewDidFinishLoad:(UIWebView*)webView {
     [loadView removeFromSuperview];
 }
 
@@ -38,10 +38,8 @@
     [super viewDidLoad];
 	//Create a URL object.
 	NSURL *url = [NSURL URLWithString:_url];
-	
 	//URL Requst Object
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-	
 	//Load the request in the UIWebView.
 	[_webView loadRequest:requestObj];
 }

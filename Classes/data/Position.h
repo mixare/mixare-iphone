@@ -30,8 +30,8 @@
     NSString *title;
     NSString *summary;
     NSString *url;
-    CGFloat latitude;
-    CGFloat longitude;
+    float latitude;
+    float longitude;
     CGFloat altitude;
     MapViewAnnotation *mapViewAnnotation;
     PhysicalPlace *poiItem;
@@ -43,6 +43,6 @@
 @property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
 @property (nonatomic, readonly) PhysicalPlace* poiItem;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(CGFloat)lat withLongitude:(CGFloat)lon withAltitude:(CGFloat)alt;
+- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt;
 
 @end
