@@ -283,7 +283,8 @@
  *  @param viewController
  *
  ***/
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {    
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    [self refresh]; //download new data
     if (tabBarController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
@@ -324,7 +325,6 @@
 - (void)openTabCamera {
     notificationView.center = window.center;
     [window addSubview:notificationView];
-    [self refresh]; //download new data
     [self iniARView];
     [augViewController startListening];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];

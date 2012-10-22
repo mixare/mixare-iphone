@@ -43,6 +43,7 @@
 
 - (void)download:(NSMutableArray*)datas currentLocation:(CLLocation*)loc currentRadius:(float)rad {
     if ([self dataInputChanged:datas currentRadius:rad]) {
+        [lastDownloadedSources removeAllObjects];
         for (DataSource* data in datas) {
             [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
         }

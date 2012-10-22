@@ -54,6 +54,8 @@
 
 - (void)dealloc {
     [super dealloc];
+    [mapViewAnnotation release];
+    [poiItem release];
 }
 
 @end
