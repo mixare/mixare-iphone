@@ -58,7 +58,6 @@
     NSString *URLString = [url absoluteString];
     [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-	[self refresh];
     [self openMenu];
     return YES;
 }
@@ -75,7 +74,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"STARTING");
 	[self initManagers];
-    [self refresh];
     [self iniARView]; 
     //[self openMenu]; Start with ARview instead of menu
     beforeWasLandscape = NO;
@@ -179,6 +177,8 @@
     if (augViewController == nil) {
         augViewController = [[AugmentedGeoViewController alloc] init];
     }
+    [self initControls];
+    [self refresh];
 	augViewController.delegate = self;
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
@@ -187,7 +187,6 @@
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
     augViewController.centerLocation = _locManager.location;
-    [self initControls];
     [notificationView removeFromSuperview];
     [augViewController.view addSubview:_menuButton];
     [augViewController.view addSubview:_slider];
@@ -284,11 +283,11 @@
  *
  ***/
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    [self refresh]; //download new data
     if (tabBarController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
         [_locManager stopUpdatingLocation];
+        [self refresh]; //download new data
     }
     switch (tabBarController.selectedIndex) {
         case 0:
@@ -326,7 +325,6 @@
     notificationView.center = window.center;
     [window addSubview:notificationView];
     [self iniARView];
-    [augViewController startListening];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }

@@ -53,12 +53,12 @@
 - (void)refreshPositions:(NSMutableArray*)results {
     [positions removeAllObjects];
     for (NSDictionary *poi in results) {
-        CGFloat alt = [[poi valueForKey:@"alt"]floatValue];
+        CGFloat alt = [[poi valueForKey:@"alt"] floatValue];
         /*if (alt == 0.0) {
             alt = _locationManager.location.altitude+50;
         }*/
         
-        Position* newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:[[poi valueForKey:@"lat"] floatValue] withLongitude:[[poi valueForKey:@"lon"] floatValue] withAltitude:alt];
+        Position* newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:[[poi valueForKey:@"lat"] floatValue] withLongitude:[[poi valueForKey:@"lon"] floatValue] withAltitude:alt withSource:title];
         
         [positions addObject:newPosition];
 

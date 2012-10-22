@@ -26,9 +26,9 @@
 
 @implementation Position
 
-@synthesize mapViewAnnotation, poiItem, title, summary, url;
+@synthesize mapViewAnnotation, poiItem, title, summary, url, source;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt {
+- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(NSString*)sour {
     self = [super init];
     if(self) {
         title = tit;
@@ -37,6 +37,7 @@
         latitude = lat;
         longitude = lon;
         altitude = alt;
+        source = sour;
         [self initMarkerAndMapAnnotation];
     }
     return self;
@@ -50,6 +51,7 @@
     poiItem = [PhysicalPlace coordinateWithLocation:tempLocation];
     [poiItem setTitle:title];
     [poiItem setUrl:url];
+    [poiItem setSource:source];
 }
 
 - (void)dealloc {

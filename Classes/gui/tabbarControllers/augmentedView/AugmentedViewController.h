@@ -73,7 +73,7 @@
 - (void)removeCoordinate:(PoiItem*)coordinate;
 - (void)removeCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
 - (CGPoint)rotatePointAboutOrigin:(CGPoint)point angle:(float)angle;
-- (void)removeCoordinates:(NSArray*)coordinates;
+- (void)removeCoordinates;
 - (id)initWithLocationManager:(CLLocationManager*)manager;
 - (void)startListening;
 - (void)stopListening;
@@ -83,13 +83,10 @@
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
 @property (nonatomic, retain) UIImagePickerController *cameraController;
-
 @property (nonatomic, assign) NSObject<ARViewDelegate> *delegate;
 @property (nonatomic, assign) NSObject<CLLocationManagerDelegate> *locationDelegate;
 @property (nonatomic, assign) NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
-
 @property (retain) PoiItem *centerCoordinate;
-
 @property (nonatomic, retain) UIAccelerometer *accelerometerManager;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 

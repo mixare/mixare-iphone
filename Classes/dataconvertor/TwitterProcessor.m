@@ -30,7 +30,7 @@
 
 - (NSMutableArray*)convert:(NSString*)dataString {
     // TODO REFIX
-    JsonHandler *jHandler = [[JsonHandler alloc] init];
+    JsonHandler *jHandler = [[[JsonHandler alloc] init] autorelease];
     return [jHandler processTwitterJSONData:dataString];
 }
 

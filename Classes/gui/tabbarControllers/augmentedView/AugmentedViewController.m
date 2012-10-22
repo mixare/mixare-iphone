@@ -51,7 +51,6 @@
     //CGAffineTransformScale(self.cameraController.cameraViewTransform, 1.23f,  1.23f);
 	self.cameraController.showsCameraControls = NO;
 	self.cameraController.navigationBarHidden = YES;
-    [self.cameraController viewDidAppear:YES];
     [self.cameraController loadView];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
@@ -70,6 +69,7 @@
     [self.cameraController.view release];
 	[self.cameraController release];
     self.cameraController = nil;
+    [self removeCoordinates];
 }
 
 - (id)initWithLocationManager:(CLLocationManager*)manager {
@@ -104,7 +104,6 @@
 												   userInfo:nil
 													repeats:YES] retain];
 }
-
 
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate {
 	double centerAzimuth = self.centerCoordinate.azimuth;
@@ -233,11 +232,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 }
 
 - (void)refresh:(NSMutableArray*)dataSources {
-    [ar_coordinates removeAllObjects];
-	[ar_coordinateViews removeAllObjects];
-    for (UIView *view in ar_overlayView.subviews) {
-        [view removeFromSuperview];
-    }
+    [self removeCoordinates];
     for (DataSource *data in dataSources) {
         [self addPoiItemsFromDataSource:data];
     }
@@ -246,7 +241,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (void)addPoiItemsFromDataSource:(DataSource *)data {
 	if (data.positions != nil) {
 		for (Position *pos in data.positions) {
-            [pos.poiItem setSource:data.title];
             [self addCoordinate:pos.poiItem animated:NO];
 		}
 	}
@@ -282,12 +276,12 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	[ar_coordinates removeObject:coordinate];
 }
 
-- (void)removeCoordinates:(NSMutableArray*)coordinates {	
+- (void)removeCoordinates {	
 	[ar_coordinates removeAllObjects];
 	[ar_coordinateViews removeAllObjects];
     for (UIView *view in ar_overlayView.subviews) {
         [view removeFromSuperview];
-    }
+    };
 }
 
 - (void)updateLocations:(NSTimer*)timer {

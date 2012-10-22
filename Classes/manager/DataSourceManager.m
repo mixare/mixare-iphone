@@ -46,7 +46,7 @@
 
 - (NSMutableArray*)getActivatedSources {
     NSMutableArray *sources = [[NSMutableArray alloc] init];
-    for(DataSource *source in dataSources){
+    for (DataSource *source in dataSources) {
         if (source.activated) {
             [sources addObject:source];
         }
