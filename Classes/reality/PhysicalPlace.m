@@ -23,6 +23,21 @@
 
 @synthesize geoLocation;
 
+- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location {
+    [super init];
+	geoLocation = location;
+    title = @"";
+	return self;
+}
+
+- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
+    [super init];
+    geoLocation = location;
+	title = @"";
+	[self calibrateUsingOrigin:origin];
+	return self;
+}
+
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second {
 	float longitudinalDifference = second.longitude - first.longitude;
 	float latitudinalDifference = second.latitude - first.latitude;
@@ -41,21 +56,6 @@
 	if (origin.altitude > self.geoLocation.altitude) angle = -angle;
 	self.inclination = angle;
 	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
-}
-
-- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location {
-    [super init];
-	geoLocation = location;
-    title = @"";
-	return self;
-}
-
-- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
-    [super init];
-    geoLocation = location;
-	title = @"";
-	[self calibrateUsingOrigin:origin];
-	return self;
 }
 
 @end

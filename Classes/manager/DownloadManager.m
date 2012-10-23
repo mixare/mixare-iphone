@@ -57,6 +57,7 @@
             [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
   
         }
+        [downloadArray release];
         lastDownloadedRadius = rad;
         [lastDownloadedSources removeAllObjects];
         lastDownloadedSources = datas;

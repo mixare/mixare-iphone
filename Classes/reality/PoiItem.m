@@ -16,13 +16,12 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
-#import "PoiItem.h"
 
+#import "PoiItem.h"
 
 @implementation PoiItem
 
 @synthesize radialDistance, inclination, azimuth;
-
 @synthesize title, subtitle, source = _source, url = _url, radarPos = _radarPos;
 
 - (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {

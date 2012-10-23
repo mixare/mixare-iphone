@@ -162,40 +162,6 @@
 
 /***
  *
- *  Open Scanview
- *
- **
-- (void)openScanView {
-    NSLog(@"Scan barcode");
-    ZBarReaderViewController *reader = [ZBarReaderViewController new];
-    reader.readerDelegate = self;
-    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
-    ZBarImageScanner *scanner = reader.scanner;
-    [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
-    [self presentModalViewController:reader animated:YES];
-    [reader release];
-}
-*/
-
-/***
- *
- *  Process scanned data
- *
- **
-- (void) imagePickerController:(UIImagePickerController *) reader didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
-    ZBarSymbol *symbol = nil;
-    for (symbol in results) {
-        break;
-    }
-    sourceURL = symbol.data;
-    [reader dismissModalViewControllerAnimated:YES];
-    [dataSourceArray addObject:sourceURL];
-    [self.tableView reloadData];
-}*/
-
-/***
- *
  *  Called after the view controller's view is released and set to nil.
  *  For example, a memory warning which causes the view to be purged. Not invoked as a result of -dealloc.
  *  So release any properties that are loaded in viewDidLoad or can be recreated lazily.
