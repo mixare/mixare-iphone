@@ -72,6 +72,12 @@
     }
     [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
     [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
+    for (DataSource *data in [dataSourceManager getActivatedSources]) {
+        if ([data.title isEqualToString:@"Twitter"]) {
+            data.activated = YES;
+        }
+    }
+    [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
     [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
 }
 

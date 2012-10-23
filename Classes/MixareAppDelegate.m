@@ -140,25 +140,6 @@
 }
 
 /***
- *  
- *  Update location position
- *  @param location manager
- *  @param new location
- *  @param old location
- *
- **
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-	if(augViewController != nil){
-		CLLocation *newCenter = _locManager.location;
-		augViewController.centerLocation = newCenter;
-		[newCenter release];
-	}
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Location manager" message:@"Your Location changed for 3 meters "  delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-	[alert show];
-	//[alert release];
-}*/
-
-/***
  *
  *  Response after click at marker
  *
@@ -166,7 +147,6 @@
 - (void)markerClick:(id)sender{
     NSLog(@"MARKER");
 }
-
 
 /***
  *
@@ -543,45 +523,6 @@
         NSLog(@"RADIUS VALUE: %f", radius);
         _valueLabel.text= [NSString stringWithFormat:@"%.2f km", radius];
     }
-}
-
-/***
- *
- *  Marker image view at located positions of active sources
- *  @param coordinate
- *
- ***/
-
-#define BOX_WIDTH 150
-#define BOX_HEIGHT 100
-- (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
-	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
-	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    //tempView.backgroundColor = [UIColor grayColor];
-	if ([coordinate.source isEqualToString:@"Wikipedia"] || [coordinate.source isEqualToString:@"Mixare"]) {
-		pointView.image = [UIImage imageNamed:@"circle.png"];
-	} else if ([coordinate.source isEqualToString:@"Twitter"]) {
-        pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
-	} else if ([coordinate.source isEqualToString:@"Buzz"]) {
-        pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
-	}
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0, BOX_WIDTH, 20.0)];
-	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
-	titleLabel.textColor = [UIColor whiteColor];
-	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.text = coordinate.title;
-    //Markers get automatically resized
-    [titleLabel sizeToFit];
-	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-    tempView.url = coordinate.url;
-	[tempView addSubview:titleLabel];
-	[tempView addSubview:pointView];
-	[pointView release];
-	[titleLabel release];
-    tempView.userInteractionEnabled = YES;
-	return [tempView autorelease];
 }
 
 - (void)dealloc {

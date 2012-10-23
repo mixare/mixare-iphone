@@ -256,7 +256,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 		self.maximumScaleDistance = coordinate.radialDistance;
 	}
 	//message the delegate.
-	[ar_coordinateViews addObject:[self.delegate viewForCoordinate:coordinate]];
+	[ar_coordinateViews addObject:[self viewForCoordinate:coordinate]];
 }
 
 - (void)addCoordinates:(NSArray*)newCoordinates {
@@ -386,6 +386,45 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 		//forward the call.
 		return [self.locationDelegate locationManager:manager didFailWithError:error];
 	}
+}
+
+/***
+ *
+ *  Marker image view at located positions of active sources
+ *  @param coordinate
+ *
+ ***/
+
+#define BOX_WIDTH 150
+#define BOX_HEIGHT 100
+- (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
+	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
+	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
+	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    //tempView.backgroundColor = [UIColor grayColor];
+	if ([coordinate.source isEqualToString:@"Wikipedia"] || [coordinate.source isEqualToString:@"Mixare"]) {
+		pointView.image = [UIImage imageNamed:@"circle.png"];
+	} else if ([coordinate.source isEqualToString:@"Twitter"]) {
+        pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
+	} else if ([coordinate.source isEqualToString:@"Buzz"]) {
+        pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
+	}
+	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0, BOX_WIDTH, 20.0)];
+	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
+	titleLabel.textColor = [UIColor whiteColor];
+	titleLabel.textAlignment = NSTextAlignmentCenter;
+	titleLabel.text = coordinate.title;
+    //Markers get automatically resized
+    [titleLabel sizeToFit];
+	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
+    tempView.url = coordinate.url;
+	[tempView addSubview:titleLabel];
+	[tempView addSubview:pointView];
+	[pointView release];
+	[titleLabel release];
+    tempView.userInteractionEnabled = YES;
+	return [tempView autorelease];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
