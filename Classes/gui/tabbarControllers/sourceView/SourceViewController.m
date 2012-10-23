@@ -77,25 +77,10 @@
 
 /***
  *
- *  Alert dialog called when user is pressing the plus symbol on the top right of the navigationbar
- *
- ***/
-- (IBAction)addSource {
-    UIAlertView *addOptionAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add source",nil)
-                                                             message:NSLocalizedString(@"Choose an option to insert source", nil)
-                                                            delegate:self
-                                                   cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                   otherButtonTitles:NSLocalizedString(@"Insert link", nil), NSLocalizedString(@"Scan QR code", nil),       nil];
-    [addOptionAlert setTag:1];
-    [addOptionAlert show];
-}
-
-/***
- *
  *  Open an alert dialog to insert a custom data source by link
  *
  ***/
-- (void)insertLinkAlert {
+- (void)addSource {
     UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil)
                                                       message:NSLocalizedString(@"\n\n\n Insert your Source address",nil)
                                                      delegate:self
@@ -137,26 +122,9 @@
  *
  ***/
 - (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if ([alertView tag] == 1) {
-        // Alert dialog: Source options
-        if(buttonIndex == 0) {
-            NSLog(@"Canceled");
-        }
-        else if(buttonIndex == 1) {
-            [self insertLinkAlert];
-            NSLog(@"Insert link selected.");
-        }
-        else if(buttonIndex == 2) {
-            //[self openScanView];
-            NSLog(@"Scan QR code selected.");
-        }
-    } else if ([alertView tag] == 2) {
-        // Alert dialog: Insert link
-        if(buttonIndex == 1) {
-            //User pressed OK button
-            [dataSourceArray addObject:sourceURL];
-            [self.tableView reloadData];
-        }
+    if(buttonIndex == 1) {
+        [dataSourceArray addObject:sourceURL];
+        [self.tableView reloadData];
     }
 }
 
@@ -264,7 +232,7 @@
             [dataSourceArray removeObjectAtIndex:indexPath.row];
             [self.tableView reloadData];
         } else {
-            UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Not Allowed",nil) message:@"You can only delete own sources!" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+            UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Not Allowed",nil) message:@"You can only delete own sources!" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
             [addAlert show];
             [addAlert release];
         }
