@@ -51,7 +51,6 @@
     //CGAffineTransformScale(self.cameraController.cameraViewTransform, 1.23f,  1.23f);
 	self.cameraController.showsCameraControls = NO;
 	self.cameraController.navigationBarHidden = YES;
-    [self.cameraController loadView];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -159,7 +158,7 @@
 		self.accelerometerManager.delegate = self;
 	}
 	if (!self.centerCoordinate) {
-		self.centerCoordinate = [PoiItem coordinateWithRadialDistance:0 inclination:0 azimuth:0];
+		self.centerCoordinate = [[[PoiItem alloc] coordinateWithRadialDistance:0 inclination:0 azimuth:0] autorelease];
 	}
 }
 

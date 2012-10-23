@@ -32,9 +32,9 @@
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;
 
 //initializer returns a physicalplace with his location
-+ (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location;
+- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location;
 
 - (void)calibrateUsingOrigin:(CLLocation*)origin;
-+ (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin;
+- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin;
 
 @end

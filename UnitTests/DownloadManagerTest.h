@@ -24,7 +24,13 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DataSourceManager.h"
+#import "DownloadManager.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface DownloadManagerTest : SenTestCase
+@interface DownloadManagerTest : SenTestCase {
+    DataSourceManager *dataSourceManager;
+    CLLocationManager *locationManager;
+}
 
 @end

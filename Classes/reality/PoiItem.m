@@ -25,13 +25,13 @@
 
 @synthesize title, subtitle, source = _source, url = _url, radarPos = _radarPos;
 
-+ (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
-	PoiItem *newCoordinate = [[PoiItem alloc] init];
-	newCoordinate.radialDistance = newRadialDistance;
-	newCoordinate.inclination = newInclination;
-	newCoordinate.azimuth = newAzimuth;
-	newCoordinate.title = @"";
-	return [newCoordinate autorelease];
+- (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
+	[super init];
+	radialDistance = newRadialDistance;
+	inclination = newInclination;
+	azimuth = newAzimuth;
+	title = @"";
+	return self;
 }
 
 - (NSUInteger)hash{

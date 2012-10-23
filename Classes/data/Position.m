@@ -49,7 +49,7 @@
     [mapViewAnnotation setTitle:title];
     [mapViewAnnotation setSubTitle:summary];
     CLLocation *tempLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(latitude, longitude) altitude:altitude horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-    poiItem = [PhysicalPlace coordinateWithLocation:tempLocation];
+    poiItem = [[PhysicalPlace alloc] coordinateWithLocation:tempLocation];
     [poiItem setTitle:title];
     [poiItem setUrl:url];
     [poiItem setSource:source];

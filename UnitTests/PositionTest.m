@@ -29,23 +29,20 @@
 
 - (void)setUp {
     [super setUp];
-    // Set-up code here.
 }
 
 - (void)tearDown {
-    // Tear-down code here.
-    
     [super tearDown];
 }
 
 - (void)testCreatePosition {
-    Position *pos = [[Position alloc] initWithTitle:@"Groothandels" withSummary:@"Mooi" withUrl:@"http://www.finalist.nl" withLatitude:40 withLongitude:20 withAltitude:3.4];
+    Position *pos = [[Position alloc] initWithTitle:@"Groothandels" withSummary:@"Mooi" withUrl:@"http://www.finalist.nl" withLatitude:40 withLongitude:20 withAltitude:3.4 withSource:@"Wikipedia"];
     STAssertNotNil(pos, @"Not created");
     STAssertEqualObjects(pos.title, @"Groothandels", @"Not the same title");
 }
 
 - (void)testCreatedMarkers {
-    Position *pos = [[Position alloc] initWithTitle:@"Groothandels" withSummary:@"Mooi" withUrl:@"http://www.finalist.nl" withLatitude:40 withLongitude:20 withAltitude:3.4];
+    Position *pos = [[Position alloc] initWithTitle:@"Groothandels" withSummary:@"Mooi" withUrl:@"http://www.finalist.nl" withLatitude:40 withLongitude:20 withAltitude:3.4 withSource:@"Wikipedia"];
     STAssertNotNil(pos.poiItem, @"Poi Item not created");
     STAssertNotNil(pos.mapViewAnnotation, @"MapViewAnnotation not created");
     STAssertEqualObjects(pos.poiItem.title, pos.title, @"Not the same titles");

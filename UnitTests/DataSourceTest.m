@@ -30,13 +30,10 @@
 
 - (void)setUp {
     [super setUp];
-    // Set-up code here.
     location = [[[CLLocationManager alloc] init] location];
 }
 
 - (void)tearDown {
-    // Tear-down code here.
-    
     [super tearDown];
 }
 

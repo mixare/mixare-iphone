@@ -43,17 +43,19 @@
 	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
 }
 
-+ (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location {
-	PhysicalPlace *newCoordinate = [[PhysicalPlace alloc] init];
-	newCoordinate.geoLocation = location;
-	newCoordinate.title = @"";
-	return [newCoordinate autorelease];
+- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location {
+    [super init];
+	geoLocation = location;
+    title = @"";
+	return self;
 }
 
-+ (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
-	PhysicalPlace *newCoordinate = [PhysicalPlace coordinateWithLocation:location];
-	[newCoordinate calibrateUsingOrigin:origin];
-	return newCoordinate;
+- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
+    [super init];
+    geoLocation = location;
+	title = @"";
+	[self calibrateUsingOrigin:origin];
+	return self;
 }
 
 @end

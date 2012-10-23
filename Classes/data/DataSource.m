@@ -53,6 +53,8 @@
  ***/
 - (void)refreshPositions:(NSMutableArray*)results {
     [positions removeAllObjects];
+    [positions release];
+    positions = [[NSMutableArray alloc] init];
     for (NSDictionary *poi in results) {
         CGFloat alt = [[poi valueForKey:@"alt"] floatValue];
         /*if (alt == 0.0) {

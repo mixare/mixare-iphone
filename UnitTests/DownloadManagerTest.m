@@ -29,13 +29,50 @@
 
 - (void)setUp {
     [super setUp];
-    // Set-up code here.
+    dataSourceManager = [[DataSourceManager alloc] init];
+    locationManager = [[CLLocationManager alloc] init];
 }
 
 - (void)tearDown {
-    // Tear-down code here.
-    
     [super tearDown];
+}
+
+- (void)testDownloadData {
+    DownloadManager *downloadManager = [[DownloadManager alloc] init];
+    for (DataSource *data in [dataSourceManager getActivatedSources]) {
+        NSLog(@"Data positions without download: %d", data.positions.count);
+        BOOL check;
+        if (data.positions.count == 0) {
+            check = YES;
+        } else {
+            check = NO;
+        }
+        STAssertTrue(check, @"Positions should be 0");
+    }
+    [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
+    for (DataSource *data in [dataSourceManager getActivatedSources]) {
+        NSLog(@"Data positions after download: %d", data.positions.count);
+        BOOL check;
+        if (data.positions.count > 0) {
+            check = YES;
+        } else {
+            check = NO;
+        }
+        STAssertTrue(check, @"Positions should be filled");
+    }
+}
+
+- (void)testAfterDownloadReadData {
+    DownloadManager *downloadManager = [[DownloadManager alloc] init];
+    [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
+    for (DataSource *data in [dataSourceManager getActivatedSources]) {
+        if ([data.title isEqualToString:@"Twitter"]) {
+            data.activated = NO;
+        }
+    }
+    [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
+    [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
+    [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
 }
 
 @end

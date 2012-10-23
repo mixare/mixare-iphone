@@ -30,14 +30,11 @@
 
 - (void)setUp {
     [super setUp];
-    // Set-up code here.
     wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
     [wikipedia setActivated:YES];
 }
 
 - (void)tearDown {
-    // Tear-down code here.
-    
     [super tearDown];
 }
 
