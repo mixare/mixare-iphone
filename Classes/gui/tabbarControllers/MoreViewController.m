@@ -41,7 +41,7 @@
     [tabSwitch setTitle:NSLocalizedString(@"General Info", nil) forSegmentAtIndex:1];
 }
 
-- (IBAction)switchView:(id)sender {
+- (void)switchView:(id)sender {
     if (tabSwitch.selectedSegmentIndex == 1) {
         // licenseInfo part
         textView.hidden = YES;
@@ -53,7 +53,7 @@
     }
 }
 
-- (IBAction)buttonClick:(id)sender {
+- (void)buttonClick:(id)sender {
     //open the mixare webpage
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mixare.org"]];
 }

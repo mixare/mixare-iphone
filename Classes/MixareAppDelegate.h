@@ -30,7 +30,7 @@
 #import "MoreViewController.h"
 #import "SourceViewController.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
+@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate> {
     CLLocationManager *_locManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
@@ -54,24 +54,4 @@
     IBOutlet UIView *notificationView;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) CLLocationManager *locManager;
-@property (nonatomic, retain) DataSourceManager *dataSourceManager;
-@property (nonatomic, retain) DownloadManager *downloadManager;
-@property (nonatomic, retain) IBOutlet ListViewController *listViewController;
-@property (nonatomic, retain) IBOutlet MapViewController *mapViewController;
-@property (nonatomic, retain) IBOutlet UISlider * slider;
-@property (nonatomic, retain) IBOutlet UISegmentedControl *menuButton;
-@property (nonatomic, retain) IBOutlet MoreViewController *moreViewController;
-@property (nonatomic, retain) IBOutlet SourceViewController *sourceViewController;
-@property (nonatomic, retain) IBOutlet UILabel *valueLabel;
-
-
-- (void)iniARView;
-- (MarkerView*)viewForCoordinate:(PoiItem*)coordinate;
-- (void)refresh;
-- (void)initControls;
-- (void)setViewToLandscape:(UIView*)viewObject;
-- (void)setViewToPortrait:(UIView*)viewObject;
 @end

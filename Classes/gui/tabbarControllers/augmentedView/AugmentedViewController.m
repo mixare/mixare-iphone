@@ -32,7 +32,7 @@
 @synthesize minimumScaleFactor, maximumRotationAngle;
 @synthesize updateFrequency;
 @synthesize coordinates = ar_coordinates;
-@synthesize delegate, locationDelegate, accelerometerDelegate;
+@synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
 
 - (id)init {

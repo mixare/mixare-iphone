@@ -19,27 +19,9 @@
 
 #import "MixareAppDelegate.h"
 #define CAMERA_TRANSFORM 1.12412
-#import "SourceViewController.h"
-#import "reality/PhysicalPlace.h"
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
-
 @implementation MixareAppDelegate
-
-@synthesize locManager = _locManager;
-@synthesize dataSourceManager = _dataSourceManager;
-@synthesize downloadManager = _downloadManager;
-
-@synthesize window;
-@synthesize tabBarController = _tabBarController;
-@synthesize sourceViewController = _sourceViewController;
-@synthesize listViewController = _listViewController;
-@synthesize mapViewController = _mapViewController;
-@synthesize moreViewController = _moreViewController;
-
-@synthesize slider = _slider;
-@synthesize menuButton = _menuButton;
-@synthesize valueLabel = _valueLabel;
 
 /***
  *
@@ -159,7 +141,6 @@
     }
     [self initControls];
     [self refresh];
-	augViewController.delegate = self;
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
 	augViewController.rotateViewsBasedOnPerspective = YES;

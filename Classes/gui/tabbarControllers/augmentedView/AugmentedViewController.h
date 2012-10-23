@@ -23,19 +23,12 @@
 #import "Radar.h"
 #import "PoiItem.h"
 #import "RadarViewPortView.h"
-@protocol ARViewDelegate
-
-- (MarkerView *)viewForCoordinate:(PoiItem *)coordinate;
-
-@end
-
 
 @interface AugmentedViewController : UIViewController <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
 	UIAccelerometer *accelerometerManager;
 	PoiItem *centerCoordinate;
 	UIImagePickerController *cameraController;
-	NSObject<ARViewDelegate> *delegate;
 	NSObject<CLLocationManagerDelegate> *locationDelegate;
 	NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
 	BOOL scaleViewsBasedOnDistance;
@@ -83,7 +76,6 @@
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
 @property (nonatomic, retain) UIImagePickerController *cameraController;
-@property (nonatomic, assign) NSObject<ARViewDelegate> *delegate;
 @property (nonatomic, assign) NSObject<CLLocationManagerDelegate> *locationDelegate;
 @property (nonatomic, assign) NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
 @property (retain) PoiItem *centerCoordinate;
