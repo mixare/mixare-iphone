@@ -1,4 +1,5 @@
-/* Copyright (C) 2010- Peer internet solutions
+/*
+ * Copyright (C) 2010- Peer internet solutions
  *
  * This file is part of mixare.
  *
@@ -13,13 +14,13 @@
  * for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * this program. If not, see <http://www.gnu.org/licenses/> */
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 //
 //  Position.m
 //  Mixare
 //
 //  Created by Aswin Ly on 24-09-12.
-//  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
 #import "Position.h"

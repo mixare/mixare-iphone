@@ -19,7 +19,6 @@
 
 #import "XMLHandler.h"
 
-
 @implementation XMLHandler
 
 @end

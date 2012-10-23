@@ -17,16 +17,14 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  NotificationViewController.h
+//  DownloadManagerTest.h
 //  Mixare
 //
-//  Created by Obkircher Jakob on 06.12.10.
+//  Created by Aswin Ly on 23-10-12.
 //
 
-#import <UIKit/UIKit.h>
+#import <SenTestingKit/SenTestingKit.h>
 
+@interface DownloadManagerTest : SenTestCase
 
-@interface NotificationViewController : UIViewController {
-    IBOutlet UIActivityIndicatorView *indicator;
-}
 @end

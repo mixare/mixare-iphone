@@ -21,7 +21,6 @@
 //  Mixare
 //
 //  Created by Aswin Ly on 18-10-12.
-//  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
 #import "TwitterProcessorTest.h"

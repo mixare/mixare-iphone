@@ -15,12 +15,12 @@
  *
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>
- *///
+ */
+//
 //  DataSourceManagerTest.h
 //  Mixare
 //
 //  Created by Aswin Ly on 17-10-12.
-//  Copyright (c) 2012 Peer GmbH. All rights reserved.
 //
 
 #import <SenTestingKit/SenTestingKit.h>
