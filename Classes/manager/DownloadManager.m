@@ -33,21 +33,33 @@
     return self;
 }
 
-- (BOOL)dataInputChanged:(NSMutableArray*)datas currentRadius:(float)rad {
-    if (![datas isEqual:lastDownloadedSources] || rad != lastDownloadedRadius) {
+- (BOOL)radiusChanged:(float)rad {
+    if (rad != lastDownloadedRadius) {
+        return YES;
+    }
+    return NO;
+}
+
+- (BOOL)dataInputChanged:(NSMutableArray*)datas {
+    if (![datas isEqual:lastDownloadedSources]) {
         return YES;
     }
     return NO;
 }
 
 - (void)download:(NSMutableArray*)datas currentLocation:(CLLocation*)loc currentRadius:(float)rad {
-    if ([self dataInputChanged:datas currentRadius:rad]) {
-        [lastDownloadedSources removeAllObjects];
-        for (DataSource* data in datas) {
-            [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
+    if ([self dataInputChanged:datas] || [self radiusChanged:rad]) {
+        NSMutableArray *downloadArray = [[NSMutableArray alloc] initWithArray:datas];
+        if ([self dataInputChanged:datas]) {
+            [downloadArray removeObjectsInArray:lastDownloadedSources];
         }
-        lastDownloadedSources = datas;
+        for (DataSource* data in downloadArray) {
+            [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
+  
+        }
         lastDownloadedRadius = rad;
+        [lastDownloadedSources removeAllObjects];
+        lastDownloadedSources = datas;
     }
 }
 
