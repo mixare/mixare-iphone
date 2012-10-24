@@ -69,4 +69,29 @@
     STAssertEqualObjects(array1, array2, @"Not the same");
 }
 
+- (void)testWriteAndDeleteDataSource {
+    DataSourceManager *dataManager = [[DataSourceManager alloc] init];
+    dataManager.dataSources = [[NSMutableArray alloc] init];
+    DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+    DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    [dataManager.dataSources addObject:wikipedia];
+    [dataManager.dataSources addObject:twitter];
+    [dataManager writeDataSources];
+    NSArray *loadedData1 = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
+    NSLog(@"AMOUNT LOADED: %d", loadedData1.count);
+    BOOL check = NO;
+    if (loadedData1.count == 2) {
+        check = YES;
+    }
+    STAssertTrue(check, @"Loading failed");
+    check = NO;
+    [dataManager deleteDataSource:wikipedia];
+    NSArray *loadedData2 = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
+    NSLog(@"AMOUNT LOADED AFTER DELETE: %d", loadedData2.count);
+    if (loadedData2.count == 1) {
+        check = YES;
+    }
+    STAssertTrue(check, @"Loading failed");
+}
+
 @end

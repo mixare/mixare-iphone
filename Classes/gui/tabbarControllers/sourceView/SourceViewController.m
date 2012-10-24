@@ -42,13 +42,13 @@
 	return YES;
 }
 
-- (void)refresh:(NSMutableArray*)datas {
-    dataSources = datas;
+- (void)refresh:(DataSourceManager*)sourceManager {
+    dataSourceManager = sourceManager;
     if (dataSourceArray == nil) {
         dataSourceArray = [[NSMutableArray alloc] init];
     }
     [dataSourceArray removeAllObjects];
-    for (DataSource* data in datas) {
+    for (DataSource* data in dataSourceManager.dataSources) {
         [dataSourceArray addObject:data.title];
         NSLog(@"%@", data.title);
     }
@@ -56,7 +56,7 @@
 }
 
 - (DataSource*)findDataSourceByTitle:(NSString*)title {
-    for (DataSource* data in dataSources) {
+    for (DataSource* data in dataSourceManager.dataSources) {
         if ([data.title isEqualToString:title]) {
             return data;
         }
@@ -81,39 +81,36 @@
  *
  ***/
 - (void)addSource {
-    UIAlertView *addAlert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Add Source",nil)
-                                                      message:NSLocalizedString(@"\n\n\n Insert your Source address",nil)
+    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Source",nil)
+                                                      message:NSLocalizedString(@"Insert your Source address \n\n\n\n\n",nil)
                                                      delegate:self
                                             cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                             otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+
+    textField = [[UITextField alloc] init];
+    [textField setBackgroundColor:[UIColor whiteColor]];
+    textField.delegate = self;
+    textField.borderStyle = UITextBorderStyleLine;
+    textField.frame = CGRectMake(15, 75, 255, 30);
+    textField.font = [UIFont fontWithName:@"ArialMT" size:20];
+    textField.placeholder = NSLocalizedString(@"Title",nil);
+    textField.textAlignment = UITextAlignmentCenter;
+    textField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    [textField becomeFirstResponder];
+    [addAlert addSubview:textField];
     
-    CGRect frame = CGRectMake(0, 20, addAlert.frame.size.width, addAlert.frame.size.height);
-    addAlert.frame = frame;
-    UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
-    addressLabel.font = [UIFont systemFontOfSize:16];
-    addressLabel.textColor = [UIColor whiteColor];
-    addressLabel.backgroundColor = [UIColor clearColor];
-    addressLabel.shadowColor = [UIColor blackColor];
-    addressLabel.shadowOffset = CGSizeMake(0,-1);
-    addressLabel.textAlignment = NSTextAlignmentCenter;
-    addressLabel.text = NSLocalizedString(@"Format:www.example.com", nil) ;
-    [addAlert addSubview:addressLabel];
-    UITextField *addressField = [[UITextField alloc] initWithFrame:CGRectMake(16,83,252,25)];
-    addressField.borderStyle = UITextBorderStyleRoundedRect;
-    addressField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    addressField.delegate = self;
-    [addAlert setTag:2];
-    [addressField becomeFirstResponder];
-    [addAlert addSubview:addressField];
+    urlField = [[UITextField alloc] init];
+    [urlField setBackgroundColor:[UIColor whiteColor]];
+    urlField.delegate = self;
+    urlField.borderStyle = UITextBorderStyleLine;
+    urlField.frame = CGRectMake(15, 120, 255, 30);
+    urlField.font = [UIFont fontWithName:@"ArialMT" size:20];
+    urlField.placeholder = NSLocalizedString(@"Format:www.example.com",nil);
+    urlField.textAlignment = UITextAlignmentCenter;
+    urlField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    [addAlert addSubview:urlField];
     [addAlert show];
     [addAlert release];
-    [addressField release];
-    [addressLabel release];
-}
-
-
-- (void)textFieldDidEndEditing:(UITextField*)textField {
-    sourceURL = textField.text;
 }
 
 /***
@@ -122,10 +119,36 @@
  *
  ***/
 - (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == 1) {
-        [dataSourceArray addObject:sourceURL];
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        if (urlField.text == nil || textField.text == nil || [urlField.text isEqualToString:@""] || [textField.text isEqualToString:@""]) {
+            [self errorPopUp:@"You have to fill all inputs"];
+        } else {
+            NSLog(@"URL: %@", urlField.text);
+            NSLog(@"TITLE: %@", textField.text);
+            if ([self findDataSourceByTitle:textField.text] == nil) {
+                DataSource *data = [[DataSource alloc] title:textField.text jsonUrl:urlField.text];
+                data.activated = NO;
+                [dataSourceManager.dataSources addObject:data];
+                [dataSourceManager writeDataSources];
+                [dataSourceArray addObject:textField.text];
+            } else {
+                [self errorPopUp:@"Added title already exists"];
+            }
+        }
         [self.tableView reloadData];
+        [urlField release];
+        [textField release];
     }
+}
+
+- (void)errorPopUp:(NSString*)message {
+    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                       message:NSLocalizedString(message, nil)
+                                                      delegate:self
+                                             cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                             otherButtonTitles:nil];
+    [addAlert show];
+    [addAlert release];
 }
 
 /***
@@ -137,7 +160,6 @@
  ***/
 - (void)viewDidUnload {
     [super viewDidUnload];
-	
 	// release the controls and set them nil in case they were ever created
 	// note: we can't use "self.xxx = nil" since they are read only properties
 	//
@@ -153,7 +175,7 @@
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-	return [dataSourceArray count] ;
+	return [dataSourceArray count];
 }
 
 /***
@@ -173,32 +195,28 @@
  ***/
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
 	static NSString *CellIdentifier = @"SourceCell";
-	SourceTableCell *cell =  (SourceTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-	if(cell == nil){
+	SourceTableCell *cell = (SourceTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	if (cell == nil) {
 		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
-		for(id currentObject in topLevelObjects){
-			if([currentObject isKindOfClass:[UITableViewCell class]]){
+		for (id currentObject in topLevelObjects) {
+			if ([currentObject isKindOfClass:[UITableViewCell class]]) {
 				cell = (SourceTableCell*)currentObject;
 				//[cell.sourceSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
 				break;
 			}
 		}
 	}
-	
 	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = [dataSourceArray objectAtIndex:indexPath.row];
-		if(indexPath.row == 1){
-			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"twitter_logo.png"]];
-		}else if(indexPath.row == 0){
-			[cell.sourceLogoView  setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
+		if (indexPath.row == 1) {
+			[cell.sourceLogoView setImage:[UIImage imageNamed:@"twitter_logo.png"]];
+		} else if(indexPath.row == 0) {
+			[cell.sourceLogoView setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
 			//cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		}else if(indexPath.row > 1 ){
-            [cell.sourceLogoView  setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
+		} else if(indexPath.row > 1 ) {
+            [cell.sourceLogoView setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }
-	} else {
-		
-	}
-    
+	} 
     if ([self findDataSourceByTitle:cell.sourceLabel.text].activated) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -212,9 +230,9 @@
  ***/
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
 	//static NSString *CellIdentifier = @"SourceCell";
-	SourceTableCell *cell =  (SourceTableCell*)[tableView cellForRowAtIndexPath:indexPath];
-	if(cell != nil){
-		if (cell.accessoryType == UITableViewCellAccessoryNone){
+	SourceTableCell *cell = (SourceTableCell*)[tableView cellForRowAtIndexPath:indexPath];
+	if (cell != nil) {
+		if (cell.accessoryType == UITableViewCellAccessoryNone) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [self findDataSourceByTitle:cell.sourceLabel.text].activated = YES; //ACTIVATE DataSource
             //[[NSUserDefaults standardUserDefaults] setObject:@"CHANGED" forKey:@"changeStatus";
@@ -228,17 +246,15 @@
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (indexPath.row >2) {
+        if (indexPath.row > 1) {
+            [dataSourceManager deleteDataSource:[self findDataSourceByTitle:[dataSourceArray objectAtIndex:indexPath.row]]];
             [dataSourceArray removeObjectAtIndex:indexPath.row];
             [self.tableView reloadData];
         } else {
-            UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Not Allowed",nil) message:@"You can only delete own sources!" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
-            [addAlert show];
-            [addAlert release];
+            [self errorPopUp:@"You can only delete own sources!"];
         }
     }
 }
-
 
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tableView editingStyleForRowAtIndexPath:(NSIndexPath*)indexPath {
     return UITableViewCellEditingStyleDelete;

@@ -297,7 +297,7 @@
  ***/
 - (void)openTabSources {
     if (_dataSourceManager.dataSources != nil) {
-        [_sourceViewController refresh:_dataSourceManager.dataSources];
+        [_sourceViewController refresh:_dataSourceManager];
     }
 }
 

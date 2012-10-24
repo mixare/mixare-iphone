@@ -34,5 +34,7 @@
 
 - (DataSourceManager*)init;
 - (NSMutableArray*)getActivatedSources;
+- (void)writeDataSources;
+- (void)deleteDataSource:(DataSource*)source;
 
 @end
