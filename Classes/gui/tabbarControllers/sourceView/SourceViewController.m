@@ -85,7 +85,7 @@
     textField.frame = CGRectMake(15, 75, 255, 30);
     textField.font = [UIFont fontWithName:@"ArialMT" size:20];
     textField.placeholder = NSLocalizedString(@"Title",nil);
-    textField.textAlignment = UITextAlignmentCenter;
+    textField.textAlignment = NSTextAlignmentCenter;
     textField.keyboardAppearance = UIKeyboardAppearanceAlert;
     [textField becomeFirstResponder];
     [addAlert addSubview:textField];
@@ -97,7 +97,7 @@
     urlField.frame = CGRectMake(15, 120, 255, 30);
     urlField.font = [UIFont fontWithName:@"ArialMT" size:20];
     urlField.placeholder = NSLocalizedString(@"Format:www.example.com",nil);
-    urlField.textAlignment = UITextAlignmentCenter;
+    urlField.textAlignment = NSTextAlignmentCenter;
     urlField.keyboardAppearance = UIKeyboardAppearanceAlert;
     [addAlert addSubview:urlField];
     [addAlert show];
