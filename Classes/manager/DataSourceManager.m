@@ -48,6 +48,15 @@
     }
 }
 
+- (DataSource*)getDataSourceByTitle:(NSString*)title {
+    for (DataSource *data in dataSources) {
+        if ([data.title isEqualToString:title]) {
+            return data;
+        }
+    }
+    return nil;
+}
+
 - (NSMutableArray*)getActivatedSources {
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (DataSource *source in dataSources) {

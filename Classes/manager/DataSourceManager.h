@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSMutableArray *dataSources;
 
 - (DataSourceManager*)init;
+- (DataSource*)getDataSourceByTitle:(NSString*)title;
 - (NSMutableArray*)getActivatedSources;
 - (void)writeDataSources;
 - (void)deleteDataSource:(DataSource*)source;

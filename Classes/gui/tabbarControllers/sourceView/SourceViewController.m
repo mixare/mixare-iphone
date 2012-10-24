@@ -55,15 +55,6 @@
     [self.tableView reloadData];
 }
 
-- (DataSource*)findDataSourceByTitle:(NSString*)title {
-    for (DataSource* data in dataSourceManager.dataSources) {
-        if ([data.title isEqualToString:title]) {
-            return data;
-        }
-    }
-    return nil;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     //initialisation of the datasource with the default sources
@@ -125,7 +116,7 @@
         } else {
             NSLog(@"URL: %@", urlField.text);
             NSLog(@"TITLE: %@", textField.text);
-            if ([self findDataSourceByTitle:textField.text] == nil) {
+            if ([dataSourceManager getDataSourceByTitle:textField.text] == nil) {
                 DataSource *data = [[DataSource alloc] title:textField.text jsonUrl:urlField.text];
                 data.activated = NO;
                 [dataSourceManager.dataSources addObject:data];
@@ -217,7 +208,7 @@
             [cell.sourceLogoView setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }
 	} 
-    if ([self findDataSourceByTitle:cell.sourceLabel.text].activated) {
+    if ([dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].activated) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
 	return cell;
@@ -229,16 +220,14 @@
  *
  ***/
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
-	//static NSString *CellIdentifier = @"SourceCell";
 	SourceTableCell *cell = (SourceTableCell*)[tableView cellForRowAtIndexPath:indexPath];
 	if (cell != nil) {
 		if (cell.accessoryType == UITableViewCellAccessoryNone) {
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            [self findDataSourceByTitle:cell.sourceLabel.text].activated = YES; //ACTIVATE DataSource
-            //[[NSUserDefaults standardUserDefaults] setObject:@"CHANGED" forKey:@"changeStatus";
+            [dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].activated = YES; //ACTIVATE DataSource
 		} else {
 			cell.accessoryType = UITableViewCellAccessoryNone;
-            [self findDataSourceByTitle:cell.sourceLabel.text].activated = NO; //DEACTIVATE DataSource
+            [dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].activated = NO; //DEACTIVATE DataSource
 		}
 	} else NSLog(@"NOT WORKING");
 
@@ -247,7 +236,7 @@
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if (indexPath.row > 1) {
-            [dataSourceManager deleteDataSource:[self findDataSourceByTitle:[dataSourceArray objectAtIndex:indexPath.row]]];
+            [dataSourceManager deleteDataSource:[dataSourceManager getDataSourceByTitle:[dataSourceArray objectAtIndex:indexPath.row]]];
             [dataSourceArray removeObjectAtIndex:indexPath.row];
             [self.tableView reloadData];
         } else {
