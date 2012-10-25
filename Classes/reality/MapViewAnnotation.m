@@ -31,14 +31,16 @@
 @synthesize subTitle, title;
 
 - (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon {
-    [super init];
-    if (lat != 0.0 && lon != 0.0) {
-		coordinate.latitude = lat;
-		coordinate.longitude = lon;
-	} else {
-		coordinate.latitude=0.0;
-		coordinate.longitude=0.0;
-	}
+    self = [super init];
+    if (self) {
+        if (lat != 0.0 && lon != 0.0) {
+            coordinate.latitude = lat;
+            coordinate.longitude = lon;
+        } else {
+            coordinate.latitude=0.0;
+            coordinate.longitude=0.0;
+        }
+    }
     return self;
 }
 

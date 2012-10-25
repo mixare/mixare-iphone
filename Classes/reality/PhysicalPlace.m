@@ -23,15 +23,21 @@
 
 @synthesize geoLocation;
 
-- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location {
-    [super init];
+- (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt {
+    self = [super init];
+    geoLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat, lon) altitude:alt horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+    return self;
+}
+
+- (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location {
+    self = [super init];
 	geoLocation = location;
     title = @"";
 	return self;
 }
 
-- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
-    [super init];
+- (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
+    self = [super init];
     geoLocation = location;
 	title = @"";
 	[self calibrateUsingOrigin:origin];
@@ -56,6 +62,11 @@
 	if (origin.altitude > self.geoLocation.altitude) angle = -angle;
 	self.inclination = angle;
 	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
+}
+
+- (void)dealloc {
+    [super dealloc];
+    [geoLocation release];
 }
 
 @end

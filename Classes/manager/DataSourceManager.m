@@ -30,15 +30,16 @@
 @synthesize dataSources;
 
 - (DataSourceManager*)init {
-    [super init];
+    self = [super init];
     [self initDataSources];
     return self;
 }
 
 - (void)initDataSources {
-    dataSources = [self loadDataSources];
+    [self loadDataSources];
     if (dataSources.count == 0 || dataSources == nil) {
         NSLog(@"First create DataSources");
+        [dataSources release];
         dataSources = [[NSMutableArray alloc] init];
         DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
         DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
@@ -76,14 +77,14 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSMutableArray*)loadDataSources {
+- (void)loadDataSources {
     NSArray *loadedData = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
     NSMutableArray *convertedData = [[NSMutableArray alloc] init];
     for (NSDictionary *data in loadedData) {
         DataSource *source = [[DataSource alloc] title:[data objectForKey:@"title"] jsonUrl:[data objectForKey:@"url"]];
         [convertedData addObject:source];
     }
-    return convertedData;
+    dataSources = convertedData;
 }
 
 - (void)deleteDataSource:(DataSource*)source {

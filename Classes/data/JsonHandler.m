@@ -47,7 +47,7 @@ static NSString *kReferenceKey = @"reference";
                         [geoname objectForKey:@"elevation"],kAltKey,
                         @"WIKIPEDIA",kSourceKey, nil]];
 	}
-	return ret;
+	return [ret autorelease];
 }
 - (NSMutableArray*)processMixareJSONData:(NSString*)jsonData{
     if(! [jsonData isEqualToString:@""]){
@@ -65,7 +65,7 @@ static NSString *kReferenceKey = @"reference";
                             [geoname objectForKey:@"elevation"],kAltKey,
                             @"MIXARE",kSourceKey, nil]];
         }
-        return ret;
+        return [ret autorelease];
     }else return nil;
 }
 
@@ -85,7 +85,7 @@ static NSString *kReferenceKey = @"reference";
                         [NSString stringWithFormat:@"%f",height],kAltKey,nil]];
         height += 1000;
 	}
-	return ret;
+	return [ret autorelease];
 }
 
 - (NSMutableArray*)processGooglePlacesData:(NSString*)jsonData{
@@ -95,9 +95,9 @@ static NSString *kReferenceKey = @"reference";
     for(NSDictionary *place in googlePlaces){
         [ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:[place objectForKey:@"name"],kTitleKey,[place objectForKey:@"reference"],kReferenceKey, nil]];
     }
-    return ret;
+    return [ret autorelease];
 }
-
+/*
 - (NSMutableArray*)processBuzzJSONData:(NSString*)jsonData{
     if(jsonData != nil){
         NSDictionary * data = [jsonData JSONValue];
@@ -127,7 +127,7 @@ static NSString *kReferenceKey = @"reference";
             height += 1000;
             [ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:lat,kLatKey,lng,kLonKey,title,kTitleKey, link,kUrlKey,@"BUZZ",kSourceKey,[NSString stringWithFormat:@"%f",height],kAltKey, nil]];
         }
-        return ret;
+        return [ret autorelease];
     } return nil;
-}
+}*/
 @end

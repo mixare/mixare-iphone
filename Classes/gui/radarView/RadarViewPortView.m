@@ -26,14 +26,13 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
+        isFirstAccess = YES;
+        newAngle = 45.0;
+        referenceAngle = 247.5;
     }
     self.backgroundColor = [UIColor clearColor];
-    isFirstAccess = YES;
-    newAngle = 45.0;
-    referenceAngle = 247.5;
     return self;
 }
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -51,10 +50,8 @@
     isFirstAccess = NO;
 }
 
-
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end

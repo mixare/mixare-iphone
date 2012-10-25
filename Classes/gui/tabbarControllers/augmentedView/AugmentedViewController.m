@@ -65,8 +65,7 @@
 - (void)closeCameraView {
     [self.cameraController viewWillDisappear:YES];
 	[self.cameraController.view removeFromSuperview];
-    [self.cameraController.view release];
-	[self.cameraController release];
+	[cameraController release];
     self.cameraController = nil;
     [self removeCoordinates];
 }
@@ -141,11 +140,11 @@
     NSLog(@"MARKER");
 }
 
-- (void)startListening {
+- (void)startListening:(CLLocationManager*)locManager {
 	//start our heading readings and our accelerometer readings.
 	if (!self.locationManager) {
-		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-		//we want every move.
+		self.locationManager = locManager;
+        //we want every move.
 		self.locationManager.headingFilter = kCLHeadingFilterNone;
 		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 		[self.locationManager startUpdatingHeading];

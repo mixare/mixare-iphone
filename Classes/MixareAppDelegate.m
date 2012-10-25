@@ -154,7 +154,7 @@
     [augViewController.view addSubview:_valueLabel];
     [augViewController.view addSubview:nordLabel];
     [augViewController.view addSubview:maxRadiusLabel];
-	[augViewController startListening];
+	[augViewController startListening:_locManager];
     window.rootViewController = augViewController;
 }
 

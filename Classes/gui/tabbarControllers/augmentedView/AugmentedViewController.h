@@ -68,7 +68,7 @@
 - (CGPoint)rotatePointAboutOrigin:(CGPoint)point angle:(float)angle;
 - (void)removeCoordinates;
 - (id)initWithLocationManager:(CLLocationManager*)manager;
-- (void)startListening;
+- (void)startListening:(CLLocationManager*)locManager;
 - (void)stopListening;
 - (void)updateLocations:(NSTimer*)timer;
 - (void)closeCameraView;

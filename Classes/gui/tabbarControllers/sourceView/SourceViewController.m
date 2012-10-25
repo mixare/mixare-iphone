@@ -57,13 +57,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //initialisation of the datasource with the default sources
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
-//    NSString * custom_url = [[NSUserDefaults standardUserDefaults]objectForKey:@"extern_url"];
-//    NSLog(@"EXTERN URL %@",custom_url);
-//    if(custom_url != nil){
-//        [dataSourceArray addObject:custom_url];
-//    }
 }
 
 /***
@@ -117,7 +111,7 @@
             NSLog(@"URL: %@", urlField.text);
             NSLog(@"TITLE: %@", textField.text);
             if ([dataSourceManager getDataSourceByTitle:textField.text] == nil) {
-                DataSource *data = [[DataSource alloc] title:textField.text jsonUrl:urlField.text];
+                DataSource *data = [[[DataSource alloc] title:textField.text jsonUrl:urlField.text] autorelease];
                 data.activated = NO;
                 [dataSourceManager.dataSources addObject:data];
                 [dataSourceManager writeDataSources];

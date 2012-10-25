@@ -30,11 +30,12 @@
 
 //calculates the angle between two coordinates
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;
+- (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt;
 
 //initializer returns a physicalplace with his location
-- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location;
+- (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location;
 
 - (void)calibrateUsingOrigin:(CLLocation*)origin;
-- (PhysicalPlace*)coordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin;
+- (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin;
 
 @end

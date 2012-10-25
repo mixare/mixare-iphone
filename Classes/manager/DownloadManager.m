@@ -29,7 +29,7 @@
 @implementation DownloadManager
 
 - (DownloadManager*)init {
-    [super init];
+    self = [super init];
     return self;
 }
 
@@ -55,7 +55,6 @@
         }
         for (DataSource* data in downloadArray) {
             [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
-  
         }
         [downloadArray release];
         lastDownloadedRadius = rad;

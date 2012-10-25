@@ -29,30 +29,14 @@
 #import "WikipediaProcessor.h"
 #import "MixareProcessor.h"
 
-static NSMutableArray* dataProcessors;
 static NSMutableDictionary* urlValueData;
 
 @implementation DataConvertor
 
 + (void)initialize {
-    if (dataProcessors == nil) {
-        dataProcessors = [[NSMutableArray alloc] init];
-        [self initDataProcessors];
-    }
     if (urlValueData == nil) {
         urlValueData = [[NSMutableDictionary alloc] init];
     }
-}
-
-/***
- *
- *  Get available data processors
- *
- ***/
-+ (void)initDataProcessors {
-    [dataProcessors addObject:[TwitterProcessor alloc]];
-    [dataProcessors addObject:[WikipediaProcessor alloc]];
-    [dataProcessors addObject:[MixareProcessor alloc]];
 }
 
 /***
@@ -66,7 +50,7 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad {
     id <DataProcessor> processor = [self matchProcessor:data.title];
-    [data refreshPositions:[processor convert:[[NSString alloc] initWithContentsOfURL:[self urlWithLocationFix:data.jsonUrl location:loc radius:rad] encoding:NSUTF8StringEncoding error:nil]]];
+    [data refreshPositions:[processor convert:[[[NSString alloc] initWithContentsOfURL:[self urlWithLocationFix:data.jsonUrl location:loc radius:rad] encoding:NSUTF8StringEncoding error:nil] autorelease]]];
 }
 
 /***
@@ -76,12 +60,12 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (id)matchProcessor:(NSString*)title {
     id <DataProcessor> processor = nil;
-    if ([title rangeOfString:@"Wikipedia"].location != NSNotFound) {
-        processor = [[WikipediaProcessor alloc] init];
-    } else if ([title rangeOfString:@"Twitter"].location != NSNotFound) {
-        processor = [[TwitterProcessor alloc] init];
+    if ([title isEqualToString:@"Wikipedia"]) {
+        processor = [[[WikipediaProcessor alloc] init] autorelease];
+    } else if ([title isEqualToString:@"Twitter"]) {
+        processor = [[[TwitterProcessor alloc] init] autorelease];
     } else {
-        processor = [[MixareProcessor alloc] init];
+        processor = [[[MixareProcessor alloc] init] autorelease];
     }
     return processor;
 }
@@ -93,7 +77,7 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (NSURL*)urlWithLocationFix:(NSString*)jsonUrl location:(CLLocation*)loc radius:(float)rad {
     [self initUrlValues:loc radius:rad];
-    NSString* stringURL = [[NSString alloc] initWithString:jsonUrl];
+    NSString* stringURL = [[[NSString alloc] initWithString:jsonUrl] autorelease];
     for (NSString* key in urlValueData) {
         NSString* value = [urlValueData objectForKey:key];
         stringURL = [self url:stringURL urlInfoFiller:key urlInfoReplacer:value];
@@ -110,11 +94,11 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (void)initUrlValues:(CLLocation*)loc radius:(float)rad {
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.latitude] forKey:@"PARAM_LAT"];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.coordinate.longitude] forKey:@"PARAM_LON"];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",loc.altitude] forKey:@"PARAM_ALT"];
+    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", loc.coordinate.latitude] autorelease] forKey:@"PARAM_LAT"];
+    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", loc.coordinate.longitude] autorelease] forKey:@"PARAM_LON"];
+    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", loc.altitude] autorelease] forKey:@"PARAM_ALT"];
     [urlValueData setObject:language forKey:@"PARAM_LANG"];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f",rad] forKey:@"PARAM_RAD"];
+    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", rad] autorelease] forKey:@"PARAM_RAD"];
 }
 
 /***

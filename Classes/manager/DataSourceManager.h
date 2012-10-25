@@ -28,6 +28,7 @@
 
 @interface DataSourceManager : NSObject{
     NSMutableArray *dataSources;
+    NSMutableArray *activatedDataSources;
 }
 
 @property (nonatomic, retain) NSMutableArray *dataSources;

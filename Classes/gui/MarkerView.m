@@ -51,20 +51,20 @@
     closeButton.titleLabel.textColor = [UIColor blackColor];
     CGRect infoFrame;
     CGRect webFrame;
-	CGRect buttobFrame;
+	//CGRect buttobFrame;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         infoFrame = CGRectMake(0, 480, 0, 0);
         webFrame = CGRectMake(0, 25, 320, 220);
         closeButton.frame = CGRectMake(260, 0, 60, 25);
-		buttobFrame= CGRectMake(0, 0, 320, 240);
+		//buttobFrame= CGRectMake(0, 0, 320, 240);
     } else {
         closeButton.frame = CGRectMake(420, 0, 60, 25);
         infoFrame = CGRectMake(0, 320, 0, 0);
         webFrame = CGRectMake(0, 25, 480, 160);
-		buttobFrame= CGRectMake(0, 0, 480, 160);
+		//buttobFrame= CGRectMake(0, 0, 480, 160);
     }
-    UIView *infoView = [[UIView alloc] initWithFrame:infoFrame];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
+    UIView *infoView = [[[UIView alloc] initWithFrame:infoFrame] autorelease];
+    UIWebView *webView = [[[UIWebView alloc] initWithFrame:webFrame] autorelease];
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:_url];
