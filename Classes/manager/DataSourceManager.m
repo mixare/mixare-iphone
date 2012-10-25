@@ -70,7 +70,7 @@
 - (void)writeDataSources {
     NSMutableArray *saveArray = [[NSMutableArray alloc] init];
     for (DataSource *data in dataSources) {
-        [saveArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:data.title, @"title", data.jsonUrl, @"url", nil]];
+        [saveArray addObject:@{@"title": data.title, @"url": data.jsonUrl}];
     }
     [[NSUserDefaults standardUserDefaults] setObject:saveArray forKey:@"dataSources"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -80,7 +80,7 @@
     NSArray *loadedData = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
     dataSources = [NSMutableArray array];
     for (NSDictionary *data in loadedData) {
-        DataSource *source = [[DataSource alloc] initTitle:[data objectForKey:@"title"] jsonUrl:[data objectForKey:@"url"]];
+        DataSource *source = [[DataSource alloc] initTitle:data[@"title"] jsonUrl:data[@"url"]];
         [dataSources addObject:source];
     }
 }

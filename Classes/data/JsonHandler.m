@@ -33,19 +33,18 @@ static NSString *kReferenceKey = @"reference";
 - (NSMutableArray*)processWikipediaJSONData:(NSString*)jsonData{
 	NSDictionary* data = [jsonData JSONValue];
 	NSMutableArray* ret = [[NSMutableArray alloc]init];
-	NSArray* geonames = [data objectForKey:@"geonames"];
+	NSArray* geonames = data[@"geonames"];
 	for(NSDictionary *geoname in geonames){
 		//NSLog(@"Title: %@", [geoname objectForKey:@"title"]);
 		//[ret addObject:[geoname objectForKey:@"title"]];
         
-		[ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                        [geoname objectForKey:@"title"],kTitleKey,
-                        [geoname objectForKey:@"summary"],kSummaryKey,
-                        [NSString stringWithFormat:@"http://%@",[geoname objectForKey:@"wikipediaUrl"]],kUrlKey,
-                        [geoname objectForKey:@"lng"],kLonKey,
-                        [geoname objectForKey:@"lat"],kLatKey,
-                        [geoname objectForKey:@"elevation"],kAltKey,
-                        @"WIKIPEDIA",kSourceKey, nil]];
+		[ret addObject:@{kTitleKey: geoname[@"title"],
+                        kSummaryKey: geoname[@"summary"],
+                        kUrlKey: [NSString stringWithFormat:@"http://%@",geoname[@"wikipediaUrl"]],
+                        kLonKey: geoname[@"lng"],
+                        kLatKey: geoname[@"lat"],
+                        kAltKey: geoname[@"elevation"],
+                        kSourceKey: @"WIKIPEDIA"}];
 	}
 	return ret;
 }
@@ -53,17 +52,16 @@ static NSString *kReferenceKey = @"reference";
     if(! [jsonData isEqualToString:@""]){
         NSDictionary* data = [jsonData JSONValue];
         NSMutableArray* ret = [[NSMutableArray alloc]init];
-        NSArray* geonames = [data objectForKey:@"results"];
+        NSArray* geonames = data[@"results"];
 		NSLog(@"IN PROCESS MIXARE DATA: %@", geonames);
         for(NSDictionary *geoname in geonames){
             
-            [ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                            [geoname objectForKey:@"title"],kTitleKey,
-                            [geoname objectForKey:@"webpage"],kUrlKey,
-                            [geoname objectForKey:@"lng"],kLonKey,
-                            [geoname objectForKey:@"lat"],kLatKey,
-                            [geoname objectForKey:@"elevation"],kAltKey,
-                            @"MIXARE",kSourceKey, nil]];
+            [ret addObject:@{kTitleKey: geoname[@"title"],
+                            kUrlKey: geoname[@"webpage"],
+                            kLonKey: geoname[@"lng"],
+                            kLatKey: geoname[@"lat"],
+                            kAltKey: geoname[@"elevation"],
+                            kSourceKey: @"MIXARE"}];
         }
         return ret;
     }else return nil;
@@ -72,17 +70,16 @@ static NSString *kReferenceKey = @"reference";
 - (NSMutableArray*)processTwitterJSONData:(NSString*)jsonData{
 	NSDictionary * data = [jsonData JSONValue];
 	NSMutableArray* ret = [[NSMutableArray alloc]init];
-	NSArray* tweets = [data objectForKey:@"results"];
+	NSArray* tweets = data[@"results"];
     float height = 8000.0;
 	for(NSDictionary *tweet in tweets){
-		[ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                        [tweet objectForKey:@"from_user"],kUserKey,
-                        [tweet objectForKey:@"from_user"],kSummaryKey,
-                        [tweet objectForKey:@"text"],kTitleKey,
-                        [NSString stringWithFormat:@"http://twitter.com/%@",
-                         [tweet objectForKey:@"from_user"]],kUrlKey,
-                        @"TWITTER",kSourceKey,
-                        [NSString stringWithFormat:@"%f",height],kAltKey,nil]];
+		[ret addObject:@{kUserKey: tweet[@"from_user"],
+                        kSummaryKey: tweet[@"from_user"],
+                        kTitleKey: tweet[@"text"],
+                        kUrlKey: [NSString stringWithFormat:@"http://twitter.com/%@",
+                         tweet[@"from_user"]],
+                        kSourceKey: @"TWITTER",
+                        kAltKey: [NSString stringWithFormat:@"%f",height]}];
         height += 1000;
 	}
 	return ret;
@@ -91,9 +88,9 @@ static NSString *kReferenceKey = @"reference";
 - (NSMutableArray*)processGooglePlacesData:(NSString*)jsonData{
     NSDictionary* data = [jsonData JSONValue];
     NSMutableArray * ret = [[NSMutableArray alloc]init];
-    NSArray * googlePlaces = [data objectForKey:@"results"];
+    NSArray * googlePlaces = data[@"results"];
     for(NSDictionary *place in googlePlaces){
-        [ret addObject:[NSDictionary dictionaryWithObjectsAndKeys:[place objectForKey:@"name"],kTitleKey,[place objectForKey:@"reference"],kReferenceKey, nil]];
+        [ret addObject:@{kTitleKey: place[@"name"],kReferenceKey: place[@"reference"]}];
     }
     return ret;
 }

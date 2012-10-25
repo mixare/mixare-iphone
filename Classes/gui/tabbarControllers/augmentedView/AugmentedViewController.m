@@ -287,7 +287,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	int index = 0;
     NSMutableArray *radarPointValues = [[NSMutableArray alloc] initWithCapacity:[ar_coordinates count]];
 	for (PoiItem *item in ar_coordinates) {
-		MarkerView *viewToDraw = [ar_coordinateViews objectAtIndex:index];
+		MarkerView *viewToDraw = ar_coordinateViews[index];
 		if ([self viewportContainsCoordinate:item]) {
 			CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
 			CGFloat scaleFactor = 1.5;

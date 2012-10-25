@@ -115,10 +115,10 @@
  *
  ***/
 - (void)initUIBarTitles {
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
-    ((UITabBarItem *)[_tabBarController.tabBar.items objectAtIndex:3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
+    ((UITabBarItem *)(_tabBarController.tabBar.items)[0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
+    ((UITabBarItem *)(_tabBarController.tabBar.items)[1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
+    ((UITabBarItem *)(_tabBarController.tabBar.items)[2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
+    ((UITabBarItem *)(_tabBarController.tabBar.items)[3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
 }
 
 /***
@@ -451,7 +451,7 @@
  *
  ***/
 - (void)initControls {
-    _menuButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil),nil]];
+    _menuButton = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil)]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
     CGRect buttonFrame;
     CGRect sliderFrame;

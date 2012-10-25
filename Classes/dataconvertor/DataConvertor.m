@@ -79,7 +79,7 @@ static NSMutableDictionary* urlValueData;
     [self initUrlValues:loc radius:rad];
     NSString* stringURL = [[NSString alloc] initWithString:jsonUrl];
     for (NSString *key in urlValueData) {
-        NSString *value = [urlValueData objectForKey:key];
+        NSString *value = urlValueData[key];
         stringURL = [self url:stringURL urlInfoFiller:key urlInfoReplacer:value];
     }
     NSLog(@"GENERATED DATA URL: %@", stringURL);
@@ -93,12 +93,12 @@ static NSMutableDictionary* urlValueData;
  *
  ***/
 + (void)initUrlValues:(CLLocation*)loc radius:(float)rad {
-    NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", loc.coordinate.latitude] forKey:@"PARAM_LAT"];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", loc.coordinate.longitude] forKey:@"PARAM_LON"];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", loc.altitude] forKey:@"PARAM_ALT"];
-    [urlValueData setObject:language forKey:@"PARAM_LANG"];
-    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", rad] forKey:@"PARAM_RAD"];
+    NSString *language = [NSLocale preferredLanguages][0];
+    urlValueData[@"PARAM_LAT"] = [[NSString alloc] initWithFormat:@"%f", loc.coordinate.latitude];
+    urlValueData[@"PARAM_LON"] = [[NSString alloc] initWithFormat:@"%f", loc.coordinate.longitude];
+    urlValueData[@"PARAM_ALT"] = [[NSString alloc] initWithFormat:@"%f", loc.altitude];
+    urlValueData[@"PARAM_LANG"] = language;
+    urlValueData[@"PARAM_RAD"] = [[NSString alloc] initWithFormat:@"%f", rad];
 }
 
 /***
