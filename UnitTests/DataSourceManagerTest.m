@@ -72,8 +72,8 @@
 - (void)testWriteAndDeleteDataSource {
     DataSourceManager *dataManager = [[DataSourceManager alloc] init];
     dataManager.dataSources = [[NSMutableArray alloc] init];
-    DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-    DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    DataSource *wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+    DataSource *twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
     [dataManager.dataSources addObject:wikipedia];
     [dataManager.dataSources addObject:twitter];
     [dataManager writeDataSources];
@@ -97,8 +97,8 @@
 - (void)testGetDataSourceFromTitle {
     DataSourceManager *dataManager = [[DataSourceManager alloc] init];
     dataManager.dataSources = [[NSMutableArray alloc] init];
-    DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-    DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    DataSource *wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+    DataSource *twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
     [dataManager.dataSources addObject:wikipedia];
     [dataManager.dataSources addObject:twitter];
     STAssertEqualObjects([dataManager getDataSourceByTitle:@"Wikipedia"].jsonUrl, @"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG", @"Gets the wrong one");
