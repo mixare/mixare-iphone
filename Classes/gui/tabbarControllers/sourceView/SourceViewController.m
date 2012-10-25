@@ -199,12 +199,11 @@
 	}
 	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = [dataSourceArray objectAtIndex:indexPath.row];
-		if (indexPath.row == 1) {
+		if ([cell.sourceLabel.text isEqualToString:@"Twitter"]) {
 			[cell.sourceLogoView setImage:[UIImage imageNamed:@"twitter_logo.png"]];
-		} else if(indexPath.row == 0) {
+		} else if ([cell.sourceLabel.text isEqualToString:@"Wikipedia"]) {
 			[cell.sourceLogoView setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
-			//cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		} else if(indexPath.row > 1 ) {
+		} else {
             [cell.sourceLogoView setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }
 	} 
@@ -235,12 +234,12 @@
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (indexPath.row > 1) {
+        if ([[dataSourceArray objectAtIndex:indexPath.row] isEqualToString:@"Wikipedia"] || [[dataSourceArray objectAtIndex:indexPath.row] isEqualToString:@"Twitter"]) {
+            [self errorPopUp:@"You can only delete own sources!"];
+        } else {
             [dataSourceManager deleteDataSource:[dataSourceManager getDataSourceByTitle:[dataSourceArray objectAtIndex:indexPath.row]]];
             [dataSourceArray removeObjectAtIndex:indexPath.row];
             [self.tableView reloadData];
-        } else {
-            [self errorPopUp:@"You can only delete own sources!"];
         }
     }
 }
