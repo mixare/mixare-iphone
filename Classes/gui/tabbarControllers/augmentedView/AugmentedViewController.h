@@ -29,8 +29,8 @@
 	UIAccelerometer *accelerometerManager;
 	PoiItem *centerCoordinate;
 	UIImagePickerController *cameraController;
-	NSObject<CLLocationManagerDelegate> *locationDelegate;
-	NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
+	NSObject<CLLocationManagerDelegate> *__weak locationDelegate;
+	NSObject<UIAccelerometerDelegate> *__weak accelerometerDelegate;
 	BOOL scaleViewsBasedOnDistance;
 	double maximumScaleDistance;
 	double minimumScaleFactor;
@@ -75,11 +75,11 @@
 - (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate;
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
-@property (nonatomic, retain) UIImagePickerController *cameraController;
-@property (nonatomic, assign) NSObject<CLLocationManagerDelegate> *locationDelegate;
-@property (nonatomic, assign) NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
-@property (retain) PoiItem *centerCoordinate;
-@property (nonatomic, retain) UIAccelerometer *accelerometerManager;
-@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic, strong) UIImagePickerController *cameraController;
+@property (nonatomic, weak) NSObject<CLLocationManagerDelegate> *locationDelegate;
+@property (nonatomic, weak) NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
+@property (strong) PoiItem *centerCoordinate;
+@property (nonatomic, strong) UIAccelerometer *accelerometerManager;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @end

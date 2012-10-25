@@ -31,7 +31,7 @@
     NSMutableArray *activatedDataSources;
 }
 
-@property (nonatomic, retain) NSMutableArray *dataSources;
+@property (nonatomic, strong) NSMutableArray *dataSources;
 
 - (DataSourceManager*)init;
 - (DataSource*)getDataSourceByTitle:(NSString*)title;

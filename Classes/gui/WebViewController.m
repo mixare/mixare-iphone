@@ -65,10 +65,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-	[_url release];
-}
 
 
 @end

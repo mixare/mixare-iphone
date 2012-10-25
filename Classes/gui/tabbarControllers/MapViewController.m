@@ -32,7 +32,6 @@
 	newRegion.span.latitudeDelta = 0.03;
 	newRegion.span.longitudeDelta = 0.03;
 	[self.map setRegion:newRegion animated:YES];
-	[locmng release];
     if (_currentAnnotations == nil) {
         _currentAnnotations = [[NSMutableArray alloc] init];
     }

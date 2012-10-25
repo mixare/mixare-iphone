@@ -26,7 +26,7 @@
 	NSMutableArray *_data;
     NSMutableArray *_currentAnnotations;
 }
-@property (nonatomic, retain) MKMapView *map;
+@property (nonatomic, strong) MKMapView *map;
 - (void)refresh:(NSMutableArray*)dataSources;
 
 @end

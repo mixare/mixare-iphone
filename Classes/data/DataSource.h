@@ -33,12 +33,12 @@
     NSMutableArray *positions;
 }
 
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *jsonUrl;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *jsonUrl;
 @property (nonatomic, assign) BOOL activated;
-@property (nonatomic, retain) NSMutableArray *positions;
+@property (nonatomic, strong) NSMutableArray *positions;
 
-- (DataSource*)title:(NSString*)tit jsonUrl:(NSString*)url;
+- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url;
 - (void)refreshPositions:(NSMutableArray*)results;
 
 @end

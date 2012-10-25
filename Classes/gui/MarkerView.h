@@ -25,8 +25,8 @@
     NSString *_url;
     UIView *loadView;
 }
-@property (nonatomic, retain) UIView *viewTouched;
-@property (nonatomic, retain) NSString *url;
+@property (nonatomic, strong) UIView *viewTouched;
+@property (nonatomic, strong) NSString *url;
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event;
 
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event;

@@ -34,8 +34,8 @@
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *subTitle;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subTitle;
 
 - (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon;
 

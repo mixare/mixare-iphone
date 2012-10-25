@@ -73,13 +73,13 @@
 - (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
 - (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
 
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, strong) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, retain) NSString *source;
+@property (nonatomic, strong) NSString *source;
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;
-@property (nonatomic, retain) NSString *url;
+@property (nonatomic, strong) NSString *url;
 @property (nonatomic) CGPoint radarPos;
 
 @end

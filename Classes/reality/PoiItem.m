@@ -57,13 +57,6 @@
 	return equal;
 }
 
-- (void)dealloc {
-	
-	self.title = nil;
-	self.subtitle = nil;
-	
-	[super dealloc];
-}
 
 - (NSString*)description {
 	return [NSString stringWithFormat:@"%@ r: %.3fm φ: %.3f° θ: %.3f°", self.title, self.radialDistance, radiansToDegrees(self.azimuth), radiansToDegrees(self.inclination)];

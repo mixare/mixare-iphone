@@ -34,7 +34,7 @@
  *  CONSTRUCTOR
  *
  ***/
-- (DataSource*)title:(NSString*)tit jsonUrl:(NSString*)url {
+- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url {
     self = [super init];
     if(self) {
         title = tit;
@@ -53,7 +53,6 @@
  ***/
 - (void)refreshPositions:(NSMutableArray*)results {
     [positions removeAllObjects];
-    [positions release];
     positions = [[NSMutableArray alloc] init];
     for (NSDictionary *poi in results) {
         CGFloat alt = [[poi valueForKey:@"alt"] floatValue];
@@ -64,13 +63,8 @@
         Position* newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:[[poi valueForKey:@"lat"] floatValue] withLongitude:[[poi valueForKey:@"lon"] floatValue] withAltitude:alt withSource:title];
         
         [positions addObject:newPosition];
-        [newPosition release];
     }
     NSLog(@"positions count: %d", [positions count]);
 }
 
-- (void)dealloc {
-    [super dealloc];
-    [positions release];
-}
 @end

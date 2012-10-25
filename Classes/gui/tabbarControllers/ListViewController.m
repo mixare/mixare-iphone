@@ -45,14 +45,12 @@
         [dic setValue:pos.summary forKey:@"sum"];
         [dic setValue:pos.url forKey:@"url"];
         [dataSourceArray addObject:dic];
-        [dic release];
     }
 }
 
-- (void)viewDidLoad{	
+- (void)viewDidLoad {	
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"Poi List", nil);
-	
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -76,41 +74,39 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
 
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return (dataSourceArray != nil) ? [dataSourceArray count] :0;
 }
 
 // to determine specific row height for each cell, override this.
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return ([indexPath row] == 0) ? 60.0 : 60.0;
 }
 
 // to determine which UITableViewCell to be used on a given row.
 //
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = nil;
-	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil] autorelease];
-	if(dataSourceArray != nil){
+	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+	if (dataSourceArray != nil) {
         //setting the corresponding title for each row .. source array gets set in the app delegate class when downloading new data
-		cell.textLabel.text = [[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"title"];
-		cell.detailTextLabel.text = [[dataSourceArray objectAtIndex:indexPath.row]valueForKey:@"sum"];
+		cell.textLabel.text = [[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"title"];
+		cell.detailTextLabel.text = [[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"sum"];
         //adding custom label to each row according to their source
-        if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Wikipedia"]){
+        if ([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Wikipedia"]) {
             cell.imageView.image = [UIImage imageNamed:@"wikipedia_logo_small.png"];
-        }else if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Buzz"]){
+        } else if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Buzz"]) {
             cell.imageView.image = [UIImage imageNamed:@"buzz_logo_small.png"];
-        }else if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Twitter"]){
+        } else if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Twitter"]) {
             cell.imageView.image = [UIImage imageNamed:@"twitter_logo_small.png"];
-        }else if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Mixare"]){
+        } else if([[[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"source"] isEqualToString:@"Mixare"]) {
             cell.imageView.image = [UIImage imageNamed:@"logo_mixare_round.png"];
         }
     }
@@ -124,16 +120,8 @@
 	NSLog(@"in select row");
 	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
     targetViewController.url = [[dataSourceArray objectAtIndex:indexPath.row] valueForKey:@"url"];
-    
 	[[self navigationController] pushViewController:targetViewController animated:YES];
-    [targetViewController release];
 }
 
-- (void)dealloc {
-	//dealloc mem
-	[dataSourceArray release];
-	
-	[super dealloc];
-}
 
 @end

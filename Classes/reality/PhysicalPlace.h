@@ -26,7 +26,7 @@
 	CLLocation *geoLocation;
 }
 
-@property (nonatomic, retain) CLLocation *geoLocation;
+@property (nonatomic, strong) CLLocation *geoLocation;
 
 //calculates the angle between two coordinates
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;

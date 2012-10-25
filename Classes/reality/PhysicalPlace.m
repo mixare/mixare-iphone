@@ -64,9 +64,5 @@
 	self.azimuth = [self angleFromCoordinate:origin.coordinate toCoordinate:self.geoLocation.coordinate];
 }
 
-- (void)dealloc {
-    [super dealloc];
-    [geoLocation release];
-}
 
 @end

@@ -25,8 +25,7 @@
 @synthesize centerLocation;
 
 - (void)setCenterLocation:(CLLocation*)newLocation {
-	[centerLocation release];
-	centerLocation = [newLocation retain];
+	centerLocation = newLocation;
 	
 	for (PhysicalPlace *geoLocation in self.coordinates) {
 		if ([geoLocation isKindOfClass:[PhysicalPlace class]]) {

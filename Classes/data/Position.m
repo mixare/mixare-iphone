@@ -52,10 +52,5 @@
     [poiItem setSource:source];
 }
 
-- (void)dealloc {
-    [mapViewAnnotation release];
-    [poiItem release];
-    [super dealloc];
-}
 
 @end

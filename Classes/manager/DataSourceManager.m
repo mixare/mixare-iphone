@@ -39,10 +39,9 @@
     [self loadDataSources];
     if (dataSources.count == 0 || dataSources == nil) {
         NSLog(@"First create DataSources");
-        [dataSources release];
-        dataSources = [[NSMutableArray alloc] init];
-        DataSource *wikipedia = [[DataSource alloc] title:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-        DataSource *twitter = [[DataSource alloc] title:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+        dataSources = [NSMutableArray array];
+        DataSource *wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+        DataSource *twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
         [dataSources addObject:wikipedia];
         [dataSources addObject:twitter];
         [self writeDataSources];
@@ -69,7 +68,7 @@
 }
 
 - (void)writeDataSources {
-    NSMutableArray *saveArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *saveArray = [[NSMutableArray alloc] init];
     for (DataSource *data in dataSources) {
         [saveArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:data.title, @"title", data.jsonUrl, @"url", nil]];
     }
@@ -79,12 +78,11 @@
 
 - (void)loadDataSources {
     NSArray *loadedData = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
-    NSMutableArray *convertedData = [[NSMutableArray alloc] init];
+    dataSources = [NSMutableArray array];
     for (NSDictionary *data in loadedData) {
-        DataSource *source = [[DataSource alloc] title:[data objectForKey:@"title"] jsonUrl:[data objectForKey:@"url"]];
-        [convertedData addObject:source];
+        DataSource *source = [[DataSource alloc] initTitle:[data objectForKey:@"title"] jsonUrl:[data objectForKey:@"url"]];
+        [dataSources addObject:source];
     }
-    dataSources = convertedData;
 }
 
 - (void)deleteDataSource:(DataSource*)source {
@@ -92,9 +90,5 @@
     [self writeDataSources];
 }
 
-- (void)dealloc {
-    [super dealloc];
-    [dataSources release];
-}
 
 @end

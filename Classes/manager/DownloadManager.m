@@ -56,15 +56,11 @@
         for (DataSource* data in downloadArray) {
             [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
         }
-        [downloadArray release];
         lastDownloadedRadius = rad;
         [lastDownloadedSources removeAllObjects];
         lastDownloadedSources = datas;
     }
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 @end

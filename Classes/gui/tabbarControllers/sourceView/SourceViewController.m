@@ -32,11 +32,6 @@
 @implementation SourceViewController
 @synthesize dataSourceArray; 
 
-- (void)dealloc {	
-	//dealloc mem
-	[dataSourceArray release];	
-	[super dealloc];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
@@ -95,7 +90,6 @@
     urlField.keyboardAppearance = UIKeyboardAppearanceAlert;
     [addAlert addSubview:urlField];
     [addAlert show];
-    [addAlert release];
 }
 
 /***
@@ -111,7 +105,7 @@
             NSLog(@"URL: %@", urlField.text);
             NSLog(@"TITLE: %@", textField.text);
             if ([dataSourceManager getDataSourceByTitle:textField.text] == nil) {
-                DataSource *data = [[[DataSource alloc] title:textField.text jsonUrl:urlField.text] autorelease];
+                DataSource *data = [[DataSource alloc] initTitle:textField.text jsonUrl:urlField.text];
                 data.activated = NO;
                 [dataSourceManager.dataSources addObject:data];
                 [dataSourceManager writeDataSources];
@@ -121,8 +115,6 @@
             }
         }
         [self.tableView reloadData];
-        [urlField release];
-        [textField release];
     }
 }
 
@@ -133,7 +125,6 @@
                                              cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                              otherButtonTitles:nil];
     [addAlert show];
-    [addAlert release];
 }
 
 /***

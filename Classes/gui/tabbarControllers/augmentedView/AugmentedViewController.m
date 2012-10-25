@@ -44,7 +44,7 @@
 	self.updateFrequency = 1 / 20.0;
 	
 #if !TARGET_IPHONE_SIMULATOR
-	self.cameraController = [[[UIImagePickerController alloc] init] autorelease];
+	self.cameraController = [[UIImagePickerController alloc] init];
 	self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
 	CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.232, 1.232);
 	self.cameraController.cameraViewTransform = cameraTransform;
@@ -65,7 +65,6 @@
 - (void)closeCameraView {
     [self.cameraController viewWillDisappear:YES];
 	[self.cameraController.view removeFromSuperview];
-	[cameraController release];
     self.cameraController = nil;
     [self removeCoordinates];
 }
@@ -81,7 +80,6 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-	[ar_overlayView release];
     ar_overlayView = [[UIView alloc] initWithFrame:CGRectZero];
 	//ar_overlayView = [[MarkerView alloc] initWithFrame:CGRectZero];
 	radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];	
@@ -95,12 +93,11 @@
 	updateFrequency = newUpdateFrequency;
 	if (!_updateTimer) return;
 	[_updateTimer invalidate];
-	[_updateTimer release];
-	_updateTimer = [[NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
+	_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
 													 target:self
 												   selector:@selector(updateLocations:)
 												   userInfo:nil
-													repeats:YES] retain];
+													repeats:YES];
 }
 
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate {
@@ -157,7 +154,7 @@
 		self.accelerometerManager.delegate = self;
 	}
 	if (!self.centerCoordinate) {
-		self.centerCoordinate = [[[PoiItem alloc] coordinateWithRadialDistance:0 inclination:0 azimuth:0] autorelease];
+		self.centerCoordinate = [[PoiItem alloc] coordinateWithRadialDistance:0 inclination:0 azimuth:0];
 	}
 }
 
@@ -336,7 +333,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     radarView.pois = radarPointValues;
     radarView.radius = radius;
     [radarView setNeedsDisplay];
-	[radarPointValues release];
 }
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
@@ -421,10 +417,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     tempView.url = coordinate.url;
 	[tempView addSubview:titleLabel];
 	[tempView addSubview:pointView];
-	[pointView release];
-	[titleLabel release];
     tempView.userInteractionEnabled = YES;
-	return [tempView autorelease];
+	return tempView;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -434,11 +428,11 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	[ar_overlayView setFrame:self.cameraController.view.bounds];
 #endif
 	if (!_updateTimer) {
-		_updateTimer = [[NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
+		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
                                                          target:self
                                                        selector:@selector(updateLocations:)
                                                        userInfo:nil
-                                                        repeats:YES] retain];
+                                                        repeats:YES];
 	}
 	[super viewDidAppear:animated];
 }
@@ -456,14 +450,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
-	[ar_overlayView release];
 	ar_overlayView = nil;
 }
 
-- (void)dealloc {	
-	[ar_coordinateViews release];
-	[ar_coordinates release];
-    [super dealloc];
-}
 
 @end

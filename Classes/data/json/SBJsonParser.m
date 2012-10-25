@@ -288,7 +288,7 @@ static char ctrl[0x22];
     size_t len = strcspn(c, ctrl);
     if (len && *(c + len) == '\"')
     {
-        *o = [[[NSMutableString alloc] initWithBytes:(char*)c length:len encoding:NSUTF8StringEncoding] autorelease];
+        *o = [[NSMutableString alloc] initWithBytes:(char*)c length:len encoding:NSUTF8StringEncoding];
         c += len + 1;
         return YES;
     }
@@ -306,7 +306,6 @@ static char ctrl[0x22];
                                             freeWhenDone:NO];
             if (t) {
                 [*o appendString:t];
-                [t release];
                 c += len;
             }
         }
@@ -497,7 +496,7 @@ static char ctrl[0x22];
                                                 length:c - ns
                                               encoding:NSUTF8StringEncoding
                                           freeWhenDone:NO];
-        [str autorelease];
+        //[str autorelease];
         if (str && (*o = [NSDecimalNumber decimalNumberWithString:str]))
             return YES;
         

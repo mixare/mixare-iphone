@@ -50,7 +50,7 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad {
     id <DataProcessor> processor = [self matchProcessor:data.title];
-    [data refreshPositions:[processor convert:[[[NSString alloc] initWithContentsOfURL:[self urlWithLocationFix:data.jsonUrl location:loc radius:rad] encoding:NSUTF8StringEncoding error:nil] autorelease]]];
+    [data refreshPositions:[processor convert:[[NSString alloc] initWithContentsOfURL:[self urlWithLocationFix:data.jsonUrl location:loc radius:rad] encoding:NSUTF8StringEncoding error:nil]]];
 }
 
 /***
@@ -61,11 +61,11 @@ static NSMutableDictionary* urlValueData;
 + (id)matchProcessor:(NSString*)title {
     id <DataProcessor> processor = nil;
     if ([title isEqualToString:@"Wikipedia"]) {
-        processor = [[[WikipediaProcessor alloc] init] autorelease];
+        processor = [[WikipediaProcessor alloc] init];
     } else if ([title isEqualToString:@"Twitter"]) {
-        processor = [[[TwitterProcessor alloc] init] autorelease];
+        processor = [[TwitterProcessor alloc] init];
     } else {
-        processor = [[[MixareProcessor alloc] init] autorelease];
+        processor = [[MixareProcessor alloc] init];
     }
     return processor;
 }
@@ -77,7 +77,7 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (NSURL*)urlWithLocationFix:(NSString*)jsonUrl location:(CLLocation*)loc radius:(float)rad {
     [self initUrlValues:loc radius:rad];
-    NSString* stringURL = [[[NSString alloc] initWithString:jsonUrl] autorelease];
+    NSString* stringURL = [[NSString alloc] initWithString:jsonUrl];
     for (NSString* key in urlValueData) {
         NSString* value = [urlValueData objectForKey:key];
         stringURL = [self url:stringURL urlInfoFiller:key urlInfoReplacer:value];
@@ -94,11 +94,11 @@ static NSMutableDictionary* urlValueData;
  ***/
 + (void)initUrlValues:(CLLocation*)loc radius:(float)rad {
     NSString *language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", loc.coordinate.latitude] autorelease] forKey:@"PARAM_LAT"];
-    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", loc.coordinate.longitude] autorelease] forKey:@"PARAM_LON"];
-    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", loc.altitude] autorelease] forKey:@"PARAM_ALT"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", loc.coordinate.latitude] forKey:@"PARAM_LAT"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", loc.coordinate.longitude] forKey:@"PARAM_LON"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", loc.altitude] forKey:@"PARAM_ALT"];
     [urlValueData setObject:language forKey:@"PARAM_LANG"];
-    [urlValueData setObject:[[[NSString alloc] initWithFormat:@"%f", rad] autorelease] forKey:@"PARAM_RAD"];
+    [urlValueData setObject:[[NSString alloc] initWithFormat:@"%f", rad] forKey:@"PARAM_RAD"];
 }
 
 /***

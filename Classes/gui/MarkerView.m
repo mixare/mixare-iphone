@@ -63,8 +63,8 @@
         webFrame = CGRectMake(0, 25, 480, 160);
 		//buttobFrame= CGRectMake(0, 0, 480, 160);
     }
-    UIView *infoView = [[[UIView alloc] initWithFrame:infoFrame] autorelease];
-    UIWebView *webView = [[[UIWebView alloc] initWithFrame:webFrame] autorelease];
+    UIView *infoView = [[UIView alloc] initWithFrame:infoFrame];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
     webView.alpha = .7;
     [infoView addSubview:webView];
     NSURL *requestURL = [NSURL URLWithString:_url];
@@ -104,10 +104,6 @@
     
 }
 
-- (void)dealloc {
-    [super dealloc];
-    [viewTouched release];
-}
 
 
 #pragma mark WebViewDelegate

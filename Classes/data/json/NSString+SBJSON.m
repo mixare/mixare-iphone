@@ -38,7 +38,6 @@
     id repr = [jsonParser objectWithString:self];
     if (!repr)
         NSLog(@"-JSONValue failed. Error trace is: %@", [jsonParser errorTrace]);
-    [jsonParser release];
     return repr;
 }
 

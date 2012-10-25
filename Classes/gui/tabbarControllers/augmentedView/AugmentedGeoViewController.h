@@ -25,6 +25,6 @@
 	CLLocation *centerLocation;
 }
 
-@property (nonatomic, retain) CLLocation *centerLocation;
+@property (nonatomic, strong) CLLocation *centerLocation;
 
 @end

@@ -26,8 +26,8 @@
 	//UISwitch *_sourceSwitch;
 
 }
-@property (nonatomic, retain) IBOutlet UILabel *sourceLabel;
+@property (nonatomic, strong) IBOutlet UILabel *sourceLabel;
 //@property (nonatomic, retain) IBOutlet UISwitch *sourceSwitch;
-@property (nonatomic, retain) IBOutlet UIImageView *sourceLogoView;
+@property (nonatomic, strong) IBOutlet UIImageView *sourceLogoView;
 
 @end

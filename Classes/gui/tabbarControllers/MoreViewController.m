@@ -64,7 +64,7 @@
     accuracy.text = [NSString stringWithFormat:@"%f", loc.horizontalAccuracy];
     
     [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4]; 
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease]; 
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];  
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
@@ -89,13 +89,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-    [tabSwitch release];
-    [textView release];
-    [logoButton release];
-    [generalInfoView release];
-}
 
 
 @end

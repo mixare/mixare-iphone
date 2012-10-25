@@ -50,8 +50,5 @@
     isFirstAccess = NO;
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 @end

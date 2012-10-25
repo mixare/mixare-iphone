@@ -45,7 +45,7 @@
     CLLocation *_loc;
     
 }
-@property (nonatomic, retain) CLLocation *loc;
+@property (nonatomic, strong) CLLocation *loc;
 
 //action method which is added to the logobutton .. open the mixare webpage
 - (void)buttonClick:(id)sender;

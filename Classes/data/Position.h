@@ -28,23 +28,23 @@
 #import "PhysicalPlace.h"
 
 @interface Position : NSObject {
-    NSString *title;
-    NSString *summary;
-    NSString *url;
+    NSString *__weak title;
+    NSString *__weak summary;
+    NSString *__weak url;
     float latitude;
     float longitude;
     CGFloat altitude;
-    NSString *source;
+    NSString *__weak source;
     MapViewAnnotation *mapViewAnnotation;
     PhysicalPlace *poiItem;
 }
 
-@property (nonatomic, readonly) NSString *title;
-@property (nonatomic, readonly) NSString *summary;
-@property (nonatomic, readonly) NSString *url;
+@property (weak, nonatomic, readonly) NSString *title;
+@property (weak, nonatomic, readonly) NSString *summary;
+@property (weak, nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
 @property (nonatomic, readonly) PhysicalPlace* poiItem;
-@property (nonatomic, readonly) NSString *source;
+@property (weak, nonatomic, readonly) NSString *source;
 
 - (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(NSString*)sour;
 
