@@ -27,10 +27,28 @@
 
 @implementation TwitterProcessor
 
+- (id)init {
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 - (NSMutableArray*)convert:(NSString*)dataString {
-    // TODO REFIX
-    JsonHandler *jHandler = [[JsonHandler alloc] init];
-    return [jHandler processTwitterJSONData:dataString];
+    NSDictionary *data = [dataString JSONValue];
+	NSMutableArray *ret = [[NSMutableArray alloc]init];
+	NSArray *tweets = data[@"results"];
+    float height = 8000.0;
+	for(NSDictionary *tweet in tweets){
+		[ret addObject:@{
+         keys[@"user"]: tweet[@"from_user"],
+         keys[@"summary"]: tweet[@"from_user"],
+         keys[@"title"]: tweet[@"text"],
+         keys[@"altitude"]: [NSString stringWithFormat:@"%f", height],
+         keys[@"url"]: [NSString stringWithFormat:@"http://twitter.com/%@", tweet[@"from_user"]]}];
+        //height += 1000;
+	}
+	return ret;
 }
 
 @end

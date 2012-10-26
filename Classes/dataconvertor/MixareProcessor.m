@@ -24,14 +24,24 @@
 //
 
 #import "MixareProcessor.h"
-#import "JsonHandler.h"
 
 @implementation MixareProcessor
 
 - (NSMutableArray*)convert:(NSString*)dataString {
-    // TODO REFIX
-    JsonHandler *jHandler = [[JsonHandler alloc] init];
-    return [jHandler processMixareJSONData:dataString];
+    if (![dataString isEqualToString:@""]) {
+        NSDictionary* data = [dataString JSONValue];
+        NSMutableArray* ret = [[NSMutableArray alloc] init];
+        NSArray* geonames = data[@"results"];
+        for(NSDictionary *geoname in geonames){
+            [ret addObject:@{
+             keys[@"title"]: geoname[@"title"],
+             keys[@"url"]: geoname[@"webpage"],
+             keys[@"longitude"]: geoname[@"lng"],
+             keys[@"latitude"]: geoname[@"lat"],
+             keys[@"altitude"]: geoname[@"elevation"]}];
+        }
+        return ret;
+    } else return nil;
 }
 
 @end

@@ -27,10 +27,24 @@
 
 @implementation WikipediaProcessor
 
+- (id)init {
+    self = [super init];
+    return self;
+}
+
 - (NSMutableArray*)convert:(NSString*)dataString {
-    // TODO REFIX
-    JsonHandler *jHandler = [[JsonHandler alloc] init];
-    return [jHandler processWikipediaJSONData:dataString];
+    NSDictionary *data = [dataString JSONValue];
+	NSMutableArray *ret = [[NSMutableArray alloc] init];
+	NSArray *geonames = data[@"geonames"];
+	for (NSDictionary *geoname in geonames) {
+		[ret addObject:@{
+         keys[@"title"]: geoname[@"title"],
+         keys[@"summary"]: geoname[@"summary"],
+         keys[@"url"]: [NSString stringWithFormat:@"http://%@", geoname[@"wikipediaUrl"]],
+         keys[@"longitude"]: geoname[@"lng"],
+         keys[@"latitude"]: geoname[@"lat"]}];
+	}
+	return ret;
 }
 
 @end

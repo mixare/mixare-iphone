@@ -27,4 +27,18 @@
 
 @implementation JsonData
 
+- (id)init {
+    self = [super init];
+    keys = @{@"title": @"title",
+    @"latitude": @"lat",
+    @"longitude": @"lon",
+    @"altitude": @"alt",
+    @"summary": @"sum",
+    @"url": @"url",
+    @"user": @"user",
+    @"source": @"source",
+    @"reference": @"reference"};
+    return self;
+}
+
 @end

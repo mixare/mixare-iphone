@@ -25,10 +25,9 @@
 
 #import <Foundation/Foundation.h>
 #import "JSON.h"
-#import "JsonHandler.h" //TEMPORARY - NEED REFIX
 
 @interface JsonData : NSObject {
-
+    NSDictionary *keys;
 }
 
 @end
