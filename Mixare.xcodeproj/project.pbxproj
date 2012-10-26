@@ -62,6 +62,11 @@
 		E2A3168D163AABE5006BEFA3 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A31686163AABE5006BEFA3 /* SBJsonBase.m */; };
 		E2A3168E163AABE5006BEFA3 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A31688163AABE5006BEFA3 /* SBJsonParser.m */; };
 		E2A3168F163AABE5006BEFA3 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3168A163AABE5006BEFA3 /* SBJsonWriter.m */; };
+		E2A31690163ADE48006BEFA3 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A31682163AABE5006BEFA3 /* NSObject+SBJSON.m */; };
+		E2A31691163ADE4B006BEFA3 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A31684163AABE5006BEFA3 /* NSString+SBJSON.m */; };
+		E2A31692163ADE4E006BEFA3 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A31686163AABE5006BEFA3 /* SBJsonBase.m */; };
+		E2A31693163ADE51006BEFA3 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A31688163AABE5006BEFA3 /* SBJsonParser.m */; };
+		E2A31694163ADE57006BEFA3 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3168A163AABE5006BEFA3 /* SBJsonWriter.m */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AF6C2C162FEE29004E0625 /* WikipediaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */; };
@@ -716,6 +721,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2A31692163ADE4E006BEFA3 /* SBJsonBase.m in Sources */,
 				E2BE2965162D9592009CF67D /* SourceTableCell.m in Sources */,
 				E2BE2967162D9592009CF67D /* SourceViewController.m in Sources */,
 				E2BE2963162D958A009CF67D /* WebViewController.m in Sources */,
@@ -748,6 +754,10 @@
 				E2AF6C2C162FEE29004E0625 /* WikipediaProcessorTest.m in Sources */,
 				E2AF6C30162FF3ED004E0625 /* TwitterProcessorTest.m in Sources */,
 				E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */,
+				E2A31690163ADE48006BEFA3 /* NSObject+SBJSON.m in Sources */,
+				E2A31691163ADE4B006BEFA3 /* NSString+SBJSON.m in Sources */,
+				E2A31693163ADE51006BEFA3 /* SBJsonParser.m in Sources */,
+				E2A31694163ADE57006BEFA3 /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
