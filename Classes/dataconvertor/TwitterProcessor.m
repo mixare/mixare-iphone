@@ -39,16 +39,46 @@
 	NSMutableArray *ret = [[NSMutableArray alloc]init];
 	NSArray *tweets = data[@"results"];
     float height = 8000.0;
-	for(NSDictionary *tweet in tweets){
-		[ret addObject:@{
-         keys[@"user"]: tweet[@"from_user"],
-         keys[@"summary"]: tweet[@"from_user"],
-         keys[@"title"]: tweet[@"text"],
-         keys[@"altitude"]: [NSString stringWithFormat:@"%f", height],
-         keys[@"url"]: [NSString stringWithFormat:@"http://twitter.com/%@", tweet[@"from_user"]]}];
+	for (NSDictionary *tweet in tweets) {
+        NSDictionary *geo = [self getGeoDictionary:tweet[@"geo"]];
+        if ([self getLatitude:geo] != nil && [self getLongitude:geo] != nil) {
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            dic[keys[@"user"]] = tweet[@"from_user"];
+            dic[keys[@"user"]] = tweet[@"from_user"];
+            dic[keys[@"summary"]] = tweet[@"from_user"];
+            dic[keys[@"title"]] = tweet[@"text"];
+            dic[keys[@"altitude"]] = [NSString stringWithFormat:@"%f", height];
+            dic[keys[@"url"]] = [NSString stringWithFormat:@"http://twitter.com/%@", tweet[@"from_user"]];
+            dic[keys[@"latitude"]] = [self getLatitude:geo];
+            dic[keys[@"longitude"]] = [self getLongitude:geo];
+            [ret addObject:dic];
+        }
         //height += 1000;
 	}
 	return ret;
+}
+
+- (NSDictionary*)getGeoDictionary:(id)geoDic {
+    if (geoDic != [NSNull null]) {
+        return geoDic;
+    }
+    return nil;
+}
+
+- (NSString*)getLatitude:(NSDictionary*)geo {
+    if (geo != nil) {
+        NSArray *split = geo[@"coordinates"];
+        return split[0];
+    }
+    return nil;
+}
+
+- (NSString*)getLongitude:(NSDictionary*)geo {
+    if (geo != nil) {
+        NSArray *split = geo[@"coordinates"];
+        return split[1];
+    }
+    return nil;
 }
 
 @end
