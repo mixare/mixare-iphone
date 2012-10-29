@@ -52,5 +52,8 @@
     [poiItem setSource:source];
 }
 
+- (void)setMarker:(NSString*)marker {
+    [poiItem setMarker:marker];
+}
 
 @end

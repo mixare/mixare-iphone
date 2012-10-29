@@ -26,6 +26,7 @@
 - (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt {
     self = [super init];
     geoLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat, lon) altitude:alt horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
+    image = [UIImage imageNamed:@"circle.png"];
     return self;
 }
 

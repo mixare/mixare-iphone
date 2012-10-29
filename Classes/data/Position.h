@@ -47,5 +47,6 @@
 @property (weak, nonatomic, readonly) NSString *source;
 
 - (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(NSString*)sour;
+- (void)setMarker:(NSString*)marker;
 
 @end

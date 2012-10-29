@@ -66,8 +66,11 @@
 	NSString *title;
     //subtitle of the poi
 	NSString *subtitle;
+    //poi image
+    UIImage *image;
 }
 
+- (void)setMarker:(NSString*)marker;
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)other;
 - (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
@@ -76,6 +79,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) NSString *source;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;

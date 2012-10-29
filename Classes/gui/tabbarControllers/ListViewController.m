@@ -120,8 +120,6 @@
         //adding custom label to each row according to their source
         if ([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Wikipedia"]) {
             cell.imageView.image = [UIImage imageNamed:@"wikipedia_logo_small.png"];
-        } else if([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Buzz"]) {
-            cell.imageView.image = [UIImage imageNamed:@"buzz_logo_small.png"];
         } else if([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Twitter"]) {
             cell.imageView.image = [UIImage imageNamed:@"twitter_logo_small.png"];
         } else if([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Mixare"]) {

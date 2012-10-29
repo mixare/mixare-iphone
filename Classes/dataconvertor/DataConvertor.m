@@ -64,7 +64,7 @@ static NSMutableArray *processors;
  *
  ***/
 + (id)matchProcessor:(NSString*)title {
-    for (id <DataProcessor>processor in processors) {
+    for (id<DataProcessor> processor in processors) {
         if ([processor matchesDataType:title]) {
             return processor;
         }

@@ -37,12 +37,16 @@
         NSMutableArray* ret = [[NSMutableArray alloc] init];
         NSArray* geonames = data[@"results"];
         for(NSDictionary *geoname in geonames){
-            [ret addObject:@{
-             keys[@"title"]: geoname[@"title"],
-             keys[@"url"]: geoname[@"webpage"],
-             keys[@"longitude"]: geoname[@"lng"],
-             keys[@"latitude"]: geoname[@"lat"],
-             keys[@"altitude"]: geoname[@"elevation"]}];
+            NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+            dic[keys[@"title"]] = geoname[@"title"];
+            dic[keys[@"url"]] = geoname[@"webpage"];
+            dic[keys[@"longitude"]] = geoname[@"lng"];
+            dic[keys[@"latitude"]] = geoname[@"lat"];
+            dic[keys[@"altitude"]] = geoname[@"elevation"];
+            if (geoname[@"imagemarker"] != [NSNull null] && geoname[@"imagemarker"] != nil) {
+                dic[keys[@"marker"]] = geoname[@"imagemarker"];
+            }
+            [ret addObject:dic];
         }
         return ret;
     } else return nil;

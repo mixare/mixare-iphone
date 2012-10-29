@@ -396,15 +396,15 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     //tempView.backgroundColor = [UIColor grayColor];
+    /*
 	if ([coordinate.source isEqualToString:@"Wikipedia"]) {
 		pointView.image = [UIImage imageNamed:@"wikipedia_logo_small.png"];
 	} else if ([coordinate.source isEqualToString:@"Twitter"]) {
         pointView.image = [UIImage imageNamed:@"twitter_logo.png"];
-	} else if ([coordinate.source isEqualToString:@"Buzz"]) {
-        pointView.image = [UIImage imageNamed:@"buzz_logo.png"];
 	} else {
         pointView.image = [UIImage imageNamed:@"circle.png"];
-    }
+    }*/
+    pointView.image = coordinate.image;
 	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0, BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];

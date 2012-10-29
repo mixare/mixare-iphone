@@ -60,6 +60,9 @@
         float lat = [[poi valueForKey:@"lat"] floatValue];
         float lon = [[poi valueForKey:@"lon"] floatValue];
         Position *newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:lat withLongitude:lon withAltitude:alt withSource:title];
+        if (poi[@"imagemarker"] != nil) {
+            [newPosition setMarker:poi[@"imagemarker"]];
+        }
         [positions addObject:newPosition];
     }
     NSLog(@"positions count: %d", [positions count]);

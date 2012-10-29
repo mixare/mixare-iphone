@@ -21,7 +21,7 @@
 
 @implementation PoiItem
 
-@synthesize radialDistance, inclination, azimuth;
+@synthesize radialDistance, inclination, azimuth, image;
 @synthesize title, subtitle, source = _source, url = _url, radarPos = _radarPos;
 
 - (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
@@ -31,6 +31,28 @@
 	azimuth = newAzimuth;
 	title = @"";
 	return self;
+}
+
+- (void)setMarker:(NSString*)marker {
+    if ([self isImageUrl:marker]) {
+        NSURL *url = [NSURL URLWithString:marker];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        image = [UIImage imageWithData:data];
+    } else if (marker != nil) {
+        image = [UIImage imageNamed:marker];
+    } else {
+        image = [UIImage imageNamed:@"circle.png"];
+    }
+}
+
+- (BOOL)isImageUrl:(NSString*)url {
+    NSArray *elements = @[@"png", @"http", @"."];
+    for (NSString *element in elements) {
+        if ([url rangeOfString:element].location == NSNotFound) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (NSUInteger)hash{
