@@ -25,7 +25,7 @@
 @synthesize title, subtitle, source = _source, url = _url, radarPos = _radarPos;
 
 - (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
-	[super init];
+	//[super init];
 	radialDistance = newRadialDistance;
 	inclination = newInclination;
 	azimuth = newAzimuth;

@@ -18,10 +18,8 @@
  */
 #import "WebViewController.h"
 
-
 @implementation WebViewController
 @synthesize url = _url;
-
 
 #pragma mark WebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView*)webView {
@@ -34,7 +32,6 @@
     [loadView removeFromSuperview];
 }
 
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +42,6 @@
 	//Load the request in the UIWebView.
 	[_webView loadRequest:requestObj];
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;

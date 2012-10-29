@@ -40,18 +40,38 @@
 }
 
 - (NSMutableArray*)convert:(NSString*)dataString {
-    NSDictionary *data = [dataString JSONValue];
-	NSMutableArray *ret = [[NSMutableArray alloc] init];
-	NSArray *geonames = data[@"geonames"];
-	for (NSDictionary *geoname in geonames) {
-		[ret addObject:@{
-         keys[@"title"]: geoname[@"title"],
-         keys[@"summary"]: geoname[@"summary"],
-         keys[@"url"]: [NSString stringWithFormat:@"http://%@", geoname[@"wikipediaUrl"]],
-         keys[@"longitude"]: geoname[@"lng"],
-         keys[@"latitude"]: geoname[@"lat"]}];
-	}
-	return ret;
+    if (dataString != nil) {
+        NSDictionary *data = [dataString JSONValue];
+        NSMutableArray *ret = [[NSMutableArray alloc] init];
+        NSArray *geonames = data[@"geonames"];
+        for (NSDictionary *geoname in geonames) {
+            [ret addObject:@{
+            keys[@"title"]: geoname[@"title"],
+            keys[@"summary"]: geoname[@"summary"],
+            keys[@"url"]: [NSString stringWithFormat:@"http://%@", geoname[@"wikipediaUrl"]],
+            keys[@"longitude"]: geoname[@"lng"],
+            keys[@"latitude"]: geoname[@"lat"]}];
+        }
+        return ret;
+    }
+	return nil;
+}
+
+/***
+ *
+ *  Initialize location data for URL
+ *
+ ***/
+- (void)initUrlValues:(CLLocation*)loc radius:(float)rad {
+    NSString *language = [NSLocale preferredLanguages][0];
+    urlValueData[@"PARAM_LAT"] = [[NSString alloc] initWithFormat:@"%f", loc.coordinate.latitude];
+    urlValueData[@"PARAM_LON"] = [[NSString alloc] initWithFormat:@"%f", loc.coordinate.longitude];
+    urlValueData[@"PARAM_ALT"] = [[NSString alloc] initWithFormat:@"%f", loc.altitude];
+    urlValueData[@"PARAM_LANG"] = language;
+    if (rad > 20) {
+        rad = 20;
+    }
+    urlValueData[@"PARAM_RAD"] = [[NSString alloc] initWithFormat:@"%f", rad];
 }
 
 @end

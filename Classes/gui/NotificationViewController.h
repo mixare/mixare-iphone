@@ -25,8 +25,8 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface NotificationViewController : UIViewController {
     IBOutlet UIActivityIndicatorView *indicator;
 }
+
 @end

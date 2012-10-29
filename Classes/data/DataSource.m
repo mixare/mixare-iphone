@@ -27,7 +27,7 @@
 
 @implementation DataSource
 
-@synthesize title, jsonUrl, activated, positions;
+@synthesize title, jsonUrl, activated, locked, positions;
 
 /***
  *

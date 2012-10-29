@@ -25,9 +25,13 @@
 
 #import <Foundation/Foundation.h>
 #import "JSON.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface JsonData : NSObject {
     NSDictionary *keys;
+    NSMutableDictionary *urlValueData;
 }
+
+- (NSString*)createDataString:(NSString*)jsonUrl location:(CLLocation*)loc radius:(float)rad;
 
 @end

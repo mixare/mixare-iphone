@@ -24,10 +24,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @protocol DataProcessor
 
 - (BOOL)matchesDataType:(NSString*)title;
+- (NSString*)createDataString:(NSString*)jsonUrl location:(CLLocation*)loc radius:(float)rad;
 - (NSMutableArray*)convert:(NSString*)dataString;
 
 @end
