@@ -28,10 +28,12 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface DownloadManager : NSObject {
+    CLLocation *lastDownloadedLocation;
     float lastDownloadedRadius;
     NSMutableArray *lastDownloadedSources;
 }
 
 - (void)download:(NSMutableArray*)datas currentLocation:(CLLocation*)loc currentRadius:(float)rad;
+- (void)redownload;
 
 @end

@@ -30,11 +30,17 @@
 #define kTextFieldHeight		30.0
 
 @implementation SourceViewController
-@synthesize dataSourceArray; 
+@synthesize dataSourceArray, downloadManager;
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
+}
+
+- (void)refresh {
+    [downloadManager redownload];
+    [self refresh:dataSourceManager];
+    [self stopLoading];
 }
 
 - (void)refresh:(DataSourceManager*)sourceManager {

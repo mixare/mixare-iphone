@@ -19,13 +19,20 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "PullRefreshTableViewController.h"
 #import "DataSource.h"
+#import "DownloadManager.h"
 
 //Viewcontroller for the listview on the tabbar
-@interface ListViewController : UITableViewController<UITableViewDelegate>  {
-	NSMutableArray * dataSourceArray;
+@interface ListViewController : PullRefreshTableViewController<UITableViewDelegate>  {
+    NSMutableArray *dataSources;
+	NSMutableArray *dataSourceArray;
+    DownloadManager *downloadManager;
 }
 
+- (void)refresh;
 - (void)refresh:(NSMutableArray*)dataSources;
+
+@property (nonatomic, strong) DownloadManager *downloadManager;
 
 @end

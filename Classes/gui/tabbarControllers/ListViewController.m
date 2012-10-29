@@ -21,10 +21,18 @@
 #import "WebViewController.h"
 #import "Position.h"
 
-
 @implementation ListViewController
 
-- (void)refresh:(NSMutableArray*)dataSources {
+@synthesize downloadManager;
+
+- (void)refresh {
+    [downloadManager redownload];
+    [self refresh:dataSources];
+    [self stopLoading];
+}
+
+- (void)refresh:(NSMutableArray*)datas {
+    dataSources = datas;
     [dataSourceArray removeAllObjects];
     if (dataSources != nil) {
         for (DataSource *data in dataSources) {

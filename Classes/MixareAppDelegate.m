@@ -295,6 +295,7 @@
  ***/
 - (void)openTabSources {
     if (_dataSourceManager.dataSources != nil) {
+        [_sourceViewController setDownloadManager:_downloadManager];
         [_sourceViewController refresh:_dataSourceManager];
     }
 }
@@ -306,6 +307,7 @@
  ***/
 - (void)openTabPOI {
     if (_dataSourceManager.dataSources != nil) {
+        [_listViewController setDownloadManager:_downloadManager];
         [_listViewController refresh:[_dataSourceManager getActivatedSources]];
     } else {
         NSLog(@"Data POI List not set");
