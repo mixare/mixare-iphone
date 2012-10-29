@@ -59,7 +59,9 @@
 
 /***
  *
+ *  @OVERRIDE
  *  Initialize location data for URL
+ *  Wikipedia API radius = max 20km
  *
  ***/
 - (void)initUrlValues:(CLLocation*)loc radius:(float)rad {
