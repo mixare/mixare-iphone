@@ -30,7 +30,6 @@
     DownloadManager *downloadManager;
 }
 
-- (void)refresh;
 - (void)refresh:(NSMutableArray*)dataSources;
 
 @property (nonatomic, strong) DownloadManager *downloadManager;

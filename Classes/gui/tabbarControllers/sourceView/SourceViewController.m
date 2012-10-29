@@ -37,12 +37,22 @@
 	return YES;
 }
 
+/***
+ *
+ *  PULL TO REDOWNLOAD LAST DOWNLOADED DATA
+ *
+ ***/
 - (void)refresh {
     [downloadManager redownload];
     [self refresh:dataSourceManager];
     [self stopLoading];
 }
 
+/***
+ *
+ *  RENEW TABLE VIEW WITH ACTIVE SOURCES
+ *
+ ***/
 - (void)refresh:(DataSourceManager*)sourceManager {
     dataSourceManager = sourceManager;
     if (dataSourceArray == nil) {

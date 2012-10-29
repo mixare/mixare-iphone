@@ -34,7 +34,6 @@
 }
 
 - (IBAction)addSource;
-- (void)refresh;
 - (void)refresh:(DataSourceManager*)dataSourceManager;
 
 @property (nonatomic, strong) NSMutableArray *dataSourceArray;
