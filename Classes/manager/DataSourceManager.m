@@ -42,6 +42,8 @@
         dataSources = [NSMutableArray array];
         DataSource *wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
         DataSource *twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+        wikipedia.locked = YES;
+        twitter.locked = YES;
         [dataSources addObject:wikipedia];
         [dataSources addObject:twitter];
         [self writeDataSources];

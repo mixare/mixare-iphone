@@ -30,12 +30,14 @@
     NSString *title;
     NSString *jsonUrl;
     BOOL activated;
+    BOOL locked;
     NSMutableArray *positions;
 }
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *jsonUrl;
 @property (nonatomic, assign) BOOL activated;
+@property (nonatomic, assign) BOOL locked;
 @property (nonatomic, strong) NSMutableArray *positions;
 
 - (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url;

@@ -29,6 +29,7 @@
 
 @interface MixareProcessor : JsonData <DataProcessor>
 
+- (BOOL)matchesDataType:(NSString*)title;
 - (NSMutableArray*)convert:(NSString*)dataString;
 
 @end

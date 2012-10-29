@@ -27,6 +27,10 @@
 
 @implementation MixareProcessor
 
+- (BOOL)matchesDataType:(NSString*)title {
+    return YES;
+}
+
 - (NSMutableArray*)convert:(NSString*)dataString {
     if (![dataString isEqualToString:@""]) {
         NSDictionary* data = [dataString JSONValue];

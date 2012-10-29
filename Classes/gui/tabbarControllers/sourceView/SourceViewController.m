@@ -219,7 +219,7 @@
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath {
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if ([dataSourceArray[indexPath.row] isEqualToString:@"Wikipedia"] || [dataSourceArray[indexPath.row] isEqualToString:@"Twitter"]) {
+        if ([[dataSourceManager getDataSourceByTitle:dataSourceArray[indexPath.row]] locked]) {
             [self errorPopUp:@"You can only delete own sources!"];
         } else {
             [dataSourceManager deleteDataSource:[dataSourceManager getDataSourceByTitle:dataSourceArray[indexPath.row]]];

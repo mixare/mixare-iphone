@@ -29,14 +29,23 @@
 #import "WikipediaProcessor.h"
 #import "MixareProcessor.h"
 
-static NSMutableDictionary* urlValueData;
+static NSMutableDictionary *urlValueData;
+static NSMutableArray *processors;
 
 @implementation DataConvertor
 
 + (void)initialize {
     if (urlValueData == nil) {
         urlValueData = [[NSMutableDictionary alloc] init];
+        [self initDataProcessors];
     }
+}
+
++ (void)initDataProcessors {
+    processors = [[NSMutableArray alloc] init];
+    [processors addObject:[[WikipediaProcessor alloc] init]];
+    [processors addObject:[[TwitterProcessor alloc] init]];
+    [processors addObject:[[MixareProcessor alloc] init]]; //Mixare should be last added Processor
 }
 
 /***
@@ -59,15 +68,12 @@ static NSMutableDictionary* urlValueData;
  *
  ***/
 + (id)matchProcessor:(NSString*)title {
-    id <DataProcessor> processor = nil;
-    if ([title isEqualToString:@"Wikipedia"]) {
-        processor = [[WikipediaProcessor alloc] init];
-    } else if ([title isEqualToString:@"Twitter"]) {
-        processor = [[TwitterProcessor alloc] init];
-    } else {
-        processor = [[MixareProcessor alloc] init];
+    for (id <DataProcessor>processor in processors) {
+        if ([processor matchesDataType:title]) {
+            return processor;
+        }
     }
-    return processor;
+    return nil;
 }
 
 /***

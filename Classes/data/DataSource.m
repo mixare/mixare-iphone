@@ -40,6 +40,7 @@
         title = tit;
         jsonUrl = url;
         activated = YES;
+        locked = NO;
         positions = [[NSMutableArray alloc] init];
     }
     return self;

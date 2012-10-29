@@ -34,6 +34,13 @@
     return self;
 }
 
+- (BOOL)matchesDataType:(NSString*)title {
+    if ([title isEqualToString:@"Twitter"]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (NSMutableArray*)convert:(NSString*)dataString {
     NSDictionary *data = [dataString JSONValue];
 	NSMutableArray *ret = [[NSMutableArray alloc]init];
