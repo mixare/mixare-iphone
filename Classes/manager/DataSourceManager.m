@@ -42,10 +42,13 @@
         dataSources = [NSMutableArray array];
         DataSource *wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
         DataSource *twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+        DataSource *google = [[DataSource alloc] initTitle:@"Google Addresses" jsonUrl:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=PARAM_LAT,PARAM_LON&sensor=true"];
         wikipedia.locked = YES;
         twitter.locked = YES;
+        google.locked = YES;
         [dataSources addObject:wikipedia];
         [dataSources addObject:twitter];
+        [dataSources addObject:google];
         [self writeDataSources];
     }
 }

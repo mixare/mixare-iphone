@@ -246,7 +246,13 @@
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
         [_locManager stopUpdatingLocation];
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        //spinner.center = CGPointMake(viewController.view.frame.size.width/2, viewController.view.frame.size.height/3);
+        [tabBarController.view addSubview:spinner];
+        [tabBarController.view bringSubviewToFront:spinner];
+        [spinner startAnimating];
         [self refresh]; //download new data
+        [spinner stopAnimating];
     }
     switch (tabBarController.selectedIndex) {
         case 0:

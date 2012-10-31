@@ -28,6 +28,7 @@
 #import "TwitterProcessor.h"
 #import "WikipediaProcessor.h"
 #import "MixareProcessor.h"
+#import "GoogleAddressesProcessor.h"
 
 static NSMutableArray *processors;
 
@@ -41,6 +42,7 @@ static NSMutableArray *processors;
     processors = [[NSMutableArray alloc] init];
     [processors addObject:[[WikipediaProcessor alloc] init]];
     [processors addObject:[[TwitterProcessor alloc] init]];
+    [processors addObject:[[GoogleAddressesProcessor alloc] init]];
     [processors addObject:[[MixareProcessor alloc] init]]; //Mixare should be last added Processor
 }
 

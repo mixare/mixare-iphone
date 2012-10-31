@@ -18,6 +18,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
 #import "manager/DataSourceManager.h"
@@ -49,6 +50,7 @@
     UILabel *maxRadiusLabel;
     MoreViewController *_moreViewController;
     SourceViewController *_sourceViewController;
+    
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView *notificationView;

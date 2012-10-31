@@ -70,6 +70,7 @@
 		E2A6FCD8163E95A200007FA7 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */; };
 		E2A6FCDA163EB2A800007FA7 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
+		E2A8B70C16418AC90030E074 /* GoogleAddressesProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8B70B16418AC90030E074 /* GoogleAddressesProcessor.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AF6C2C162FEE29004E0625 /* WikipediaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */; };
 		E2AF6C30162FF3ED004E0625 /* TwitterProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF6C2F162FF3ED004E0625 /* TwitterProcessorTest.m */; };
@@ -205,6 +206,8 @@
 		E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullRefreshTableViewController.m; path = tabbarControllers/PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
+		E2A8B70A16418AC90030E074 /* GoogleAddressesProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAddressesProcessor.h; sourceTree = "<group>"; };
+		E2A8B70B16418AC90030E074 /* GoogleAddressesProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAddressesProcessor.m; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AF6C2A162FEE29004E0625 /* WikipediaProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaProcessorTest.h; sourceTree = "<group>"; };
 		E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WikipediaProcessorTest.m; sourceTree = "<group>"; };
@@ -550,6 +553,8 @@
 				E2E3ECAC162C4F7100A28F2B /* WikipediaProcessor.m */,
 				E2E3ECB4162C55E500A28F2B /* MixareProcessor.h */,
 				E2E3ECB5162C55E500A28F2B /* MixareProcessor.m */,
+				E2A8B70A16418AC90030E074 /* GoogleAddressesProcessor.h */,
+				E2A8B70B16418AC90030E074 /* GoogleAddressesProcessor.m */,
 			);
 			name = dataconvertor;
 			sourceTree = "<group>";
@@ -721,6 +726,7 @@
 				E2A3168E163AABE5006BEFA3 /* SBJsonParser.m in Sources */,
 				E2A3168F163AABE5006BEFA3 /* SBJsonWriter.m in Sources */,
 				E2A6FCD8163E95A200007FA7 /* PullRefreshTableViewController.m in Sources */,
+				E2A8B70C16418AC90030E074 /* GoogleAddressesProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
