@@ -46,13 +46,19 @@
 }
 
 - (BOOL)isImageUrl:(NSString*)url {
-    NSArray *elements = @[@"png", @"http", @"."];
+    NSArray *elements = @[@"http", @"."];
     for (NSString *element in elements) {
         if ([url rangeOfString:element].location == NSNotFound) {
             return NO;
         }
     }
-    return YES;
+    NSArray *possibleFiles = @[@"jpeg", @"png", @"jpg"];
+    for (NSString *file in possibleFiles) {
+        if ([url rangeOfString:file].location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (NSUInteger)hash{

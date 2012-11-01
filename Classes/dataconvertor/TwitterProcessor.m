@@ -57,7 +57,7 @@
              keys[@"url"]: [NSString stringWithFormat:@"http://twitter.com/%@", tweet[@"from_user"]],
              keys[@"latitude"]: [self getLatitude:geo],
              keys[@"longitude"]: [self getLongitude:geo],
-             keys[@"marker"]: @"twitter_logo_small.png"}];
+             keys[@"marker"]: tweet[@"profile_image_url_https"]}];
         }
 	}
 	return ret;
