@@ -1,22 +1,23 @@
-/* Copyright (C) 2010- Peer internet solutions
- * 
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ *
  * This file is part of mixare.
- * 
- * This program is free software: you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version. 
- * 
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
- * for more details. 
- * 
- * You should have received a copy of the GNU General Public License along with 
- * this program. If not, see <http://www.gnu.org/licenses/> */
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
 
 #import <Foundation/Foundation.h>
-
 #import <MapKit/MapKit.h>
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
@@ -32,8 +33,8 @@
 @optional
 
 // Title and subtitle for use by selection UI.
-- (NSString *)title;
-- (NSString *)subtitle;
+- (NSString*)title;
+- (NSString*)subtitle;
 
 @end
 
@@ -46,11 +47,10 @@
 @optional
 
 // Title and subtitle for use by selection UI.
-- (NSString *)title;
-- (NSString *)subtitle;
+- (NSString*)title;
+- (NSString*)subtitle;
 
 @end
-
 
 @interface PoiItem : NSObject {
     //distance from device to poi
@@ -66,21 +66,24 @@
 	NSString *title;
     //subtitle of the poi
 	NSString *subtitle;
+    //poi image
+    UIImage *image;
 }
 
+- (void)setMarker:(NSString*)marker;
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)other;
-- (BOOL)isEqualToCoordinate:(PoiItem *)otherCoordinate;
+- (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
+- (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
 
-+ (PoiItem *)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
-
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, strong) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, retain) NSString * source;
+@property (nonatomic, strong) NSString *source;
+@property (nonatomic, strong) UIImage *image;
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;
-@property (nonatomic, retain) NSString * url;
+@property (nonatomic, strong) NSString *url;
 @property (nonatomic) CGPoint radarPos;
 
 @end

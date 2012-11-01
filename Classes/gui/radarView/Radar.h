@@ -25,7 +25,7 @@
     float _range;
     float _radius;
 }
-@property (nonatomic,retain) NSArray * pois;
+@property (nonatomic,strong) NSArray * pois;
 @property (nonatomic, readonly) float range;
 @property (nonatomic) float radius;
 
