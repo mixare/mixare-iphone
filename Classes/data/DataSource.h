@@ -1,30 +1,46 @@
-/* Copyright (C) 2010- Peer internet solutions
- * 
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ *
  * This file is part of mixare.
- * 
- * This program is free software: you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version. 
- * 
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
- * for more details. 
- * 
- * You should have received a copy of the GNU General Public License along with 
- * this program. If not, see <http://www.gnu.org/licenses/> */
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
+//
+//  DataSource.h
+//  Mixare
+//
+//  Created by Aswin Ly on 24-09-12.
+//
 
 #import <Foundation/Foundation.h>
-#define WIKI_BASE_URL @"http://ws.geonames.org/findNearbyWikipediaJSON"
-#define TWITTER_BASE_URL  @"http://search.twitter.com/search.json"
-#define BUZZ_BASE_URL @"https://www.googleapis.com/buzz/v1/activities/search?alt=json&max-results=20"
-#define OSM_BASE_URL @"http://osmxapi.hypercube.telascience.org/api/0.6/node[railway=station]"
-typedef enum  {WIKIPEDIA, BUZZ, TWITTER, OWNURL,OSM} DATASOURCE;
+#import "Position.h"
 
-@interface DataSource : NSObject {
-	
-
+@interface DataSource : NSObject {    
+    NSString *title;
+    NSString *jsonUrl;
+    BOOL activated;
+    BOOL locked;
+    NSMutableArray *positions;
 }
-+(NSString *) createRequestURLFromDataSource: (NSString*) source Lat: (float) lat Lon: (float) lon Alt: (float) alt radius: (float) rad Lang: (NSString *) lang;
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *jsonUrl;
+@property (nonatomic, assign) BOOL activated;
+@property (nonatomic, assign) BOOL locked;
+@property (nonatomic, strong) NSMutableArray *positions;
+
+- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url;
+- (void)refreshPositions:(NSMutableArray*)results;
+
 @end

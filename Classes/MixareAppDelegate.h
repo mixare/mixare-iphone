@@ -18,61 +18,42 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
+#import "manager/DataSourceManager.h"
+#import "manager/DownloadManager.h"
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
-#import "data/JsonHandler.h"
 #import "MapViewController.h"
 #import "MarkerView.h"
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,ARViewDelegate, CLLocationManagerDelegate>{
+@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate> {
+    CLLocationManager *_locManager;
+    DataSourceManager *_dataSourceManager;
+    DownloadManager *_downloadManager;
+    
     UIWindow *window;
-	CLLocationManager * _locManager;
 	UITabBarController *_tabBarController;
 	CMMotionManager *motionManager;
-	ListViewController * _listViewController;
-	MapViewController * _mapViewController;
+	ListViewController *_listViewController;
+	MapViewController *_mapViewController;
 	AugmentedGeoViewController *augViewController;
-	NSMutableArray * _data;
-	JsonHandler * jHandler;
-	UISlider * _slider;
+	UISlider *_slider;
 	UISegmentedControl *_menuButton;
-	IBOutlet UIView * menuView;
-    UILabel * _valueLabel;
-    UILabel * nordLabel;
-    UILabel * maxRadiusLabel;
-    MoreViewController * _moreViewController;
-    SourceViewController * _sourceViewController;
+	IBOutlet UIView *menuView;
+    UILabel *_valueLabel;
+    UILabel *nordLabel;
+    UILabel *maxRadiusLabel;
+    MoreViewController *_moreViewController;
+    SourceViewController *_sourceViewController;
+    
     @private
     BOOL beforeWasLandscape;
-    IBOutlet UIView * notificationView;
-	
+    IBOutlet UIView *notificationView;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) CLLocationManager * locManager;
-@property (nonatomic, retain) IBOutlet ListViewController * listViewController;
-@property (nonatomic, retain) IBOutlet NSMutableArray * data;
-@property (nonatomic, retain) IBOutlet MapViewController* mapViewController;
-@property (nonatomic, retain) IBOutlet UISlider * slider;
-@property (nonatomic, retain) IBOutlet UISegmentedControl * menuButton;
-@property (nonatomic, retain) IBOutlet MoreViewController *moreViewController;
-@property (nonatomic, retain) IBOutlet SourceViewController * sourceViewController;
-@property (nonatomic, retain) IBOutlet UILabel * valueLabel;
-
-
--(void) iniARView;
-- (MarkerView *)viewForCoordinate:(PoiItem *)coordinate;
--(void)initLocationManager;
--(void)mapData;
--(void)downloadData;
--(void) initControls;
--(BOOL)checkIfDataSourceIsEanabled: (NSString *)source;
--(void)setViewToLandscape:(UIView*)viewObject;
--(void)setViewToPortrait:(UIView*)viewObject;
 @end

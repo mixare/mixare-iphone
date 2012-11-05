@@ -19,20 +19,18 @@
 
 #import "MoreViewController.h"
 
-
 @implementation MoreViewController
 @synthesize loc = _loc;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(tabSwitch != nil){
+    if (tabSwitch != nil) {
         //adding action method when tapping on button
         [tabSwitch addTarget:self action:@selector(switchView:) forControlEvents:UIControlEventValueChanged];
     }
-    if(logoButton != nil){
+    if (logoButton != nil) {
         //adding action metho to logobutton
-        [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents: UIControlEventTouchUpInside];
+        [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     //hidden because license info is shown firts
     generalInfoView.hidden=YES;
@@ -41,37 +39,36 @@
     [tabSwitch setTitle:NSLocalizedString(@"General Info", nil) forSegmentAtIndex:1];
 }
 
--(IBAction)switchView:(id) sender{
-    if(tabSwitch.selectedSegmentIndex == 1){
+- (void)switchView:(id)sender {
+    if (tabSwitch.selectedSegmentIndex == 1) {
         // licenseInfo part
         textView.hidden = YES;
         generalInfoView.hidden = NO;        
-    }else if (tabSwitch.selectedSegmentIndex==0){
+    } else if (tabSwitch.selectedSegmentIndex == 0) {
         //General Text
         textView.hidden = NO;
         generalInfoView.hidden = YES;
     }
 }
 
--(IBAction)buttonClick: (id) sender{
+- (void)buttonClick:(id)sender {
     //open the mixare webpage
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mixare.org"]];
 }
 
--(void)showGPSInfo:(float)latitude lng: (float)lng alt: (float) altitude speed:(float) sp date: (NSDate*) stamp {
-    NSLog(@"show val latitude: %f", lat);
-    lon.text = [NSString stringWithFormat:@"%f", lng];
-    lat.text = [NSString stringWithFormat:@"%f", latitude];
-    alt.text = [NSString stringWithFormat:@"%f", altitude];
-    speed.text = [NSString stringWithFormat:@"%f",sp];
-    //accuracy.text = [NSString stringWithFormat:@"%f", _locManager.desiredAccuracy];
+- (void)showGPSInfo:(CLLocation*)loc {
+    lon.text = [NSString stringWithFormat:@"%f", loc.coordinate.longitude];
+    lat.text = [NSString stringWithFormat:@"%f", loc.coordinate.latitude];
+    alt.text = [NSString stringWithFormat:@"%f", loc.altitude];
+    speed.text = [NSString stringWithFormat:@"%f", loc.speed];
+    accuracy.text = [NSString stringWithFormat:@"%f", loc.horizontalAccuracy];
     
     [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4]; 
-    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init]  autorelease]; 
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; 
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];  
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
-    date.text = [dateFormatter stringFromDate:stamp];
+    date.text = [dateFormatter stringFromDate:loc.timestamp];
     
 }
 
@@ -82,7 +79,6 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -93,13 +89,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-    [tabSwitch release];
-    [textView release];
-    [logoButton release];
-    [generalInfoView release];
-}
 
 
 @end

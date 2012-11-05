@@ -164,7 +164,7 @@ static char ctrl[0x22];
 {
     if (!strncmp(c, "rue", 3)) {
         c += 3;
-        *o = [NSNumber numberWithBool:YES];
+        *o = @YES;
         return YES;
     }
     [self addErrorWithCode:EPARSE description:@"Expected 'true'"];
@@ -175,7 +175,7 @@ static char ctrl[0x22];
 {
     if (!strncmp(c, "alse", 4)) {
         c += 4;
-        *o = [NSNumber numberWithBool:NO];
+        *o = @NO;
         return YES;
     }
     [self addErrorWithCode:EPARSE description: @"Expected 'false'"];
@@ -266,7 +266,7 @@ static char ctrl[0x22];
             return NO;
         }
         
-        [*o setObject:v forKey:k];
+        (*o)[k] = v;
         
         skipWhitespace(c);
         if (*c == ',' && c++) {
@@ -288,7 +288,7 @@ static char ctrl[0x22];
     size_t len = strcspn(c, ctrl);
     if (len && *(c + len) == '\"')
     {
-        *o = [[[NSMutableString alloc] initWithBytes:(char*)c length:len encoding:NSUTF8StringEncoding] autorelease];
+        *o = [[NSMutableString alloc] initWithBytes:(char*)c length:len encoding:NSUTF8StringEncoding];
         c += len + 1;
         return YES;
     }
@@ -306,7 +306,6 @@ static char ctrl[0x22];
                                             freeWhenDone:NO];
             if (t) {
                 [*o appendString:t];
-                [t release];
                 c += len;
             }
         }
@@ -486,7 +485,7 @@ static char ctrl[0x22];
             d++;
         }
         
-        *o = [NSNumber numberWithLongLong:negate ? -val : val];
+        *o = @(negate ? -val : val);
         return YES;
         
     } else {
@@ -497,7 +496,7 @@ static char ctrl[0x22];
                                                 length:c - ns
                                               encoding:NSUTF8StringEncoding
                                           freeWhenDone:NO];
-        [str autorelease];
+        //[str autorelease];
         if (str && (*o = [NSDecimalNumber decimalNumberWithString:str]))
             return YES;
         

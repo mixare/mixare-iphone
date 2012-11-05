@@ -1,38 +1,71 @@
-/* Copyright (C) 2010- Peer internet solutions
- * 
+/*
+ * Copyright (C) 2010- Peer internet solutions
+ *
  * This file is part of mixare.
- * 
- * This program is free software: you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by 
- * the Free Software Foundation, either version 3 of the License, or 
- * (at your option) any later version. 
- * 
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
  * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License 
- * for more details. 
- * 
- * You should have received a copy of the GNU General Public License along with 
- * this program. If not, see <http://www.gnu.org/licenses/> */
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>
+ */
+//
+//  DataSource.m
+//  Mixare
+//
+//  Created by Aswin Ly on 24-09-12.
+//
 
 #import "DataSource.h"
 
-
 @implementation DataSource
-+(NSString *) createRequestURLFromDataSource: (NSString*) source Lat: (float) lat Lon: (float) lon Alt: (float) alt radius: (float) rad Lang: (NSString *) lang{
-	NSString * ret;
-	if([source isEqualToString: @"WIKIPEDIA"] ){
-		ret = [NSString stringWithFormat:@"%@?lat=%f&lng=%f&radius=%f&maxRows=50&lang=%@",WIKI_BASE_URL,lat,lon,rad,lang];
-	}else if ([source isEqualToString: @"BUZZ"]){
-		ret = [NSString stringWithFormat:@"%@&lat=%f&lon=%f&radius=%f",BUZZ_BASE_URL,lat,lon,rad*1000];		
-	}else if ([source isEqualToString: @"TWITTER"]){
-		ret = [NSString stringWithFormat:@"%@?geocode=%f,%f,%fkm",TWITTER_BASE_URL,lat,lon,rad];
-		return ret;
-	}else if ([source isEqualToString: @"OSM"]){
-		//ret=@"";
-	}else if ([source isEqualToString: @"OWNURL"]){
-		
-	}
-	return ret;
+
+@synthesize title, jsonUrl, activated, locked, positions;
+
+/***
+ *
+ *  CONSTRUCTOR
+ *
+ ***/
+- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url {
+    self = [super init];
+    if(self) {
+        title = tit;
+        jsonUrl = url;
+        activated = YES;
+        locked = NO;
+        positions = [[NSMutableArray alloc] init];
+    }
+    return self;
 }
+
+/***
+ *
+ *  PUBLIC: (Re)create the position objects (for PoiItem and MapAnnotations views)
+ *  (Called by DataConvertor)
+ *
+ ***/
+- (void)refreshPositions:(NSMutableArray*)results {
+    [positions removeAllObjects];
+    positions = [[NSMutableArray alloc] init];
+    for (NSDictionary *poi in results) {
+        CGFloat alt = [[poi valueForKey:@"alt"] floatValue];
+        float lat = [[poi valueForKey:@"lat"] floatValue];
+        float lon = [[poi valueForKey:@"lon"] floatValue];
+        Position *newPosition = [[Position alloc] initWithTitle:[poi valueForKey:@"title"] withSummary:[poi valueForKey:@"sum"] withUrl:[poi valueForKey:@"url"] withLatitude:lat withLongitude:lon withAltitude:alt withSource:title];
+        if (poi[@"imagemarker"] != nil) {
+            [newPosition setMarker:poi[@"imagemarker"]];
+        }
+        [positions addObject:newPosition];
+    }
+    NSLog(@"positions count: %d", [positions count]);
+}
+
 @end
