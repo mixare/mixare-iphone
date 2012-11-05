@@ -50,16 +50,15 @@
         STAssertTrue(check, @"Positions should be 0");
     }
     [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
-    for (DataSource *data in [dataSourceManager getActivatedSources]) {
-        NSLog(@"Data positions after download: %d", data.positions.count);
-        BOOL check;
-        if (data.positions.count > 0) {
-            check = YES;
-        } else {
-            check = NO;
-        }
-        STAssertTrue(check, @"Positions should be filled");
+    DataSource *data = [dataSourceManager getActivatedSources][0]; //First from activated is Wikipedia
+    NSLog(@"Data positions after download: %d", data.positions.count);
+    BOOL check;
+    if (data.positions.count > 0) {
+        check = YES;
+    } else {
+        check = NO;
     }
+    STAssertTrue(check, @"Positions should be filled");
 }
 
 - (void)testAfterDownloadReadData {
