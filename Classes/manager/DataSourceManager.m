@@ -36,7 +36,7 @@
 }
 
 - (void)initDataSources {
-    //[self loadDataSources];
+    [self loadDataSources]; // run app without this method to clean the local storage
     if (dataSources.count == 0 || dataSources == nil) {
         NSLog(@"First create DataSources");
         dataSources = [NSMutableArray array];
