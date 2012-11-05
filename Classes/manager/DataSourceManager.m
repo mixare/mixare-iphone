@@ -36,7 +36,7 @@
 }
 
 - (void)initDataSources {
-    [self loadDataSources];
+    [self loadDataSources]; // run app without this method to clean the local storage
     if (dataSources.count == 0 || dataSources == nil) {
         NSLog(@"First create DataSources");
         dataSources = [NSMutableArray array];
@@ -75,7 +75,7 @@
 - (void)writeDataSources {
     NSMutableArray *saveArray = [[NSMutableArray alloc] init];
     for (DataSource *data in dataSources) {
-        [saveArray addObject:@{@"title": data.title, @"url": data.jsonUrl}];
+        [saveArray addObject:@{@"title":data.title, @"url":data.jsonUrl, @"locked":[self boolToString:data.locked]}];
     }
     [[NSUserDefaults standardUserDefaults] setObject:saveArray forKey:@"dataSources"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -86,6 +86,11 @@
     dataSources = [NSMutableArray array];
     for (NSDictionary *data in loadedData) {
         DataSource *source = [[DataSource alloc] initTitle:data[@"title"] jsonUrl:data[@"url"]];
+        if ([data[@"locked"] isEqualToString:@"YES"]) {
+            source.locked = YES;
+        } else {
+            source.locked = NO;
+        }
         [dataSources addObject:source];
     }
 }
@@ -95,5 +100,12 @@
     [self writeDataSources];
 }
 
+- (NSString*)boolToString:(BOOL)boolean {
+    if (boolean) {
+        return @"YES";
+    } else {
+        return @"NO";
+    }
+}
 
 @end
