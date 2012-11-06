@@ -25,6 +25,7 @@
 #import "manager/DownloadManager.h"
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
+#import "NotificationViewController.h"
 #import "MapViewController.h"
 #import "MarkerView.h"
 #import "Radar.h"
