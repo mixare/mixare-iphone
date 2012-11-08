@@ -29,7 +29,7 @@
 
 - (void)setUp {
     [super setUp];
-    dataSourceManager = [[DataSourceManager alloc] init];
+    dataSourceManager = [[DataSourceManager alloc] initWithoutLocalData];
     locationManager = [[CLLocationManager alloc] init];
 }
 
@@ -50,7 +50,7 @@
         STAssertTrue(check, @"Positions should be 0");
     }
     [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
-    DataSource *data = [dataSourceManager getActivatedSources][0]; //First from activated is Wikipedia
+    DataSource *data = [dataSourceManager getDataSourceByTitle:@"Wikipedia"];
     NSLog(@"Data positions after download: %d", data.positions.count);
     BOOL check;
     if (data.positions.count > 0) {

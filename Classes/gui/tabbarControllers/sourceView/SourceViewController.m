@@ -120,11 +120,7 @@
         } else {
             NSLog(@"URL: %@", urlField.text);
             NSLog(@"TITLE: %@", textField.text);
-            if ([dataSourceManager getDataSourceByTitle:textField.text] == nil) {
-                DataSource *data = [[DataSource alloc] initTitle:textField.text jsonUrl:urlField.text];
-                data.activated = NO;
-                [dataSourceManager.dataSources addObject:data];
-                [dataSourceManager writeDataSources];
+            if ([dataSourceManager createDataSource:textField.text dataUrl:urlField.text] != nil) {
                 [dataSourceArray addObject:textField.text];
             } else {
                 [self errorPopUp:@"Added title already exists"];

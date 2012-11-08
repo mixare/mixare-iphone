@@ -31,12 +31,18 @@
 
 - (DataSourceManager*)init {
     self = [super init];
+    [self loadDataSources]; // run app without this method to clean the local storage
+    [self initDataSources];
+    return self;
+}
+
+- (DataSourceManager*)initWithoutLocalData {
+    self = [super init];
     [self initDataSources];
     return self;
 }
 
 - (void)initDataSources {
-    [self loadDataSources]; // run app without this method to clean the local storage
     if (dataSources.count == 0 || dataSources == nil) {
         NSLog(@"First create DataSources");
         dataSources = [NSMutableArray array];
@@ -70,6 +76,17 @@
         }
     }
     return sources;
+}
+
+- (DataSource*)createDataSource:(NSString *)title dataUrl:(NSString *)url {
+    if ([self getDataSourceByTitle:title] == nil) {
+        DataSource *data = [[DataSource alloc] initTitle:title jsonUrl:url];
+        data.activated = NO;
+        [dataSources addObject:data];
+        [self writeDataSources];
+        return data;
+    } 
+    return nil;
 }
 
 - (void)writeDataSources {
