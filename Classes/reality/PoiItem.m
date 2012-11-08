@@ -40,7 +40,8 @@
         image = [UIImage imageWithData:data];
     } else if (marker != nil) {
         image = [UIImage imageNamed:marker];
-    } else {
+    } 
+    if (image == nil) {
         image = [UIImage imageNamed:@"circle.png"];
     }
 }
