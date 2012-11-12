@@ -24,26 +24,34 @@
 //
 
 #import "DataConverter.h"
+#import "PluginLoader.h"
+
 #import "DataProcessor.h"
 #import "TwitterProcessor.h"
 #import "WikipediaProcessor.h"
 #import "MixareProcessor.h"
 #import "GoogleAddressesProcessor.h"
 
-static NSMutableArray *processors;
+static DataConverter *dataConverter;
 
 @implementation DataConverter
 
 + (void)initialize {
-    [self initDataProcessors];
+    if (self == [DataConverter class]) {
+        dataConverter = [[DataConverter alloc] init];
+    }
 }
 
-+ (void)initDataProcessors {
-    processors = [[NSMutableArray alloc] init];
-    [processors addObject:[[WikipediaProcessor alloc] init]];
-    [processors addObject:[[TwitterProcessor alloc] init]];
-    [processors addObject:[[GoogleAddressesProcessor alloc] init]];
-    [processors addObject:[[MixareProcessor alloc] init]]; //Mixare should be last added Processor
++ (id)getInstance {
+    return dataConverter;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        processors = [[PluginLoader getInstance] getPluginsFromClassName:@"DataProcessor"];
+    }
+    return self;
 }
 
 /***
@@ -55,7 +63,7 @@ static NSMutableArray *processors;
  *  @param radius
  *
  ***/
-+ (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad {
+- (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad {
     id<DataProcessor> processor = [self matchProcessor:data.title];
     [data refreshPositions:[processor convert:[processor createDataString:data.jsonUrl location:loc radius:rad]]];
 }
@@ -65,7 +73,7 @@ static NSMutableArray *processors;
  *  Get the right DataProcessor for the specific source
  *
  ***/
-+ (id)matchProcessor:(NSString*)title {
+- (id)matchProcessor:(NSString*)title {
     for (id<DataProcessor> processor in processors) {
         if ([processor matchesDataType:title]) {
             return processor;

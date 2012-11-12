@@ -40,7 +40,7 @@
 
 - (void)testConvertData {
     CLLocation *location = [[[CLLocationManager alloc] init] location];
-    [DataConverter convertData:wikipedia currentLocation:location currentRadius:3.5];
+    [[DataConverter getInstance] convertData:wikipedia currentLocation:location currentRadius:3.5];
     BOOL check = YES;
     if (wikipedia.positions.count == 0) {
         check = NO;

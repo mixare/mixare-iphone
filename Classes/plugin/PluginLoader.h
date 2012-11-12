@@ -17,20 +17,21 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataConverter.h
+//  PluginLoader.h
 //  Mixare
 //
-//  Created by Aswin Ly on 15-10-12.
+//  Created by Aswin Ly on 12-11-12.
 //
 
 #import <Foundation/Foundation.h>
-#import "DataSource.h"
 
-@interface DataConverter : NSObject {
-    NSMutableArray *processors;
+@interface PluginLoader : NSObject {
+    NSMutableArray *plugins;
 }
 
 + (id)getInstance;
-- (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad;
+- (void)addPlugin:(id)plugin;
+- (void)addArrayOfPlugins:(NSMutableArray*)pluginz;
+- (NSMutableArray*)getPluginsFromClassName:(NSString*)className;
 
 @end

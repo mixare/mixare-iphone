@@ -70,8 +70,6 @@
 		E2B0167A162F03EB00C93C91 /* PositionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01679162F03EA00C93C91 /* PositionTest.m */; };
 		E2B100C01650FC7D0086BD8E /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100A81650FC7D0086BD8E /* DataConverter.m */; };
 		E2B100C11650FC7D0086BD8E /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100A81650FC7D0086BD8E /* DataConverter.m */; };
-		E2B100C21650FC7D0086BD8E /* GoogleAddressesProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100AB1650FC7D0086BD8E /* GoogleAddressesProcessor.m */; };
-		E2B100C31650FC7D0086BD8E /* GoogleAddressesProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100AB1650FC7D0086BD8E /* GoogleAddressesProcessor.m */; };
 		E2B100C41650FC7D0086BD8E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100AF1650FC7D0086BD8E /* NSObject+SBJSON.m */; };
 		E2B100C51650FC7D0086BD8E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100AF1650FC7D0086BD8E /* NSObject+SBJSON.m */; };
 		E2B100C61650FC7D0086BD8E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B11650FC7D0086BD8E /* NSString+SBJSON.m */; };
@@ -84,13 +82,19 @@
 		E2B100CD1650FC7D0086BD8E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B71650FC7D0086BD8E /* SBJsonWriter.m */; };
 		E2B100CE1650FC7D0086BD8E /* JsonData.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B91650FC7D0086BD8E /* JsonData.m */; };
 		E2B100CF1650FC7D0086BD8E /* JsonData.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B91650FC7D0086BD8E /* JsonData.m */; };
-		E2B100D01650FC7D0086BD8E /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100BB1650FC7D0086BD8E /* MixareProcessor.m */; };
-		E2B100D11650FC7D0086BD8E /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100BB1650FC7D0086BD8E /* MixareProcessor.m */; };
-		E2B100D21650FC7D0086BD8E /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100BD1650FC7D0086BD8E /* TwitterProcessor.m */; };
-		E2B100D31650FC7D0086BD8E /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100BD1650FC7D0086BD8E /* TwitterProcessor.m */; };
-		E2B100D41650FC7D0086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100BF1650FC7D0086BD8E /* WikipediaProcessor.m */; };
-		E2B100D51650FC7D0086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100BF1650FC7D0086BD8E /* WikipediaProcessor.m */; };
 		E2B100D91650FD770086BD8E /* DataConverterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100D71650FD770086BD8E /* DataConverterTest.m */; };
+		E2B100DF165102400086BD8E /* PluginLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100DE165102400086BD8E /* PluginLoader.m */; };
+		E2B100E0165102400086BD8E /* PluginLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100DE165102400086BD8E /* PluginLoader.m */; };
+		E2B100E6165136DA0086BD8E /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
+		E2B100E7165136DA0086BD8E /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
+		E2B100F116515BA50086BD8E /* GoogleAddressesProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EA16515BA50086BD8E /* GoogleAddressesProcessor.m */; };
+		E2B100F216515BA50086BD8E /* GoogleAddressesProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EA16515BA50086BD8E /* GoogleAddressesProcessor.m */; };
+		E2B100F316515BA50086BD8E /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EC16515BA50086BD8E /* MixareProcessor.m */; };
+		E2B100F416515BA50086BD8E /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EC16515BA50086BD8E /* MixareProcessor.m */; };
+		E2B100F516515BA50086BD8E /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EE16515BA50086BD8E /* TwitterProcessor.m */; };
+		E2B100F616515BA50086BD8E /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EE16515BA50086BD8E /* TwitterProcessor.m */; };
+		E2B100F716515BA50086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100F016515BA50086BD8E /* WikipediaProcessor.m */; };
+		E2B100F816515BA50086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100F016515BA50086BD8E /* WikipediaProcessor.m */; };
 		E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
 		E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
@@ -209,8 +213,6 @@
 		E2B100A71650FC7D0086BD8E /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataConverter.h; path = dataconverter/DataConverter.h; sourceTree = "<group>"; };
 		E2B100A81650FC7D0086BD8E /* DataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataConverter.m; path = dataconverter/DataConverter.m; sourceTree = "<group>"; };
 		E2B100A91650FC7D0086BD8E /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = dataconverter/DataProcessor.h; sourceTree = "<group>"; };
-		E2B100AA1650FC7D0086BD8E /* GoogleAddressesProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleAddressesProcessor.h; path = dataconverter/GoogleAddressesProcessor.h; sourceTree = "<group>"; };
-		E2B100AB1650FC7D0086BD8E /* GoogleAddressesProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleAddressesProcessor.m; path = dataconverter/GoogleAddressesProcessor.m; sourceTree = "<group>"; };
 		E2B100AD1650FC7D0086BD8E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		E2B100AE1650FC7D0086BD8E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		E2B100AF1650FC7D0086BD8E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -224,14 +226,23 @@
 		E2B100B71650FC7D0086BD8E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		E2B100B81650FC7D0086BD8E /* JsonData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonData.h; path = dataconverter/JsonData.h; sourceTree = "<group>"; };
 		E2B100B91650FC7D0086BD8E /* JsonData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonData.m; path = dataconverter/JsonData.m; sourceTree = "<group>"; };
-		E2B100BA1650FC7D0086BD8E /* MixareProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixareProcessor.h; path = dataconverter/MixareProcessor.h; sourceTree = "<group>"; };
-		E2B100BB1650FC7D0086BD8E /* MixareProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixareProcessor.m; path = dataconverter/MixareProcessor.m; sourceTree = "<group>"; };
-		E2B100BC1650FC7D0086BD8E /* TwitterProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterProcessor.h; path = dataconverter/TwitterProcessor.h; sourceTree = "<group>"; };
-		E2B100BD1650FC7D0086BD8E /* TwitterProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterProcessor.m; path = dataconverter/TwitterProcessor.m; sourceTree = "<group>"; };
-		E2B100BE1650FC7D0086BD8E /* WikipediaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikipediaProcessor.h; path = dataconverter/WikipediaProcessor.h; sourceTree = "<group>"; };
-		E2B100BF1650FC7D0086BD8E /* WikipediaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikipediaProcessor.m; path = dataconverter/WikipediaProcessor.m; sourceTree = "<group>"; };
 		E2B100D61650FD770086BD8E /* DataConverterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataConverterTest.h; sourceTree = "<group>"; };
 		E2B100D71650FD770086BD8E /* DataConverterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataConverterTest.m; sourceTree = "<group>"; };
+		E2B100DD165102400086BD8E /* PluginLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginLoader.h; path = plugin/PluginLoader.h; sourceTree = "<group>"; };
+		E2B100DE165102400086BD8E /* PluginLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginLoader.m; path = plugin/PluginLoader.m; sourceTree = "<group>"; };
+		E2B100E116512A2B0086BD8E /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataInput.h; sourceTree = "<group>"; };
+		E2B100E216512F3A0086BD8E /* CustomFrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFrontView.h; sourceTree = "<group>"; };
+		E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginEntryPoint.h; path = plugin/PluginEntryPoint.h; sourceTree = "<group>"; };
+		E2B100E4165136DA0086BD8E /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = extensions/PluginList.h; sourceTree = "<group>"; };
+		E2B100E5165136DA0086BD8E /* PluginList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginList.m; path = extensions/PluginList.m; sourceTree = "<group>"; };
+		E2B100E916515BA50086BD8E /* GoogleAddressesProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleAddressesProcessor.h; path = extensions/dataprocessors/GoogleAddressesProcessor.h; sourceTree = "<group>"; };
+		E2B100EA16515BA50086BD8E /* GoogleAddressesProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GoogleAddressesProcessor.m; path = extensions/dataprocessors/GoogleAddressesProcessor.m; sourceTree = "<group>"; };
+		E2B100EB16515BA50086BD8E /* MixareProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixareProcessor.h; path = extensions/dataprocessors/MixareProcessor.h; sourceTree = "<group>"; };
+		E2B100EC16515BA50086BD8E /* MixareProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixareProcessor.m; path = extensions/dataprocessors/MixareProcessor.m; sourceTree = "<group>"; };
+		E2B100ED16515BA50086BD8E /* TwitterProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TwitterProcessor.h; path = extensions/dataprocessors/TwitterProcessor.h; sourceTree = "<group>"; };
+		E2B100EE16515BA50086BD8E /* TwitterProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterProcessor.m; path = extensions/dataprocessors/TwitterProcessor.m; sourceTree = "<group>"; };
+		E2B100EF16515BA50086BD8E /* WikipediaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikipediaProcessor.h; path = extensions/dataprocessors/WikipediaProcessor.h; sourceTree = "<group>"; };
+		E2B100F016515BA50086BD8E /* WikipediaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikipediaProcessor.m; path = extensions/dataprocessors/WikipediaProcessor.m; sourceTree = "<group>"; };
 		E2BE2972162D9F32009CF67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2DFCF81160B25470045A6C4 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +301,8 @@
 				E2E3ECAA162C4EEB00A28F2B /* dataconverter */,
 				365B605D12B9F7740014850C /* data */,
 				365B605612B9F7230014850C /* reality */,
+				E2B100DB1651005E0086BD8E /* plugin */,
+				E2B100DC165100E80086BD8E /* extensions */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -374,6 +387,7 @@
 		365B605D12B9F7740014850C /* data */ = {
 			isa = PBXGroup;
 			children = (
+				E2B100E116512A2B0086BD8E /* DataInput.h */,
 				365B606012B9F7740014850C /* DataSource.h */,
 				365B606112B9F7740014850C /* DataSource.m */,
 				E246F3AA161061CB0006EA40 /* Position.h */,
@@ -385,6 +399,7 @@
 		365B607B12B9F9100014850C /* gui */ = {
 			isa = PBXGroup;
 			children = (
+				E2B100E216512F3A0086BD8E /* CustomFrontView.h */,
 				365B607C12B9F9100014850C /* MarkerView.h */,
 				365B607D12B9F9100014850C /* MarkerView.m */,
 				365B607E12B9F9100014850C /* NotificationViewController.h */,
@@ -496,6 +511,41 @@
 			path = dataconverter/json;
 			sourceTree = "<group>";
 		};
+		E2B100DB1651005E0086BD8E /* plugin */ = {
+			isa = PBXGroup;
+			children = (
+				E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */,
+				E2B100DD165102400086BD8E /* PluginLoader.h */,
+				E2B100DE165102400086BD8E /* PluginLoader.m */,
+			);
+			name = plugin;
+			sourceTree = "<group>";
+		};
+		E2B100DC165100E80086BD8E /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2B100E4165136DA0086BD8E /* PluginList.h */,
+				E2B100E5165136DA0086BD8E /* PluginList.m */,
+				E2B100E816515B0E0086BD8E /* dataprocessors */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		E2B100E816515B0E0086BD8E /* dataprocessors */ = {
+			isa = PBXGroup;
+			children = (
+				E2B100E916515BA50086BD8E /* GoogleAddressesProcessor.h */,
+				E2B100EA16515BA50086BD8E /* GoogleAddressesProcessor.m */,
+				E2B100EB16515BA50086BD8E /* MixareProcessor.h */,
+				E2B100EC16515BA50086BD8E /* MixareProcessor.m */,
+				E2B100ED16515BA50086BD8E /* TwitterProcessor.h */,
+				E2B100EE16515BA50086BD8E /* TwitterProcessor.m */,
+				E2B100EF16515BA50086BD8E /* WikipediaProcessor.h */,
+				E2B100F016515BA50086BD8E /* WikipediaProcessor.m */,
+			);
+			name = dataprocessors;
+			sourceTree = "<group>";
+		};
 		E2DFCF86160B25470045A6C4 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,17 +595,9 @@
 				E2B100A71650FC7D0086BD8E /* DataConverter.h */,
 				E2B100A81650FC7D0086BD8E /* DataConverter.m */,
 				E2B100A91650FC7D0086BD8E /* DataProcessor.h */,
-				E2B100AA1650FC7D0086BD8E /* GoogleAddressesProcessor.h */,
-				E2B100AB1650FC7D0086BD8E /* GoogleAddressesProcessor.m */,
 				E2B100AC1650FC7D0086BD8E /* json */,
 				E2B100B81650FC7D0086BD8E /* JsonData.h */,
 				E2B100B91650FC7D0086BD8E /* JsonData.m */,
-				E2B100BA1650FC7D0086BD8E /* MixareProcessor.h */,
-				E2B100BB1650FC7D0086BD8E /* MixareProcessor.m */,
-				E2B100BC1650FC7D0086BD8E /* TwitterProcessor.h */,
-				E2B100BD1650FC7D0086BD8E /* TwitterProcessor.m */,
-				E2B100BE1650FC7D0086BD8E /* WikipediaProcessor.h */,
-				E2B100BF1650FC7D0086BD8E /* WikipediaProcessor.m */,
 			);
 			name = dataconverter;
 			sourceTree = "<group>";
@@ -718,16 +760,18 @@
 				E2E3ECBD162C59A800A28F2B /* MapViewAnnotation.m in Sources */,
 				E2A6FCD8163E95A200007FA7 /* PullRefreshTableViewController.m in Sources */,
 				E2B100C01650FC7D0086BD8E /* DataConverter.m in Sources */,
-				E2B100C21650FC7D0086BD8E /* GoogleAddressesProcessor.m in Sources */,
 				E2B100C41650FC7D0086BD8E /* NSObject+SBJSON.m in Sources */,
 				E2B100C61650FC7D0086BD8E /* NSString+SBJSON.m in Sources */,
 				E2B100C81650FC7D0086BD8E /* SBJsonBase.m in Sources */,
 				E2B100CA1650FC7D0086BD8E /* SBJsonParser.m in Sources */,
 				E2B100CC1650FC7D0086BD8E /* SBJsonWriter.m in Sources */,
 				E2B100CE1650FC7D0086BD8E /* JsonData.m in Sources */,
-				E2B100D01650FC7D0086BD8E /* MixareProcessor.m in Sources */,
-				E2B100D21650FC7D0086BD8E /* TwitterProcessor.m in Sources */,
-				E2B100D41650FC7D0086BD8E /* WikipediaProcessor.m in Sources */,
+				E2B100DF165102400086BD8E /* PluginLoader.m in Sources */,
+				E2B100E6165136DA0086BD8E /* PluginList.m in Sources */,
+				E2B100F116515BA50086BD8E /* GoogleAddressesProcessor.m in Sources */,
+				E2B100F316515BA50086BD8E /* MixareProcessor.m in Sources */,
+				E2B100F516515BA50086BD8E /* TwitterProcessor.m in Sources */,
+				E2B100F716515BA50086BD8E /* WikipediaProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,17 +807,19 @@
 				E2AF6C30162FF3ED004E0625 /* TwitterProcessorTest.m in Sources */,
 				E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */,
 				E2B100C11650FC7D0086BD8E /* DataConverter.m in Sources */,
-				E2B100C31650FC7D0086BD8E /* GoogleAddressesProcessor.m in Sources */,
 				E2B100C51650FC7D0086BD8E /* NSObject+SBJSON.m in Sources */,
 				E2B100C71650FC7D0086BD8E /* NSString+SBJSON.m in Sources */,
 				E2B100C91650FC7D0086BD8E /* SBJsonBase.m in Sources */,
 				E2B100CB1650FC7D0086BD8E /* SBJsonParser.m in Sources */,
 				E2B100CD1650FC7D0086BD8E /* SBJsonWriter.m in Sources */,
 				E2B100CF1650FC7D0086BD8E /* JsonData.m in Sources */,
-				E2B100D11650FC7D0086BD8E /* MixareProcessor.m in Sources */,
-				E2B100D31650FC7D0086BD8E /* TwitterProcessor.m in Sources */,
-				E2B100D51650FC7D0086BD8E /* WikipediaProcessor.m in Sources */,
 				E2B100D91650FD770086BD8E /* DataConverterTest.m in Sources */,
+				E2B100E0165102400086BD8E /* PluginLoader.m in Sources */,
+				E2B100E7165136DA0086BD8E /* PluginList.m in Sources */,
+				E2B100F216515BA50086BD8E /* GoogleAddressesProcessor.m in Sources */,
+				E2B100F416515BA50086BD8E /* MixareProcessor.m in Sources */,
+				E2B100F616515BA50086BD8E /* TwitterProcessor.m in Sources */,
+				E2B100F816515BA50086BD8E /* WikipediaProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
