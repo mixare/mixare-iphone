@@ -95,6 +95,7 @@
 		E2B100F616515BA50086BD8E /* TwitterProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EE16515BA50086BD8E /* TwitterProcessor.m */; };
 		E2B100F716515BA50086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100F016515BA50086BD8E /* WikipediaProcessor.m */; };
 		E2B100F816515BA50086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100F016515BA50086BD8E /* WikipediaProcessor.m */; };
+		E2B100FB165161E10086BD8E /* PluginLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100FA165161E10086BD8E /* PluginLoaderTest.m */; };
 		E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
 		E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
@@ -243,6 +244,8 @@
 		E2B100EE16515BA50086BD8E /* TwitterProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TwitterProcessor.m; path = extensions/dataprocessors/TwitterProcessor.m; sourceTree = "<group>"; };
 		E2B100EF16515BA50086BD8E /* WikipediaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WikipediaProcessor.h; path = extensions/dataprocessors/WikipediaProcessor.h; sourceTree = "<group>"; };
 		E2B100F016515BA50086BD8E /* WikipediaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikipediaProcessor.m; path = extensions/dataprocessors/WikipediaProcessor.m; sourceTree = "<group>"; };
+		E2B100F9165161E10086BD8E /* PluginLoaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginLoaderTest.h; sourceTree = "<group>"; };
+		E2B100FA165161E10086BD8E /* PluginLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginLoaderTest.m; sourceTree = "<group>"; };
 		E2BE2972162D9F32009CF67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E2CBF67915F7985800983C98 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E2DFCF81160B25470045A6C4 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -564,6 +567,8 @@
 				E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */,
 				E2A7C1C516368B9300489474 /* DownloadManagerTest.h */,
 				E2A7C1C616368B9300489474 /* DownloadManagerTest.m */,
+				E2B100F9165161E10086BD8E /* PluginLoaderTest.h */,
+				E2B100FA165161E10086BD8E /* PluginLoaderTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -820,6 +825,7 @@
 				E2B100F416515BA50086BD8E /* MixareProcessor.m in Sources */,
 				E2B100F616515BA50086BD8E /* TwitterProcessor.m in Sources */,
 				E2B100F816515BA50086BD8E /* WikipediaProcessor.m in Sources */,
+				E2B100FB165161E10086BD8E /* PluginLoaderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
