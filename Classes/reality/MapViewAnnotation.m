@@ -37,8 +37,8 @@
             coordinate.latitude = lat;
             coordinate.longitude = lon;
         } else {
-            coordinate.latitude=0.0;
-            coordinate.longitude=0.0;
+            coordinate.latitude = 0.0;
+            coordinate.longitude = 0.0;
         }
     }
     return self;

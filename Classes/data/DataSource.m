@@ -49,7 +49,7 @@
 /***
  *
  *  PUBLIC: (Re)create the position objects (for PoiItem and MapAnnotations views)
- *  (Called by DataConvertor)
+ *  (Called by DataConverter)
  *
  ***/
 - (void)refreshPositions:(NSMutableArray*)results {

@@ -24,7 +24,7 @@
 //
 
 #import "DataSourceTest.h"
-#import "DataConvertor.h"
+#import "DataConverter.h"
 
 @implementation DataSourceTest
 
@@ -58,8 +58,8 @@
 - (void)testCreatePositionsFromDatasource {
     [self testCreateWikipediaDatasource];
     [self testCreateTwitterDatasource];
-    [DataConvertor convertData:wikipedia currentLocation:location currentRadius:3.5];
-    [DataConvertor convertData:twitter currentLocation:location currentRadius:3.5];
+    [DataConverter convertData:wikipedia currentLocation:location currentRadius:3.5];
+    [DataConverter convertData:twitter currentLocation:location currentRadius:3.5];
     BOOL test = true;
     if ([wikipedia.positions count] == 0) {
         test = false;

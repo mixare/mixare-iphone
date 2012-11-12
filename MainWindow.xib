@@ -690,7 +690,6 @@ A</bytes>
 					<int key="NSvFlags">266</int>
 					<string key="NSFrame">{{0, 387}, {320, 49}}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSNextKeyView"/>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MCAwAA</bytes>
@@ -718,7 +717,6 @@ A</bytes>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{31, 79}, {99, 21}}</string>
 						<reference key="NSSuperview" ref="1019770978"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
