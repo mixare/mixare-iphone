@@ -28,7 +28,7 @@
 #import "TwitterProcessor.h"
 #import "GoogleAddressesProcessor.h"
 #import "MixareProcessor.h"
-
+#import "StandardInput.h"
 
 @implementation PluginList
 
@@ -55,7 +55,7 @@ static PluginList *pluginList;
 /***
  *
  *  ADD YOUR PLUGINS HERE
- *  Only possible with interface: DataInput, DataConverter, CustomFrontView or PluginEntryPoint
+ *  Only possible with interface/protocol: DataInput, DataConverter, CustomFrontView or PluginEntryPoint
  *
  ***/
 - (void)initPlugins {
@@ -63,7 +63,8 @@ static PluginList *pluginList;
     [plugins addObject:[[WikipediaProcessor alloc] init]];
     [plugins addObject:[[TwitterProcessor alloc] init]];
     [plugins addObject:[[GoogleAddressesProcessor alloc] init]];
-    [plugins addObject:[[MixareProcessor alloc] init]]; 
+    [plugins addObject:[[MixareProcessor alloc] init]];
+    [plugins addObject:[[StandardInput alloc] init]];
 }
 
 - (NSMutableArray*)getPluginList {

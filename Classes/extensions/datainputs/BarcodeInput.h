@@ -16,29 +16,17 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
+//
+//  BarcodeInput.h
+//  Mixare
+//
+//  Created by Aswin Ly on 13-11-12.
+//
 
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "PullRefreshTableViewController.h"
-#import "DataSourceManager.h"
-#import "DownloadManager.h"
+#import "DataInput.h"
 #import "SetDataSource.h"
 
-//ViewController for the source tabbarsection 
-@interface SourceViewController : PullRefreshTableViewController<UITextFieldDelegate,UIAlertViewDelegate,SetDataSource> {
-	NSMutableArray *dataSourceArray;
-    IBOutlet UIBarButtonItem *addButton;
-    DownloadManager *downloadManager;
-    DataSourceManager *dataSourceManager;
-    UITextField *textField;
-    UITextField *urlField;
-}
-
-- (IBAction)addSource;
-- (void)setNewData:(NSDictionary*)data;
-- (void)refresh:(DataSourceManager*)dataSourceManager;
-
-@property (nonatomic, strong) NSMutableArray *dataSourceArray;
-@property (nonatomic, strong) DownloadManager *downloadManager;
+@interface BarcodeInput : NSObject <DataInput>
 
 @end

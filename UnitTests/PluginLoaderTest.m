@@ -8,6 +8,7 @@
 
 #import "PluginLoaderTest.h"
 #import "PluginList.h"
+#import "DataProcessor.h"
 
 @implementation PluginLoaderTest
 
@@ -27,6 +28,11 @@
     PluginLoader *loader = [PluginLoader getInstance];
     [loader addArrayOfPlugins:[[PluginList getInstance] getPluginList]];
     STAssertNotNil([loader getPluginsFromClassName:@"DataProcessor"], @"Plugins not loaded");
+    BOOL check = NO;
+    if ([[loader getPluginsFromClassName:@"DataProcessor"][0] conformsToProtocol:@protocol(DataProcessor)]) {
+        check = YES;
+    }
+    STAssertTrue(check, @"Wrong protocol");
 }
 
 @end

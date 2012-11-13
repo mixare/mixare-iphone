@@ -17,24 +17,22 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataInput.h
+//  BarcodeInput.m
 //  Mixare
 //
-//  Created by Aswin Ly on 12-11-12.
+//  Created by Aswin Ly on 13-11-12.
 //
 
-#import <Foundation/Foundation.h>
-#import "SetDataSource.h"
+#import "BarcodeInput.h"
 
-@protocol DataInput
+@implementation BarcodeInput
 
-/***
- *
- *  Object of parameter clasz should has interface/protocol 'SetDataSource'
- *  And uses the method setNewData to manage the received data
- *
- ***/
-- (void)runInput:(id<SetDataSource>)classToSetYourData;
-- (NSString*)getTitle;
+- (NSString*)getTitle {
+    return @"Barcode Scanner";
+}
+
+- (void)runInput:(id<SetDataSource>)classToSetYourData {
+    //TODO
+}
 
 @end

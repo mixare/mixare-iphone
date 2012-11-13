@@ -19,6 +19,8 @@
 
 #import "SourceViewController.h"
 #import "SourceTableCell.h"
+#import "PluginLoader.h"
+#import "DataInput.h"
 //Cons
 
 #define kTextFieldWidth         180.0
@@ -71,62 +73,60 @@
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
 }
 
+- (void)setNewData:(NSDictionary *)data {
+    NSString *title = [data objectForKey:@"title"];
+    NSString *url = [data objectForKey:@"url"];
+    if (url == nil || title == nil || [url isEqualToString:@""] || [title isEqualToString:@""]) {
+        [self errorPopUp:@"You have to fill all inputs"];
+    } else {
+        NSLog(@"URL: %@", url);
+        NSLog(@"TITLE: %@", title);
+        if ([dataSourceManager createDataSource:title dataUrl:url] != nil) {
+            [dataSourceArray addObject:title];
+        } else {
+            [self errorPopUp:@"Added title already exists"];
+        }
+    }
+    [self.tableView reloadData];
+}
+
 /***
  *
  *  Open an alert dialog to insert a custom data source by link
  *
  ***/
 - (void)addSource {
-    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Source",nil)
-                                                      message:NSLocalizedString(@"Insert your Source address \n\n\n\n\n",nil)
-                                                     delegate:self
-                                            cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                            otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-
-    textField = [[UITextField alloc] init];
-    [textField setBackgroundColor:[UIColor whiteColor]];
-    textField.delegate = self;
-    textField.borderStyle = UITextBorderStyleLine;
-    textField.frame = CGRectMake(15, 75, 255, 30);
-    textField.font = [UIFont fontWithName:@"ArialMT" size:20];
-    textField.placeholder = NSLocalizedString(@"Title",nil);
-    textField.textAlignment = NSTextAlignmentCenter;
-    textField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    [textField becomeFirstResponder];
-    [addAlert addSubview:textField];
-    
-    urlField = [[UITextField alloc] init];
-    [urlField setBackgroundColor:[UIColor whiteColor]];
-    urlField.delegate = self;
-    urlField.borderStyle = UITextBorderStyleLine;
-    urlField.frame = CGRectMake(15, 120, 255, 30);
-    urlField.font = [UIFont fontWithName:@"ArialMT" size:20];
-    urlField.placeholder = NSLocalizedString(@"Format:www.example.com",nil);
-    urlField.textAlignment = NSTextAlignmentCenter;
-    urlField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    [addAlert addSubview:urlField];
-    [addAlert show];
+    NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
+    if ([availablePlugins count] == 0) {
+        [self errorPopUp:@"No input possibility found"];
+    } else if ([availablePlugins count] == 1) {
+        id<DataInput> inputPlugin = availablePlugins[0];
+        [inputPlugin runInput:self];
+    } else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Data Input"
+                                                          message:@"Choose your data input method."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:nil];
+        for (id<DataInput> inputPlugin in availablePlugins) {
+            [message addButtonWithTitle:[inputPlugin getTitle]];
+        }
+        [message show];
+    }
 }
 
 /***
  *
- *  Responses of both Alert Dialogs
+ *  Response to (void)addSource
  *
  ***/
-- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != [alertView cancelButtonIndex]) {
-        if (urlField.text == nil || textField.text == nil || [urlField.text isEqualToString:@""] || [textField.text isEqualToString:@""]) {
-            [self errorPopUp:@"You have to fill all inputs"];
-        } else {
-            NSLog(@"URL: %@", urlField.text);
-            NSLog(@"TITLE: %@", textField.text);
-            if ([dataSourceManager createDataSource:textField.text dataUrl:urlField.text] != nil) {
-                [dataSourceArray addObject:textField.text];
-            } else {
-                [self errorPopUp:@"Added title already exists"];
-            }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
+    for (id<DataInput> inputPlugin in availablePlugins) {
+        NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+        if([title isEqualToString:[inputPlugin getTitle]]) {
+            [inputPlugin runInput:self];
         }
-        [self.tableView reloadData];
     }
 }
 

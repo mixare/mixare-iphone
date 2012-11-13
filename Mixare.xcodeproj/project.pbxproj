@@ -57,6 +57,10 @@
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
+		E2A5277616525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
+		E2A5277716525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
+		E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277A1652763000B4099C /* BarcodeInput.m */; };
+		E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277A1652763000B4099C /* BarcodeInput.m */; };
 		E2A6FCD8163E95A200007FA7 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */; };
 		E2A6FCDA163EB2A800007FA7 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
@@ -197,6 +201,11 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
+		E2A5277416525EA700B4099C /* StandardInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandardInput.h; path = extensions/datainputs/StandardInput.h; sourceTree = "<group>"; };
+		E2A5277516525EA700B4099C /* StandardInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandardInput.m; path = extensions/datainputs/StandardInput.m; sourceTree = "<group>"; };
+		E2A527781652609A00B4099C /* SetDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataSource.h; sourceTree = "<group>"; };
+		E2A527791652763000B4099C /* BarcodeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarcodeInput.h; path = extensions/datainputs/BarcodeInput.h; sourceTree = "<group>"; };
+		E2A5277A1652763000B4099C /* BarcodeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarcodeInput.m; path = extensions/datainputs/BarcodeInput.m; sourceTree = "<group>"; };
 		E2A6FCD6163E95A200007FA7 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullRefreshTableViewController.h; path = tabbarControllers/PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullRefreshTableViewController.m; path = tabbarControllers/PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
@@ -391,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				E2B100E116512A2B0086BD8E /* DataInput.h */,
+				E2A527781652609A00B4099C /* SetDataSource.h */,
 				365B606012B9F7740014850C /* DataSource.h */,
 				365B606112B9F7740014850C /* DataSource.m */,
 				E246F3AA161061CB0006EA40 /* Position.h */,
@@ -495,6 +505,17 @@
 			path = tabbarIcons;
 			sourceTree = "<group>";
 		};
+		E2A5276E1652441900B4099C /* datainputs */ = {
+			isa = PBXGroup;
+			children = (
+				E2A5277416525EA700B4099C /* StandardInput.h */,
+				E2A5277516525EA700B4099C /* StandardInput.m */,
+				E2A527791652763000B4099C /* BarcodeInput.h */,
+				E2A5277A1652763000B4099C /* BarcodeInput.m */,
+			);
+			name = datainputs;
+			sourceTree = "<group>";
+		};
 		E2B100AC1650FC7D0086BD8E /* json */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +550,7 @@
 			children = (
 				E2B100E4165136DA0086BD8E /* PluginList.h */,
 				E2B100E5165136DA0086BD8E /* PluginList.m */,
+				E2A5276E1652441900B4099C /* datainputs */,
 				E2B100E816515B0E0086BD8E /* dataprocessors */,
 			);
 			name = extensions;
@@ -777,6 +799,8 @@
 				E2B100F316515BA50086BD8E /* MixareProcessor.m in Sources */,
 				E2B100F516515BA50086BD8E /* TwitterProcessor.m in Sources */,
 				E2B100F716515BA50086BD8E /* WikipediaProcessor.m in Sources */,
+				E2A5277616525EA700B4099C /* StandardInput.m in Sources */,
+				E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,6 +850,8 @@
 				E2B100F616515BA50086BD8E /* TwitterProcessor.m in Sources */,
 				E2B100F816515BA50086BD8E /* WikipediaProcessor.m in Sources */,
 				E2B100FB165161E10086BD8E /* PluginLoaderTest.m in Sources */,
+				E2A5277716525EA700B4099C /* StandardInput.m in Sources */,
+				E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
