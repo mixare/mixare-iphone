@@ -26,7 +26,10 @@
 #import <Foundation/Foundation.h>
 #import "DataInput.h"
 #import "SetDataSource.h"
+#import "ZBarSDK.h"
 
-@interface BarcodeInput : NSObject <DataInput>
+@interface BarcodeInput : UIViewController <DataInput, ZBarReaderDelegate> {
+    id<SetDataSource> aClass;
+}
 
 @end

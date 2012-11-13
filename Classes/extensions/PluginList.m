@@ -56,7 +56,7 @@ static PluginList *pluginList;
 /***
  *
  *  ADD YOUR PLUGINS HERE
- *  Only possible with interface/protocol: DataInput, DataConverter, CustomFrontView or PluginEntryPoint
+ *  Only possible with interface/protocol: DataInput, DataProcessor, CustomFrontView or PluginEntryPoint
  *
  ***/
 - (void)initPlugins {
@@ -65,8 +65,8 @@ static PluginList *pluginList;
     [plugins addObject:[[TwitterProcessor alloc] init]];
     [plugins addObject:[[GoogleAddressesProcessor alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];
-    [plugins addObject:[[BarcodeInput alloc] init]];
     [plugins addObject:[[StandardInput alloc] init]];
+    [plugins addObject:[[BarcodeInput alloc] init]];
 }
 
 - (NSMutableArray*)getPluginList {
