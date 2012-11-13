@@ -105,7 +105,7 @@
     } else {
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Data Input"
                                                           message:@"Choose your data input method."
-                                                         delegate:nil
+                                                         delegate:self
                                                 cancelButtonTitle:@"Cancel"
                                                 otherButtonTitles:nil];
         for (id<DataInput> inputPlugin in availablePlugins) {
@@ -120,10 +120,10 @@
  *  Response to (void)addSource
  *
  ***/
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
     for (id<DataInput> inputPlugin in availablePlugins) {
-        NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
         if([title isEqualToString:[inputPlugin getTitle]]) {
             [inputPlugin runInput:self];
         }

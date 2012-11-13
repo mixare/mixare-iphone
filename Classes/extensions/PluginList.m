@@ -29,6 +29,7 @@
 #import "GoogleAddressesProcessor.h"
 #import "MixareProcessor.h"
 #import "StandardInput.h"
+#import "BarcodeInput.h"
 
 @implementation PluginList
 
@@ -64,6 +65,7 @@ static PluginList *pluginList;
     [plugins addObject:[[TwitterProcessor alloc] init]];
     [plugins addObject:[[GoogleAddressesProcessor alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];
+    [plugins addObject:[[BarcodeInput alloc] init]];
     [plugins addObject:[[StandardInput alloc] init]];
 }
 
