@@ -32,23 +32,23 @@
 }
 
 - (void)runInput:(id<SetDataSource>)classToSetYourData {
-    /*aClass = classToSetYourData;
+    aClass = classToSetYourData;
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
     reader.readerDelegate = self;
     reader.supportedOrientationsMask = ZBarOrientationMaskAll;
     ZBarImageScanner *scanner = reader.scanner;
     [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
-    [self presentViewController:reader animated:YES completion:nil];*/
+    [self presentViewController:reader animated:YES completion:nil];
 }
-/*
-- (void) imagePickerController:(UIImagePickerController *) reader didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     id<NSFastEnumeration> results = [info objectForKey:ZBarReaderControllerResults];
     ZBarSymbol *symbol = nil;
     for (symbol in results) {
         break;
     }
     [aClass setNewData:@{@"title":@"Scanned Source Title", @"url":symbol.data}];
-    [reader dismissViewControllerAnimated:YES completion:nil];
-}*/
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

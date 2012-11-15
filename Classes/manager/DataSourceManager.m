@@ -117,6 +117,12 @@
     [self writeDataSources];
 }
 
+- (void)deactivateAllSources {
+    for (DataSource *data in dataSources) {
+        data.activated = NO;
+    }
+}
+
 - (NSString*)boolToString:(BOOL)boolean {
     if (boolean) {
         return @"YES";

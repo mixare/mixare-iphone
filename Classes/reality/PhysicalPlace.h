@@ -20,6 +20,7 @@
 #import <Foundation/Foundation.h>
 #import "PoiItem.h"
 #import <CoreLocation/CoreLocation.h>
+@class Position;
 
 //This class is used to represent a physically place in a virtual world. 
 @interface PhysicalPlace : PoiItem {
@@ -30,7 +31,7 @@
 
 //calculates the angle between two coordinates
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;
-- (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt;
+- (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt position:(Position*)pos;
 
 //initializer returns a physicalplace with his location
 - (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location;

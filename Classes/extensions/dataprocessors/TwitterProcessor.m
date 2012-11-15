@@ -47,6 +47,10 @@
 	NSArray *tweets = data[@"results"];
     float height = 8000.0;
 	for (NSDictionary *tweet in tweets) {
+        NSString *marker = tweet[@"profile_image_url_https"];
+        if (marker == nil || [marker isEqualToString:@""]) {
+            marker = @"twitter_logo_small.png";
+        }
         NSDictionary *geo = [self getGeoDictionary:tweet[@"geo"]];
         if ([self getLatitude:geo] != nil && [self getLongitude:geo] != nil) {
             [ret addObject:@{
@@ -57,7 +61,8 @@
              keys[@"url"]: [NSString stringWithFormat:@"http://twitter.com/%@", tweet[@"from_user"]],
              keys[@"latitude"]: [self getLatitude:geo],
              keys[@"longitude"]: [self getLongitude:geo],
-             keys[@"marker"]: tweet[@"profile_image_url_https"]}];
+             keys[@"marker"]: marker,
+             keys[@"logo"]: @"twitter_logo.png"}];
         }
 	}
 	return ret;

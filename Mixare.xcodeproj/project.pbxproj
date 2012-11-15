@@ -52,6 +52,9 @@
 		36B3DC9F12B9FCF100670FCF /* twitter_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9112B9FCF100670FCF /* twitter_logo_small.png */; };
 		36B3DCA012B9FCF100670FCF /* wikipedia_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */; };
 		36B3DCA112B9FCF100670FCF /* wikipedia_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */; };
+		E223A6CC1653942700C94815 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
+		E223A6CD1653943000C94815 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
+		E223A6CE1653943400C94815 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
 		E246F31C16104B140006EA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
 		E246F31D16104B140006EA40 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
@@ -213,6 +216,7 @@
 		36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo.png; sourceTree = "<group>"; };
 		36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo_small.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E246F3AA161061CB0006EA40 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
@@ -319,6 +323,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E223A6CD1653943000C94815 /* libiconv.2.4.0.dylib in Frameworks */,
 				E2AFE7661652A9C60038E17A /* CoreVideo.framework in Frameworks */,
 				E2AFE7621652A9AD0038E17A /* CoreMedia.framework in Frameworks */,
 				E2AFE75E1652A9840038E17A /* AVFoundation.framework in Frameworks */,
@@ -337,6 +342,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E223A6CE1653943400C94815 /* libiconv.2.4.0.dylib in Frameworks */,
 				E2AFE7671652A9CE0038E17A /* CoreVideo.framework in Frameworks */,
 				E2AFE7631652A9B10038E17A /* CoreMedia.framework in Frameworks */,
 				E2AFE75F1652A9920038E17A /* AVFoundation.framework in Frameworks */,
@@ -423,6 +429,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */,
 				E2AFE7641652A9BF0038E17A /* CoreVideo.framework */,
 				E2AFE7601652A9A30038E17A /* CoreMedia.framework */,
 				E2AFE75C1652A9580038E17A /* AVFoundation.framework */,
@@ -855,6 +862,7 @@
 				E2AFE7551652A5E90038E17A /* zbar-help.html in Resources */,
 				E2AFE7571652A5E90038E17A /* zbar-helpicons.png in Resources */,
 				E2AFE7591652A5E90038E17A /* zbar-samples.png in Resources */,
+				E223A6CC1653942700C94815 /* libiconv.2.4.0.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

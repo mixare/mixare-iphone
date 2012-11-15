@@ -28,7 +28,7 @@
 #import "SetDataSource.h"
 #import "ZBarSDK.h"
 
-@interface BarcodeInput : UIViewController <DataInput, ZBarReaderDelegate> {
+@interface BarcodeInput : UIViewController <ZBarReaderDelegate, DataInput> {
     id<SetDataSource> aClass;
 }
 

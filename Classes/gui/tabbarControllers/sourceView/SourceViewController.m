@@ -196,10 +196,8 @@
 	}
 	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = dataSourceArray[indexPath.row];
-		if ([cell.sourceLabel.text isEqualToString:@"Twitter"]) {
-			[cell.sourceLogoView setImage:[UIImage imageNamed:@"twitter_logo.png"]];
-		} else if ([cell.sourceLabel.text isEqualToString:@"Wikipedia"]) {
-			[cell.sourceLogoView setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
+        if ([dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo != nil) {
+			[cell.sourceLogoView setImage:[dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo];
 		} else {
             [cell.sourceLogoView setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }

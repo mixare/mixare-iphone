@@ -38,7 +38,8 @@
     @"user": @"user",
     @"source": @"source",
     @"marker": @"imagemarker",
-    @"reference": @"reference"};
+    @"reference": @"reference",
+    @"logo": @"logo"};
     urlValueData = [[NSMutableDictionary alloc] init];
     return self;
 }

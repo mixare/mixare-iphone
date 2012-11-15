@@ -24,12 +24,13 @@
 //
 
 #import "Position.h"
+#import "DataSource.h"
 
 @implementation Position
 
-@synthesize mapViewAnnotation, poiItem, title, summary, url, source;
+@synthesize mapViewAnnotation, poiItem, title, summary, url, source, longitude, altitude, latitude, image;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(NSString*)sour {
+- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour {
     self = [super init];
     title = tit;
     summary = sum;
@@ -46,14 +47,36 @@
     mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude andLongitude:longitude];
     [mapViewAnnotation setTitle:title];
     [mapViewAnnotation setSubTitle:summary];
-    poiItem = [[PhysicalPlace alloc] initWithLatitude:latitude longitude:longitude altitude:altitude];
+    poiItem = [[PhysicalPlace alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
     [poiItem setTitle:title];
     [poiItem setUrl:url];
-    [poiItem setSource:source];
+    [poiItem setSource:source.title];
 }
 
 - (void)setMarker:(NSString*)marker {
-    [poiItem setMarker:marker];
+    if ([self isImageUrl:marker]) {
+        NSURL *urls = [NSURL URLWithString:marker];
+        NSData *data = [NSData dataWithContentsOfURL:urls];
+        image = [UIImage imageWithData:data];
+    } else if (marker != nil) {
+        image = [UIImage imageNamed:marker];
+    }
+}
+
+- (BOOL)isImageUrl:(NSString*)urls {
+    NSArray *elements = @[@"http", @"."];
+    for (NSString *element in elements) {
+        if ([urls rangeOfString:element].location == NSNotFound) {
+            return NO;
+        }
+    }
+    NSArray *possibleFiles = @[@"jpeg", @"png", @"jpg"];
+    for (NSString *file in possibleFiles) {
+        if ([urls rangeOfString:file].location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
