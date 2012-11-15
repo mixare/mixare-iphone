@@ -27,6 +27,11 @@
 
 @implementation BarcodeInput
 
+- (id)init {
+    self = [super init];
+    return self;
+}
+
 - (NSString*)getTitle {
     return @"Barcode Scanner";
 }
@@ -38,7 +43,7 @@
     reader.supportedOrientationsMask = ZBarOrientationMaskAll;
     ZBarImageScanner *scanner = reader.scanner;
     [scanner setSymbology:ZBAR_I25 config:ZBAR_CFG_ENABLE to:0];
-    [self presentViewController:reader animated:YES completion:nil];
+    [aClass presentViewController:reader animated:nil completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -47,8 +52,16 @@
     for (symbol in results) {
         break;
     }
-    [aClass setNewData:@{@"title":@"Scanned Source Title", @"url":symbol.data}];
+    [aClass setNewData:@{@"title":@"Scanned source", @"url":symbol.data}];
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
 }
 
 @end

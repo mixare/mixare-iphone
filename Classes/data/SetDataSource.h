@@ -11,5 +11,6 @@
 @protocol SetDataSource
 
 - (void)setNewData:(NSDictionary *)data;
+- (void)presentViewController:id animated:id completion:id;
 
 @end

@@ -27,6 +27,11 @@
 
 @implementation StandardInput
 
+- (id)init {
+    self = [super init];
+    return self;
+}
+
 - (NSString*)getTitle {
     return @"Standard Text Input";
 }
