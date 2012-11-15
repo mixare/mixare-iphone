@@ -38,7 +38,7 @@
 }
 
 - (void)testCreateWikipediaDatasource {
-    wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+    wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG" locked:NO];
     NSLog(@"Wikipedia JSONURL: %@", [wikipedia jsonUrl]);
     [wikipedia setActivated:YES];
     if ([wikipedia activated]) {
@@ -50,7 +50,7 @@
 }
 
 - (void)testCreateTwitterDatasource {
-    twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    twitter = [[DataSource alloc] initTitle:@"Twitter" jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm" locked:NO];
     [twitter setActivated:YES];
     STAssertNotNil(twitter, @"Could not create datasource object.");
 }

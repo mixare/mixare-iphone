@@ -91,6 +91,8 @@
 		E2B01671162EBC3F00C93C91 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E2B01674162EFE0200C93C91 /* DataSourceManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */; };
 		E2B0167A162F03EB00C93C91 /* PositionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01679162F03EA00C93C91 /* PositionTest.m */; };
+		E2B0C2DC16551A2E0099090E /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
+		E2B0C2DD16551A2E0099090E /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
 		E2B100C01650FC7D0086BD8E /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100A81650FC7D0086BD8E /* DataConverter.m */; };
 		E2B100C11650FC7D0086BD8E /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100A81650FC7D0086BD8E /* DataConverter.m */; };
 		E2B100C41650FC7D0086BD8E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100AF1650FC7D0086BD8E /* NSObject+SBJSON.m */; };
@@ -216,7 +218,7 @@
 		36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo.png; sourceTree = "<group>"; };
 		36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo_small.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E246F3AA161061CB0006EA40 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
@@ -268,6 +270,8 @@
 		E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManagerTest.m; sourceTree = "<group>"; };
 		E2B01678162F03EA00C93C91 /* PositionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTest.h; sourceTree = "<group>"; };
 		E2B01679162F03EA00C93C91 /* PositionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionTest.m; sourceTree = "<group>"; };
+		E2B0C2DA16551A2E0099090E /* DataSourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSourceList.h; path = extensions/DataSourceList.h; sourceTree = "<group>"; };
+		E2B0C2DB16551A2E0099090E /* DataSourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceList.m; path = extensions/DataSourceList.m; sourceTree = "<group>"; };
 		E2B100A71650FC7D0086BD8E /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataConverter.h; path = dataconverter/DataConverter.h; sourceTree = "<group>"; };
 		E2B100A81650FC7D0086BD8E /* DataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataConverter.m; path = dataconverter/DataConverter.m; sourceTree = "<group>"; };
 		E2B100A91650FC7D0086BD8E /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = dataconverter/DataProcessor.h; sourceTree = "<group>"; };
@@ -570,11 +574,11 @@
 		E2A5276E1652441900B4099C /* datainputs */ = {
 			isa = PBXGroup;
 			children = (
-				E2AFE7331652A5E90038E17A /* ZBarSDK */,
 				E2A5277416525EA700B4099C /* StandardInput.h */,
 				E2A5277516525EA700B4099C /* StandardInput.m */,
 				E2A527791652763000B4099C /* BarcodeInput.h */,
 				E2A5277A1652763000B4099C /* BarcodeInput.m */,
+				E2AFE7331652A5E90038E17A /* ZBarSDK */,
 			);
 			name = datainputs;
 			sourceTree = "<group>";
@@ -676,6 +680,8 @@
 		E2B100DC165100E80086BD8E /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E2B0C2DA16551A2E0099090E /* DataSourceList.h */,
+				E2B0C2DB16551A2E0099090E /* DataSourceList.m */,
 				E2B100E4165136DA0086BD8E /* PluginList.h */,
 				E2B100E5165136DA0086BD8E /* PluginList.m */,
 				E2A5276E1652441900B4099C /* datainputs */,
@@ -938,6 +944,7 @@
 				E2B100F716515BA50086BD8E /* WikipediaProcessor.m in Sources */,
 				E2A5277616525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */,
+				E2B0C2DC16551A2E0099090E /* DataSourceList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,6 +996,7 @@
 				E2B100FB165161E10086BD8E /* PluginLoaderTest.m in Sources */,
 				E2A5277716525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */,
+				E2B0C2DD16551A2E0099090E /* DataSourceList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

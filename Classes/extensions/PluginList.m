@@ -23,6 +23,12 @@
 //  Created by Aswin Ly on 12-11-12.
 //
 
+/***                                         ***
+ *                                             *
+ *  --- INITIALIZE YOUR PLUGINS HERE BELOW --- *
+ *                                             *
+ ***                                         ***/
+
 #import "PluginList.h"
 #import "WikipediaProcessor.h"
 #import "TwitterProcessor.h"
@@ -48,6 +54,7 @@ static PluginList *pluginList;
 - (id)init {
     self = [super init];
     if (self) {
+        plugins = [[NSMutableArray alloc] init];
         [self initPlugins];
     }
     return self;
@@ -60,7 +67,6 @@ static PluginList *pluginList;
  *
  ***/
 - (void)initPlugins {
-    plugins = [[NSMutableArray alloc] init];
     [plugins addObject:[[WikipediaProcessor alloc] init]];
     [plugins addObject:[[TwitterProcessor alloc] init]];
     [plugins addObject:[[GoogleAddressesProcessor alloc] init]];

@@ -34,13 +34,13 @@
  *  CONSTRUCTOR
  *
  ***/
-- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url {
+- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url locked:(BOOL)lock {
     self = [super init];
     if(self) {
         title = tit;
         jsonUrl = url;
         activated = YES;
-        locked = NO;
+        locked = lock;
         positions = [[NSMutableArray alloc] init];
     }
     return self;

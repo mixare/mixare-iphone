@@ -17,33 +17,20 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataSource.h
+//  DataSourceList.h
 //  Mixare
 //
-//  Created by Aswin Ly on 24-09-12.
+//  Created by Aswin Ly on 15-11-12.
 //
 
 #import <Foundation/Foundation.h>
-#import "Position.h"
+#import "DataSource.h"
 
-@interface DataSource : NSObject {    
-    NSString *title;
-    NSString *jsonUrl;
-    BOOL activated;
-    BOOL locked;
-    NSMutableArray *positions;
-    UIImage *logo;
+@interface DataSourceList : NSObject {
+    NSMutableArray *dataSources;
 }
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *jsonUrl;
-@property (nonatomic, assign) BOOL activated;
-@property (nonatomic, assign) BOOL locked;
-@property (nonatomic, strong) NSMutableArray *positions;
-@property (nonatomic, readonly) UIImage *logo;
-
-- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url locked:(BOOL)lock;
-- (void)refreshPositions:(NSMutableArray*)results;
-- (void)setListLogo:(NSString*)marker;
++ (id)getInstance;
+- (NSMutableArray*)getDataSources;
 
 @end
