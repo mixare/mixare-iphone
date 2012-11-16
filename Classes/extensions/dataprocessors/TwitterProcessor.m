@@ -50,6 +50,9 @@
         NSString *marker = tweet[@"profile_image_url_https"];
         if (marker == nil || [marker isEqualToString:@""]) {
             marker = @"twitter_logo_small.png";
+        } else {
+            marker = [marker stringByReplacingOccurrencesOfString:@"_normal"
+                                                            withString:@"_mini"];
         }
         NSDictionary *geo = [self getGeoDictionary:tweet[@"geo"]];
         if ([self getLatitude:geo] != nil && [self getLongitude:geo] != nil) {

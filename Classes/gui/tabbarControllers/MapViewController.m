@@ -62,7 +62,7 @@
     [_currentAnnotations removeAllObjects];
 }
 
-- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
     MKAnnotationView *pinView = nil;
     if (annotation != mapView.userLocation) {
         pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
