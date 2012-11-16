@@ -103,10 +103,10 @@
         id<DataInput> inputPlugin = availablePlugins[0];
         [inputPlugin runInput:self];
     } else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Data Input"
-                                                          message:@"Choose your data input method."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data input", nil)
+                                                          message:NSLocalizedString(@"Choose your data input method.", nil)
                                                          delegate:self
-                                                cancelButtonTitle:@"Cancel"
+                                                cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                 otherButtonTitles:nil];
         for (id<DataInput> inputPlugin in availablePlugins) {
             [message addButtonWithTitle:[inputPlugin getTitle]];
@@ -230,7 +230,7 @@
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if ([[dataSourceManager getDataSourceByTitle:dataSourceArray[indexPath.row]] locked]) {
-            [self errorPopUp:@"You can only delete own sources!"];
+            [self errorPopUp:@"You can only delete your own sources!"];
         } else {
             [dataSourceManager deleteDataSource:[dataSourceManager getDataSourceByTitle:dataSourceArray[indexPath.row]]];
             [dataSourceArray removeObjectAtIndex:indexPath.row];

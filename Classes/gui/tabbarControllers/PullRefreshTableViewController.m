@@ -67,9 +67,9 @@
 }
 
 - (void)setupStrings{
-    textPull = @"Pull down to refresh...";
-    textRelease = @"Release to refresh...";
-    textLoading = @"Loading...";
+    textPull = NSLocalizedString(@"Pull down to refresh...", nil);
+    textRelease = NSLocalizedString(@"Release to refresh...", nil);
+    textLoading = NSLocalizedString(@"Loading...", nil);
 }
 
 - (void)addPullToRefreshHeader {
