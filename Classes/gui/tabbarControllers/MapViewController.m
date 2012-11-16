@@ -50,9 +50,9 @@
 
 - (void)addAnnotationsFromDataSource:(DataSource *)data{
 	if(data.positions != nil){
-		for(Position *pos in data.positions){
-            [self.map addAnnotation:pos.mapViewAnnotation];
+		for(Position *pos in data.positions) {
             [_currentAnnotations addObject:pos.mapViewAnnotation];
+            [self.map addAnnotation:pos.mapViewAnnotation];
 		}
 	}
 }
@@ -62,18 +62,27 @@
     [_currentAnnotations removeAllObjects];
 }
 
-//- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>) annotation{
-//    MKPinAnnotationView *annView=[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];
-//    
-//    if( ((MapAnnotation*)annotation).source isEqualToString:@"WIKIPEDIA"){
-//      annView.pinColor = MKPinAnnotationColorGreen;  
-//    }else if(((MapAnnotation*)annotation).source isEqualToString:@"BUZZ"){
-//        annView.pinColor = MKPinAnnotationColorRed;
-//    }
-//    annView.animatesDrop=TRUE;
-//    annView.canShowCallout = YES;
-//    annView.calloutOffset = CGPointMake(-5, 5);
-//    return annView;
-//}
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+    MKAnnotationView *pinView = nil;
+    if (annotation != mapView.userLocation) {
+        pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+        //pinView.pinColor = MKPinAnnotationColorGreen;
+        pinView.canShowCallout = YES;
+        //pinView.animatesDrop = YES;
+        for(MapViewAnnotation *anno in _currentAnnotations) {
+            if ([annotation isEqual:anno]) {
+                if (anno.image != nil) {
+                    pinView.image = anno.image;
+                } else {
+                    return nil;
+                }
+            }
+        }
+    }
+    else {
+        [mapView.userLocation setTitle:@"I am here"];
+    }
+    return pinView;
+}
 
 @end

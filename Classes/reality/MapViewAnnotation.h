@@ -26,17 +26,21 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+@class Position;
 
 @interface MapViewAnnotation : NSObject <MKAnnotation> {
 	CLLocationCoordinate2D coordinate;
     NSString *title;
 	NSString *subTitle;
+    UIImage *image;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
+@property (nonatomic, readonly) UIImage *image;
 
-- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon;
+- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon;
+- (void)setMarker:(UIImage*)img;
 
 @end

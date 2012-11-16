@@ -44,7 +44,7 @@
 }
 
 - (void)initMarkerAndMapAnnotation {
-    mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude andLongitude:longitude];
+    mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude longitude:longitude];
     [mapViewAnnotation setTitle:title];
     [mapViewAnnotation setSubTitle:summary];
     poiItem = [[PhysicalPlace alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
@@ -61,6 +61,7 @@
     } else if (marker != nil) {
         image = [UIImage imageNamed:marker];
     }
+    [mapViewAnnotation setMarker:image];
 }
 
 - (BOOL)isImageUrl:(NSString*)urls {
