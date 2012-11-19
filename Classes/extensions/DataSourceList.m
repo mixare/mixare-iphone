@@ -59,6 +59,9 @@ static DataSourceList *dataSourceList;
  *  ADD YOUR DATASOURCES HERE
  *  App will pre-load your data
  *  Users can't delete your source if you call 'locked' true/yes.
+ *
+ *  GOOD TO KNOW: DataSource title will be used to match with the right DataProcessor 
+ *  (not needed when your JSON result structure/encoding is the same as the Mixare standard).
  *  
  *  TIP:        If your datasource url has GET-parameters (for dynamic results), 
  *              you can replace these parameters with dummy-parameters

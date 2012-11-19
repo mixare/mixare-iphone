@@ -32,7 +32,7 @@
     id<StartMain> start = delegate;
     
     // ADD HERE YOUR PRE-STUFF
-    // RUN ME BEFORE APPLICATION STARTS (Like a extra view)
+    // RUN ME BEFORE APPLICATION STARTS (Like an extra view)
     NSLog(@"LOADED START-PLUGIN 1 - TEST");
     
     [start openARView];

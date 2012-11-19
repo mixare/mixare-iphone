@@ -46,7 +46,11 @@
             if (geoname[@"imagemarker"] != [NSNull null] && geoname[@"imagemarker"] != nil) {
                 dic[keys[@"marker"]] = geoname[@"imagemarker"];
             }
-            dic[keys[@"logo"]] = @"logo_mixare_round.png";
+            if (geoname[@"logo"] != [NSNull null] && geoname[@"logo"] != nil) {
+                dic[keys[@"logo"]] = geoname[@"logo"];
+            } else {
+                dic[keys[@"logo"]] = @"logo_mixare_round.png";
+            }
             [ret addObject:dic];
         }
         return ret;
