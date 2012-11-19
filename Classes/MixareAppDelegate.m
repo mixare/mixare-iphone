@@ -25,7 +25,7 @@
  
 @implementation MixareAppDelegate
 
-@synthesize _dataSourceManager, _downloadManager, _locManager;
+@synthesize _dataSourceManager, _downloadManager, _locationManager;
 
 /***
  *
@@ -99,12 +99,12 @@
  *
  ***/
 - (void)initLocationManager {
-	if (_locManager == nil) {
-		_locManager = [[CLLocationManager alloc] init];
-		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
-		_locManager.delegate = self;
-		_locManager.distanceFilter = 3.0;
-		//[_locManager startUpdatingLocation];
+	if (_locationManager == nil) {
+		_locationManager = [[CLLocationManager alloc] init];
+		_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+		_locationManager.delegate = self;
+		_locationManager.distanceFilter = 3.0;
+		//[_locationManager startUpdatingLocation];
 	}
 }
 
@@ -118,7 +118,7 @@
     if (_slider != nil) {
         radius = _slider.value;
     }
-    [_downloadManager download:[_dataSourceManager getActivatedSources] currentLocation:_locManager.location currentRadius:radius];
+    [_downloadManager download:[_dataSourceManager getActivatedSources] currentLocation:_locationManager.location currentRadius:radius];
 }
 
 /***
@@ -159,14 +159,14 @@
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
-    augViewController.centerLocation = _locManager.location;
+    augViewController.centerLocation = _locationManager.location;
     [notificationView removeFromSuperview];
     [augViewController.view addSubview:_menuButton];
     [augViewController.view addSubview:_slider];
     [augViewController.view addSubview:_valueLabel];
     [augViewController.view addSubview:nordLabel];
     [augViewController.view addSubview:maxRadiusLabel];
-	[augViewController startListening:_locManager];
+	[augViewController startListening:_locationManager];
     window.rootViewController = augViewController;
 }
 
@@ -257,7 +257,7 @@
     if (tabBarController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
-        [_locManager stopUpdatingLocation];
+        [_locationManager stopUpdatingLocation];
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         //spinner.center = CGPointMake(viewController.view.frame.size.width/2, viewController.view.frame.size.height/3);t]
         [menuView addSubview:spinner];
@@ -352,8 +352,8 @@
  *
  ***/
 - (void)openTabMore {
-    NSLog(@"latitude: %f", _locManager.location.coordinate.latitude);
-    [_moreViewController showGPSInfo:_locManager.location];
+    NSLog(@"latitude: %f", _locationManager.location.coordinate.latitude);
+    [_moreViewController showGPSInfo:_locationManager.location];
 }
 
 

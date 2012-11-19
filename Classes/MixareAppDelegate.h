@@ -34,7 +34,7 @@
 #import "StartMain.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
-    CLLocationManager *_locManager;
+    CLLocationManager *_locationManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
     
@@ -60,7 +60,7 @@
     IBOutlet UIView *notificationView;
 }
 
-@property (nonatomic, retain) CLLocationManager *_locManager;
+@property (nonatomic, retain) CLLocationManager *_locationManager;
 @property (nonatomic, retain) DataSourceManager *_dataSourceManager;
 @property (nonatomic, retain) DownloadManager *_downloadManager;
 

@@ -60,6 +60,7 @@
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
+		E29E337E165A760C0027FEB7 /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B07268165A43890076B7FE /* StartWithMeDemo.m */; };
 		E2A5277616525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
 		E2A5277716525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
 		E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277A1652763000B4099C /* BarcodeInput.m */; };
@@ -1012,6 +1013,7 @@
 				E2B100FB165161E10086BD8E /* PluginLoaderTest.m in Sources */,
 				E2A5277716525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */,
+				E29E337E165A760C0027FEB7 /* StartWithMeDemo.m in Sources */,
 				E2B0C2DD16551A2E0099090E /* DataSourceList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
