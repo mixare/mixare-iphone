@@ -36,6 +36,7 @@
 #import "MixareProcessor.h"
 #import "StandardInput.h"
 #import "BarcodeInput.h"
+#import "StartWithMeDemo.h"
 
 @implementation PluginList
 
@@ -63,7 +64,7 @@ static PluginList *pluginList;
 /***
  *
  *  ADD YOUR PLUGINS HERE
- *  Only possible with interface/protocol: DataInput, DataProcessor, CustomFrontView or PluginEntryPoint
+ *  Only possible with interface/protocol: DataInput, DataProcessor or PluginEntryPoint
  *
  ***/
 - (void)initPlugins {
@@ -73,6 +74,7 @@ static PluginList *pluginList;
     [plugins addObject:[[MixareProcessor alloc] init]];
     [plugins addObject:[[StandardInput alloc] init]];
     [plugins addObject:[[BarcodeInput alloc] init]];
+    [plugins addObject:[[StartWithMeDemo alloc] init]];
 }
 
 - (NSMutableArray*)getPluginList {

@@ -91,6 +91,7 @@
 		E2B01671162EBC3F00C93C91 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E2B01674162EFE0200C93C91 /* DataSourceManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */; };
 		E2B0167A162F03EB00C93C91 /* PositionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01679162F03EA00C93C91 /* PositionTest.m */; };
+		E2B07269165A43890076B7FE /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B07268165A43890076B7FE /* StartWithMeDemo.m */; };
 		E2B0C2DC16551A2E0099090E /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
 		E2B0C2DD16551A2E0099090E /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
 		E2B100C01650FC7D0086BD8E /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100A81650FC7D0086BD8E /* DataConverter.m */; };
@@ -270,6 +271,9 @@
 		E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManagerTest.m; sourceTree = "<group>"; };
 		E2B01678162F03EA00C93C91 /* PositionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTest.h; sourceTree = "<group>"; };
 		E2B01679162F03EA00C93C91 /* PositionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionTest.m; sourceTree = "<group>"; };
+		E2B07261165A3EE80076B7FE /* StartMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartMain.h; sourceTree = "<group>"; };
+		E2B07267165A43890076B7FE /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/pluginentrypoint/StartWithMeDemo.h; sourceTree = "<group>"; };
+		E2B07268165A43890076B7FE /* StartWithMeDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartWithMeDemo.m; path = extensions/pluginentrypoint/StartWithMeDemo.m; sourceTree = "<group>"; };
 		E2B0C2DA16551A2E0099090E /* DataSourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSourceList.h; path = extensions/DataSourceList.h; sourceTree = "<group>"; };
 		E2B0C2DB16551A2E0099090E /* DataSourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceList.m; path = extensions/DataSourceList.m; sourceTree = "<group>"; };
 		E2B100A71650FC7D0086BD8E /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataConverter.h; path = dataconverter/DataConverter.h; sourceTree = "<group>"; };
@@ -368,6 +372,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E2B07261165A3EE80076B7FE /* StartMain.h */,
 				36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */,
 				36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */,
 				E2E3ECA3162C2ACB00A28F2B /* manager */,
@@ -648,6 +653,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		E2B07263165A3FFF0076B7FE /* pluginentrypoint */ = {
+			isa = PBXGroup;
+			children = (
+				E2B07267165A43890076B7FE /* StartWithMeDemo.h */,
+				E2B07268165A43890076B7FE /* StartWithMeDemo.m */,
+			);
+			name = pluginentrypoint;
+			sourceTree = "<group>";
+		};
 		E2B100AC1650FC7D0086BD8E /* json */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +698,7 @@
 				E2B0C2DB16551A2E0099090E /* DataSourceList.m */,
 				E2B100E4165136DA0086BD8E /* PluginList.h */,
 				E2B100E5165136DA0086BD8E /* PluginList.m */,
+				E2B07263165A3FFF0076B7FE /* pluginentrypoint */,
 				E2A5276E1652441900B4099C /* datainputs */,
 				E2B100E816515B0E0086BD8E /* dataprocessors */,
 			);
@@ -945,6 +960,7 @@
 				E2A5277616525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */,
 				E2B0C2DC16551A2E0099090E /* DataSourceList.m in Sources */,
+				E2B07269165A43890076B7FE /* StartWithMeDemo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

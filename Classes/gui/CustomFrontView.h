@@ -27,4 +27,6 @@
 
 @protocol CustomFrontView
 
+- (BOOL)runView:(BOOL)activate;
+
 @end

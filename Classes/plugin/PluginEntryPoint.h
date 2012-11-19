@@ -27,4 +27,6 @@
 
 @protocol PluginEntryPoint
 
+- (void)run:(id)delegate;
+
 @end

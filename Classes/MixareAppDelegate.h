@@ -31,8 +31,9 @@
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
+#import "StartMain.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate> {
+@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
     CLLocationManager *_locManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
@@ -51,6 +52,8 @@
     UILabel *maxRadiusLabel;
     MoreViewController *_moreViewController;
     SourceViewController *_sourceViewController;
+    
+    NSArray *startPlugin;
     
     @private
     BOOL beforeWasLandscape;

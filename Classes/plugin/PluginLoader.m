@@ -55,7 +55,7 @@ static PluginLoader *pluginLoader;
 }
 
 - (void)addPlugin:(id)plugin {
-    if ([plugin conformsToProtocol:@protocol(DataProcessor)] || [plugin conformsToProtocol:@protocol(DataInput)] || [plugin conformsToProtocol:@protocol(CustomFrontView)] || [plugin conformsToProtocol:@protocol(PluginEntryPoint)])  {
+    if ([plugin conformsToProtocol:@protocol(DataProcessor)] || [plugin conformsToProtocol:@protocol(DataInput)] || [plugin conformsToProtocol:@protocol(PluginEntryPoint)])  {
         [plugins addObject:plugin];
     } else {
         NSLog(@"Plugin type not valid from class: %@", NSStringFromClass([plugin class]));
@@ -79,13 +79,10 @@ static PluginLoader *pluginLoader;
             if ([plugin conformsToProtocol:@protocol(DataInput)]) {
                 [retrievedPlugins addObject:plugin];
             }
-        }  else if ([className isEqualToString:@"CustomFrontView"]) {
-            if ([plugin conformsToProtocol:@protocol(CustomFrontView)]) {
-                [retrievedPlugins addObject:plugin];
-            }
         } else {
             if ([plugin conformsToProtocol:@protocol(PluginEntryPoint)]) {
                 [retrievedPlugins addObject:plugin];
+                return retrievedPlugins;
             }
         }
     }

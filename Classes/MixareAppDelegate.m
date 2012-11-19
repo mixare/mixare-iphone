@@ -18,6 +18,8 @@
  */
 
 #import "MixareAppDelegate.h"
+#import "PluginLoader.h"
+#import "PluginEntryPoint.h"
 #define CAMERA_TRANSFORM 1.12412
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
@@ -29,7 +31,7 @@
  *  @param application
  *  @param URL
  *
- ***/
+ **
 #pragma mark -
 #pragma mark URL Handler
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
@@ -42,7 +44,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self openMenu];
     return YES;
-}
+}*/
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -56,8 +58,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"STARTING");
 	[self initManagers];
-    [self iniARView]; 
-    //[self openMenu]; Start with ARview instead of menu
+    [self firstBootLicenseText];
+    if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
+        startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
+        for (id<PluginEntryPoint> plugin in startPlugin) {
+            [plugin run:self];
+        }
+    } else {
+        [self openARView];
+        //[self openMenu]; Start with ARview instead of menu
+    }
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -66,7 +76,6 @@
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     [self initUIBarTitles];
-    [self firstBootLicenseText];
     return YES;
 }
 
@@ -135,7 +144,7 @@
  *  Initialize ARView
  *
  ***/
-- (void)iniARView {
+- (void)openARView {
     if (augViewController == nil) {
         augViewController = [[AugmentedGeoViewController alloc] init];
     }
@@ -181,7 +190,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
     [self closeARView];
 	[self refresh];
-    [self iniARView];
+    [self openARView];
 	NSLog(@"POIS CHANGED");
 }
 
@@ -289,7 +298,7 @@
 - (void)openTabCamera {
     notificationView.center = window.center;
     [window addSubview:notificationView];
-    [self iniARView];
+    [self openARView];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
