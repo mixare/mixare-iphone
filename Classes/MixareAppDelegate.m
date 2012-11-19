@@ -25,6 +25,8 @@
  
 @implementation MixareAppDelegate
 
+@synthesize _dataSourceManager, _downloadManager, _locManager;
+
 /***
  *
  *  App: Open URL
@@ -69,7 +71,7 @@
     [self firstBootLicenseText];
     if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
-        NSLog(@"SIZE: %d", [startPlugin count]);
+        NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
             [plugin run:self];
         }

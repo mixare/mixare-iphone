@@ -60,4 +60,8 @@
     IBOutlet UIView *notificationView;
 }
 
+@property (nonatomic, retain) CLLocationManager *_locManager;
+@property (nonatomic, retain) DataSourceManager *_dataSourceManager;
+@property (nonatomic, retain) DownloadManager *_downloadManager;
+
 @end
