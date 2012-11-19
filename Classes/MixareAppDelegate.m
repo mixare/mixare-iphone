@@ -58,6 +58,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"STARTING");
 	[self initManagers];
+    beforeWasLandscape = NO;
+	[window makeKeyAndVisible];
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didRotate:)
+                                                 name:@"UIDeviceOrientationDidChangeNotification"
+                                               object:nil];
+    [self initUIBarTitles];
     [self firstBootLicenseText];
     if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
@@ -68,14 +76,6 @@
         [self openARView];
         //[self openMenu]; Start with ARview instead of menu
     }
-    beforeWasLandscape = NO;
-	[window makeKeyAndVisible];
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didRotate:)
-                                                 name:@"UIDeviceOrientationDidChangeNotification"
-                                               object:nil];
-    [self initUIBarTitles];
     return YES;
 }
 
