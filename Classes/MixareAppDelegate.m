@@ -69,6 +69,7 @@
     [self firstBootLicenseText];
     if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
+        NSLog(@"SIZE: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
             [plugin run:self];
         }

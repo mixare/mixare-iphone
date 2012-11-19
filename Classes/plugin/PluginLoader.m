@@ -82,7 +82,6 @@ static PluginLoader *pluginLoader;
         } else {
             if ([plugin conformsToProtocol:@protocol(PluginEntryPoint)]) {
                 [retrievedPlugins addObject:plugin];
-                return retrievedPlugins;
             }
         }
     }
