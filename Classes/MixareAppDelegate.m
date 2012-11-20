@@ -201,6 +201,15 @@
 
 /***
  *
+ *  Response when plugin button on AR has been pressed
+ *
+ ***/
+- (void)pluginButtonClicked:(id)sender {
+    //TODO
+}
+
+/***
+ *
  *  OPEN MENU
  *
  ***/
@@ -244,7 +253,7 @@
         [augViewController.locationManager stopUpdatingLocation];
         [_locationManager stopUpdatingLocation];
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        //spinner.center = CGPointMake(viewController.view.frame.size.width/2, viewController.view.frame.size.height/3);t]
+        spinner.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2);
         [menuView addSubview:spinner];
         [menuView bringSubviewToFront:spinner];
         [spinner startAnimating];
@@ -424,14 +433,14 @@
  *
  ***/
 - (void)setViewToLandscape:(UIView*)viewObject {
-    [viewObject setCenter:CGPointMake(160, 240)];
+    [viewObject setCenter:CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2)];
     CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
     viewObject.transform = cgCTM;
     viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
     _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 288, 23);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
-    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height, 50);
+    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height, 50)];
 }
 
 /***
@@ -441,15 +450,12 @@
  *
  ***/
 - (void)setViewToPortrait:(UIView*)viewObject {
-    CGAffineTransform tr = viewObject.transform; // get current transform (portrait)
-    tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
-    viewObject.transform = tr; // set current transform
-    CGRectMake(0, 0, 320, 480);
-    [viewObject setCenter:CGPointMake([UIScreen mainScreen].bounds.size.height / 2, [UIScreen mainScreen].bounds.size.width / 2)];
+    viewObject.transform = CGAffineTransformMakeRotation(degreesToRadian(0)); // set current transform
+    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50)];
     _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
-    maxRadiusLabel.frame= CGRectMake(158, 25, 30, 12);
-    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50);
+    maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
 }
 
 /***
@@ -463,7 +469,8 @@
     [backToPlugin setTitle:@"Main menu" forState:UIControlStateNormal];
     [backToPlugin setTintColor:[UIColor grayColor]];
     [backToPlugin setAlpha:0.7];
-    [backToPlugin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //[backToPlugin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     _menuButton = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil)]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
