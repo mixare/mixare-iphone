@@ -32,6 +32,7 @@
 #import "MoreViewController.h"
 #import "SourceViewController.h"
 #import "StartMain.h"
+#import "PluginEntryPoint.h"
 
 @interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
     CLLocationManager *_locationManager;
@@ -54,14 +55,13 @@
     SourceViewController *_sourceViewController;
     
     NSArray *startPlugin;
+    BOOL toggleMenu;
+    id<PluginEntryPoint> pluginDelegate;
+    UIButton *backToPlugin;
     
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView *notificationView;
 }
-
-@property (nonatomic, retain) CLLocationManager *_locationManager;
-@property (nonatomic, retain) DataSourceManager *_dataSourceManager;
-@property (nonatomic, retain) DownloadManager *_downloadManager;
 
 @end

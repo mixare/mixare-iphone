@@ -28,7 +28,6 @@
 
 #import "DataProcessor.h"
 #import "DataInput.h"
-#import "CustomFrontView.h"
 #import "PluginEntryPoint.h"
 
 @implementation PluginLoader

@@ -30,7 +30,7 @@
 
 /***
  *
- *  Object of parameter clasz should has interface/protocol 'SetDataSource'
+ *  Object of parameter 'classToSetYourData' should has interface/protocol 'SetDataSource'
  *  And uses the method setNewData to manage the received data
  *
  ***/

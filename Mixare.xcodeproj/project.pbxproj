@@ -298,7 +298,6 @@
 		E2B100DD165102400086BD8E /* PluginLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginLoader.h; path = plugin/PluginLoader.h; sourceTree = "<group>"; };
 		E2B100DE165102400086BD8E /* PluginLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginLoader.m; path = plugin/PluginLoader.m; sourceTree = "<group>"; };
 		E2B100E116512A2B0086BD8E /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataInput.h; sourceTree = "<group>"; };
-		E2B100E216512F3A0086BD8E /* CustomFrontView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFrontView.h; sourceTree = "<group>"; };
 		E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginEntryPoint.h; path = plugin/PluginEntryPoint.h; sourceTree = "<group>"; };
 		E2B100E4165136DA0086BD8E /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = extensions/PluginList.h; sourceTree = "<group>"; };
 		E2B100E5165136DA0086BD8E /* PluginList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginList.m; path = extensions/PluginList.m; sourceTree = "<group>"; };
@@ -484,7 +483,6 @@
 		365B607B12B9F9100014850C /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				E2B100E216512F3A0086BD8E /* CustomFrontView.h */,
 				365B607C12B9F9100014850C /* MarkerView.h */,
 				365B607D12B9F9100014850C /* MarkerView.m */,
 				365B607E12B9F9100014850C /* NotificationViewController.h */,

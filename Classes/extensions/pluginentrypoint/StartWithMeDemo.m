@@ -28,14 +28,14 @@
 
 @implementation StartWithMeDemo
 
-- (void)run:(id)delegate {
-    id<StartMain> start = delegate;
-    
+- (void)run:(id<StartMain>)delegate {
     // ADD HERE YOUR PRE-STUFF
     // RUN ME BEFORE APPLICATION STARTS (Like an extra view)
+    // YOU CAN ALSO GET THE MANAGERS: DataSourceManager, DownloadManager and LocationManager
+    // TO MANAGE THE DATA BY YOUR OWN
     NSLog(@"LOADED START-PLUGIN 1 - TEST");
-    
-    [start openARView];
+    [delegate setToggleMenu:YES];
+    [delegate openARView];
 }
 
 @end

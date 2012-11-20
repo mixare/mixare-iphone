@@ -19,34 +19,13 @@
 
 #import "MixareAppDelegate.h"
 #import "PluginLoader.h"
-#import "PluginEntryPoint.h"
 #define CAMERA_TRANSFORM 1.12412
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
 @implementation MixareAppDelegate
 
-@synthesize _dataSourceManager, _downloadManager, _locationManager;
+@synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate;
 
-/***
- *
- *  App: Open URL
- *  @param application
- *  @param URL
- *
- **
-#pragma mark -
-#pragma mark URL Handler
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	NSLog(@"the url: %@", [url absoluteURL]);
-	if (!url) {
-        return NO;
-    }
-    NSString *URLString = [url absoluteString];
-    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self openMenu];
-    return YES;
-}*/
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -76,6 +55,7 @@
             [plugin run:self];
         }
     } else {
+        toggleMenu = YES;
         [self openARView];
         //[self openMenu]; Start with ARview instead of menu
     }
@@ -161,12 +141,17 @@
     }
     augViewController.centerLocation = _locationManager.location;
     [notificationView removeFromSuperview];
-    [augViewController.view addSubview:_menuButton];
+    if (toggleMenu) {
+        [augViewController.view addSubview:_menuButton];
+    }
     [augViewController.view addSubview:_slider];
     [augViewController.view addSubview:_valueLabel];
     [augViewController.view addSubview:nordLabel];
     [augViewController.view addSubview:maxRadiusLabel];
 	[augViewController startListening:_locationManager];
+    if (pluginDelegate != nil) {
+        [augViewController.view addSubview:backToPlugin];
+    }
     window.rootViewController = augViewController;
 }
 
@@ -442,10 +427,11 @@
     [viewObject setCenter:CGPointMake(160, 240)];
     CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
     viewObject.transform = cgCTM;
-    viewObject.bounds = CGRectMake(0, 0, 480, 320);
+    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 288, 23);
-    _menuButton.frame = CGRectMake(350, 0, 130, 30);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
+    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height, 50);
 }
 
 /***
@@ -459,10 +445,11 @@
     tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
     viewObject.transform = tr; // set current transform
     CGRectMake(0, 0, 320, 480);
-    [viewObject setCenter:CGPointMake(240, 160)];
-    _menuButton.frame = CGRectMake(190, 0, 130, 30);
+    [viewObject setCenter:CGPointMake([UIScreen mainScreen].bounds.size.height / 2, [UIScreen mainScreen].bounds.size.width / 2)];
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
     maxRadiusLabel.frame= CGRectMake(158, 25, 30, 12);
+    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50);
 }
 
 /***
@@ -471,19 +458,20 @@
  *
  ***/
 - (void)initControls {
+    backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50);
+    [backToPlugin setTitle:@"Main menu" forState:UIControlStateNormal];
+    [backToPlugin setTintColor:[UIColor grayColor]];
+    [backToPlugin setAlpha:0.7];
+    [backToPlugin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
     _menuButton = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil)]];
     _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
-    CGRect buttonFrame;
-    CGRect sliderFrame;
-    CGRect valueFrame;
-    buttonFrame = CGRectMake(190, 0, 130, 30);
-    sliderFrame = CGRectMake(62, 5, 128, 23);
-    valueFrame = CGRectMake(8.5, 64, 45, 12);
-    _menuButton.frame = buttonFrame;
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 130, 30);
     _menuButton.alpha = 0.65;
     [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
     
-    _slider = [[UISlider alloc] initWithFrame:sliderFrame];
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake(62, 5, 128, 23)];
     _slider.alpha = 0.7;
     [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     _slider.hidden = YES;
@@ -491,7 +479,7 @@
     _slider.maximumValue = 80.0;
     _slider.continuous= NO;
     
-    _valueLabel = [[UILabel alloc] initWithFrame:valueFrame];
+    _valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.5, 64, 45, 12)];
     _valueLabel.backgroundColor = [UIColor blackColor];
     _valueLabel.textColor = [UIColor whiteColor];
     _valueLabel.font = [UIFont systemFontOfSize:10.0];
