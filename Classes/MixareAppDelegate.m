@@ -205,7 +205,8 @@
  *
  ***/
 - (void)pluginButtonClicked:(id)sender {
-    //TODO
+    [self closeARView];
+    [pluginDelegate run:self];
 }
 
 /***
@@ -414,11 +415,11 @@
 - (void)didRotate:(NSNotification *)notification {
     //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
     //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         [self setViewToLandscape:augViewController.view];
         beforeWasLandscape = YES;
     }
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape){
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
         [self setViewToPortrait:augViewController.view];
         beforeWasLandscape = NO;
     }
@@ -440,7 +441,7 @@
     _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 288, 23);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
-    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 50, [UIScreen mainScreen].bounds.size.height, 50)];
+    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 35, [UIScreen mainScreen].bounds.size.height, 35)];
 }
 
 /***
@@ -452,7 +453,7 @@
 - (void)setViewToPortrait:(UIView*)viewObject {
     viewObject.transform = CGAffineTransformMakeRotation(degreesToRadian(0)); // set current transform
     viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50)];
+    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 35, [UIScreen mainScreen].bounds.size.width, 35)];
     _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 130, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
     maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
@@ -465,7 +466,7 @@
  ***/
 - (void)initControls {
     backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 50, [UIScreen mainScreen].bounds.size.width, 50);
+    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 35, [UIScreen mainScreen].bounds.size.width, 35);
     [backToPlugin setTitle:@"Main menu" forState:UIControlStateNormal];
     [backToPlugin setTintColor:[UIColor grayColor]];
     [backToPlugin setAlpha:0.7];
