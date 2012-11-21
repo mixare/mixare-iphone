@@ -33,6 +33,7 @@
 #import "WikipediaProcessor.h"
 #import "TwitterProcessor.h"
 #import "GoogleAddressesProcessor.h"
+#import "ArenaProcessor.h"
 #import "MixareProcessor.h"
 #import "StandardInput.h"
 #import "BarcodeInput.h"
@@ -71,6 +72,7 @@ static PluginList *pluginList;
     [plugins addObject:[[WikipediaProcessor alloc] init]];
     [plugins addObject:[[TwitterProcessor alloc] init]];
     [plugins addObject:[[GoogleAddressesProcessor alloc] init]];
+    [plugins addObject:[[ArenaProcessor alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];
     [plugins addObject:[[StandardInput alloc] init]];
     [plugins addObject:[[BarcodeInput alloc] init]];

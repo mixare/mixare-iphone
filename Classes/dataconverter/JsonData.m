@@ -55,7 +55,7 @@
  ***/
 - (NSURL*)urlWithLocationFix:(NSString*)jsonUrl location:(CLLocation*)loc radius:(float)rad {
     [self initUrlValues:loc radius:rad];
-    NSString* stringURL = [[NSString alloc] initWithString:jsonUrl];
+    NSString *stringURL = [[NSString alloc] initWithString:jsonUrl];
     for (NSString *key in urlValueData) {
         NSString *value = urlValueData[key];
         stringURL = [self url:stringURL urlInfoFiller:key urlInfoReplacer:value];
