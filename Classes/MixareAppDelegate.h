@@ -46,7 +46,8 @@
 	MapViewController *_mapViewController;
 	AugmentedGeoViewController *augViewController;
 	UISlider *_slider;
-	UISegmentedControl *_menuButton;
+	UIButton *_menuButton;
+    UIButton *_sliderButton;
 	IBOutlet UIView *menuView;
     UILabel *_valueLabel;
     UILabel *nordLabel;

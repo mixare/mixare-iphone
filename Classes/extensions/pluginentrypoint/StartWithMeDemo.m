@@ -31,11 +31,11 @@
 - (void)run:(id<StartMain>)delegate {
     //  ADD HERE YOUR PRE-STUFF
     //  RUN ME BEFORE APPLICATION STARTS (Like an extra view)
-    //  YOU CAN ALSO GET THE MANAGERS: DataSourceManager, DownloadManager and LocationManager
+    //  YOU CAN ALSO GET THE MANAGERS: DataSourceManager and LocationManager
     //  TO MANAGE THE DATA BY YOUR OWN
     NSLog(@"LOADED START-PLUGIN 1 - TEST");
-    [delegate setPluginDelegate:self];  //  Add this if you want the possibility to go back to this plugin
-    [delegate setToggleMenu:YES];       //  Make the menu-button available
+    //[delegate setPluginDelegate:self];  //  Add this if you want the possibility to go back to this plugin from AR-View
+    [delegate setToggleMenu:YES];       //  Make the menu-button available on AR-View
     [delegate openARView];              //  Open AR-View
 }
 

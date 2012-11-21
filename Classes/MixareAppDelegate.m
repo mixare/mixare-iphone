@@ -144,6 +144,7 @@
     if (toggleMenu) {
         [augViewController.view addSubview:_menuButton];
     }
+    [augViewController.view addSubview:_sliderButton];
     [augViewController.view addSubview:_slider];
     [augViewController.view addSubview:_valueLabel];
     [augViewController.view addSubview:nordLabel];
@@ -184,19 +185,20 @@
 
 /***
  *
+ *  Response when radius button has been pressed
+ *
+ ***/
+- (void)radiusClicked:(id)sender {
+    [self openRadiusSlide];
+}
+
+/***
+ *
  *  Response when menu button has been pressed
  *
  ***/
-- (void)buttonClick:(id)sender {
-    switch (_menuButton.selectedSegmentIndex) {
-        case 0:
-            [self openMenu];
-            break;
-        case 1:
-            [self openRadiusSlide];
-        default:
-            break;
-    }
+- (void)menuClicked:(id)sender {
+    [self openMenu];
 }
 
 /***
@@ -232,9 +234,13 @@
  *
  ***/
 - (void)openRadiusSlide {
-    _slider.hidden = NO;
-    _valueLabel.hidden = NO;
-    maxRadiusLabel.hidden = NO;
+    if (_slider.hidden || maxRadiusLabel.hidden) {
+        _slider.hidden = NO;
+        maxRadiusLabel.hidden = NO;
+    } else {
+        _slider.hidden = YES;
+        maxRadiusLabel.hidden = YES;
+    }
 }
 
 #pragma mark -
@@ -438,10 +444,11 @@
     CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
     viewObject.transform = cgCTM;
     viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 130, 30);
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
+    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
     _slider.frame = CGRectMake(62, 5, 288, 23);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
-    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.width - 35, [UIScreen mainScreen].bounds.size.height, 35)];
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
 }
 
 /***
@@ -453,8 +460,9 @@
 - (void)setViewToPortrait:(UIView*)viewObject {
     viewObject.transform = CGAffineTransformMakeRotation(degreesToRadian(0)); // set current transform
     viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    [backToPlugin setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 35, [UIScreen mainScreen].bounds.size.width, 35)];
-    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 130, 30);
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
     maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
 }
@@ -466,18 +474,23 @@
  ***/
 - (void)initControls {
     backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backToPlugin.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 35, [UIScreen mainScreen].bounds.size.width, 35);
-    [backToPlugin setTitle:@"Main menu" forState:UIControlStateNormal];
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    [backToPlugin setTitle:NSLocalizedString(@"Main menu",nil) forState:UIControlStateNormal];
     [backToPlugin setTintColor:[UIColor grayColor]];
     [backToPlugin setAlpha:0.7];
-    //[backToPlugin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    _menuButton = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil)]];
-    _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
-    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 130, 30);
-    _menuButton.alpha = 0.65;
-    [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
+    _menuButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    [_menuButton setTitle:NSLocalizedString(@"Menu",nil) forState:UIControlStateNormal];
+    _menuButton.alpha = 0.7;
+    [_menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
+    
+    _sliderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
+    [_sliderButton setTitle:NSLocalizedString(@"Radius",nil) forState:UIControlStateNormal];
+    _sliderButton.alpha = 0.7;
+    [_sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
     
     _slider = [[UISlider alloc] initWithFrame:CGRectMake(62, 5, 128, 23)];
     _slider.alpha = 0.7;
