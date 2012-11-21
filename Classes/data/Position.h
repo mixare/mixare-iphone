@@ -26,27 +26,33 @@
 #import <Foundation/Foundation.h>
 #import "MapViewAnnotation.h"
 #import "PhysicalPlace.h"
+@class DataSource;
 
 @interface Position : NSObject {
-    NSString *__weak title;
-    NSString *__weak summary;
-    NSString *__weak url;
+    NSString *title;
+    NSString *summary;
+    NSString *url;
     float latitude;
     float longitude;
     CGFloat altitude;
-    NSString *__weak source;
+    DataSource *source;
     MapViewAnnotation *mapViewAnnotation;
     PhysicalPlace *poiItem;
+    UIImage *image;
 }
 
-@property (weak, nonatomic, readonly) NSString *title;
-@property (weak, nonatomic, readonly) NSString *summary;
-@property (weak, nonatomic, readonly) NSString *url;
-@property (nonatomic, readonly) MapViewAnnotation* mapViewAnnotation;
-@property (nonatomic, readonly) PhysicalPlace* poiItem;
-@property (weak, nonatomic, readonly) NSString *source;
+@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *summary;
+@property (nonatomic, readonly) NSString *url;
+@property (nonatomic, readonly) MapViewAnnotation *mapViewAnnotation;
+@property (nonatomic, readonly) PhysicalPlace *poiItem;
+@property (nonatomic, retain) DataSource *source;
+@property (nonatomic, readonly) float latitude;
+@property (nonatomic, readonly) float longitude;
+@property (nonatomic, readonly) CGFloat altitude;
+@property (nonatomic, readonly) UIImage *image;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(NSString*)sour;
+- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour;
 - (void)setMarker:(NSString*)marker;
 
 @end

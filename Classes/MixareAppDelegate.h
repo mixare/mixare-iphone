@@ -31,9 +31,11 @@
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
+#import "StartMain.h"
+#import "PluginEntryPoint.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate> {
-    CLLocationManager *_locManager;
+@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
+    CLLocationManager *_locationManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
     
@@ -44,13 +46,19 @@
 	MapViewController *_mapViewController;
 	AugmentedGeoViewController *augViewController;
 	UISlider *_slider;
-	UISegmentedControl *_menuButton;
+	UIButton *_menuButton;
+    UIButton *_sliderButton;
 	IBOutlet UIView *menuView;
     UILabel *_valueLabel;
     UILabel *nordLabel;
     UILabel *maxRadiusLabel;
     MoreViewController *_moreViewController;
     SourceViewController *_sourceViewController;
+    
+    NSArray *startPlugin;
+    BOOL toggleMenu;
+    id<PluginEntryPoint> pluginDelegate;
+    UIButton *backToPlugin;
     
     @private
     BOOL beforeWasLandscape;

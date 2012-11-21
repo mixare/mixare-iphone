@@ -39,18 +39,8 @@
 
 - (void)testDownloadData {
     DownloadManager *downloadManager = [[DownloadManager alloc] init];
-    for (DataSource *data in [dataSourceManager getActivatedSources]) {
-        NSLog(@"Data positions without download: %d", data.positions.count);
-        BOOL check;
-        if (data.positions.count == 0) {
-            check = YES;
-        } else {
-            check = NO;
-        }
-        STAssertTrue(check, @"Positions should be 0");
-    }
     [downloadManager download:[dataSourceManager getActivatedSources] currentLocation:locationManager.location currentRadius:3.5];
-    DataSource *data = [dataSourceManager getActivatedSources][0]; //First from activated is Wikipedia
+    DataSource *data = [dataSourceManager getDataSourceByTitle:@"Wikipedia"];
     NSLog(@"Data positions after download: %d", data.positions.count);
     BOOL check;
     if (data.positions.count > 0) {

@@ -17,19 +17,19 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataConvertorTest.h
+//  PluginList.h
 //  Mixare
 //
-//  Created by Aswin Ly on 16-10-12.
+//  Created by Aswin Ly on 12-11-12.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import "DataConvertor.h"
-#import "DataSource.h"
+#import <Foundation/Foundation.h>
 
-@interface DataConvertorTest : SenTestCase {
-    DataSource *wikipedia;
+@interface PluginList : NSObject {
+    NSMutableArray *plugins;
 }
+
++ (id)getInstance;
+- (NSMutableArray*)getPluginList;
 
 @end

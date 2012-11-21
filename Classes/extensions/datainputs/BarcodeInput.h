@@ -17,18 +17,19 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataConvertor.h
+//  BarcodeInput.h
 //  Mixare
 //
-//  Created by Aswin Ly on 15-10-12.
+//  Created by Aswin Ly on 13-11-12.
 //
 
 #import <Foundation/Foundation.h>
-#import "DataSource.h"
+#import "DataInput.h"
+#import "SetDataSource.h"
+#import "ZBarSDK.h"
 
-@interface DataConvertor : NSObject 
-
-+ (void)initialize;
-+ (void)convertData:(DataSource*)data currentLocation:(CLLocation*)loc currentRadius:(float)rad;
+@interface BarcodeInput : UIViewController <ZBarReaderDelegate, DataInput> {
+    id<SetDataSource> aClass;
+}
 
 @end

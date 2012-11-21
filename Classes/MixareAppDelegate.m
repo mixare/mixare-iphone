@@ -18,31 +18,14 @@
  */
 
 #import "MixareAppDelegate.h"
+#import "PluginLoader.h"
 #define CAMERA_TRANSFORM 1.12412
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
 @implementation MixareAppDelegate
 
-/***
- *
- *  App: Open URL
- *  @param application
- *  @param URL
- *
- ***/
-#pragma mark -
-#pragma mark URL Handler
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	NSLog(@"the url: %@", [url absoluteURL]);
-	if (!url) {
-        return NO;
-    }
-    NSString *URLString = [url absoluteString];
-    [[NSUserDefaults standardUserDefaults] setObject:URLString forKey:@"extern_url"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self openMenu];
-    return YES;
-}
+@synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate;
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -56,8 +39,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"STARTING");
 	[self initManagers];
-    [self iniARView]; 
-    //[self openMenu]; Start with ARview instead of menu
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -67,6 +48,17 @@
                                                object:nil];
     [self initUIBarTitles];
     [self firstBootLicenseText];
+    if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
+        startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
+        NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
+        for (id<PluginEntryPoint> plugin in startPlugin) {
+            [plugin run:self];
+        }
+    } else {
+        toggleMenu = YES;
+        [self openARView];
+        //[self openMenu]; Start with ARview instead of menu
+    }
     return YES;
 }
 
@@ -87,12 +79,12 @@
  *
  ***/
 - (void)initLocationManager {
-	if (_locManager == nil) {
-		_locManager = [[CLLocationManager alloc] init];
-		_locManager.desiredAccuracy = kCLLocationAccuracyBest;
-		_locManager.delegate = self;
-		_locManager.distanceFilter = 3.0;
-		//[_locManager startUpdatingLocation];
+	if (_locationManager == nil) {
+		_locationManager = [[CLLocationManager alloc] init];
+		_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+		_locationManager.delegate = self;
+		_locationManager.distanceFilter = 3.0;
+		//[_locationManager startUpdatingLocation];
 	}
 }
 
@@ -106,7 +98,7 @@
     if (_slider != nil) {
         radius = _slider.value;
     }
-    [_downloadManager download:[_dataSourceManager getActivatedSources] currentLocation:_locManager.location currentRadius:radius];
+    [_downloadManager download:[_dataSourceManager getActivatedSources] currentLocation:_locationManager.location currentRadius:radius];
 }
 
 /***
@@ -135,7 +127,7 @@
  *  Initialize ARView
  *
  ***/
-- (void)iniARView {
+- (void)openARView {
     if (augViewController == nil) {
         augViewController = [[AugmentedGeoViewController alloc] init];
     }
@@ -147,14 +139,20 @@
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
-    augViewController.centerLocation = _locManager.location;
+    augViewController.centerLocation = _locationManager.location;
     [notificationView removeFromSuperview];
-    [augViewController.view addSubview:_menuButton];
+    if (toggleMenu) {
+        [augViewController.view addSubview:_menuButton];
+    }
+    [augViewController.view addSubview:_sliderButton];
     [augViewController.view addSubview:_slider];
     [augViewController.view addSubview:_valueLabel];
     [augViewController.view addSubview:nordLabel];
     [augViewController.view addSubview:maxRadiusLabel];
-	[augViewController startListening:_locManager];
+	[augViewController startListening:_locationManager];
+    if (pluginDelegate != nil) {
+        [augViewController.view addSubview:backToPlugin];
+    }
     window.rootViewController = augViewController;
 }
 
@@ -181,8 +179,17 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
     [self closeARView];
 	[self refresh];
-    [self iniARView];
+    [self openARView];
 	NSLog(@"POIS CHANGED");
+}
+
+/***
+ *
+ *  Response when radius button has been pressed
+ *
+ ***/
+- (void)radiusClicked:(id)sender {
+    [self openRadiusSlide];
 }
 
 /***
@@ -190,16 +197,18 @@
  *  Response when menu button has been pressed
  *
  ***/
-- (void)buttonClick:(id)sender {
-    switch (_menuButton.selectedSegmentIndex) {
-        case 0:
-            [self openMenu];
-            break;
-        case 1:
-            [self openRadiusSlide];
-        default:
-            break;
-    }
+- (void)menuClicked:(id)sender {
+    [self openMenu];
+}
+
+/***
+ *
+ *  Response when plugin button on AR has been pressed
+ *
+ ***/
+- (void)pluginButtonClicked:(id)sender {
+    [self closeARView];
+    [pluginDelegate run:self];
 }
 
 /***
@@ -225,9 +234,13 @@
  *
  ***/
 - (void)openRadiusSlide {
-    _slider.hidden = NO;
-    _valueLabel.hidden = NO;
-    maxRadiusLabel.hidden = NO;
+    if (_slider.hidden || maxRadiusLabel.hidden) {
+        _slider.hidden = NO;
+        maxRadiusLabel.hidden = NO;
+    } else {
+        _slider.hidden = YES;
+        maxRadiusLabel.hidden = YES;
+    }
 }
 
 #pragma mark -
@@ -245,9 +258,9 @@
     if (tabBarController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
-        [_locManager stopUpdatingLocation];
+        [_locationManager stopUpdatingLocation];
         UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        //spinner.center = CGPointMake(viewController.view.frame.size.width/2, viewController.view.frame.size.height/3);t]
+        spinner.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2);
         [menuView addSubview:spinner];
         [menuView bringSubviewToFront:spinner];
         [spinner startAnimating];
@@ -289,7 +302,7 @@
 - (void)openTabCamera {
     notificationView.center = window.center;
     [window addSubview:notificationView];
-    [self iniARView];
+    [self openARView];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -340,8 +353,8 @@
  *
  ***/
 - (void)openTabMore {
-    NSLog(@"latitude: %f", _locManager.location.coordinate.latitude);
-    [_moreViewController showGPSInfo:_locManager.location];
+    NSLog(@"latitude: %f", _locationManager.location.coordinate.latitude);
+    [_moreViewController showGPSInfo:_locationManager.location];
 }
 
 
@@ -408,11 +421,11 @@
 - (void)didRotate:(NSNotification *)notification {
     //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
     //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft){
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         [self setViewToLandscape:augViewController.view];
         beforeWasLandscape = YES;
     }
-    if([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape){
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
         [self setViewToPortrait:augViewController.view];
         beforeWasLandscape = NO;
     }
@@ -427,13 +440,15 @@
  *
  ***/
 - (void)setViewToLandscape:(UIView*)viewObject {
-    [viewObject setCenter:CGPointMake(160, 240)];
+    [viewObject setCenter:CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2)];
     CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
     viewObject.transform = cgCTM;
-    viewObject.bounds = CGRectMake(0, 0, 480, 320);
+    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
+    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
     _slider.frame = CGRectMake(62, 5, 288, 23);
-    _menuButton.frame = CGRectMake(350, 0, 130, 30);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
 }
 
 /***
@@ -443,14 +458,13 @@
  *
  ***/
 - (void)setViewToPortrait:(UIView*)viewObject {
-    CGAffineTransform tr = viewObject.transform; // get current transform (portrait)
-    tr = CGAffineTransformRotate(tr, -(M_PI / 2.0)); // rotate -90 degrees to go portrait
-    viewObject.transform = tr; // set current transform
-    CGRectMake(0, 0, 320, 480);
-    [viewObject setCenter:CGPointMake(240, 160)];
-    _menuButton.frame = CGRectMake(190, 0, 130, 30);
+    viewObject.transform = CGAffineTransformMakeRotation(degreesToRadian(0)); // set current transform
+    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
     _slider.frame = CGRectMake(62, 5, 128, 23);
-    maxRadiusLabel.frame= CGRectMake(158, 25, 30, 12);
+    maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
 }
 
 /***
@@ -459,19 +473,26 @@
  *
  ***/
 - (void)initControls {
-    _menuButton = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Menu",nil), NSLocalizedString(@"Radius",nil)]];
-    _menuButton.segmentedControlStyle = UISegmentedControlStyleBar;
-    CGRect buttonFrame;
-    CGRect sliderFrame;
-    CGRect valueFrame;
-    buttonFrame = CGRectMake(190, 0, 130, 30);
-    sliderFrame = CGRectMake(62, 5, 128, 23);
-    valueFrame = CGRectMake(8.5, 64, 45, 12);
-    _menuButton.frame = buttonFrame;
-    _menuButton.alpha = 0.65;
-    [_menuButton addTarget:self action:@selector(buttonClick:)forControlEvents:UIControlEventValueChanged];
+    backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    [backToPlugin setTitle:NSLocalizedString(@"Main menu",nil) forState:UIControlStateNormal];
+    [backToPlugin setTintColor:[UIColor grayColor]];
+    [backToPlugin setAlpha:0.7];
+    [backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    _slider = [[UISlider alloc] initWithFrame:sliderFrame];
+    _menuButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    [_menuButton setTitle:NSLocalizedString(@"Menu",nil) forState:UIControlStateNormal];
+    _menuButton.alpha = 0.7;
+    [_menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
+    
+    _sliderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
+    [_sliderButton setTitle:NSLocalizedString(@"Radius",nil) forState:UIControlStateNormal];
+    _sliderButton.alpha = 0.7;
+    [_sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
+    
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake(62, 5, 128, 23)];
     _slider.alpha = 0.7;
     [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     _slider.hidden = YES;
@@ -479,7 +500,7 @@
     _slider.maximumValue = 80.0;
     _slider.continuous= NO;
     
-    _valueLabel = [[UILabel alloc] initWithFrame:valueFrame];
+    _valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.5, 64, 45, 12)];
     _valueLabel.backgroundColor = [UIColor blackColor];
     _valueLabel.textColor = [UIColor whiteColor];
     _valueLabel.font = [UIFont systemFontOfSize:10.0];

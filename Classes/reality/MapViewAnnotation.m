@@ -24,24 +24,29 @@
 //
 
 #import "MapViewAnnotation.h"
+#import "Position.h"
 
 @implementation MapViewAnnotation
 
 @synthesize coordinate;
-@synthesize subTitle, title;
+@synthesize subTitle, title, image;
 
-- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat andLongitude:(CGFloat)lon {
+- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon {
     self = [super init];
     if (self) {
         if (lat != 0.0 && lon != 0.0) {
             coordinate.latitude = lat;
             coordinate.longitude = lon;
         } else {
-            coordinate.latitude=0.0;
-            coordinate.longitude=0.0;
+            coordinate.latitude = 0.0;
+            coordinate.longitude = 0.0;
         }
     }
     return self;
+}
+
+- (void)setMarker:(UIImage*)img {
+    image = img;
 }
 
 @end

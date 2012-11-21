@@ -25,6 +25,7 @@
 
 //This class represents a POI with all the needed information
 @class PoiItem;
+@class Position;
 
 @protocol ARPersistentItem
 
@@ -66,11 +67,9 @@
 	NSString *title;
     //subtitle of the poi
 	NSString *subtitle;
-    //poi image
-    UIImage *image;
+    Position *position;
 }
 
-- (void)setMarker:(NSString*)marker;
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)other;
 - (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
@@ -79,11 +78,11 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) NSString *source;
-@property (nonatomic, strong) UIImage *image;
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic) CGPoint radarPos;
+@property (nonatomic, readonly) Position *position;
 
 @end

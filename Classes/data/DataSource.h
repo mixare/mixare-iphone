@@ -32,6 +32,7 @@
     BOOL activated;
     BOOL locked;
     NSMutableArray *positions;
+    UIImage *logo;
 }
 
 @property (nonatomic, strong) NSString *title;
@@ -39,8 +40,10 @@
 @property (nonatomic, assign) BOOL activated;
 @property (nonatomic, assign) BOOL locked;
 @property (nonatomic, strong) NSMutableArray *positions;
+@property (nonatomic, readonly) UIImage *logo;
 
-- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url;
+- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url locked:(BOOL)lock;
 - (void)refreshPositions:(NSMutableArray*)results;
+- (void)setListLogo:(NSString*)marker;
 
 @end

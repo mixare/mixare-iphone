@@ -22,9 +22,10 @@
 #import "PullRefreshTableViewController.h"
 #import "DataSourceManager.h"
 #import "DownloadManager.h"
+#import "SetDataSource.h"
 
 //ViewController for the source tabbarsection 
-@interface SourceViewController : PullRefreshTableViewController<UITextFieldDelegate,UIAlertViewDelegate> {
+@interface SourceViewController : PullRefreshTableViewController<UITextFieldDelegate,UIAlertViewDelegate,SetDataSource> {
 	NSMutableArray *dataSourceArray;
     IBOutlet UIBarButtonItem *addButton;
     DownloadManager *downloadManager;
@@ -34,6 +35,7 @@
 }
 
 - (IBAction)addSource;
+- (void)setNewData:(NSDictionary*)data;
 - (void)refresh:(DataSourceManager*)dataSourceManager;
 
 @property (nonatomic, strong) NSMutableArray *dataSourceArray;

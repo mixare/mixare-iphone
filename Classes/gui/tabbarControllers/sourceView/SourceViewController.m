@@ -19,6 +19,8 @@
 
 #import "SourceViewController.h"
 #import "SourceTableCell.h"
+#import "PluginLoader.h"
+#import "DataInput.h"
 //Cons
 
 #define kTextFieldWidth         180.0
@@ -71,66 +73,60 @@
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
 }
 
+- (void)setNewData:(NSDictionary *)data {
+    NSString *title = [data objectForKey:@"title"];
+    NSString *url = [data objectForKey:@"url"];
+    if (url == nil || title == nil || [url isEqualToString:@""] || [title isEqualToString:@""]) {
+        [self errorPopUp:@"You have to fill all inputs"];
+    } else {
+        NSLog(@"URL: %@", url);
+        NSLog(@"TITLE: %@", title);
+        if ([dataSourceManager createDataSource:title dataUrl:url] != nil) {
+            [dataSourceArray addObject:title];
+        } else {
+            [self errorPopUp:@"Added title already exists"];
+        }
+    }
+    [self.tableView reloadData];
+}
+
 /***
  *
  *  Open an alert dialog to insert a custom data source by link
  *
  ***/
 - (void)addSource {
-    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Add Source",nil)
-                                                      message:NSLocalizedString(@"Insert your Source address \n\n\n\n\n",nil)
-                                                     delegate:self
-                                            cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                            otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-
-    textField = [[UITextField alloc] init];
-    [textField setBackgroundColor:[UIColor whiteColor]];
-    textField.delegate = self;
-    textField.borderStyle = UITextBorderStyleLine;
-    textField.frame = CGRectMake(15, 75, 255, 30);
-    textField.font = [UIFont fontWithName:@"ArialMT" size:20];
-    textField.placeholder = NSLocalizedString(@"Title",nil);
-    textField.textAlignment = NSTextAlignmentCenter;
-    textField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    [textField becomeFirstResponder];
-    [addAlert addSubview:textField];
-    
-    urlField = [[UITextField alloc] init];
-    [urlField setBackgroundColor:[UIColor whiteColor]];
-    urlField.delegate = self;
-    urlField.borderStyle = UITextBorderStyleLine;
-    urlField.frame = CGRectMake(15, 120, 255, 30);
-    urlField.font = [UIFont fontWithName:@"ArialMT" size:20];
-    urlField.placeholder = NSLocalizedString(@"Format:www.example.com",nil);
-    urlField.textAlignment = NSTextAlignmentCenter;
-    urlField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    [addAlert addSubview:urlField];
-    [addAlert show];
+    NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
+    if ([availablePlugins count] == 0) {
+        [self errorPopUp:@"No input possibility found"];
+    } else if ([availablePlugins count] == 1) {
+        id<DataInput> inputPlugin = availablePlugins[0];
+        [inputPlugin runInput:self];
+    } else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Data input", nil)
+                                                          message:NSLocalizedString(@"Choose your data input method.", nil)
+                                                         delegate:self
+                                                cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                otherButtonTitles:nil];
+        for (id<DataInput> inputPlugin in availablePlugins) {
+            [message addButtonWithTitle:[inputPlugin getTitle]];
+        }
+        [message show];
+    }
 }
 
 /***
  *
- *  Responses of both Alert Dialogs
+ *  Response to (void)addSource
  *
  ***/
-- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != [alertView cancelButtonIndex]) {
-        if (urlField.text == nil || textField.text == nil || [urlField.text isEqualToString:@""] || [textField.text isEqualToString:@""]) {
-            [self errorPopUp:@"You have to fill all inputs"];
-        } else {
-            NSLog(@"URL: %@", urlField.text);
-            NSLog(@"TITLE: %@", textField.text);
-            if ([dataSourceManager getDataSourceByTitle:textField.text] == nil) {
-                DataSource *data = [[DataSource alloc] initTitle:textField.text jsonUrl:urlField.text];
-                data.activated = NO;
-                [dataSourceManager.dataSources addObject:data];
-                [dataSourceManager writeDataSources];
-                [dataSourceArray addObject:textField.text];
-            } else {
-                [self errorPopUp:@"Added title already exists"];
-            }
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
+    for (id<DataInput> inputPlugin in availablePlugins) {
+        if([title isEqualToString:[inputPlugin getTitle]]) {
+            [inputPlugin runInput:self];
         }
-        [self.tableView reloadData];
     }
 }
 
@@ -200,10 +196,8 @@
 	}
 	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = dataSourceArray[indexPath.row];
-		if ([cell.sourceLabel.text isEqualToString:@"Twitter"]) {
-			[cell.sourceLogoView setImage:[UIImage imageNamed:@"twitter_logo.png"]];
-		} else if ([cell.sourceLabel.text isEqualToString:@"Wikipedia"]) {
-			[cell.sourceLogoView setImage:[UIImage imageNamed:@"wikipedia_logo.png"]];
+        if ([dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo != nil) {
+			[cell.sourceLogoView setImage:[dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo];
 		} else {
             [cell.sourceLogoView setImage:[UIImage imageNamed:@"logo_mixare_round.png"]]; 
         }
@@ -236,7 +230,7 @@
     //if user wants to deleta a soucre checkin weather if its a source he added else get restricted
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if ([[dataSourceManager getDataSourceByTitle:dataSourceArray[indexPath.row]] locked]) {
-            [self errorPopUp:@"You can only delete own sources!"];
+            [self errorPopUp:@"You can only delete your own sources!"];
         } else {
             [dataSourceManager deleteDataSource:[dataSourceManager getDataSourceByTitle:dataSourceArray[indexPath.row]]];
             [dataSourceArray removeObjectAtIndex:indexPath.row];

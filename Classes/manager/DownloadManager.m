@@ -24,7 +24,7 @@
 //
 
 #import "DownloadManager.h"
-#import "DataConvertor.h"
+#import "DataConverter.h"
 
 @implementation DownloadManager
 
@@ -54,7 +54,7 @@
             [downloadArray removeObjectsInArray:lastDownloadedSources];
         }
         for (DataSource *data in downloadArray) {
-            [DataConvertor convertData:data currentLocation:loc currentRadius:rad];
+            [[DataConverter getInstance] convertData:data currentLocation:loc currentRadius:rad];
         }
         lastDownloadedLocation = loc;
         lastDownloadedRadius = rad;
@@ -65,7 +65,7 @@
 
 - (void)redownload {
     for (DataSource *data in lastDownloadedSources) {
-        [DataConvertor convertData:data currentLocation:lastDownloadedLocation currentRadius:lastDownloadedRadius];
+        [[DataConverter getInstance] convertData:data currentLocation:lastDownloadedLocation currentRadius:lastDownloadedRadius];
     }
 }
 
