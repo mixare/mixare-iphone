@@ -27,6 +27,8 @@
 
 @synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate, alertRunning;
 
+static ProgressHUD *hud;
+
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -38,6 +40,7 @@
  *
  ***/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
@@ -176,13 +179,19 @@
  *
  ***/
 - (void)valueChanged:(id)sender {
-	NSLog(@"val: %f",_slider.value);
+    [hud show];
+	[self performSelectorInBackground:@selector(reloadCamera) withObject:nil];
+}
+
+- (void)reloadCamera {
+    NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
     [self closeARView];
 	[self refresh];
     [self openARView];
 	NSLog(@"POIS CHANGED");
+    [hud dismiss];
 }
 
 /***
@@ -257,40 +266,38 @@
  *
  ***/
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    ProgressHUD *hud = [[ProgressHUD alloc] initWithLabel:@"Loading..."];
     [hud show];
     if (tabBarController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
         [_locationManager stopUpdatingLocation];
-        [self refresh]; //download new data
     }
     switch (tabBarController.selectedIndex) {
         case 0:
             NSLog(@"Opened camera tab");
-            [self openTabCamera];
+            [self performSelectorInBackground:@selector(openTabCamera) withObject:nil];
             break;
         case 1:
             NSLog(@"Opened source tab");
-            [self openTabSources];
+            [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
             break;
         case 2:
             NSLog(@"Opened POI list tab");
-            [self openTabPOI];
+            [self performSelectorInBackground:@selector(openTabPOI) withObject:nil];
             break;
         case 3:
             NSLog(@"Opened map tab");
-            [self openTabMap];
+            [self performSelectorInBackground:@selector(openTabMap) withObject:nil];
             break;
         case 4:
             NSLog(@"Opened more info tab");
             [self openTabMore];
             break;
         default:
+            [hud dismiss];
             NSLog(@"Out of range");
             break;
     }
-    [hud dismiss];
 }
 
 /***
@@ -304,6 +311,7 @@
     [self openARView];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [hud dismiss];
 }
 
 /***
@@ -313,9 +321,11 @@
  ***/
 - (void)openTabSources {
     if (_dataSourceManager.dataSources != nil) {
+        [self refresh];
         [_sourceViewController setDownloadManager:_downloadManager];
         [_sourceViewController refresh:_dataSourceManager];
     }
+    [hud dismiss];
 }
 
 /***
@@ -325,11 +335,13 @@
  ***/
 - (void)openTabPOI {
     if (_dataSourceManager.dataSources != nil) {
+        [self refresh];
         [_listViewController setDownloadManager:_downloadManager];
         [_listViewController refresh:[_dataSourceManager getActivatedSources]];
     } else {
         NSLog(@"Data POI List not set");
     }
+    [hud dismiss];
 }
 
 /***
@@ -339,10 +351,12 @@
  *
  ***/
 - (void)openTabMap {
-    if(_dataSourceManager.dataSources != nil){
+    if (_dataSourceManager.dataSources != nil) {
+        [self refresh];
         [_mapViewController refresh:[_dataSourceManager getActivatedSources]];
         NSLog(@"Data Annotations map set");
     }
+    [hud dismiss];
 }
 
 /***
@@ -354,6 +368,7 @@
 - (void)openTabMore {
     NSLog(@"latitude: %f", _locationManager.location.coordinate.latitude);
     [_moreViewController showGPSInfo:_locationManager.location];
+    [hud dismiss];
 }
 
 
