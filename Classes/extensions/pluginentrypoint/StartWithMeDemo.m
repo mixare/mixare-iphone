@@ -36,6 +36,7 @@
     NSLog(@"LOADED START-PLUGIN 1 - TEST");
     //[delegate setPluginDelegate:self];  //  Add this if you want the possibility to go back to this plugin from AR-View
     [delegate setToggleMenu:YES];       //  Make the menu-button available on AR-View
+    [delegate refresh];                 //  Download Data
     [delegate openARView];              //  Open AR-View
 }
 

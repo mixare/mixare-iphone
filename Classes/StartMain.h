@@ -37,5 +37,6 @@
 
 - (void)openARView;
 - (void)openMenu;
+- (void)refresh;
 
 @end

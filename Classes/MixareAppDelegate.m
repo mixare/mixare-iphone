@@ -136,7 +136,6 @@ static ProgressHUD *hud;
         augViewController = [[AugmentedGeoViewController alloc] init];
     }
     [self initControls];
-    [self refresh];
     [augViewController viewWillAppear:YES];
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
@@ -309,6 +308,7 @@ static ProgressHUD *hud;
 - (void)openTabCamera {
     notificationView.center = window.center;
     [window addSubview:notificationView];
+    [self refresh];
     [self openARView];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
