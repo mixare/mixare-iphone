@@ -23,7 +23,6 @@
 
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView* _map;
-	NSMutableArray *_data;
     NSMutableArray *_currentAnnotations;
 }
 @property (nonatomic, strong) MKMapView *map;

@@ -51,7 +51,8 @@
             keys[@"url"]: [NSString stringWithFormat:@"http://%@", geoname[@"wikipediaUrl"]],
             keys[@"longitude"]: geoname[@"lng"],
             keys[@"latitude"]: geoname[@"lat"],
-            keys[@"marker"]: @"wikipedia_logo_small.png"}];
+            keys[@"marker"]: @"wikipedia_logo_small.png",
+            keys[@"logo"]: @"wikipedia_logo.png"}];
         }
         return ret;
     }

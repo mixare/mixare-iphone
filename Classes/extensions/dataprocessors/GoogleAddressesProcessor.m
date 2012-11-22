@@ -50,7 +50,8 @@
              keys[@"url"]: [NSString stringWithFormat:@"http://maps.google.com/maps?ll=%@,%@", component[@"geometry"][@"location"][@"lat"], component[@"geometry"][@"location"][@"lng"]],
              keys[@"longitude"]: component[@"geometry"][@"location"][@"lng"],
              keys[@"latitude"]: component[@"geometry"][@"location"][@"lat"],
-             keys[@"marker"]: @"buzz_logo_small.png"}];
+             keys[@"marker"]: @"buzz_logo_small.png",
+             keys[@"logo"]: @"buzz_logo.png"}];
         }
         return ret;
     }

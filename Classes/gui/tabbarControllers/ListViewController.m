@@ -58,7 +58,7 @@
     }
     for (Position *pos in data.positions) {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        [dic setValue:data.title forKey:@"source"];
+        [dic setValue:pos.image forKey:@"image"];
         [dic setValue:pos.title forKey:@"title"];
         [dic setValue:pos.summary forKey:@"sum"];
         [dic setValue:pos.url forKey:@"url"];
@@ -118,13 +118,7 @@
 		cell.textLabel.text = [dataSourceArray[indexPath.row] valueForKey:@"title"];
 		cell.detailTextLabel.text = [dataSourceArray[indexPath.row] valueForKey:@"sum"];
         //adding custom label to each row according to their source
-        if ([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Wikipedia"]) {
-            cell.imageView.image = [UIImage imageNamed:@"wikipedia_logo_small.png"];
-        } else if([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Twitter"]) {
-            cell.imageView.image = [UIImage imageNamed:@"twitter_logo_small.png"];
-        } else if([[dataSourceArray[indexPath.row] valueForKey:@"source"] isEqualToString:@"Mixare"]) {
-            cell.imageView.image = [UIImage imageNamed:@"logo_mixare_round.png"];
-        }
+        cell.imageView.image = [dataSourceArray[indexPath.row] valueForKey:@"image"];
     }
 	return cell;
 }

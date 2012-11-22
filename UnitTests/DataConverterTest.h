@@ -17,35 +17,19 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  DataConvertorTest.m
+//  DataConverterTest.h
 //  Mixare
 //
 //  Created by Aswin Ly on 16-10-12.
 //
 
-#import "DataConvertorTest.h"
+#import <SenTestingKit/SenTestingKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "DataConverter.h"
+#import "DataSource.h"
 
-
-@implementation DataConvertorTest
-
-- (void)setUp {
-    [super setUp];
-    wikipedia = [[DataSource alloc] initTitle:@"Wikipedia" jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-    [wikipedia setActivated:YES];
-}
-
-- (void)tearDown {
-    [super tearDown];
-}
-
-- (void)testConvertData {
-    CLLocation *location = [[[CLLocationManager alloc] init] location];
-    [DataConvertor convertData:wikipedia currentLocation:location currentRadius:3.5];
-    BOOL check = YES;
-    if (wikipedia.positions.count == 0) {
-        check = NO;
-    }
-    STAssertTrue(check, @"No positions found");
+@interface DataConverterTest : SenTestCase {
+    DataSource *wikipedia;
 }
 
 @end

@@ -18,15 +18,16 @@
  */
 
 #import "PhysicalPlace.h"
+#import "Position.h"
 
 @implementation PhysicalPlace
 
 @synthesize geoLocation;
 
-- (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt {
+- (PhysicalPlace*)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt position:(Position*)pos {
     self = [super init];
     geoLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(lat, lon) altitude:alt horizontalAccuracy:1.0 verticalAccuracy:1.0 timestamp:nil];
-    image = [UIImage imageNamed:@"circle.png"];
+    position = pos;
     return self;
 }
 

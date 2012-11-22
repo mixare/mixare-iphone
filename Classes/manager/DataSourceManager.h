@@ -28,7 +28,6 @@
 
 @interface DataSourceManager : NSObject{
     NSMutableArray *dataSources;
-    NSMutableArray *activatedDataSources;
 }
 
 @property (nonatomic, strong) NSMutableArray *dataSources;
@@ -36,7 +35,8 @@
 - (DataSourceManager*)init;
 - (DataSource*)getDataSourceByTitle:(NSString*)title;
 - (NSMutableArray*)getActivatedSources;
-- (void)writeDataSources;
+- (DataSource*)createDataSource:(NSString*)title dataUrl:(NSString*)url;
 - (void)deleteDataSource:(DataSource*)source;
+- (void)deactivateAllSources;
 
 @end
