@@ -151,6 +151,7 @@ static ProgressHUD *hud;
     }
     [augViewController.view addSubview:_sliderButton];
     [augViewController.view addSubview:_slider];
+    _valueLabel.hidden = NO;
     [augViewController.view addSubview:_valueLabel];
     [augViewController.view addSubview:nordLabel];
     [augViewController.view addSubview:maxRadiusLabel];
