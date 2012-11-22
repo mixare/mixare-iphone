@@ -57,7 +57,7 @@
     if ([self isImageUrl:marker]) {
         NSURL *urls = [NSURL URLWithString:marker];
         NSData *data = [NSData dataWithContentsOfURL:urls];
-        image = [UIImage imageWithData:data];
+        image = [self imageWithImage:[UIImage imageWithData:data] scaledToSize:CGSizeMake(30, 30)];
     } else if (marker != nil) {
         image = [UIImage imageNamed:marker];
     }
@@ -71,13 +71,22 @@
             return NO;
         }
     }
-    NSArray *possibleFiles = @[@"jpeg", @"png", @"jpg", @"_mini", @"_normal"];
+    NSArray *possibleFiles = @[@"jpeg", @"png", @"jpg", @"_mini"];
     for (NSString *file in possibleFiles) {
         if ([urls rangeOfString:file].location != NSNotFound) {
             return YES;
         }
     }
     return NO;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)img scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [img drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end

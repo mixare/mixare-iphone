@@ -17,27 +17,30 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  StartWithMeDemo.m
+//  ProgressHUD.h
 //  Mixare
 //
-//  Created by Aswin Ly on 19-11-12.
+//  Created by Aswin Ly on 22-11-12.
 //
 
-#import "StartWithMeDemo.h"
-#import "StartMain.h"
+#import <Foundation/Foundation.h>
+#import "MixareAppDelegate.h"
 
-@implementation StartWithMeDemo
-
-- (void)run:(id<StartMain>)delegate {
-    //  ADD HERE YOUR PRE-STUFF
-    //  RUN ME BEFORE APPLICATION STARTS (Like an extra view)
-    //  YOU CAN ALSO GET THE MANAGERS: DataSourceManager and LocationManager
-    //  TO MANAGE THE DATA BY YOUR OWN
-    NSLog(@"LOADED START-PLUGIN 1 - TEST");
-    //[delegate setPluginDelegate:self];  //  Add this if you want the possibility to go back to this plugin from AR-View
-    [delegate setToggleMenu:YES];       //  Make the menu-button available on AR-View
-    [delegate refresh];                 //  Download Data
-    [delegate openARView];              //  Open AR-View
+@interface ProgressHUD : UIAlertView {
+    UIActivityIndicatorView *activityIndicator;
+    UILabel *progressMessage;
+    UIImageView *backgroundImageView;
+    
+    MixareAppDelegate *__weak appDelegate;
 }
+
+@property (nonatomic) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UILabel *progressMessage;
+@property (nonatomic) UIImageView *backgroundImageView;
+@property (nonatomic, weak) MixareAppDelegate *appDelegate;
+
+- (id)initWithLabel:(NSString *)text;
+- (void)show;
+- (void)dismiss;
 
 @end

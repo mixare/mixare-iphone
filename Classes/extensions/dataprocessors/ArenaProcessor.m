@@ -44,10 +44,14 @@
         NSMutableArray *ret = [[NSMutableArray alloc] init];
         NSArray *geonames = data[@"results"];
         for (NSDictionary *geoname in geonames) {
+            NSString *url = @"";
+            if (geoname[@"webpage"] != [NSNull null] && geoname[@"webpage"] != nil) {
+                url = geoname[@"webpage"];
+            }
             [ret addObject:@{
              keys[@"title"]: geoname[@"title"],
              keys[@"summary"]: geoname[@"object_type"],
-             keys[@"url"]: geoname[@"webpage"],
+             keys[@"url"]: url,
              keys[@"longitude"]: geoname[@"lng"],
              keys[@"latitude"]: geoname[@"lat"],
              keys[@"marker"]: geoname[@"object_url"]}];
