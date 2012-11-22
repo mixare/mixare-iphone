@@ -19,12 +19,13 @@
 
 #import "MixareAppDelegate.h"
 #import "PluginLoader.h"
+#import "ProgressHUD.h"
 #define CAMERA_TRANSFORM 1.12412
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
  
 @implementation MixareAppDelegate
 
-@synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate;
+@synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate, alertRunning;
 
 #pragma mark -
 #pragma mark Application lifecycle
@@ -133,6 +134,7 @@
     }
     [self initControls];
     [self refresh];
+    [augViewController viewWillAppear:YES];
 	augViewController.scaleViewsBasedOnDistance = YES;
 	augViewController.minimumScaleFactor = 0.6;
 	augViewController.rotateViewsBasedOnPerspective = YES;
@@ -255,17 +257,13 @@
  *
  ***/
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    ProgressHUD *hud = [[ProgressHUD alloc] initWithLabel:@"Loading..."];
+    [hud show];
     if (tabBarController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
         [_locationManager stopUpdatingLocation];
-        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        spinner.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2);
-        [menuView addSubview:spinner];
-        [menuView bringSubviewToFront:spinner];
-        [spinner startAnimating];
         [self refresh]; //download new data
-        [spinner stopAnimating];
     }
     switch (tabBarController.selectedIndex) {
         case 0:
@@ -292,6 +290,7 @@
             NSLog(@"Out of range");
             break;
     }
+    [hud dismiss];
 }
 
 /***

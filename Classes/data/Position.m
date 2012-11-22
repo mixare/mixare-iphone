@@ -71,7 +71,7 @@
             return NO;
         }
     }
-    NSArray *possibleFiles = @[@"jpeg", @"png", @"jpg", @"_mini", @"_normal"];
+    NSArray *possibleFiles = @[@"jpeg", @"png", @"jpg", @"_mini"];
     for (NSString *file in possibleFiles) {
         if ([urls rangeOfString:file].location != NSNotFound) {
             return YES;

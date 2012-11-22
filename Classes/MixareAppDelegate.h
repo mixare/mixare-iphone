@@ -60,9 +60,13 @@
     id<PluginEntryPoint> pluginDelegate;
     UIButton *backToPlugin;
     
+    BOOL alertRunning;
+    
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView *notificationView;
 }
+
+@property (nonatomic) BOOL alertRunning;
 
 @end
