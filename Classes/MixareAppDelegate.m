@@ -228,10 +228,11 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openMenu {
+    [hud show];
     [_menuButton removeFromSuperview];
     [self closeARView];
     _tabBarController.selectedIndex = 1;
-    [self openTabSources];
+    [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     window.rootViewController = _tabBarController;
