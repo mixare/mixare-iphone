@@ -145,7 +145,7 @@
     }];
     
     // Refresh action!
-    [self refresh];
+    [self performSelectorInBackground:@selector(refresh) withObject:nil];
 }
 
 - (void)stopLoading {
