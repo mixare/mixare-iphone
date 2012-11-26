@@ -24,6 +24,7 @@
     UIView *viewTouched;
     NSString *_url;
     UIView *loadView;
+    BOOL webActivated;
 }
 
 @property (nonatomic, strong) UIView *viewTouched;

@@ -42,6 +42,12 @@
 //Touch ended -> showing info view with animation. 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     NSLog(@"Touch Ended");
+    if (!webActivated) {
+        [self createARWebView];
+    }
+}
+
+- (void)createARWebView {
     //[viewTouched touchesEnded:touches withEvent:event];
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
@@ -73,20 +79,21 @@
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
 	
 	//Load the request in the UIWebView.
-	[webView loadRequest:requestObj]; 
+	[webView loadRequest:requestObj];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1]; 
+    [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         infoView.frame= CGRectMake(0, 240, 320, 240);
     } else {
-       infoView.frame= CGRectMake(0, 160, 480, 160); 
+        infoView.frame= CGRectMake(0, 160, 480, 160);
     }
     infoView.alpha = .8;
     [[self superview] addSubview:infoView];
     [infoView addSubview:closeButton];
     [UIView commitAnimations];
+    webActivated = YES;
 }
 
 - (void)buttonClick:(id)sender {
@@ -98,6 +105,7 @@
     viewToRemove.alpha = 0;
     [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
     [UIView commitAnimations];
+    webActivated = NO;
 }
 
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {

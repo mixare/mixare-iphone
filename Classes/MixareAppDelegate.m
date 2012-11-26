@@ -60,6 +60,7 @@ static ProgressHUD *hud;
         }
     } else {
         toggleMenu = YES;
+        [self refresh];
         [self openARView];
         //[self openMenu]; Start with ARview instead of menu
     }
