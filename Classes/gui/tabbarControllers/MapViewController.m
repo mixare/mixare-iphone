@@ -18,6 +18,7 @@
  */
 
 #import "MapViewController.h"
+#import "WebViewController.h"
 
 @implementation MapViewController
 @synthesize map  = _map;
@@ -65,16 +66,18 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
     MKAnnotationView *pinView = nil;
     if (annotation != mapView.userLocation) {
-        pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-        //pinView.pinColor = MKPinAnnotationColorGreen;
-        pinView.canShowCallout = YES;
-        //pinView.animatesDrop = YES;
         for(MapViewAnnotation *anno in _currentAnnotations) {
             if ([annotation isEqual:anno]) {
                 if (anno.image != nil) {
+                    pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
                     pinView.image = anno.image;
                 } else {
-                    return nil;
+                    pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+                }
+                pinView.canShowCallout = YES;
+                if (anno.url != nil || ![anno.url isEqualToString:@""]) {
+                    UIButton *btnViewVenue = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                    pinView.rightCalloutAccessoryView = btnViewVenue;
                 }
             }
         }
@@ -83,6 +86,17 @@
         [mapView.userLocation setTitle:@"I am here"];
     }
     return pinView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
+    /***
+     WEBVIEW NOT WORKING YET
+    WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+    targetViewController.url = annotation.url;
+    [self.navigationController pushViewController:targetViewController animated:YES];
+     ***/
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
 }
 
 @end
