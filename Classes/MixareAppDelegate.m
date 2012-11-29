@@ -59,12 +59,18 @@ static ProgressHUD *hud;
             [plugin run:self];
         }
     } else {
-        toggleMenu = YES;
-        [self refresh];
-        [self openARView];
-        //[self openMenu]; Start with ARview instead of menu
+        [hud show];
+        [self performSelectorInBackground:@selector(standardViewInitialize) withObject:nil];
     }
     return YES;
+}
+
+- (void)standardViewInitialize {
+    toggleMenu = YES;
+    [self refresh];
+    [self openARView];
+    //[self openMenu]; Start with ARview instead of menu
+    [hud dismiss];
 }
 
 /***
@@ -550,6 +556,13 @@ static ProgressHUD *hud;
     }
 }
 
+- (void)showHud {
+    [hud show];
+}
+
+- (void)closeHud {
+    [hud dismiss];
+}
 
 /***
  *
