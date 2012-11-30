@@ -18,13 +18,14 @@
  */
 
 #import "MapViewController.h"
+#import "WebViewController.h"
 
 @implementation MapViewController
 @synthesize map  = _map;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    _map.delegate= self;
+    _map.delegate = self;
 	MKCoordinateRegion newRegion;
 	CLLocationManager* locmng = [[CLLocationManager alloc]init];
 	newRegion.center.latitude = locmng.location.coordinate.latitude;
@@ -43,7 +44,7 @@
 
 - (void)refresh:(NSMutableArray*)dataSources {
     [self removeAllAnnotations];
-    for (DataSource* data in dataSources) {
+    for (DataSource *data in dataSources) {
         [self addAnnotationsFromDataSource:data];
     }
 }
@@ -52,29 +53,32 @@
 	if(data.positions != nil){
 		for(Position *pos in data.positions) {
             [_currentAnnotations addObject:pos.mapViewAnnotation];
-            [self.map addAnnotation:pos.mapViewAnnotation];
+            [_map addAnnotation:pos.mapViewAnnotation];
 		}
 	}
 }
 
 - (void)removeAllAnnotations {
-    [self.map removeAnnotations:_currentAnnotations];
+    NSArray *toDelete = [NSArray arrayWithArray:_currentAnnotations];
+    [_map removeAnnotations:toDelete];
     [_currentAnnotations removeAllObjects];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
     MKAnnotationView *pinView = nil;
     if (annotation != mapView.userLocation) {
-        pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-        //pinView.pinColor = MKPinAnnotationColorGreen;
-        pinView.canShowCallout = YES;
-        //pinView.animatesDrop = YES;
         for(MapViewAnnotation *anno in _currentAnnotations) {
             if ([annotation isEqual:anno]) {
                 if (anno.image != nil) {
+                    pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
                     pinView.image = anno.image;
                 } else {
-                    return nil;
+                    pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
+                }
+                pinView.canShowCallout = YES;
+                if (anno.url != nil || ![anno.url isEqualToString:@""]) {
+                    UIButton *btnViewVenue = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                    pinView.rightCalloutAccessoryView = btnViewVenue;
                 }
             }
         }
@@ -83,6 +87,11 @@
         [mapView.userLocation setTitle:@"I am here"];
     }
     return pinView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
 }
 
 @end

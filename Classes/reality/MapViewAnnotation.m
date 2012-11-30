@@ -29,7 +29,7 @@
 @implementation MapViewAnnotation
 
 @synthesize coordinate;
-@synthesize subTitle, title, image;
+@synthesize subTitle, title, image, url;
 
 - (MapViewAnnotation *)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon {
     self = [super init];

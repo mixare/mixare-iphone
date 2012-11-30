@@ -19,17 +19,9 @@
 
 #import "MarkerView.h"
 
-
 @implementation MarkerView
 
 @synthesize viewTouched, url = _url;
-
-//The basic idea here is to intercept the view which is sent back as the firstresponder in hitTest.
-//We keep it preciously in the property viewTouched and we return our view as the firstresponder.
-- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event {
-    viewTouched = [super hitTest:point withEvent:event];
-    return self;
-}
 
 //Then, when an event is fired, we log this one and then send it back to the viewTouched we kept, and voilà!!! :)
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -42,7 +34,12 @@
 //Touch ended -> showing info view with animation. 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
     NSLog(@"Touch Ended");
-    //[viewTouched touchesEnded:touches withEvent:event];
+    if (!webActivated) {
+        [self createARWebView];
+    }
+}
+
+- (void)createARWebView {
     UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
 	[closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -51,17 +48,14 @@
     closeButton.titleLabel.textColor = [UIColor blackColor];
     CGRect infoFrame;
     CGRect webFrame;
-	//CGRect buttobFrame;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
         infoFrame = CGRectMake(0, 480, 0, 0);
         webFrame = CGRectMake(0, 25, 320, 220);
         closeButton.frame = CGRectMake(260, 0, 60, 25);
-		//buttobFrame= CGRectMake(0, 0, 320, 240);
     } else {
         closeButton.frame = CGRectMake(420, 0, 60, 25);
         infoFrame = CGRectMake(0, 320, 0, 0);
         webFrame = CGRectMake(0, 25, 480, 160);
-		//buttobFrame= CGRectMake(0, 0, 480, 160);
     }
     UIView *infoView = [[UIView alloc] initWithFrame:infoFrame];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
@@ -73,20 +67,21 @@
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
 	
 	//Load the request in the UIWebView.
-	[webView loadRequest:requestObj]; 
+	[webView loadRequest:requestObj];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1]; 
+    [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        infoView.frame= CGRectMake(0, 240, 320, 240);
+        infoView.frame = CGRectMake(0, 240, 320, 240);
     } else {
-       infoView.frame= CGRectMake(0, 160, 480, 160); 
+        infoView.frame = CGRectMake(0, 160, 480, 160);
     }
     infoView.alpha = .8;
     [[self superview] addSubview:infoView];
     [infoView addSubview:closeButton];
     [UIView commitAnimations];
+    webActivated = YES;
 }
 
 - (void)buttonClick:(id)sender {
@@ -98,6 +93,7 @@
     viewToRemove.alpha = 0;
     [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
     [UIView commitAnimations];
+    webActivated = NO;
 }
 
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {

@@ -33,12 +33,14 @@
     NSString *title;
 	NSString *subTitle;
     UIImage *image;
+    NSString *url;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, readonly) UIImage *image;
+@property (nonatomic, strong) NSString *url;
 
 - (MapViewAnnotation *)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon;
 - (void)setMarker:(UIImage*)img;
