@@ -24,20 +24,26 @@
 //
 
 #import "StartWithMeDemo.h"
-#import "StartMain.h"
 
 @implementation StartWithMeDemo
 
 - (void)run:(id<StartMain>)delegate {
+    mainClass = delegate;
     //  ADD HERE YOUR PRE-STUFF
     //  RUN ME BEFORE APPLICATION STARTS (Like an extra view)
     //  YOU CAN ALSO GET THE MANAGERS: DataSourceManager and LocationManager
     //  TO MANAGE THE DATA BY YOUR OWN
-    NSLog(@"LOADED START-PLUGIN 1 - TEST");
-    //[delegate setPluginDelegate:self];  //  Add this if you want the possibility to go back to this plugin from AR-View
-    [delegate setToggleMenu:YES];       //  Make the menu-button available on AR-View
-    [delegate refresh];                 //  Download Data
-    [delegate openARView];              //  Open AR-View
+    NSLog(@"Plugin loaded");
+    [mainClass showHud];                    //  Show indicator
+	[self performSelectorInBackground:@selector(threadLoad) withObject:nil];
+}
+
+- (void)threadLoad {
+    //[mainClass setPluginDelegate:self];   //  Add this if you want the possibility to go back to this plugin from AR-View
+    [mainClass setToggleMenu:YES];          //  Make the menu-button available on AR-View
+    [mainClass refresh];                    //  Download Data
+    [mainClass openARView];                 //  Open AR-View
+    [mainClass closeHud];                   //  Close indicator
 }
 
 @end

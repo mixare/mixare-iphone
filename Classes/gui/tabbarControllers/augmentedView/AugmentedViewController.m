@@ -127,7 +127,7 @@
 	return YES;
 }
 
--(void)stopListening {
+- (void)stopListening {
 	if (self.locationManager != nil) {
 		[locationManager stopUpdatingHeading];
 	}

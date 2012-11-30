@@ -52,7 +52,7 @@
     for (symbol in results) {
         break;
     }
-    [aClass setNewData:@{@"title":@"Scanned source", @"url":symbol.data}];
+    [aClass setNewData:@{@"title":@"Arena", @"url":symbol.data}];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 

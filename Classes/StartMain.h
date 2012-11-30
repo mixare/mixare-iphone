@@ -39,4 +39,7 @@
 - (void)openMenu;
 - (void)refresh;
 
+- (void)showHud;
+- (void)closeHud;
+
 @end

@@ -24,6 +24,7 @@
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView* _map;
     NSMutableArray *_currentAnnotations;
+    NSString *tempUrl;
 }
 @property (nonatomic, strong) MKMapView *map;
 - (void)refresh:(NSMutableArray*)dataSources;

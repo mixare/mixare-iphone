@@ -59,11 +59,18 @@ static ProgressHUD *hud;
             [plugin run:self];
         }
     } else {
-        toggleMenu = YES;
-        [self openARView];
-        //[self openMenu]; Start with ARview instead of menu
+        [hud show];
+        [self performSelectorInBackground:@selector(standardViewInitialize) withObject:nil];
     }
     return YES;
+}
+
+- (void)standardViewInitialize {
+    toggleMenu = YES;
+    [self refresh];
+    [self openARView];
+    //[self openMenu]; Start with ARview instead of menu
+    [hud dismiss];
 }
 
 /***
@@ -228,10 +235,11 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openMenu {
+    [hud show];
     [_menuButton removeFromSuperview];
     [self closeARView];
     _tabBarController.selectedIndex = 1;
-    [self openTabSources];
+    [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     window.rootViewController = _tabBarController;
@@ -287,7 +295,7 @@ static ProgressHUD *hud;
             break;
         case 3:
             NSLog(@"Opened map tab");
-            [self performSelectorInBackground:@selector(openTabMap) withObject:nil];
+            [self openTabMap];
             break;
         case 4:
             NSLog(@"Opened more info tab");
@@ -548,6 +556,13 @@ static ProgressHUD *hud;
     }
 }
 
+- (void)showHud {
+    [hud show];
+}
+
+- (void)closeHud {
+    [hud dismiss];
+}
 
 /***
  *
