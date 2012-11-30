@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    _map.delegate= self;
+    _map.delegate = self;
 	MKCoordinateRegion newRegion;
 	CLLocationManager* locmng = [[CLLocationManager alloc]init];
 	newRegion.center.latitude = locmng.location.coordinate.latitude;
@@ -44,7 +44,7 @@
 
 - (void)refresh:(NSMutableArray*)dataSources {
     [self removeAllAnnotations];
-    for (DataSource* data in dataSources) {
+    for (DataSource *data in dataSources) {
         [self addAnnotationsFromDataSource:data];
     }
 }
@@ -53,13 +53,14 @@
 	if(data.positions != nil){
 		for(Position *pos in data.positions) {
             [_currentAnnotations addObject:pos.mapViewAnnotation];
-            [self.map addAnnotation:pos.mapViewAnnotation];
+            [_map addAnnotation:pos.mapViewAnnotation];
 		}
 	}
 }
 
 - (void)removeAllAnnotations {
-    [self.map removeAnnotations:_currentAnnotations];
+    NSArray *toDelete = [NSArray arrayWithArray:_currentAnnotations];
+    [_map removeAnnotations:toDelete];
     [_currentAnnotations removeAllObjects];
 }
 
@@ -90,12 +91,6 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
-    /***
-     WEBVIEW NOT WORKING YET
-    WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
-    targetViewController.url = annotation.url;
-    [self.navigationController pushViewController:targetViewController animated:YES];
-     ***/
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
 }
 

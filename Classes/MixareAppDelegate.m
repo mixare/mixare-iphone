@@ -295,7 +295,7 @@ static ProgressHUD *hud;
             break;
         case 3:
             NSLog(@"Opened map tab");
-            [self performSelectorInBackground:@selector(openTabMap) withObject:nil];
+            [self openTabMap];
             break;
         case 4:
             NSLog(@"Opened more info tab");

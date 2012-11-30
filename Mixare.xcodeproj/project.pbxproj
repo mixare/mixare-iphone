@@ -18,7 +18,6 @@
 		365B605B12B9F7230014850C /* PhysicalPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605812B9F7230014850C /* PhysicalPlace.m */; };
 		365B605C12B9F7230014850C /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
 		365B607312B9F7740014850C /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
-		365B609812B9F9100014850C /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607D12B9F9100014850C /* MarkerView.m */; };
 		365B609912B9F9100014850C /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
 		365B609A12B9F9100014850C /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608212B9F9100014850C /* Radar.m */; };
 		365B609B12B9F9100014850C /* RadarViewPortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608412B9F9100014850C /* RadarViewPortView.m */; };
@@ -124,12 +123,13 @@
 		E2B100F716515BA50086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100F016515BA50086BD8E /* WikipediaProcessor.m */; };
 		E2B100F816515BA50086BD8E /* WikipediaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100F016515BA50086BD8E /* WikipediaProcessor.m */; };
 		E2B100FB165161E10086BD8E /* PluginLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100FA165161E10086BD8E /* PluginLoaderTest.m */; };
+		E2B2058D1668E772005AC7B5 /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B2058C1668E772005AC7B5 /* MarkerView.m */; };
+		E2B2058E1668E772005AC7B5 /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B2058C1668E772005AC7B5 /* MarkerView.m */; };
 		E2B6E8C1165E3C42004E8641 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B6E8C0165E3C42004E8641 /* ProgressHUD.m */; };
 		E2B6E8C4165E3F08004E8641 /* HUDBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B6E8C3165E3F08004E8641 /* HUDBackground.png */; };
 		E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
 		E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
-		E2BE293F162D9531009CF67D /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607D12B9F9100014850C /* MarkerView.m */; };
 		E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
 		E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
 		E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605812B9F7230014850C /* PhysicalPlace.m */; };
@@ -174,8 +174,6 @@
 		365B605A12B9F7230014850C /* PoiItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiItem.m; sourceTree = "<group>"; };
 		365B606012B9F7740014850C /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		365B606112B9F7740014850C /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
-		365B607C12B9F9100014850C /* MarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerView.h; sourceTree = "<group>"; };
-		365B607D12B9F9100014850C /* MarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerView.m; sourceTree = "<group>"; };
 		365B607E12B9F9100014850C /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
 		365B607F12B9F9100014850C /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
 		365B608112B9F9100014850C /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
@@ -316,6 +314,8 @@
 		E2B100F016515BA50086BD8E /* WikipediaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WikipediaProcessor.m; path = extensions/dataprocessors/WikipediaProcessor.m; sourceTree = "<group>"; };
 		E2B100F9165161E10086BD8E /* PluginLoaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginLoaderTest.h; sourceTree = "<group>"; };
 		E2B100FA165161E10086BD8E /* PluginLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginLoaderTest.m; sourceTree = "<group>"; };
+		E2B2058B1668E772005AC7B5 /* MarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerView.h; sourceTree = "<group>"; };
+		E2B2058C1668E772005AC7B5 /* MarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerView.m; sourceTree = "<group>"; };
 		E2B6E8BF165E3C42004E8641 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		E2B6E8C0165E3C42004E8641 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		E2B6E8C3165E3F08004E8641 /* HUDBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HUDBackground.png; sourceTree = "<group>"; };
@@ -491,8 +491,6 @@
 		365B607B12B9F9100014850C /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				365B607C12B9F9100014850C /* MarkerView.h */,
-				365B607D12B9F9100014850C /* MarkerView.m */,
 				365B607E12B9F9100014850C /* NotificationViewController.h */,
 				365B607F12B9F9100014850C /* NotificationViewController.m */,
 				365B608012B9F9100014850C /* radarView */,
@@ -536,6 +534,8 @@
 		365B608612B9F9100014850C /* augmentedView */ = {
 			isa = PBXGroup;
 			children = (
+				E2B2058B1668E772005AC7B5 /* MarkerView.h */,
+				E2B2058C1668E772005AC7B5 /* MarkerView.m */,
 				365B608712B9F9100014850C /* AugmentedGeoViewController.h */,
 				365B608812B9F9100014850C /* AugmentedGeoViewController.m */,
 				365B608912B9F9100014850C /* AugmentedViewController.h */,
@@ -940,7 +940,6 @@
 				365B605B12B9F7230014850C /* PhysicalPlace.m in Sources */,
 				365B605C12B9F7230014850C /* PoiItem.m in Sources */,
 				365B607312B9F7740014850C /* DataSource.m in Sources */,
-				365B609812B9F9100014850C /* MarkerView.m in Sources */,
 				365B609912B9F9100014850C /* NotificationViewController.m in Sources */,
 				365B609A12B9F9100014850C /* Radar.m in Sources */,
 				365B609B12B9F9100014850C /* RadarViewPortView.m in Sources */,
@@ -976,6 +975,7 @@
 				E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */,
 				E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */,
 				E2B6E8C1165E3C42004E8641 /* ProgressHUD.m in Sources */,
+				E2B2058D1668E772005AC7B5 /* MarkerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,7 +996,6 @@
 				E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */,
 				E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */,
 				E2BE2957162D9559009CF67D /* PoiItem.m in Sources */,
-				E2BE293F162D9531009CF67D /* MarkerView.m in Sources */,
 				E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */,
 				E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */,
 				E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */,
@@ -1029,6 +1028,7 @@
 				E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */,
 				E2B0C2DD16551A2E0099090E /* DataSourceList.m in Sources */,
 				E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */,
+				E2B2058E1668E772005AC7B5 /* MarkerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
