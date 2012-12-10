@@ -139,45 +139,20 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openARView {
-    if (augViewController == nil) {
-        augViewController = [[AugmentedGeoViewController alloc] init];
-    }
-    [self initControls];
-    [augViewController viewWillAppear:YES];
-	augViewController.scaleViewsBasedOnDistance = YES;
-	augViewController.minimumScaleFactor = 0.6;
-	augViewController.rotateViewsBasedOnPerspective = YES;
+    augViewController = [[AugmentedGeoViewController alloc] init];
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
     augViewController.centerLocation = _locationManager.location;
-    [notificationView removeFromSuperview];
+    [self initControls];
     if (toggleMenu) {
         [augViewController.view addSubview:_menuButton];
     }
-    [augViewController.view addSubview:_sliderButton];
-    [augViewController.view addSubview:_slider];
-    _valueLabel.hidden = NO;
-    [augViewController.view addSubview:_valueLabel];
-    [augViewController.view addSubview:nordLabel];
-    [augViewController.view addSubview:maxRadiusLabel];
 	[augViewController startListening:_locationManager];
     if (pluginDelegate != nil) {
         [augViewController.view addSubview:backToPlugin];
     }
     window.rootViewController = augViewController;
-}
-
-/***
- *
- *  Close ARView
- *
- ***/
-- (void)closeARView {
-    [augViewController closeCameraView];
-    [augViewController.view removeFromSuperview];
-    augViewController = nil;
-    window.rootViewController = nil;
 }
 
 /***
@@ -194,7 +169,7 @@ static ProgressHUD *hud;
     NSLog(@"val: %f",_slider.value);
     _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
-    [self closeARView];
+    [augViewController closeCameraView];
 	[self refresh];
     [self openARView];
 	NSLog(@"POIS CHANGED");
@@ -225,7 +200,7 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)pluginButtonClicked:(id)sender {
-    [self closeARView];
+    [augViewController closeCameraView];
     [pluginDelegate run:self];
 }
 
@@ -237,7 +212,7 @@ static ProgressHUD *hud;
 - (void)openMenu {
     [hud show];
     [_menuButton removeFromSuperview];
-    [self closeARView];
+    [augViewController closeCameraView];
     _tabBarController.selectedIndex = 1;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
@@ -528,14 +503,7 @@ static ProgressHUD *hud;
     _valueLabel.textColor = [UIColor whiteColor];
     _valueLabel.font = [UIFont systemFontOfSize:10.0];
     _valueLabel.textAlignment = NSTextAlignmentCenter;
-    
-    nordLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
-    nordLabel.backgroundColor = [UIColor blackColor];
-    nordLabel.textColor = [UIColor whiteColor];
-    nordLabel.font = [UIFont systemFontOfSize:8.0];
-    nordLabel.textAlignment = NSTextAlignmentCenter;
-    nordLabel.text = @"N";
-    nordLabel.alpha = 0.8;
+    _valueLabel.hidden = NO;
 	
     maxRadiusLabel = [[UILabel alloc] initWithFrame:CGRectMake(158, 25, 30, 12)];
     maxRadiusLabel.backgroundColor = [UIColor blackColor];
@@ -548,12 +516,18 @@ static ProgressHUD *hud;
     float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
     if (radius <= 0 || radius > 100) {
         _slider.value = 5.0;
-        _valueLabel.text= @"5.0 km";
+        _valueLabel.text = @"5.0 km";
     } else {
         _slider.value = radius;
         NSLog(@"RADIUS VALUE: %f", radius);
-        _valueLabel.text= [NSString stringWithFormat:@"%.2f km", radius];
+        _valueLabel.text = [NSString stringWithFormat:@"%.2f km", radius];
     }
+    
+    [augViewController.view addSubview:_sliderButton];
+    [augViewController.view addSubview:_slider];
+    [augViewController.view addSubview:_valueLabel];
+    [augViewController.view addSubview:maxRadiusLabel];
+    [augViewController initInterface];
 }
 
 - (void)showHud {

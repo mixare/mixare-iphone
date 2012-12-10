@@ -65,6 +65,9 @@
 - (void)closeCameraView {
     [self.cameraController viewWillDisappear:YES];
 	[self.cameraController.view removeFromSuperview];
+    [self viewWillDisappear:YES];
+    [self.view removeFromSuperview];
+    self.view = nil;
     self.cameraController = nil;
     [self removeCoordinates];
 }
@@ -98,6 +101,42 @@
 												   selector:@selector(updateLocations:)
 												   userInfo:nil
 													repeats:YES];
+}
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
+    UITouch * touch = [touches anyObject];
+    CGPoint pos = [touch locationInView: [UIApplication sharedApplication].keyWindow];
+    pos.x = pos.x - 100;
+    pos.y = pos.y - 50;
+    NSLog(@"Position of touch: %.3f, %.3f", pos.x, pos.y);
+    [[self getClosestMarker:pos] pressedButton];
+}
+
+- (MarkerView*)getClosestMarker:(CGPoint)position {
+    MarkerView *closestMarker = nil;
+    int index = 0;
+    for (PoiItem *item in ar_coordinates) {
+		MarkerView *viewToDraw = ar_coordinateViews[index];
+        if ([self isCloser:position newMarker:viewToDraw compareMarker:closestMarker]) {
+            closestMarker = viewToDraw;
+        }
+        index++;
+    }
+    NSLog(@"Position of closest marker: %.3f, %.3f:", closestMarker.frame.origin.x, closestMarker.frame.origin.y);
+    NSLog(@"Closest URL: %@", closestMarker.url);
+    return closestMarker;
+}
+
+- (BOOL)isCloser:(CGPoint)position newMarker:(MarkerView*)marker1 compareMarker:(MarkerView*)marker2 {
+    if (marker2 == nil) {
+        return YES;
+    }
+    int newMarkerDifference = (fmax(marker1.frame.origin.x, position.x) - fmin(marker1.frame.origin.x, position.x)) + (fmax(marker1.frame.origin.y, position.y) - fmin(marker1.frame.origin.y, position.y));
+    int compareMarkerDifference = (fmax(marker2.frame.origin.x, position.x) - fmin(marker2.frame.origin.x, position.x)) + (fmax(marker2.frame.origin.y, position.y) - fmin(marker2.frame.origin.y, position.y));
+    if (newMarkerDifference < compareMarkerDifference) {
+        return YES;
+    }
+    return NO;
 }
 
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate {
@@ -389,18 +428,19 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *
  ***/
 
-#define BOX_WIDTH 150
-#define BOX_HEIGHT 100
+#define BOX_WIDTH 250
+#define BOX_HEIGHT 200
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
+    tempView.webActivated = NO;
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     if (coordinate.position.image == nil) {
         pointView.image = [UIImage imageNamed:@"circle.png"];
     } else {
         pointView.image = coordinate.position.image;
     }
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
+	pointView.frame = CGRectMake((BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0, BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
@@ -420,7 +460,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 #if !TARGET_IPHONE_SIMULATOR
 	[self.cameraController setCameraOverlayView:ar_overlayView];
 	[self presentViewController:self.cameraController animated:NO completion:nil];
-	[ar_overlayView setFrame:self.cameraController.view.bounds];
+	//[ar_overlayView setFrame:self.cameraController.view.bounds];
+    [ar_overlayView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 #endif
 	if (!_updateTimer) {
 		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
@@ -446,6 +487,18 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	ar_overlayView = nil;
+}
+
+- (void)initInterface {
+    UILabel *northLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
+    northLabel.backgroundColor = [UIColor blackColor];
+    northLabel.textColor = [UIColor whiteColor];
+    northLabel.font = [UIFont systemFontOfSize:8.0];
+    northLabel.textAlignment = NSTextAlignmentCenter;
+    northLabel.text = @"N";
+    northLabel.alpha = 0.8;
+    
+    [self.view addSubview:northLabel];
 }
 
 

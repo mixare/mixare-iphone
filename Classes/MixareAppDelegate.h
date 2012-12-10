@@ -50,7 +50,6 @@
     UIButton *_sliderButton;
 	IBOutlet UIView *menuView;
     UILabel *_valueLabel;
-    UILabel *nordLabel;
     UILabel *maxRadiusLabel;
     MoreViewController *_moreViewController;
     SourceViewController *_sourceViewController;

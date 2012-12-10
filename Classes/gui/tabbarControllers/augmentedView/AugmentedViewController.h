@@ -62,6 +62,7 @@
 - (void)addCoordinate:(PoiItem*)coordinate;
 - (void)addCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
 - (void)addCoordinates:(NSArray*)newCoordinates;
+- (void)initInterface;
 //removing coordinates
 - (void)removeCoordinate:(PoiItem*)coordinate;
 - (void)removeCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;

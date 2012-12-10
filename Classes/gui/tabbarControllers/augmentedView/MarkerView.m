@@ -21,22 +21,34 @@
 
 @implementation MarkerView
 
-@synthesize viewTouched, url = _url;
+@synthesize viewTouched, url = _url, webActivated;
+/*
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event {
+    NSLog(@"TOUCHED URL: %@", _url);
+    viewTouched = [super hitTest:point withEvent:event];
+    return self;
+}*/
 
 //Then, when an event is fired, we log this one and then send it back to the viewTouched we kept, and voilà!!! :)
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-
+    
 }
+
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
 
 }
 
 //Touch ended -> showing info view with animation. 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
+    //[self pressedButton];
+}
+
+- (void)pressedButton {
     NSLog(@"Touch Ended");
-    if (!webActivated) {
-        [self createARWebView];
-    }
+    //if (!webActivated) {
+        //[self createARWebView];
+    //}
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
 }
 
 - (void)createARWebView {
@@ -49,13 +61,13 @@
     CGRect infoFrame;
     CGRect webFrame;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        infoFrame = CGRectMake(0, 480, 0, 0);
-        webFrame = CGRectMake(0, 25, 320, 220);
-        closeButton.frame = CGRectMake(260, 0, 60, 25);
+        infoFrame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, 0, 0);
+        webFrame = CGRectMake(0, 25, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height / 2);
+        closeButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 60, 0, 60, 25);
     } else {
-        closeButton.frame = CGRectMake(420, 0, 60, 25);
-        infoFrame = CGRectMake(0, 320, 0, 0);
-        webFrame = CGRectMake(0, 25, 480, 160);
+        closeButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 60, 0, 60, 25);
+        infoFrame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width, 0, 0);
+        webFrame = CGRectMake(0, 25, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width / 2);
     }
     UIView *infoView = [[UIView alloc] initWithFrame:infoFrame];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
@@ -73,9 +85,9 @@
     [UIView setAnimationDuration:1];
     [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        infoView.frame = CGRectMake(0, 240, 320, 240);
+        infoView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height / 2);
     } else {
-        infoView.frame = CGRectMake(0, 160, 480, 160);
+        infoView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width / 2);
     }
     infoView.alpha = .8;
     [[self superview] addSubview:infoView];
@@ -89,7 +101,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5]; 
     [UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self.superview cache:YES];
-    viewToRemove.frame = CGRectMake(0, 480, 0, 0);
+    viewToRemove.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, 0, 0);
     viewToRemove.alpha = 0;
     [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
     [UIView commitAnimations];

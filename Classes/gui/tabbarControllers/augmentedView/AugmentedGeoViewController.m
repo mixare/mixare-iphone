@@ -24,6 +24,15 @@
 
 @synthesize centerLocation;
 
+- (id)init {
+    self = [super init];
+    [self viewWillAppear:YES];
+	self.scaleViewsBasedOnDistance = YES;
+	self.minimumScaleFactor = 0.6;
+	self.rotateViewsBasedOnPerspective = YES;
+    return self;
+}
+
 - (void)setCenterLocation:(CLLocation*)newLocation {
 	centerLocation = newLocation;
 	
