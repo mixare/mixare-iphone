@@ -109,7 +109,10 @@
     pos.x = pos.x - 100;
     pos.y = pos.y - 50;
     NSLog(@"Position of touch: %.3f, %.3f", pos.x, pos.y);
-    [[self getClosestMarker:pos] pressedButton];
+    MarkerView *marker = [self getClosestMarker:pos];
+    if (marker != nil) {
+        [marker pressedButton];
+    }
 }
 
 - (MarkerView*)getClosestMarker:(CGPoint)position {
@@ -122,9 +125,12 @@
         }
         index++;
     }
-    NSLog(@"Position of closest marker: %.3f, %.3f:", closestMarker.frame.origin.x, closestMarker.frame.origin.y);
-    NSLog(@"Closest URL: %@", closestMarker.url);
-    return closestMarker;
+    if ([self isCloseEnough:position marker:closestMarker] && closestMarker != nil) {
+        NSLog(@"Position of closest marker: %.3f, %.3f:", closestMarker.frame.origin.x, closestMarker.frame.origin.y);
+        NSLog(@"Closest URL: %@", closestMarker.url);
+        return closestMarker;
+    }
+    return nil;
 }
 
 - (BOOL)isCloser:(CGPoint)position newMarker:(MarkerView*)marker1 compareMarker:(MarkerView*)marker2 {
@@ -137,6 +143,15 @@
         return YES;
     }
     return NO;
+}
+
+- (BOOL)isCloseEnough:(CGPoint)position marker:(MarkerView*)marker {
+    if ((fmax(marker.frame.origin.x, position.x) - (fmin(marker.frame.origin.x, position.x))) > ([UIScreen mainScreen].bounds.size.width / 2)) {
+        return NO;
+    } else if ((fmax(marker.frame.origin.y, position.y) - (fmin(marker.frame.origin.y, position.y))) > ([UIScreen mainScreen].bounds.size.height / 2)) {
+        return NO;
+    }
+    return YES;
 }
 
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate {
@@ -433,6 +448,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
+    tempView.userInteractionEnabled = NO;
     tempView.webActivated = NO;
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     if (coordinate.position.image == nil) {
