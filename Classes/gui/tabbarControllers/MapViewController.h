@@ -20,11 +20,14 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "DataSource.h"
+#import "PopUpWebView.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate> {
 	IBOutlet MKMapView* _map;
     NSMutableArray *_currentAnnotations;
     NSString *tempUrl;
+    UIButton *closeButton;
+    PopUpWebView *popUpView;
 }
 @property (nonatomic, strong) MKMapView *map;
 - (void)refresh:(NSMutableArray*)dataSources;
