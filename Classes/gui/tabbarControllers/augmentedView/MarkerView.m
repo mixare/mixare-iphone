@@ -48,71 +48,14 @@
     //if (!webActivated) {
         //[self createARWebView];
     //}
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
-}
-
-- (void)createARWebView {
-    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-	[closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.titleLabel.text = @"Close";
-    closeButton.alpha = .6;
-    closeButton.titleLabel.textColor = [UIColor blackColor];
-    CGRect infoFrame;
-    CGRect webFrame;
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        infoFrame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, 0, 0);
-        webFrame = CGRectMake(0, 25, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height / 2);
-        closeButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 60, 0, 60, 25);
-    } else {
-        closeButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 60, 0, 60, 25);
-        infoFrame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width, 0, 0);
-        webFrame = CGRectMake(0, 25, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width / 2);
-    }
-    UIView *infoView = [[UIView alloc] initWithFrame:infoFrame];
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
-    webView.alpha = .7;
-    [infoView addSubview:webView];
-    NSURL *requestURL = [NSURL URLWithString:_url];
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
     
-	//URL Requst Object
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
-	
-	//Load the request in the UIWebView.
-	[webView loadRequest:requestObj];
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1];
-    [UIView setAnimationTransition:UIViewAnimationCurveEaseIn forView:infoView cache:YES];
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        infoView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height / 2, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height / 2);
-    } else {
-        infoView.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width / 2);
-    }
-    infoView.alpha = .8;
-    [[self superview] addSubview:infoView];
-    [infoView addSubview:closeButton];
-    [UIView commitAnimations];
-    webActivated = YES;
-}
-
-- (void)buttonClick:(id)sender {
-    UIView *viewToRemove = (UIView*)[sender superview];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5]; 
-    [UIView setAnimationTransition:UIViewAnimationCurveEaseInOut forView:self.superview cache:YES];
-    viewToRemove.frame = CGRectMake(0, [UIScreen mainScreen].bounds.size.height, 0, 0);
-    viewToRemove.alpha = 0;
-    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
-    [UIView commitAnimations];
-    webActivated = NO;
 }
 
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {
     
 }
-
-
 
 #pragma mark WebViewDelegate
 /*- (void)webViewDidStartLoad:(UIWebView *)webView{
@@ -145,6 +88,5 @@
     }
 }
 */
-
 
 @end

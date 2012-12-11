@@ -45,7 +45,7 @@
     NSDictionary *data = [dataString JSONValue];
 	NSMutableArray *ret = [[NSMutableArray alloc]init];
 	NSArray *tweets = data[@"results"];
-    float height = 8000.0;
+    float height = 500.0;
 	for (NSDictionary *tweet in tweets) {
         NSString *marker = tweet[@"profile_image_url_https"];
         if (marker == nil || [marker isEqualToString:@""]) {

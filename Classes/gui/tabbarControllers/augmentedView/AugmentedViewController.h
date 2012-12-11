@@ -23,6 +23,7 @@
 #import "Radar.h"
 #import "PoiItem.h"
 #import "RadarViewPortView.h"
+#import "PopUpWebView.h"
 
 @interface AugmentedViewController : UIViewController <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
@@ -38,6 +39,8 @@
 	double updateFrequency;
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
+    UIWebView *popUpView;
+    UIButton *closeButton;
 	
 @private
 	int oldHeading;
