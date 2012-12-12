@@ -42,7 +42,7 @@
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
 	self.updateFrequency = 1 / 20.0;
-	
+    
 #if !TARGET_IPHONE_SIMULATOR
 	self.cameraController = [[UIImagePickerController alloc] init];
 	self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -51,6 +51,7 @@
     //CGAffineTransformScale(self.cameraController.cameraViewTransform, 1.23f,  1.23f);
 	self.cameraController.showsCameraControls = NO;
 	self.cameraController.navigationBarHidden = YES;
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.cameraController.view padding:20 isTabbar:NO rotateable:NO];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -103,42 +104,6 @@
 													repeats:YES];
 }
 
-- (void)openUrlView:(NSString*)url {
-    if (closeButton != nil) {
-        [closeButton removeFromSuperview];
-        closeButton = nil;
-    }
-    if (popUpView != nil) {
-        [popUpView removeFromSuperview];
-        popUpView = nil;
-    }
-    popUpView = [[PopUpWebView alloc] initWithFrame:CGRectMake(20, 20, [UIScreen mainScreen].bounds.size.width - 40, [UIScreen mainScreen].bounds.size.height - 40)];
-    NSURL *requestURL = [NSURL URLWithString:url];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
-	[popUpView loadRequest:requestObj];
-    closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.titleLabel.text = @"Close";
-    closeButton.alpha = 1;
-    closeButton.titleLabel.textColor = [UIColor blackColor];
-    closeButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 50, [UIScreen mainScreen].bounds.size.height - 35, 100, 35);
-    [self.cameraController.view addSubview:popUpView];
-    [self.cameraController.view addSubview:closeButton];
-}
-
-- (void)buttonClick:(id)sender {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    closeButton.alpha = 0;
-    popUpView.alpha = 0;
-    [UIView commitAnimations];
-    [popUpView removeFromSuperview];
-    [closeButton removeFromSuperview];
-    popUpView = nil;
-    closeButton = nil;
-}
-
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
     UITouch * touch = [touches anyObject];
     CGPoint pos = [touch locationInView: [UIApplication sharedApplication].keyWindow];
@@ -147,8 +112,7 @@
     NSLog(@"Position of touch: %.3f, %.3f", pos.x, pos.y);
     MarkerView *marker = [self getClosestMarker:pos];
     if (marker != nil) {
-        //[marker pressedButton];
-        [self openUrlView:marker.url];
+        [popUpView openUrlView:marker.url];
     }
 }
 
@@ -486,7 +450,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
 	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
     tempView.userInteractionEnabled = NO;
-    tempView.webActivated = NO;
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     if (coordinate.position.image == nil) {
         pointView.image = [UIImage imageNamed:@"circle.png"];

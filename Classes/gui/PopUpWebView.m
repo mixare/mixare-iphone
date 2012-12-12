@@ -27,26 +27,110 @@
 
 @implementation PopUpWebView
 
-- (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rotateable:(BOOL)rotate {
+    self = [super init];
     if (self) {
-        [self setBackgroundColor:[UIColor blackColor]];
-        self.alpha = 0.0;
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.5];
-        [self setAlpha:.7];
-        [UIView commitAnimations];
+        mainView = view;
+        rotateable = rotate;
+        int tabBar = 0;
+        if (tab) {
+            tabBar = 70;
+        } 
+        windowPortrait = CGRectMake(pad, pad,
+                                    [UIScreen mainScreen].bounds.size.width - (pad * 2),
+                                    [UIScreen mainScreen].bounds.size.height - tabBar - (pad * 2));
+        buttonPortrait = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 50,
+                                    [UIScreen mainScreen].bounds.size.height - tabBar - 35,
+                                    100, 35);
+        
+        windowLandscape = CGRectMake(pad, pad,
+                                    [UIScreen mainScreen].bounds.size.height - (pad * 2),
+                                    [UIScreen mainScreen].bounds.size.width - tabBar - (pad * 2));
+        buttonLandscape = CGRectMake([UIScreen mainScreen].bounds.size.height / 2 - 50,
+                                    [UIScreen mainScreen].bounds.size.width - tabBar - 35,
+                                    100, 35);
+        
+        if (rotateable) {
+            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didRotate:)
+                                                     name:@"UIDeviceOrientationDidChangeNotification"
+                                                   object:nil];
+        }
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void)openUrlView:(NSString*)url {
+    if (closeButton != nil) {
+        [closeButton removeFromSuperview];
+        closeButton = nil;
+    }
+    if (popUpView != nil) {
+        [popUpView removeFromSuperview];
+        popUpView = nil;
+    }
+    CGRect windowDimension = windowPortrait;
+    CGRect buttonDimension = buttonPortrait;
+    if (rotateable && ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)) {
+        windowDimension = windowLandscape;
+        buttonDimension = buttonLandscape;
+    }
+    popUpView = [[UIWebView alloc] initWithFrame:windowDimension];
+    [popUpView setBackgroundColor:[UIColor blackColor]];
+    popUpView.alpha = 0.0;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [popUpView setAlpha:.6];
+    [UIView commitAnimations];
+    
+    NSURL *requestURL = [NSURL URLWithString:url];
+	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
+	[popUpView loadRequest:requestObj];
+    closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    closeButton.titleLabel.text = @"Close";
+    closeButton.alpha = 1;
+    closeButton.titleLabel.textColor = [UIColor blackColor];
+    closeButton.frame = buttonDimension;
+    [mainView addSubview:popUpView];
+    [mainView addSubview:closeButton];
 }
-*/
+
+- (void)buttonClick:(id)sender {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    closeButton.alpha = 0;
+    popUpView.alpha = 0;
+    [UIView commitAnimations];
+    [popUpView removeFromSuperview];
+    [closeButton removeFromSuperview];
+    popUpView = nil;
+    closeButton = nil;
+}
+
+/***
+ *
+ *  Device rotation check
+ *  @param notification
+ *
+ ***/
+- (void)didRotate:(NSNotification *)notification {
+    //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
+    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        popUpView.frame = windowLandscape;
+        closeButton.frame = buttonLandscape;
+        beforeWasLandscape = YES;
+    }
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
+        popUpView.frame = windowPortrait;
+        closeButton.frame = buttonPortrait;
+        beforeWasLandscape = NO;
+    }
+    //    deletNSLog(@"DID ROTATE");
+    
+}
 
 @end

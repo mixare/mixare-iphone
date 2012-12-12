@@ -25,7 +25,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopUpWebView : UIWebView {
+@interface PopUpWebView : NSObject {
+    UIButton *closeButton;
+    UIWebView *popUpView;
+    UIView *mainView;
     
+    CGRect windowPortrait;
+    CGRect windowLandscape;
+    CGRect buttonPortrait;
+    CGRect buttonLandscape;
+    
+    BOOL beforeWasLandscape;
+    BOOL rotateable;
 }
+
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rotateable:(BOOL)rotate;
+- (void)openUrlView:(NSString*)url;
+
 @end

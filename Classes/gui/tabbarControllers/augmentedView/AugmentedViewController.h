@@ -39,7 +39,7 @@
 	double updateFrequency;
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
-    UIWebView *popUpView;
+    PopUpWebView *popUpView;
     UIButton *closeButton;
 	
 @private

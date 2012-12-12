@@ -24,14 +24,10 @@
     UIView *viewTouched;
     NSString *_url;
     UIView *loadView;
-    BOOL webActivated;
     UIButton *btn;
 }
 
 @property (nonatomic, strong) UIView *viewTouched;
 @property (nonatomic, strong) NSString *url;
-@property (nonatomic, assign) BOOL webActivated;
-
-- (void)pressedButton;
 
 @end

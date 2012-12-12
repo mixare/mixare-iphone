@@ -35,7 +35,6 @@
 
 - (void)setCenterLocation:(CLLocation*)newLocation {
 	centerLocation = newLocation;
-	
 	for (PhysicalPlace *geoLocation in self.coordinates) {
 		if ([geoLocation isKindOfClass:[PhysicalPlace class]]) {
 			[geoLocation calibrateUsingOrigin:centerLocation];

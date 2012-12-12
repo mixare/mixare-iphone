@@ -21,7 +21,7 @@
 
 @implementation MarkerView
 
-@synthesize viewTouched, url = _url, webActivated;
+@synthesize viewTouched, url = _url;
 /*
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event {
     NSLog(@"TOUCHED URL: %@", _url);
@@ -45,48 +45,10 @@
 
 - (void)pressedButton {
     NSLog(@"Touch Ended");
-    //if (!webActivated) {
-        //[self createARWebView];
-    //}
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
-    
-    
 }
 
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {
     
 }
-
-#pragma mark WebViewDelegate
-/*- (void)webViewDidStartLoad:(UIWebView *)webView{
-    loadView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 120, 120)]autorelease];
-    loadView.center = webView.center;
-    UIActivityIndicatorView * ai = [[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
-    ai.frame = CGRectMake(42, 20, 37, 37);
-    [ai startAnimating];
-    [loadView addSubview:ai];
-    UILabel* label = [[[UILabel alloc]initWithFrame:CGRectMake(30, 65, 61, 21)]autorelease];
-    label.text = @"Loading";
-    label.backgroundColor=[UIColor grayColor];
-    [loadView addSubview:label];
-    loadView.center =webView.center;
-    loadView.backgroundColor = [UIColor grayColor];
-    loadView.alpha = 0.8;
-    label.alpha = 0.8;
-    [webView addSubview:loadView];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    @try {
-        [loadView removeFromSuperview];
-    }
-    @catch (NSException *exception) {
-    
-    }
-    @finally {
-    
-    }
-}
-*/
 
 @end

@@ -36,6 +36,7 @@
     if (_currentAnnotations == nil) {
         _currentAnnotations = [[NSMutableArray alloc] init];
     }
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rotateable:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -92,43 +93,9 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
     //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
-    [self openUrlView:annotation.url];
+    [popUpView openUrlView:annotation.url];
 }
 
-- (void)openUrlView:(NSString*)url {
-    if (closeButton != nil) {
-        [closeButton removeFromSuperview];
-        closeButton = nil;
-    }
-    if (popUpView != nil) {
-        [popUpView removeFromSuperview];
-        popUpView = nil;
-    }
-    popUpView = [[PopUpWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 70)];
-    NSURL *requestURL = [NSURL URLWithString:url];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
-	[popUpView loadRequest:requestObj];
-    closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-    [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.titleLabel.text = @"Close";
-    closeButton.alpha = 1;
-    closeButton.titleLabel.textColor = [UIColor blackColor];
-    closeButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 50, [UIScreen mainScreen].bounds.size.height - 105, 100, 35);
-    [self.view addSubview:popUpView];
-    [self.view addSubview:closeButton];
-}
 
-- (void)buttonClick:(id)sender {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    closeButton.alpha = 0;
-    popUpView.alpha = 0;
-    [UIView commitAnimations];
-    [popUpView removeFromSuperview];
-    [closeButton removeFromSuperview];
-    popUpView = nil;
-    closeButton = nil;
-}
 
 @end
