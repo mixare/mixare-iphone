@@ -24,12 +24,14 @@
 #import "PoiItem.h"
 #import "RadarViewPortView.h"
 #import "PopUpWebView.h"
+#import "CameraController.h"
 
 @interface AugmentedViewController : UIViewController <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
 	UIAccelerometer *accelerometerManager;
 	PoiItem *centerCoordinate;
-	UIImagePickerController *cameraController;
+	//UIImagePickerController *cameraController;
+    CameraController *cameraController;
 	NSObject<CLLocationManagerDelegate> *__weak locationDelegate;
 	NSObject<UIAccelerometerDelegate> *__weak accelerometerDelegate;
 	BOOL scaleViewsBasedOnDistance;
@@ -79,7 +81,7 @@
 - (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate;
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
-@property (nonatomic, strong) UIImagePickerController *cameraController;
+@property (nonatomic, strong) CameraController *cameraController;
 @property (nonatomic, weak) NSObject<CLLocationManagerDelegate> *locationDelegate;
 @property (nonatomic, weak) NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
 @property (strong) PoiItem *centerCoordinate;

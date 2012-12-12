@@ -42,16 +42,26 @@
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
 	self.updateFrequency = 1 / 20.0;
+    [self loadView];
     
 #if !TARGET_IPHONE_SIMULATOR
-	self.cameraController = [[UIImagePickerController alloc] init];
+	/*self.cameraController = [[UIImagePickerController alloc] init];
 	self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
 	CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.232, 1.232);
 	self.cameraController.cameraViewTransform = cameraTransform;
-    //CGAffineTransformScale(self.cameraController.cameraViewTransform, 1.23f,  1.23f);
 	self.cameraController.showsCameraControls = NO;
-	self.cameraController.navigationBarHidden = YES;
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.cameraController.view padding:20 isTabbar:NO rotateable:NO];
+	self.cameraController.navigationBarHidden = YES;*/
+    self.cameraController = [[CameraController alloc] init];
+    [self.cameraController addVideoInput];
+    [self.cameraController addVideoPreviewLayer];
+    CGRect layerRect = self.view.layer.bounds;
+    [[self.cameraController previewLayer] setBounds:layerRect];
+    [[self.cameraController previewLayer] setVideoGravity: AVLayerVideoGravityResizeAspectFill];
+    [[self.cameraController previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),
+                                                                  CGRectGetMidY(layerRect))];
+	[[self.view layer] addSublayer:[self.cameraController previewLayer]];
+    [[self.cameraController captureSession] startRunning];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rotateable:NO];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -64,11 +74,10 @@
 }
 
 - (void)closeCameraView {
-    [self.cameraController viewWillDisappear:YES];
-	[self.cameraController.view removeFromSuperview];
     [self viewWillDisappear:YES];
     [self.view removeFromSuperview];
     self.view = nil;
+    [[self.cameraController captureSession] stopRunning];
     self.cameraController = nil;
     [self removeCoordinates];
 }
@@ -84,13 +93,14 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-    ar_overlayView = [[UIView alloc] initWithFrame:CGRectZero];
+    ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 	//ar_overlayView = [[MarkerView alloc] initWithFrame:CGRectZero];
 	radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];	
     radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
 	self.view = ar_overlayView;
     [self.view addSubview:radarView];
     [self.view addSubview:radarViewPort];
+    [self.view.superview bringSubviewToFront:self.view];
 }
 
 - (void)setsUpdateFrequency:(double)newUpdateFrequency {
@@ -474,8 +484,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 
 - (void)viewDidAppear:(BOOL)animated {
 #if !TARGET_IPHONE_SIMULATOR
-	[self.cameraController setCameraOverlayView:ar_overlayView];
-	[self presentViewController:self.cameraController animated:NO completion:nil];
+	//[self.cameraController setCameraOverlayView:ar_overlayView];
+	//[self presentViewController:self.cameraController animated:NO completion:nil];
 	//[ar_overlayView setFrame:self.cameraController.view.bounds];
     [ar_overlayView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 #endif

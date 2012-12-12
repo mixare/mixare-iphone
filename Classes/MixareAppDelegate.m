@@ -417,8 +417,6 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)didRotate:(NSNotification *)notification {
-    //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         [self setViewToLandscape:augViewController.view];
         beforeWasLandscape = YES;
@@ -427,8 +425,6 @@ static ProgressHUD *hud;
         [self setViewToPortrait:augViewController.view];
         beforeWasLandscape = NO;
     }
-    //    deletNSLog(@"DID ROTATE");
-    
 }
 
 /***

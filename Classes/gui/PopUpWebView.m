@@ -104,10 +104,6 @@
     closeButton.alpha = 0;
     popUpView.alpha = 0;
     [UIView commitAnimations];
-    [popUpView removeFromSuperview];
-    [closeButton removeFromSuperview];
-    popUpView = nil;
-    closeButton = nil;
 }
 
 /***
@@ -117,8 +113,6 @@
  *
  ***/
 - (void)didRotate:(NSNotification *)notification {
-    //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         popUpView.frame = windowLandscape;
         closeButton.frame = buttonLandscape;
@@ -128,9 +122,7 @@
         popUpView.frame = windowPortrait;
         closeButton.frame = buttonPortrait;
         beforeWasLandscape = NO;
-    }
-    //    deletNSLog(@"DID ROTATE");
-    
+    }    
 }
 
 @end
