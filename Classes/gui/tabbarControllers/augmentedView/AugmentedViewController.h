@@ -40,7 +40,14 @@
 	double updateFrequency;
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
+    
     PopUpWebView *popUpView;
+    UIButton *backToPlugin;
+    UIButton *menuButton;
+    UISlider *slider;
+    UIButton *sliderButton;
+    UILabel *maxRadiusLabel;
+    UILabel *valueLabel;
     UIButton *closeButton;
     UIView *ar_gui;
 	
@@ -55,6 +62,12 @@
 }
 
 @property UIView *ar_gui;
+@property UILabel *maxRadiusLabel;
+@property UILabel *valueLabel;
+@property UISlider *slider;
+@property UIButton *sliderButton;
+@property UIButton *menuButton;
+@property UIButton *backToPlugin;
 
 @property (readonly) NSArray *coordinates;
 @property BOOL scaleViewsBasedOnDistance;
@@ -82,6 +95,9 @@
 - (void)closeCameraView;
 - (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate;
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
+
+- (void)setViewToPortrait;
+- (void)setViewToLandscape;
 
 @property (nonatomic, strong) CameraController *cameraController;
 @property (nonatomic, weak) NSObject<CLLocationManagerDelegate> *locationDelegate;

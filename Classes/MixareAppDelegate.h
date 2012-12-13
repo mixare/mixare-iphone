@@ -44,20 +44,15 @@
 	CMMotionManager *motionManager;
 	ListViewController *_listViewController;
 	MapViewController *_mapViewController;
-	AugmentedGeoViewController *augViewController;
-	UISlider *_slider;
-	UIButton *_menuButton;
-    UIButton *_sliderButton;
+    AugmentedGeoViewController *augViewController;
+	
 	IBOutlet UIView *menuView;
-    UILabel *_valueLabel;
-    UILabel *maxRadiusLabel;
     MoreViewController *_moreViewController;
     SourceViewController *_sourceViewController;
     
     NSArray *startPlugin;
     BOOL toggleMenu;
     id<PluginEntryPoint> pluginDelegate;
-    UIButton *backToPlugin;
     
     BOOL alertRunning;
     
@@ -67,5 +62,7 @@
 }
 
 @property (nonatomic) BOOL alertRunning;
+
+- (void)valueChanged;
 
 @end

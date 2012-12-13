@@ -34,7 +34,7 @@
 @synthesize coordinates = ar_coordinates;
 @synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
-@synthesize ar_gui;
+@synthesize ar_gui, maxRadiusLabel, valueLabel, slider, sliderButton, menuButton, backToPlugin;
 
 - (id)init {
 	if (!(self = [super init])) return nil;
@@ -506,6 +506,14 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
     radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
     
+    maxRadiusLabel = [[UILabel alloc] initWithFrame:CGRectMake(158, 25, 30, 12)];
+    maxRadiusLabel.backgroundColor = [UIColor blackColor];
+    maxRadiusLabel.textColor = [UIColor whiteColor];
+    maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
+    maxRadiusLabel.textAlignment = NSTextAlignmentCenter;
+    maxRadiusLabel.text = @"80 km";
+    maxRadiusLabel.hidden = YES;
+    
     UILabel *northLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
     northLabel.backgroundColor = [UIColor blackColor];
     northLabel.textColor = [UIColor whiteColor];
@@ -514,13 +522,85 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     northLabel.text = @"N";
     northLabel.alpha = 0.8;
     
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.5, 64, 45, 12)];
+    valueLabel.backgroundColor = [UIColor blackColor];
+    valueLabel.textColor = [UIColor whiteColor];
+    valueLabel.font = [UIFont systemFontOfSize:10.0];
+    valueLabel.textAlignment = NSTextAlignmentCenter;
+    valueLabel.hidden = NO;
+    
+    slider = [[UISlider alloc] initWithFrame:CGRectMake(62, 5, 128, 23)];
+    slider.alpha = 0.7;
+    slider.hidden = YES;
+    slider.minimumValue = 1.0;
+    slider.maximumValue = 80.0;
+    slider.continuous= NO;
+    
+    sliderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
+    [sliderButton setTitle:NSLocalizedString(@"Radius",nil) forState:UIControlStateNormal];
+    sliderButton.alpha = 0.7;
+    
+    menuButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    [menuButton setTitle:NSLocalizedString(@"Menu",nil) forState:UIControlStateNormal];
+    menuButton.alpha = 0.7;
+    
+    backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    [backToPlugin setTitle:NSLocalizedString(@"Main menu",nil) forState:UIControlStateNormal];
+    [backToPlugin setTintColor:[UIColor grayColor]];
+    [backToPlugin setAlpha:0.7];
+    
+    float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
+    if (radius <= 0 || radius > 100) {
+        slider.value = 5.0;
+        valueLabel.text = @"5.0 km";
+    } else {
+        slider.value = radius;
+        NSLog(@"RADIUS VALUE: %f", radius);
+        valueLabel.text = [NSString stringWithFormat:@"%.2f km", radius];
+    }
+    
     [ar_gui addSubview:radarView];
     [ar_gui addSubview:radarViewPort];
     [ar_gui addSubview:northLabel];
+    [ar_gui addSubview:maxRadiusLabel];
+    [ar_gui addSubview:valueLabel];
+    [ar_gui addSubview:slider];
+    [ar_gui addSubview:sliderButton];
     
     [self.view addSubview:ar_overlayView];
     [self.view addSubview:ar_gui];
 }
 
+/***
+ *
+ *  Transform view to portrait
+ *  @param viewObject
+ *
+ ***/
+- (void)setViewToPortrait {
+    [cameraController setPortrait];
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
+    slider.frame = CGRectMake(62, 5, 128, 23);
+    maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
+}
+
+/***
+ *
+ *  Transform view to landscape
+ *  @param viewObject
+ *
+ ***/
+- (void)setViewToLandscape {
+    menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
+    sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
+    slider.frame = CGRectMake(62, 5, 288, 23);
+    maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
+}
 
 @end

@@ -21,8 +21,6 @@
 		365B609912B9F9100014850C /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
 		365B609A12B9F9100014850C /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608212B9F9100014850C /* Radar.m */; };
 		365B609B12B9F9100014850C /* RadarViewPortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608412B9F9100014850C /* RadarViewPortView.m */; };
-		365B609C12B9F9100014850C /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608812B9F9100014850C /* AugmentedGeoViewController.m */; };
-		365B609D12B9F9100014850C /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608A12B9F9100014850C /* AugmentedViewController.m */; };
 		365B609E12B9F9100014850C /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
 		365B609F12B9F9100014850C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608E12B9F9100014850C /* MapViewController.m */; };
 		365B60A012B9F9100014850C /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609012B9F9100014850C /* MoreViewController.m */; };
@@ -63,6 +61,10 @@
 		E2A5277716525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
 		E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277A1652763000B4099C /* BarcodeInput.m */; };
 		E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277A1652763000B4099C /* BarcodeInput.m */; };
+		E2A646EA167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */; };
+		E2A646EB167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */; };
+		E2A646EC167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
+		E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
 		E2A6FCD8163E95A200007FA7 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */; };
 		E2A6FCDA163EB2A800007FA7 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
@@ -138,8 +140,6 @@
 		E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
 		E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605812B9F7230014850C /* PhysicalPlace.m */; };
 		E2BE2957162D9559009CF67D /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
-		E2BE2959162D9583009CF67D /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608812B9F9100014850C /* AugmentedGeoViewController.m */; };
-		E2BE295B162D9583009CF67D /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608A12B9F9100014850C /* AugmentedViewController.m */; };
 		E2BE295D162D9583009CF67D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
 		E2BE295F162D9583009CF67D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608E12B9F9100014850C /* MapViewController.m */; };
 		E2BE2961162D9583009CF67D /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609012B9F9100014850C /* MoreViewController.m */; };
@@ -184,10 +184,6 @@
 		365B608212B9F9100014850C /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		365B608312B9F9100014850C /* RadarViewPortView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarViewPortView.h; sourceTree = "<group>"; };
 		365B608412B9F9100014850C /* RadarViewPortView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarViewPortView.m; sourceTree = "<group>"; };
-		365B608712B9F9100014850C /* AugmentedGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedGeoViewController.h; sourceTree = "<group>"; };
-		365B608812B9F9100014850C /* AugmentedGeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedGeoViewController.m; sourceTree = "<group>"; };
-		365B608912B9F9100014850C /* AugmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedViewController.h; sourceTree = "<group>"; };
-		365B608A12B9F9100014850C /* AugmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedViewController.m; sourceTree = "<group>"; };
 		365B608B12B9F9100014850C /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		365B608C12B9F9100014850C /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		365B608D12B9F9100014850C /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -235,6 +231,10 @@
 		E2A527781652609A00B4099C /* SetDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataSource.h; sourceTree = "<group>"; };
 		E2A527791652763000B4099C /* BarcodeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarcodeInput.h; path = extensions/datainputs/BarcodeInput.h; sourceTree = "<group>"; };
 		E2A5277A1652763000B4099C /* BarcodeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarcodeInput.m; path = extensions/datainputs/BarcodeInput.m; sourceTree = "<group>"; };
+		E2A646E6167A37F00028B6F3 /* AugmentedGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedGeoViewController.h; sourceTree = "<group>"; };
+		E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedGeoViewController.m; sourceTree = "<group>"; };
+		E2A646E8167A37F00028B6F3 /* AugmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedViewController.h; sourceTree = "<group>"; };
+		E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedViewController.m; sourceTree = "<group>"; };
 		E2A6FCD6163E95A200007FA7 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PullRefreshTableViewController.h; path = tabbarControllers/PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PullRefreshTableViewController.m; path = tabbarControllers/PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
@@ -546,10 +546,10 @@
 			children = (
 				E2B2058B1668E772005AC7B5 /* MarkerView.h */,
 				E2B2058C1668E772005AC7B5 /* MarkerView.m */,
-				365B608712B9F9100014850C /* AugmentedGeoViewController.h */,
-				365B608812B9F9100014850C /* AugmentedGeoViewController.m */,
-				365B608912B9F9100014850C /* AugmentedViewController.h */,
-				365B608A12B9F9100014850C /* AugmentedViewController.m */,
+				E2A646E6167A37F00028B6F3 /* AugmentedGeoViewController.h */,
+				E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */,
+				E2A646E8167A37F00028B6F3 /* AugmentedViewController.h */,
+				E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */,
 				E2AF18C41678DEF1002CE6D1 /* CameraController.h */,
 				E2AF18C51678DEF1002CE6D1 /* CameraController.m */,
 			);
@@ -955,8 +955,6 @@
 				365B609912B9F9100014850C /* NotificationViewController.m in Sources */,
 				365B609A12B9F9100014850C /* Radar.m in Sources */,
 				365B609B12B9F9100014850C /* RadarViewPortView.m in Sources */,
-				365B609C12B9F9100014850C /* AugmentedGeoViewController.m in Sources */,
-				365B609D12B9F9100014850C /* AugmentedViewController.m in Sources */,
 				365B609E12B9F9100014850C /* ListViewController.m in Sources */,
 				365B609F12B9F9100014850C /* MapViewController.m in Sources */,
 				365B60A012B9F9100014850C /* MoreViewController.m in Sources */,
@@ -990,6 +988,8 @@
 				E2B2058D1668E772005AC7B5 /* MarkerView.m in Sources */,
 				E2AE982716775D3B00A46B08 /* PopUpWebView.m in Sources */,
 				E2AF18C61678DEF2002CE6D1 /* CameraController.m in Sources */,
+				E2A646EA167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */,
+				E2A646EC167A37F00028B6F3 /* AugmentedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,8 +1000,6 @@
 				E2BE2965162D9592009CF67D /* SourceTableCell.m in Sources */,
 				E2BE2967162D9592009CF67D /* SourceViewController.m in Sources */,
 				E2BE2963162D958A009CF67D /* WebViewController.m in Sources */,
-				E2BE2959162D9583009CF67D /* AugmentedGeoViewController.m in Sources */,
-				E2BE295B162D9583009CF67D /* AugmentedViewController.m in Sources */,
 				E2BE295D162D9583009CF67D /* ListViewController.m in Sources */,
 				E2BE2969162D959F009CF67D /* Radar.m in Sources */,
 				E2BE296B162D959F009CF67D /* RadarViewPortView.m in Sources */,
@@ -1045,6 +1043,8 @@
 				E2B2058E1668E772005AC7B5 /* MarkerView.m in Sources */,
 				E2AE982816775D3B00A46B08 /* PopUpWebView.m in Sources */,
 				E2AF18C71678DEF2002CE6D1 /* CameraController.m in Sources */,
+				E2A646EB167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */,
+				E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
