@@ -145,14 +145,6 @@ static ProgressHUD *hud;
     }
     augViewController.centerLocation = _locationManager.location;
     [self initControls];
-    if (toggleMenu) {
-        [augViewController.view addSubview:_menuButton];
-    }
-	[augViewController startListening:_locationManager];
-    if (pluginDelegate != nil) {
-        [augViewController.view addSubview:backToPlugin];
-    }
-    window.rootViewController = augViewController;
 }
 
 /***
@@ -519,11 +511,20 @@ static ProgressHUD *hud;
         _valueLabel.text = [NSString stringWithFormat:@"%.2f km", radius];
     }
     
-    [augViewController.view addSubview:_sliderButton];
-    [augViewController.view addSubview:_slider];
-    [augViewController.view addSubview:_valueLabel];
-    [augViewController.view addSubview:maxRadiusLabel];
+    if (toggleMenu) {
+        [augViewController.ar_gui addSubview:_menuButton];
+    }
+	[augViewController startListening:_locationManager];
+    if (pluginDelegate != nil) {
+        [augViewController.ar_gui addSubview:backToPlugin];
+    }
+    
+    [augViewController.ar_gui addSubview:_sliderButton];
+    [augViewController.ar_gui addSubview:_slider];
+    [augViewController.ar_gui addSubview:_valueLabel];
+    [augViewController.ar_gui addSubview:maxRadiusLabel];
     [augViewController initInterface];
+    window.rootViewController = augViewController;
 }
 
 - (void)showHud {

@@ -30,7 +30,6 @@
 	CLLocationManager *locationManager;
 	UIAccelerometer *accelerometerManager;
 	PoiItem *centerCoordinate;
-	//UIImagePickerController *cameraController;
     CameraController *cameraController;
 	NSObject<CLLocationManagerDelegate> *__weak locationDelegate;
 	NSObject<UIAccelerometerDelegate> *__weak accelerometerDelegate;
@@ -43,6 +42,7 @@
 	double maximumRotationAngle;
     PopUpWebView *popUpView;
     UIButton *closeButton;
+    UIView *ar_gui;
 	
 @private
 	int oldHeading;
@@ -53,6 +53,8 @@
 	NSMutableArray *ar_coordinates;
 	NSMutableArray *ar_coordinateViews;
 }
+
+@property UIView *ar_gui;
 
 @property (readonly) NSArray *coordinates;
 @property BOOL scaleViewsBasedOnDistance;

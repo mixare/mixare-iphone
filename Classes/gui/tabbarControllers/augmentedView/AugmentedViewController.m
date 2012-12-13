@@ -34,10 +34,12 @@
 @synthesize coordinates = ar_coordinates;
 @synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
+@synthesize ar_gui;
 
 - (id)init {
 	if (!(self = [super init])) return nil;
 	ar_overlayView = nil;
+    ar_gui = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
@@ -93,14 +95,8 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-	//ar_overlayView = [[MarkerView alloc] initWithFrame:CGRectZero];
-	radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];	
-    radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
-	self.view = ar_overlayView;
-    [self.view addSubview:radarView];
-    [self.view addSubview:radarViewPort];
-    [self.view.superview bringSubviewToFront:self.view];
 }
 
 - (void)setsUpdateFrequency:(double)newUpdateFrequency {
@@ -513,9 +509,13 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	ar_overlayView = nil;
+    ar_gui = nil;
 }
 
 - (void)initInterface {
+    radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
+    radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
+    
     UILabel *northLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
     northLabel.backgroundColor = [UIColor blackColor];
     northLabel.textColor = [UIColor whiteColor];
@@ -524,7 +524,12 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     northLabel.text = @"N";
     northLabel.alpha = 0.8;
     
-    [self.view addSubview:northLabel];
+    [ar_gui addSubview:radarView];
+    [ar_gui addSubview:radarViewPort];
+    [ar_gui addSubview:northLabel];
+    
+    [self.view addSubview:ar_overlayView];
+    [self.view addSubview:ar_gui];
 }
 
 
