@@ -113,7 +113,7 @@
  *
  ***/
 - (void)didRotate:(NSNotification *)notification {
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         popUpView.frame = windowLandscape;
         closeButton.frame = buttonLandscape;
         beforeWasLandscape = YES;
@@ -122,7 +122,7 @@
         popUpView.frame = windowPortrait;
         closeButton.frame = buttonPortrait;
         beforeWasLandscape = NO;
-    }    
+    }
 }
 
 @end

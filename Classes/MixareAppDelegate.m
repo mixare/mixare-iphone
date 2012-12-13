@@ -409,13 +409,20 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)didRotate:(NSNotification *)notification {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
+        [augViewController.cameraController setPortrait];
+        [self setViewToPortrait:augViewController.view];
+        beforeWasLandscape = NO;
+    }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        [augViewController.cameraController setLandscapeLeft];
         [self setViewToLandscape:augViewController.view];
         beforeWasLandscape = YES;
     }
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
-        [self setViewToPortrait:augViewController.view];
-        beforeWasLandscape = NO;
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        [augViewController.cameraController setLandscapeRight];
+        [self setViewToLandscape:augViewController.view];
+        beforeWasLandscape = YES;
     }
 }
 
@@ -426,10 +433,6 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)setViewToLandscape:(UIView*)viewObject {
-    [viewObject setCenter:CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2)];
-    CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
-    viewObject.transform = cgCTM;
-    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
     _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
     _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
     _slider.frame = CGRectMake(62, 5, 288, 23);
@@ -444,8 +447,7 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)setViewToPortrait:(UIView*)viewObject {
-    viewObject.transform = CGAffineTransformMakeRotation(degreesToRadian(0)); // set current transform
-    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [augViewController.cameraController setPortrait];
     backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
     _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
     _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);

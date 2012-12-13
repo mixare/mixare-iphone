@@ -47,6 +47,7 @@
 - (void)addVideoPreviewLayer {
 	[self setPreviewLayer:[[AVCaptureVideoPreviewLayer alloc] initWithSession:[self captureSession]]];
 	[[self previewLayer] setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+    [[self.previewLayer connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
 }
 
 - (void)addVideoInput {
@@ -65,6 +66,30 @@
 	}
 	else
 		NSLog(@"Couldn't create video capture device");
+}
+
+- (void)setPortrait {
+    [[self.previewLayer connection] setVideoOrientation:AVCaptureVideoOrientationPortrait];
+    CGRect layerRect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [self screenLayer:layerRect];
+}
+
+- (void)setLandscapeLeft {
+    [[self.previewLayer connection] setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+    CGRect layerRect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    [self screenLayer:layerRect];
+}
+
+- (void)setLandscapeRight {
+    [[self.previewLayer connection] setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
+    CGRect layerRect = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    [self screenLayer:layerRect];
+}
+
+- (void)screenLayer:(CGRect)layerRect {
+    [[self previewLayer] setBounds:layerRect];
+    [[self previewLayer] setVideoGravity: AVLayerVideoGravityResizeAspectFill];
+    [[self previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect), CGRectGetMidY(layerRect))];
 }
 
 @end

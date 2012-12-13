@@ -47,20 +47,10 @@
     [self loadView];
     
 #if !TARGET_IPHONE_SIMULATOR
-	/*self.cameraController = [[UIImagePickerController alloc] init];
-	self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
-	CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.232, 1.232);
-	self.cameraController.cameraViewTransform = cameraTransform;
-	self.cameraController.showsCameraControls = NO;
-	self.cameraController.navigationBarHidden = YES;*/
     self.cameraController = [[CameraController alloc] init];
     [self.cameraController addVideoInput];
     [self.cameraController addVideoPreviewLayer];
-    CGRect layerRect = self.view.layer.bounds;
-    [[self.cameraController previewLayer] setBounds:layerRect];
-    [[self.cameraController previewLayer] setVideoGravity: AVLayerVideoGravityResizeAspectFill];
-    [[self.cameraController previewLayer] setPosition:CGPointMake(CGRectGetMidX(layerRect),
-                                                                  CGRectGetMidY(layerRect))];
+    [self.cameraController setPortrait];
 	[[self.view layer] addSublayer:[self.cameraController previewLayer]];
     [[self.cameraController captureSession] startRunning];
     popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rotateable:NO];
@@ -255,7 +245,7 @@ UIAccelerationValue rollingX, rollingZ;
 	//update the center coordinate.
 	//NSLog(@"x: %f y: %f z: %f", acceleration.x, acceleration.y, acceleration.z);
 	//this should be different based on orientation.
-	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
         rollingX = (acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
     } else {
@@ -398,7 +388,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
 	self.centerCoordinate.azimuth = fmod(newHeading.magneticHeading, 360.0) * (2 * (M_PI / 360.0));
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         if (self.centerCoordinate.azimuth <(3*M_PI/2)) {
             self.centerCoordinate.azimuth += (M_PI/2);
         } else {
@@ -406,7 +396,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
         }
     }
     int gradToRotate = newHeading.trueHeading - 90 - 22.5;
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         gradToRotate += 90;
     }
     if (gradToRotate < 0) {
