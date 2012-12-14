@@ -72,7 +72,7 @@
     }
     CGRect windowDimension = windowPortrait;
     CGRect buttonDimension = buttonPortrait;
-    if (rotateable && ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)) {
+    if (rotateable && (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight))) {
         windowDimension = windowLandscape;
         buttonDimension = buttonLandscape;
     }
@@ -114,15 +114,23 @@
  ***/
 - (void)didRotate:(NSNotification *)notification {
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
-        popUpView.frame = windowLandscape;
-        closeButton.frame = buttonLandscape;
-        beforeWasLandscape = YES;
+        [self setLandscape];
     }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
-        popUpView.frame = windowPortrait;
-        closeButton.frame = buttonPortrait;
-        beforeWasLandscape = NO;
+        [self setPortrait];
     }
+}
+
+- (void)setLandscape {
+    popUpView.frame = windowLandscape;
+    closeButton.frame = buttonLandscape;
+    beforeWasLandscape = YES;
+}
+
+- (void)setPortrait {
+    popUpView.frame = windowPortrait;
+    closeButton.frame = buttonPortrait;
+    beforeWasLandscape = NO;
 }
 
 @end

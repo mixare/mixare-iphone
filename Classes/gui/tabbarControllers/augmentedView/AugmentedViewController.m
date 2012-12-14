@@ -53,7 +53,7 @@
     [self.cameraController setPortrait];
 	[[self.view layer] addSublayer:[self.cameraController previewLayer]];
     [[self.cameraController captureSession] startRunning];
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rotateable:NO];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rotateable:YES];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -569,6 +569,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     [ar_gui addSubview:valueLabel];
     [ar_gui addSubview:slider];
     [ar_gui addSubview:sliderButton];
+    [ar_gui addSubview:menuButton];
+    [ar_gui addSubview:backToPlugin];
     
     [self.view addSubview:ar_overlayView];
     [self.view addSubview:ar_gui];
@@ -595,7 +597,12 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *  @param viewObject
  *
  ***/
-- (void)setViewToLandscape {
+- (void)setViewToLandscape:(BOOL)left {
+    if (left) {
+        [cameraController setLandscapeLeft];
+    } else {
+        [cameraController setLandscapeRight];
+    }
     menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
     sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
     slider.frame = CGRectMake(62, 5, 288, 23);

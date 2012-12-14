@@ -412,13 +412,11 @@ static ProgressHUD *hud;
         beforeWasLandscape = NO;
     }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
-        [augViewController.cameraController setLandscapeLeft];
-        [augViewController setViewToLandscape];
+        [augViewController setViewToLandscape:YES];
         beforeWasLandscape = YES;
     }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
-        [augViewController.cameraController setLandscapeRight];
-        [augViewController setViewToLandscape];
+        [augViewController setViewToLandscape:NO];
         beforeWasLandscape = YES;
     }
 }
@@ -430,12 +428,12 @@ static ProgressHUD *hud;
  ***/
 - (void)initControls {    
     [augViewController initInterface];
-    if (toggleMenu) {
-        [augViewController.ar_gui addSubview:augViewController.menuButton];
+    if (!toggleMenu) {
+        augViewController.menuButton.hidden = YES;
     }
 	[augViewController startListening:_locationManager];
-    if (pluginDelegate != nil) {
-        [augViewController.ar_gui addSubview:augViewController.backToPlugin];
+    if (pluginDelegate == nil) {
+        augViewController.backToPlugin.hidden = YES;
     }
     [augViewController.slider addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
     [augViewController.sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
