@@ -24,9 +24,17 @@
 
 @synthesize centerLocation;
 
+- (id)init {
+    self = [super init];
+    [self viewWillAppear:YES];
+	self.scaleViewsBasedOnDistance = YES;
+	self.minimumScaleFactor = 0.6;
+	self.rotateViewsBasedOnPerspective = YES;
+    return self;
+}
+
 - (void)setCenterLocation:(CLLocation*)newLocation {
 	centerLocation = newLocation;
-	
 	for (PhysicalPlace *geoLocation in self.coordinates) {
 		if ([geoLocation isKindOfClass:[PhysicalPlace class]]) {
 			[geoLocation calibrateUsingOrigin:centerLocation];

@@ -34,6 +34,7 @@
 @synthesize coordinates = ar_coordinates;
 @synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
+@synthesize maxRadiusLabel, valueLabel, slider, sliderButton, menuButton, backToPlugin, popUpView;
 
 - (id)init {
 	if (!(self = [super init])) return nil;
@@ -42,15 +43,16 @@
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
 	self.updateFrequency = 1 / 20.0;
-	
+    [self loadView];
+    
 #if !TARGET_IPHONE_SIMULATOR
-	self.cameraController = [[UIImagePickerController alloc] init];
-	self.cameraController.sourceType = UIImagePickerControllerSourceTypeCamera;
-	CGAffineTransform cameraTransform = CGAffineTransformMakeScale(1.232, 1.232);
-	self.cameraController.cameraViewTransform = cameraTransform;
-    //CGAffineTransformScale(self.cameraController.cameraViewTransform, 1.23f,  1.23f);
-	self.cameraController.showsCameraControls = NO;
-	self.cameraController.navigationBarHidden = YES;
+    self.cameraController = [[CameraController alloc] init];
+    [self.cameraController addVideoInput];
+    [self.cameraController addVideoPreviewLayer];
+    [self.cameraController setPortrait];
+	[[self.view layer] addSublayer:[self.cameraController previewLayer]];
+    [[self.cameraController captureSession] startRunning];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rightRotateable:NO];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -63,8 +65,10 @@
 }
 
 - (void)closeCameraView {
-    [self.cameraController viewWillDisappear:YES];
-	[self.cameraController.view removeFromSuperview];
+    [self viewWillDisappear:YES];
+    [self.view removeFromSuperview];
+    self.view = nil;
+    [[self.cameraController captureSession] stopRunning];
     self.cameraController = nil;
     [self removeCoordinates];
 }
@@ -80,13 +84,14 @@
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
-    ar_overlayView = [[UIView alloc] initWithFrame:CGRectZero];
-	//ar_overlayView = [[MarkerView alloc] initWithFrame:CGRectZero];
-	radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];	
-    radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
-	self.view = ar_overlayView;
-    [self.view addSubview:radarView];
-    [self.view addSubview:radarViewPort];
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)];
+    } else {
+        ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    }
+    self.view.userInteractionEnabled = YES;
+    ar_overlayView.userInteractionEnabled = YES;
 }
 
 - (void)setsUpdateFrequency:(double)newUpdateFrequency {
@@ -131,10 +136,6 @@
 	if (self.locationManager != nil) {
 		[locationManager stopUpdatingHeading];
 	}
-}
-
-- (void)markerClick:(id)sender {
-    NSLog(@"MARKER");
 }
 
 - (void)startListening:(CLLocationManager*)locManager {
@@ -187,6 +188,7 @@
 }
 
 #define kFilteringFactor 0.05
+#define kFilteringFactorX 0.002
 UIAccelerationValue rollingX, rollingZ;
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration {
 	// -1 face down.
@@ -194,12 +196,12 @@ UIAccelerationValue rollingX, rollingZ;
 	//update the center coordinate.
 	//NSLog(@"x: %f y: %f z: %f", acceleration.x, acceleration.y, acceleration.z);
 	//this should be different based on orientation.
-	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
-        rollingX = (acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+        rollingX = (acceleration.x * kFilteringFactorX) + (rollingX * (1.0 - kFilteringFactorX));
     } else {
         rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
-        rollingX = (acceleration.y * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+        rollingX = (acceleration.y * kFilteringFactorX) + (rollingX * (1.0 - kFilteringFactorX));
 	}
 	if (rollingZ > 0.0) {
 		self.centerCoordinate.inclination = atan(rollingX / rollingZ) + M_PI / 2.0;
@@ -294,8 +296,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 			if (self.scaleViewsBasedOnDistance) {
 				scaleFactor = 1.0 - self.minimumScaleFactor * (item.radialDistance / self.maximumScaleDistance);
 			}
-			float width = viewToDraw.bounds.size.width * scaleFactor;
-			float height = viewToDraw.bounds.size.height * scaleFactor;
+			float width = viewToDraw.bounds.size.width;
+			float height = viewToDraw.bounds.size.height;
 			viewToDraw.frame = CGRectMake(loc.x - width / 2.0, loc.y-height / 2.0, width, height);
 			CATransform3D transform = CATransform3DIdentity;
 			//set the scale if it needs it.
@@ -337,7 +339,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading {
 	self.centerCoordinate.azimuth = fmod(newHeading.magneticHeading, 360.0) * (2 * (M_PI / 360.0));
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         if (self.centerCoordinate.azimuth <(3*M_PI/2)) {
             self.centerCoordinate.azimuth += (M_PI/2);
         } else {
@@ -345,7 +347,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
         }
     }
     int gradToRotate = newHeading.trueHeading - 90 - 22.5;
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         gradToRotate += 90;
     }
     if (gradToRotate < 0) {
@@ -389,18 +391,19 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *
  ***/
 
-#define BOX_WIDTH 150
-#define BOX_HEIGHT 100
+#define BOX_WIDTH 250
+#define BOX_HEIGHT 200
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
+	MarkerView *tempView = [[MarkerView alloc] initWithWebView:popUpView];
+    tempView.frame = theFrame;
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     if (coordinate.position.image == nil) {
         pointView.image = [UIImage imageNamed:@"circle.png"];
     } else {
         pointView.image = coordinate.position.image;
     }
-	pointView.frame = CGRectMake((int)(BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
+	pointView.frame = CGRectMake((BOX_WIDTH / 2.0 - pointView.image.size.width / 2.0), 0, pointView.image.size.width, pointView.image.size.height);
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, BOX_HEIGHT / 2.0, BOX_WIDTH, 20.0)];
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
@@ -418,9 +421,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 
 - (void)viewDidAppear:(BOOL)animated {
 #if !TARGET_IPHONE_SIMULATOR
-	[self.cameraController setCameraOverlayView:ar_overlayView];
-	[self presentViewController:self.cameraController animated:NO completion:nil];
-	[ar_overlayView setFrame:self.cameraController.view.bounds];
+    [ar_overlayView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 #endif
 	if (!_updateTimer) {
 		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
@@ -448,5 +449,117 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	ar_overlayView = nil;
 }
 
+- (void)initInterface {    
+    radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
+    radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
+    
+    maxRadiusLabel = [[UILabel alloc] initWithFrame:CGRectMake(158, 25, 30, 12)];
+    maxRadiusLabel.backgroundColor = [UIColor blackColor];
+    maxRadiusLabel.textColor = [UIColor whiteColor];
+    maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
+    maxRadiusLabel.textAlignment = NSTextAlignmentCenter;
+    maxRadiusLabel.text = @"80 km";
+    maxRadiusLabel.hidden = YES;
+    
+    UILabel *northLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
+    northLabel.backgroundColor = [UIColor blackColor];
+    northLabel.textColor = [UIColor whiteColor];
+    northLabel.font = [UIFont systemFontOfSize:8.0];
+    northLabel.textAlignment = NSTextAlignmentCenter;
+    northLabel.text = @"N";
+    northLabel.alpha = 0.8;
+    
+    valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.5, 64, 45, 12)];
+    valueLabel.backgroundColor = [UIColor blackColor];
+    valueLabel.textColor = [UIColor whiteColor];
+    valueLabel.font = [UIFont systemFontOfSize:10.0];
+    valueLabel.textAlignment = NSTextAlignmentCenter;
+    valueLabel.hidden = NO;
+    
+    slider = [[UISlider alloc] initWithFrame:CGRectMake(62, 5, 128, 23)];
+    slider.alpha = 0.7;
+    slider.hidden = YES;
+    slider.minimumValue = 1.0;
+    slider.maximumValue = 80.0;
+    slider.continuous= NO;
+    
+    sliderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
+    [sliderButton setTitle:NSLocalizedString(@"Radius",nil) forState:UIControlStateNormal];
+    sliderButton.alpha = 0.7;
+    
+    menuButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    [menuButton setTitle:NSLocalizedString(@"Menu",nil) forState:UIControlStateNormal];
+    menuButton.alpha = 0.7;
+    
+    backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    [backToPlugin setTitle:NSLocalizedString(@"Main menu",nil) forState:UIControlStateNormal];
+    [backToPlugin setTintColor:[UIColor grayColor]];
+    [backToPlugin setAlpha:0.7];
+    
+    float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
+    if (radius <= 0 || radius > 100) {
+        slider.value = 5.0;
+        valueLabel.text = @"5.0 km";
+    } else {
+        slider.value = radius;
+        NSLog(@"RADIUS VALUE: %f", radius);
+        valueLabel.text = [NSString stringWithFormat:@"%.2f km", radius];
+    }
+    
+    [ar_overlayView addSubview:radarView];
+    [ar_overlayView addSubview:radarViewPort];
+    [ar_overlayView addSubview:northLabel];
+    [ar_overlayView addSubview:maxRadiusLabel];
+    [ar_overlayView addSubview:valueLabel];
+    [ar_overlayView addSubview:slider];
+    [ar_overlayView addSubview:sliderButton];
+    [ar_overlayView addSubview:menuButton];
+    [ar_overlayView addSubview:backToPlugin];
+    
+    [self.view addSubview:ar_overlayView];
+}
+
+/***
+ *
+ *  Transform view to portrait
+ *  @param viewObject
+ *
+ ***/
+- (void)setViewToPortrait {
+    [cameraController setPortrait];
+    ar_overlayView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
+    menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
+    sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
+    slider.frame = CGRectMake(62, 5, 128, 23);
+    maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
+}
+
+/***
+ *
+ *  Transform view to landscape
+ *  @param viewObject
+ *
+ ***/
+- (void)setViewToLandscape {
+    [cameraController setLandscapeLeft];
+    ar_overlayView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    menuButton.bounds = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
+    menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
+    sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
+    slider.frame = CGRectMake(62, 5, 288, 23);
+    maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
+    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
+}
+
+- (BOOL)shouldAutorotate {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        return NO;
+    }
+    return YES;
+}
 
 @end

@@ -23,12 +23,14 @@
 #import "Radar.h"
 #import "PoiItem.h"
 #import "RadarViewPortView.h"
+#import "PopUpWebView.h"
+#import "CameraController.h"
 
 @interface AugmentedViewController : UIViewController <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
 	UIAccelerometer *accelerometerManager;
 	PoiItem *centerCoordinate;
-	UIImagePickerController *cameraController;
+    CameraController *cameraController;
 	NSObject<CLLocationManagerDelegate> *__weak locationDelegate;
 	NSObject<UIAccelerometerDelegate> *__weak accelerometerDelegate;
 	BOOL scaleViewsBasedOnDistance;
@@ -38,6 +40,14 @@
 	double updateFrequency;
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
+    
+    UIButton *backToPlugin;
+    UIButton *menuButton;
+    UISlider *slider;
+    UIButton *sliderButton;
+    UILabel *maxRadiusLabel;
+    UILabel *valueLabel;
+    UIButton *closeButton;
 	
 @private
 	int oldHeading;
@@ -48,6 +58,14 @@
 	NSMutableArray *ar_coordinates;
 	NSMutableArray *ar_coordinateViews;
 }
+
+@property PopUpWebView *popUpView;
+@property UILabel *maxRadiusLabel;
+@property UILabel *valueLabel;
+@property UISlider *slider;
+@property UIButton *sliderButton;
+@property UIButton *menuButton;
+@property UIButton *backToPlugin;
 
 @property (readonly) NSArray *coordinates;
 @property BOOL scaleViewsBasedOnDistance;
@@ -62,6 +80,7 @@
 - (void)addCoordinate:(PoiItem*)coordinate;
 - (void)addCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
 - (void)addCoordinates:(NSArray*)newCoordinates;
+- (void)initInterface;
 //removing coordinates
 - (void)removeCoordinate:(PoiItem*)coordinate;
 - (void)removeCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
@@ -75,7 +94,10 @@
 - (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate;
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
-@property (nonatomic, strong) UIImagePickerController *cameraController;
+- (void)setViewToPortrait;
+- (void)setViewToLandscape;
+
+@property (nonatomic, strong) CameraController *cameraController;
 @property (nonatomic, weak) NSObject<CLLocationManagerDelegate> *locationDelegate;
 @property (nonatomic, weak) NSObject<UIAccelerometerDelegate> *accelerometerDelegate;
 @property (strong) PoiItem *centerCoordinate;

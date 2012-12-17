@@ -16,20 +16,30 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
+//
+//  PopUpWebView.h
+//  Mixare
+//
+//  Created by Aswin Ly on 11-12-12.
+//
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-#import "DataSource.h"
-#import "PopUpWebView.h"
+#import <UIKit/UIKit.h>
 
-@interface MapViewController : UIViewController <MKMapViewDelegate> {
-	IBOutlet MKMapView* _map;
-    NSMutableArray *_currentAnnotations;
-    NSString *tempUrl;
+@interface PopUpWebView : NSObject {
     UIButton *closeButton;
-    PopUpWebView *popUpView;
+    UIWebView *popUpView;
+    UIView *mainView;
+    
+    CGRect windowPortrait;
+    CGRect windowLandscape;
+    CGRect buttonPortrait;
+    CGRect buttonLandscape;
+    
+    BOOL beforeWasLandscape;
+    BOOL rotateable;
 }
-@property (nonatomic, strong) MKMapView *map;
-- (void)refresh:(NSMutableArray*)dataSources;
+
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate;
+- (void)openUrlView:(NSString*)url;
 
 @end
