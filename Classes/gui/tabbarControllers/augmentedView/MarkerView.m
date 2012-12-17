@@ -21,17 +21,17 @@
 
 @implementation MarkerView
 
-@synthesize viewTouched, url = _url;
-/*
-- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event {
-    NSLog(@"TOUCHED URL: %@", _url);
-    viewTouched = [super hitTest:point withEvent:event];
+@synthesize viewTouched, url = _url, popUpView;
+
+- (id)initWithWebView:(PopUpWebView*)webView {
+    self = [super init];
+    popUpView = webView;
     return self;
-}*/
+}
 
 //Then, when an event is fired, we log this one and then send it back to the viewTouched we kept, and voilà!!! :)
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-    
+    [popUpView openUrlView:self.url];
 }
 
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
@@ -40,11 +40,7 @@
 
 //Touch ended -> showing info view with animation. 
 - (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event {
-    //[self pressedButton];
-}
-
-- (void)pressedButton {
-    NSLog(@"Touch Ended");
+    
 }
 
 - (void)touchesCancelled:(NSSet*)touches withEvent:(UIEvent*)event {

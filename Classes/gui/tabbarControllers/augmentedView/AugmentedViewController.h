@@ -41,7 +41,6 @@
 	BOOL rotateViewsBasedOnPerspective;
 	double maximumRotationAngle;
     
-    PopUpWebView *popUpView;
     UIButton *backToPlugin;
     UIButton *menuButton;
     UISlider *slider;
@@ -49,7 +48,6 @@
     UILabel *maxRadiusLabel;
     UILabel *valueLabel;
     UIButton *closeButton;
-    UIView *ar_gui;
 	
 @private
 	int oldHeading;
@@ -61,7 +59,7 @@
 	NSMutableArray *ar_coordinateViews;
 }
 
-@property UIView *ar_gui;
+@property PopUpWebView *popUpView;
 @property UILabel *maxRadiusLabel;
 @property UILabel *valueLabel;
 @property UISlider *slider;

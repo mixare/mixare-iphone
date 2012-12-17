@@ -34,12 +34,11 @@
 @synthesize coordinates = ar_coordinates;
 @synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
-@synthesize ar_gui, maxRadiusLabel, valueLabel, slider, sliderButton, menuButton, backToPlugin;
+@synthesize maxRadiusLabel, valueLabel, slider, sliderButton, menuButton, backToPlugin, popUpView;
 
 - (id)init {
 	if (!(self = [super init])) return nil;
 	ar_overlayView = nil;
-    ar_gui = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
@@ -87,6 +86,8 @@
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    self.view.userInteractionEnabled = YES;
+    ar_overlayView.userInteractionEnabled = YES;
 }
 
 - (void)setsUpdateFrequency:(double)newUpdateFrequency {
@@ -98,57 +99,6 @@
 												   selector:@selector(updateLocations:)
 												   userInfo:nil
 													repeats:YES];
-}
-
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-    UITouch * touch = [touches anyObject];
-    CGPoint pos = [touch locationInView: [UIApplication sharedApplication].keyWindow];
-    pos.x = pos.x - 100;
-    pos.y = pos.y - 50;
-    NSLog(@"Position of touch: %.3f, %.3f", pos.x, pos.y);
-    MarkerView *marker = [self getClosestMarker:pos];
-    if (marker != nil) {
-        [popUpView openUrlView:marker.url];
-    }
-}
-
-- (MarkerView*)getClosestMarker:(CGPoint)position {
-    MarkerView *closestMarker = nil;
-    int index = 0;
-    for (PoiItem *item in ar_coordinates) {
-		MarkerView *viewToDraw = ar_coordinateViews[index];
-        if ([self isCloser:position newMarker:viewToDraw compareMarker:closestMarker]) {
-            closestMarker = viewToDraw;
-        }
-        index++;
-    }
-    if ([self isCloseEnough:position marker:closestMarker] && closestMarker != nil) {
-        NSLog(@"Position of closest marker: %.3f, %.3f:", closestMarker.frame.origin.x, closestMarker.frame.origin.y);
-        NSLog(@"Closest URL: %@", closestMarker.url);
-        return closestMarker;
-    }
-    return nil;
-}
-
-- (BOOL)isCloser:(CGPoint)position newMarker:(MarkerView*)marker1 compareMarker:(MarkerView*)marker2 {
-    if (marker2 == nil) {
-        return YES;
-    }
-    int newMarkerDifference = (fmax(marker1.frame.origin.x, position.x) - fmin(marker1.frame.origin.x, position.x)) + (fmax(marker1.frame.origin.y, position.y) - fmin(marker1.frame.origin.y, position.y));
-    int compareMarkerDifference = (fmax(marker2.frame.origin.x, position.x) - fmin(marker2.frame.origin.x, position.x)) + (fmax(marker2.frame.origin.y, position.y) - fmin(marker2.frame.origin.y, position.y));
-    if (newMarkerDifference < compareMarkerDifference) {
-        return YES;
-    }
-    return NO;
-}
-
-- (BOOL)isCloseEnough:(CGPoint)position marker:(MarkerView*)marker {
-    if ((fmax(marker.frame.origin.x, position.x) - (fmin(marker.frame.origin.x, position.x))) > ([UIScreen mainScreen].bounds.size.width / 2)) {
-        return NO;
-    } else if ((fmax(marker.frame.origin.y, position.y) - (fmin(marker.frame.origin.y, position.y))) > ([UIScreen mainScreen].bounds.size.height / 2)) {
-        return NO;
-    }
-    return YES;
 }
 
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate {
@@ -182,10 +132,6 @@
 	if (self.locationManager != nil) {
 		[locationManager stopUpdatingHeading];
 	}
-}
-
-- (void)markerClick:(id)sender {
-    NSLog(@"MARKER");
 }
 
 - (void)startListening:(CLLocationManager*)locManager {
@@ -345,8 +291,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 			if (self.scaleViewsBasedOnDistance) {
 				scaleFactor = 1.0 - self.minimumScaleFactor * (item.radialDistance / self.maximumScaleDistance);
 			}
-			float width = viewToDraw.bounds.size.width * scaleFactor;
-			float height = viewToDraw.bounds.size.height * scaleFactor;
+			float width = viewToDraw.bounds.size.width;
+			float height = viewToDraw.bounds.size.height;
 			viewToDraw.frame = CGRectMake(loc.x - width / 2.0, loc.y-height / 2.0, width, height);
 			CATransform3D transform = CATransform3DIdentity;
 			//set the scale if it needs it.
@@ -368,7 +314,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 			//if we don't have a superview, set it up.
 			if (!(viewToDraw.superview)) {
 				[ar_overlayView addSubview:viewToDraw];
-				[ar_overlayView sendSubviewToBack:viewToDraw];
+				[ar_overlayView bringSubviewToFront:viewToDraw];
 			}
 		} else {
 			[viewToDraw removeFromSuperview];
@@ -444,8 +390,8 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 #define BOX_HEIGHT 200
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
 	CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
-	MarkerView *tempView = [[MarkerView alloc] initWithFrame:theFrame];
-    tempView.userInteractionEnabled = NO;
+	MarkerView *tempView = [[MarkerView alloc] initWithWebView:popUpView];
+    tempView.frame = theFrame;
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     if (coordinate.position.image == nil) {
         pointView.image = [UIImage imageNamed:@"circle.png"];
@@ -499,10 +445,9 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 	ar_overlayView = nil;
-    ar_gui = nil;
 }
 
-- (void)initInterface {
+- (void)initInterface {    
     radarView = [[Radar alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
     radarViewPort = [[RadarViewPortView alloc] initWithFrame:CGRectMake(2, 2, 61, 61)];
     
@@ -562,18 +507,17 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
         valueLabel.text = [NSString stringWithFormat:@"%.2f km", radius];
     }
     
-    [ar_gui addSubview:radarView];
-    [ar_gui addSubview:radarViewPort];
-    [ar_gui addSubview:northLabel];
-    [ar_gui addSubview:maxRadiusLabel];
-    [ar_gui addSubview:valueLabel];
-    [ar_gui addSubview:slider];
-    [ar_gui addSubview:sliderButton];
-    [ar_gui addSubview:menuButton];
-    [ar_gui addSubview:backToPlugin];
+    [ar_overlayView addSubview:radarView];
+    [ar_overlayView addSubview:radarViewPort];
+    [ar_overlayView addSubview:northLabel];
+    [ar_overlayView addSubview:maxRadiusLabel];
+    [ar_overlayView addSubview:valueLabel];
+    [ar_overlayView addSubview:slider];
+    [ar_overlayView addSubview:sliderButton];
+    [ar_overlayView addSubview:menuButton];
+    [ar_overlayView addSubview:backToPlugin];
     
     [self.view addSubview:ar_overlayView];
-    [self.view addSubview:ar_gui];
 }
 
 /***
