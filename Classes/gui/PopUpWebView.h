@@ -39,7 +39,7 @@
     BOOL rotateable;
 }
 
-- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rotateable:(BOOL)rotate;
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate;
 - (void)openUrlView:(NSString*)url;
 
 @end

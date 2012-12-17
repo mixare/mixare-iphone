@@ -436,6 +436,10 @@ static ProgressHUD *hud;
     [augViewController.menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
     [augViewController.backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     window.rootViewController = augViewController;
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        [augViewController setViewToLandscape];
+        beforeWasLandscape = YES;
+    }
 }
 
 - (void)showHud {

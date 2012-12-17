@@ -505,10 +505,10 @@
 				365B608512B9F9100014850C /* tabbarControllers */,
 				365B609612B9F9100014850C /* WebViewController.h */,
 				365B609712B9F9100014850C /* WebViewController.m */,
-				E2A6FCD6163E95A200007FA7 /* PullRefreshTableViewController.h */,
-				E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */,
 				E2B6E8BF165E3C42004E8641 /* ProgressHUD.h */,
 				E2B6E8C0165E3C42004E8641 /* ProgressHUD.m */,
+				E2A6FCD6163E95A200007FA7 /* PullRefreshTableViewController.h */,
+				E2A6FCD7163E95A200007FA7 /* PullRefreshTableViewController.m */,
 				E2AE982516775D3B00A46B08 /* PopUpWebView.h */,
 				E2AE982616775D3B00A46B08 /* PopUpWebView.m */,
 			);

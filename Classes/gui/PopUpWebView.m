@@ -24,12 +24,16 @@
 //
 
 #import "PopUpWebView.h"
+#import "ProgressHUD.h"
 
 @implementation PopUpWebView
 
-- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rotateable:(BOOL)rotate {
+static ProgressHUD *hud;
+
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate {
     self = [super init];
     if (self) {
+        hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
         mainView = view;
         rotateable = rotate;
         int tabBar = 0;
@@ -50,13 +54,11 @@
                                     [UIScreen mainScreen].bounds.size.width - tabBar - 35,
                                     100, 35);
         
-        if (rotateable) {
-            [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-            [[NSNotificationCenter defaultCenter] addObserver:self
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(didRotate:)
                                                      name:@"UIDeviceOrientationDidChangeNotification"
                                                    object:nil];
-        }
     }
     return self;
 }
@@ -84,9 +86,9 @@
     [popUpView setAlpha:.6];
     [UIView commitAnimations];
     
-    NSURL *requestURL = [NSURL URLWithString:url];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
-	[popUpView loadRequest:requestObj];
+    [hud show];
+    [self performSelectorInBackground:@selector(loadUrl:) withObject:url];
+    
     closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -96,6 +98,13 @@
     closeButton.frame = buttonDimension;
     [mainView addSubview:popUpView];
     [mainView addSubview:closeButton];
+}
+
+- (void)loadUrl:(NSString*)url {
+    NSURL *requestURL = [NSURL URLWithString:url];
+	NSURLRequest *requestObj = [NSURLRequest requestWithURL:requestURL];
+	[popUpView loadRequest:requestObj];
+    [hud dismiss];
 }
 
 - (void)buttonClick:(id)sender {
@@ -113,7 +122,10 @@
  *
  ***/
 - (void)didRotate:(NSNotification *)notification {
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        [self setLandscape];
+    }
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight && rotateable) {
         [self setLandscape];
     }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {

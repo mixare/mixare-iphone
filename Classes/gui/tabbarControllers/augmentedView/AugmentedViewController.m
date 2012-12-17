@@ -52,7 +52,7 @@
     [self.cameraController setPortrait];
 	[[self.view layer] addSublayer:[self.cameraController previewLayer]];
     [[self.cameraController captureSession] startRunning];
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rotateable:YES];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rightRotateable:NO];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;
@@ -85,7 +85,11 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
     self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)];
+    } else {
+        ar_overlayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    }
     self.view.userInteractionEnabled = YES;
     ar_overlayView.userInteractionEnabled = YES;
 }
@@ -528,6 +532,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  ***/
 - (void)setViewToPortrait {
     [cameraController setPortrait];
+    ar_overlayView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
     menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
     sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
@@ -542,12 +547,14 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *
  ***/
 - (void)setViewToLandscape {
+    [cameraController setLandscapeLeft];
+    ar_overlayView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    menuButton.bounds = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
     menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
     sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
     slider.frame = CGRectMake(62, 5, 288, 23);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
     backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
-    [cameraController setLandscapeLeft];
 }
 
 - (BOOL)shouldAutorotate {

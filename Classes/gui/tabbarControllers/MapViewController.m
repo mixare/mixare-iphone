@@ -36,7 +36,7 @@
     if (_currentAnnotations == nil) {
         _currentAnnotations = [[NSMutableArray alloc] init];
     }
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rotateable:YES];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rightRotateable:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
