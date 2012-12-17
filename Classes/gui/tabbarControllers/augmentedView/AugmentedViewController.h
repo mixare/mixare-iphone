@@ -95,7 +95,7 @@
 - (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
 
 - (void)setViewToPortrait;
-- (void)setViewToLandscape:(BOOL)left;
+- (void)setViewToLandscape;
 
 @property (nonatomic, strong) CameraController *cameraController;
 @property (nonatomic, weak) NSObject<CLLocationManagerDelegate> *locationDelegate;

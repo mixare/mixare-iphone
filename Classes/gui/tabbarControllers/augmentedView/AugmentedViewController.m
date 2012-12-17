@@ -541,17 +541,20 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *  @param viewObject
  *
  ***/
-- (void)setViewToLandscape:(BOOL)left {
-    if (left) {
-        [cameraController setLandscapeLeft];
-    } else {
-        [cameraController setLandscapeRight];
-    }
+- (void)setViewToLandscape {
     menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
     sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
     slider.frame = CGRectMake(62, 5, 288, 23);
     maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
     backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
+    [cameraController setLandscapeLeft];
+}
+
+- (BOOL)shouldAutorotate {
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

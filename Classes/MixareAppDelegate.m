@@ -412,11 +412,7 @@ static ProgressHUD *hud;
         beforeWasLandscape = NO;
     }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
-        [augViewController setViewToLandscape:YES];
-        beforeWasLandscape = YES;
-    }
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
-        [augViewController setViewToLandscape:NO];
+        [augViewController setViewToLandscape];
         beforeWasLandscape = YES;
     }
 }
