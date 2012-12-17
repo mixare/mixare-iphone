@@ -16,20 +16,25 @@
  * You should have received a copy of the GNU General Public License along with
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
+//
+//  CameraController.h
+//  Mixare
+//
+//  Created by Aswin Ly on 12-12-12.
+//
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-#import "DataSource.h"
-#import "PopUpWebView.h"
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface MapViewController : UIViewController <MKMapViewDelegate> {
-	IBOutlet MKMapView* _map;
-    NSMutableArray *_currentAnnotations;
-    NSString *tempUrl;
-    UIButton *closeButton;
-    PopUpWebView *popUpView;
-}
-@property (nonatomic, strong) MKMapView *map;
-- (void)refresh:(NSMutableArray*)dataSources;
+@interface CameraController : NSObject
+
+@property (retain) AVCaptureVideoPreviewLayer *previewLayer;
+@property (retain) AVCaptureSession *captureSession;
+
+- (void)addVideoPreviewLayer;
+- (void)addVideoInput;
+- (void)setPortrait;
+- (void)setLandscapeLeft;
+- (void)setLandscapeRight;
 
 @end

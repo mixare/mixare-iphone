@@ -36,6 +36,7 @@
     if (_currentAnnotations == nil) {
         _currentAnnotations = [[NSMutableArray alloc] init];
     }
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rightRotateable:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -91,7 +92,10 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
+    [popUpView openUrlView:annotation.url];
 }
+
+
 
 @end

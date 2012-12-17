@@ -18,16 +18,21 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "PopUpWebView.h"
 
 //Info view of a poi. Shoved when tapping on a por in the cam view. opens a webview of the poi
 @interface MarkerView : UIView {
     UIView *viewTouched;
     NSString *_url;
     UIView *loadView;
-    BOOL webActivated;
+    UIButton *btn;
+    PopUpWebView *popUpView;
 }
 
 @property (nonatomic, strong) UIView *viewTouched;
 @property (nonatomic, strong) NSString *url;
+@property PopUpWebView *popUpView;
+
+- (id)initWithWebView:(PopUpWebView*)webView;
 
 @end

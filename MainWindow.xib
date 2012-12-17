@@ -83,6 +83,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{0, 20}, {320, 411}}</string>
 						<reference key="NSSuperview"/>
+						<reference key="NSNextKeyView" ref="709503856"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -170,7 +171,6 @@
 									<nil key="NSNextResponder"/>
 									<int key="NSvFlags">274</int>
 									<string key="NSFrame">{{0, 20}, {320, 367}}</string>
-									<reference key="NSNextKeyView" ref="709503856"/>
 									<object class="NSColor" key="IBUIBackgroundColor" id="782640094">
 										<int key="NSColorSpace">3</int>
 										<bytes key="NSWhite">MQA</bytes>
@@ -690,6 +690,7 @@ A</bytes>
 					<int key="NSvFlags">266</int>
 					<string key="NSFrame">{{0, 431}, {320, 49}}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSNextKeyView"/>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MCAwAA</bytes>
@@ -717,6 +718,7 @@ A</bytes>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{31, 79}, {99, 21}}</string>
 						<reference key="NSSuperview" ref="1019770978"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>

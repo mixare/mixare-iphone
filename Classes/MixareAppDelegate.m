@@ -106,8 +106,8 @@ static ProgressHUD *hud;
  ***/
 - (void)refresh {
     float radius = 1;
-    if (_slider != nil) {
-        radius = _slider.value;
+    if (augViewController.slider != nil) {
+        radius = augViewController.slider.value;
     }
     [_downloadManager download:[_dataSourceManager getActivatedSources] currentLocation:_locationManager.location currentRadius:radius];
 }
@@ -139,45 +139,12 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openARView {
-    if (augViewController == nil) {
-        augViewController = [[AugmentedGeoViewController alloc] init];
-    }
-    [self initControls];
-    [augViewController viewWillAppear:YES];
-	augViewController.scaleViewsBasedOnDistance = YES;
-	augViewController.minimumScaleFactor = 0.6;
-	augViewController.rotateViewsBasedOnPerspective = YES;
+    augViewController = [[AugmentedGeoViewController alloc] init];
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
     augViewController.centerLocation = _locationManager.location;
-    [notificationView removeFromSuperview];
-    if (toggleMenu) {
-        [augViewController.view addSubview:_menuButton];
-    }
-    [augViewController.view addSubview:_sliderButton];
-    [augViewController.view addSubview:_slider];
-    _valueLabel.hidden = NO;
-    [augViewController.view addSubview:_valueLabel];
-    [augViewController.view addSubview:nordLabel];
-    [augViewController.view addSubview:maxRadiusLabel];
-	[augViewController startListening:_locationManager];
-    if (pluginDelegate != nil) {
-        [augViewController.view addSubview:backToPlugin];
-    }
-    window.rootViewController = augViewController;
-}
-
-/***
- *
- *  Close ARView
- *
- ***/
-- (void)closeARView {
-    [augViewController closeCameraView];
-    [augViewController.view removeFromSuperview];
-    augViewController = nil;
-    window.rootViewController = nil;
+    [self initControls];
 }
 
 /***
@@ -185,16 +152,15 @@ static ProgressHUD *hud;
  *  Response when radius value has been changed
  *
  ***/
-- (void)valueChanged:(id)sender {
+- (void)valueChanged {
     [hud show];
 	[self performSelectorInBackground:@selector(reloadCamera) withObject:nil];
 }
 
 - (void)reloadCamera {
-    NSLog(@"val: %f",_slider.value);
-    _valueLabel.text = [NSString stringWithFormat:@"%f", _slider.value];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", _slider.value] forKey:@"radius"];
-    [self closeARView];
+    augViewController.valueLabel.text = [NSString stringWithFormat:@"%f", augViewController.slider.value];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%f", augViewController.slider.value] forKey:@"radius"];
+    [augViewController closeCameraView];
 	[self refresh];
     [self openARView];
 	NSLog(@"POIS CHANGED");
@@ -225,7 +191,7 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)pluginButtonClicked:(id)sender {
-    [self closeARView];
+    [augViewController closeCameraView];
     [pluginDelegate run:self];
 }
 
@@ -236,8 +202,7 @@ static ProgressHUD *hud;
  ***/
 - (void)openMenu {
     [hud show];
-    [_menuButton removeFromSuperview];
-    [self closeARView];
+    [augViewController closeCameraView];
     _tabBarController.selectedIndex = 1;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
@@ -253,12 +218,12 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openRadiusSlide {
-    if (_slider.hidden || maxRadiusLabel.hidden) {
-        _slider.hidden = NO;
-        maxRadiusLabel.hidden = NO;
+    if (augViewController.slider.hidden || augViewController.maxRadiusLabel.hidden) {
+        augViewController.slider.hidden = NO;
+        augViewController.maxRadiusLabel.hidden = NO;
     } else {
-        _slider.hidden = YES;
-        maxRadiusLabel.hidden = YES;
+        augViewController.slider.hidden = YES;
+        augViewController.maxRadiusLabel.hidden = YES;
     }
 }
 
@@ -442,52 +407,14 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)didRotate:(NSNotification *)notification {
-    //Maintain the camera in Landscape orientation [[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];
-    //UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
-        [self setViewToLandscape:augViewController.view];
-        beforeWasLandscape = YES;
-    }
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait && beforeWasLandscape) {
-        [self setViewToPortrait:augViewController.view];
+        [augViewController setViewToPortrait];
         beforeWasLandscape = NO;
     }
-    //    deletNSLog(@"DID ROTATE");
-    
-}
-
-/***
- *
- *  Transform view to landscape
- *  @param viewObject
- *
- ***/
-- (void)setViewToLandscape:(UIView*)viewObject {
-    [viewObject setCenter:CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2)];
-    CGAffineTransform cgCTM = CGAffineTransformMakeRotation(degreesToRadian(90));
-    viewObject.transform = cgCTM;
-    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
-    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 0, 65, 30);
-    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 65, 0, 65, 30);
-    _slider.frame = CGRectMake(62, 5, 288, 23);
-    maxRadiusLabel.frame = CGRectMake(318, 28, 30, 10);
-    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.height - 130, 35, 130, 30);
-}
-
-/***
- *
- *  Transform view to portrait
- *  @param viewObject
- *
- ***/
-- (void)setViewToPortrait:(UIView*)viewObject {
-    viewObject.transform = CGAffineTransformMakeRotation(degreesToRadian(0)); // set current transform
-    viewObject.bounds = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
-    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
-    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
-    _slider.frame = CGRectMake(62, 5, 128, 23);
-    maxRadiusLabel.frame = CGRectMake(158, 25, 30, 12);
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        [augViewController setViewToLandscape];
+        beforeWasLandscape = YES;
+    }
 }
 
 /***
@@ -495,64 +422,23 @@ static ProgressHUD *hud;
  *  Initialize UI controls
  *
  ***/
-- (void)initControls {
-    backToPlugin = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backToPlugin.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 35, 130, 30);
-    [backToPlugin setTitle:NSLocalizedString(@"Main menu",nil) forState:UIControlStateNormal];
-    [backToPlugin setTintColor:[UIColor grayColor]];
-    [backToPlugin setAlpha:0.7];
-    [backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    _menuButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _menuButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 130, 0, 65, 30);
-    [_menuButton setTitle:NSLocalizedString(@"Menu",nil) forState:UIControlStateNormal];
-    _menuButton.alpha = 0.7;
-    [_menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
-    
-    _sliderButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _sliderButton.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 65, 0, 65, 30);
-    [_sliderButton setTitle:NSLocalizedString(@"Radius",nil) forState:UIControlStateNormal];
-    _sliderButton.alpha = 0.7;
-    [_sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
-    
-    _slider = [[UISlider alloc] initWithFrame:CGRectMake(62, 5, 128, 23)];
-    _slider.alpha = 0.7;
-    [_slider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    _slider.hidden = YES;
-    _slider.minimumValue = 1.0;
-    _slider.maximumValue = 80.0;
-    _slider.continuous= NO;
-    
-    _valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(8.5, 64, 45, 12)];
-    _valueLabel.backgroundColor = [UIColor blackColor];
-    _valueLabel.textColor = [UIColor whiteColor];
-    _valueLabel.font = [UIFont systemFontOfSize:10.0];
-    _valueLabel.textAlignment = NSTextAlignmentCenter;
-    
-    nordLabel = [[UILabel alloc] initWithFrame:CGRectMake(28, 2, 10, 10)];
-    nordLabel.backgroundColor = [UIColor blackColor];
-    nordLabel.textColor = [UIColor whiteColor];
-    nordLabel.font = [UIFont systemFontOfSize:8.0];
-    nordLabel.textAlignment = NSTextAlignmentCenter;
-    nordLabel.text = @"N";
-    nordLabel.alpha = 0.8;
-	
-    maxRadiusLabel = [[UILabel alloc] initWithFrame:CGRectMake(158, 25, 30, 12)];
-    maxRadiusLabel.backgroundColor = [UIColor blackColor];
-    maxRadiusLabel.textColor = [UIColor whiteColor];
-    maxRadiusLabel.font = [UIFont systemFontOfSize:10.0];
-    maxRadiusLabel.textAlignment = NSTextAlignmentCenter;
-    maxRadiusLabel.text = @"80 km";
-    maxRadiusLabel.hidden = YES;
-    
-    float radius = [[[NSUserDefaults standardUserDefaults] objectForKey:@"radius"] floatValue];
-    if (radius <= 0 || radius > 100) {
-        _slider.value = 5.0;
-        _valueLabel.text= @"5.0 km";
-    } else {
-        _slider.value = radius;
-        NSLog(@"RADIUS VALUE: %f", radius);
-        _valueLabel.text= [NSString stringWithFormat:@"%.2f km", radius];
+- (void)initControls {    
+    [augViewController initInterface];
+    if (!toggleMenu) {
+        augViewController.menuButton.hidden = YES;
+    }
+	[augViewController startListening:_locationManager];
+    if (pluginDelegate == nil) {
+        augViewController.backToPlugin.hidden = YES;
+    }
+    [augViewController.slider addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
+    [augViewController.sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
+    [augViewController.menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
+    [augViewController.backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    window.rootViewController = augViewController;
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        [augViewController setViewToLandscape];
+        beforeWasLandscape = YES;
     }
 }
 
