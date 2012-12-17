@@ -188,6 +188,7 @@
 }
 
 #define kFilteringFactor 0.05
+#define kFilteringFactorX 0.002
 UIAccelerationValue rollingX, rollingZ;
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration {
 	// -1 face down.
@@ -197,10 +198,10 @@ UIAccelerationValue rollingX, rollingZ;
 	//this should be different based on orientation.
 	if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
-        rollingX = (acceleration.x * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+        rollingX = (acceleration.x * kFilteringFactorX) + (rollingX * (1.0 - kFilteringFactorX));
     } else {
         rollingZ  = (acceleration.z * kFilteringFactor) + (rollingZ  * (1.0 - kFilteringFactor));
-        rollingX = (acceleration.y * kFilteringFactor) + (rollingX * (1.0 - kFilteringFactor));
+        rollingX = (acceleration.y * kFilteringFactorX) + (rollingX * (1.0 - kFilteringFactorX));
 	}
 	if (rollingZ > 0.0) {
 		self.centerCoordinate.inclination = atan(rollingX / rollingZ) + M_PI / 2.0;
@@ -318,7 +319,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 			//if we don't have a superview, set it up.
 			if (!(viewToDraw.superview)) {
 				[ar_overlayView addSubview:viewToDraw];
-				[ar_overlayView bringSubviewToFront:viewToDraw];
+				[ar_overlayView sendSubviewToBack:viewToDraw];
 			}
 		} else {
 			[viewToDraw removeFromSuperview];
@@ -420,9 +421,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 
 - (void)viewDidAppear:(BOOL)animated {
 #if !TARGET_IPHONE_SIMULATOR
-	//[self.cameraController setCameraOverlayView:ar_overlayView];
-	//[self presentViewController:self.cameraController animated:NO completion:nil];
-	//[ar_overlayView setFrame:self.cameraController.view.bounds];
     [ar_overlayView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 #endif
 	if (!_updateTimer) {
