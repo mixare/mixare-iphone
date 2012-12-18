@@ -30,7 +30,6 @@
 @synthesize scaleViewsBasedOnDistance, rotateViewsBasedOnPerspective;
 @synthesize maximumScaleDistance;
 @synthesize minimumScaleFactor, maximumRotationAngle;
-@synthesize updateFrequency;
 @synthesize coordinates = ar_coordinates;
 @synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
@@ -42,7 +41,7 @@
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
-	self.updateFrequency = 1 / 20.0;
+	updateFrequency = 1 / 20.0;
     [self loadView];
     
 #if !TARGET_IPHONE_SIMULATOR
@@ -98,7 +97,7 @@
 	updateFrequency = newUpdateFrequency;
 	if (!_updateTimer) return;
 	[_updateTimer invalidate];
-	_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
+	_updateTimer = [NSTimer scheduledTimerWithTimeInterval:updateFrequency
 													 target:self
 												   selector:@selector(updateLocations:)
 												   userInfo:nil
@@ -424,7 +423,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     [ar_overlayView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 #endif
 	if (!_updateTimer) {
-		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
+		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:updateFrequency
                                                          target:self
                                                        selector:@selector(updateLocations:)
                                                        userInfo:nil

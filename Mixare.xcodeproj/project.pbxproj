@@ -57,6 +57,7 @@
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
+		E2A3CFFA1680952D009A3943 /* CameraControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFF91680952D009A3943 /* CameraControllerTest.m */; };
 		E2A5277616525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
 		E2A5277716525EA700B4099C /* StandardInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277516525EA700B4099C /* StandardInput.m */; };
 		E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A5277A1652763000B4099C /* BarcodeInput.m */; };
@@ -231,6 +232,8 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
+		E2A3CFF81680952D009A3943 /* CameraControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraControllerTest.h; sourceTree = "<group>"; };
+		E2A3CFF91680952D009A3943 /* CameraControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraControllerTest.m; sourceTree = "<group>"; };
 		E2A5277416525EA700B4099C /* StandardInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandardInput.h; path = extensions/datainputs/StandardInput.h; sourceTree = "<group>"; };
 		E2A5277516525EA700B4099C /* StandardInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandardInput.m; path = extensions/datainputs/StandardInput.m; sourceTree = "<group>"; };
 		E2A527781652609A00B4099C /* SetDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataSource.h; sourceTree = "<group>"; };
@@ -781,6 +784,8 @@
 				E2A7C1C616368B9300489474 /* DownloadManagerTest.m */,
 				E2B100F9165161E10086BD8E /* PluginLoaderTest.h */,
 				E2B100FA165161E10086BD8E /* PluginLoaderTest.m */,
+				E2A3CFF81680952D009A3943 /* CameraControllerTest.h */,
+				E2A3CFF91680952D009A3943 /* CameraControllerTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -1067,6 +1072,7 @@
 				E2AEF6911680732500E9984C /* ArenaProcessorTest.m in Sources */,
 				E2AEF69416807BCE00E9984C /* MixareProcessorTest.m in Sources */,
 				E2AEF697168082A300E9984C /* GoogleAddressesProcessorTest.m in Sources */,
+				E2A3CFFA1680952D009A3943 /* CameraControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
