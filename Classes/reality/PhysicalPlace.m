@@ -31,21 +31,6 @@
     return self;
 }
 
-- (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location {
-    self = [super init];
-	geoLocation = location;
-    title = @"";
-	return self;
-}
-
-- (PhysicalPlace*)initCoordinateWithLocation:(CLLocation*)location fromOrigin:(CLLocation*)origin {
-    self = [super init];
-    geoLocation = location;
-	title = @"";
-	[self calibrateUsingOrigin:origin];
-	return self;
-}
-
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second {
 	float longitudinalDifference = second.longitude - first.longitude;
 	float latitudinalDifference = second.latitude - first.latitude;

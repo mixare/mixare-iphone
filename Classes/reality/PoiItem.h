@@ -73,7 +73,7 @@
 - (NSUInteger)hash;
 - (BOOL)isEqual:(id)other;
 - (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
-- (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
+- (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;

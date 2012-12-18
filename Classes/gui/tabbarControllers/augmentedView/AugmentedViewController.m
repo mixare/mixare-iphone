@@ -154,11 +154,11 @@
 		self.accelerometerManager.delegate = self;
 	}
 	if (!self.centerCoordinate) {
-		self.centerCoordinate = [[PoiItem alloc] coordinateWithRadialDistance:0 inclination:0 azimuth:0];
+		self.centerCoordinate = [[PoiItem alloc] initCoordinateWithRadialDistance:0 inclination:0 azimuth:0];
 	}
 }
 
-- (CGPoint)pointInView:(MarkerView*)realityView forCoordinate:(PoiItem*)coordinate {
+- (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate {
 	CGPoint point;
 	//x coordinate.
 	double pointAzimuth = coordinate.azimuth;

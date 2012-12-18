@@ -24,8 +24,8 @@
 @synthesize radialDistance, inclination, azimuth;
 @synthesize title, subtitle, source = _source, url = _url, radarPos = _radarPos, position;
 
-- (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
-	//[super init];
+- (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
+	self = [super init];
 	radialDistance = newRadialDistance;
 	inclination = newInclination;
 	azimuth = newAzimuth;
