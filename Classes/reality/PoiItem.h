@@ -68,12 +68,8 @@
     //subtitle of the poi
 	NSString *subtitle;
     Position *position;
+    CLLocation *geoLocation;
 }
-
-- (NSUInteger)hash;
-- (BOOL)isEqual:(id)other;
-- (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
-- (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
@@ -84,5 +80,9 @@
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic) CGPoint radarPos;
 @property (nonatomic, readonly) Position *position;
+
+- (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
+- (id)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt position:(Position*)pos;
+- (void)calibrateUsingOrigin:(CLLocation*)origin;
 
 @end

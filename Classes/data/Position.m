@@ -48,7 +48,7 @@
     [mapViewAnnotation setTitle:title];
     [mapViewAnnotation setSubTitle:summary];
     [mapViewAnnotation setUrl:url];
-    poiItem = [[PhysicalPlace alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
+    poiItem = [[PoiItem alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
     [poiItem setTitle:title];
     [poiItem setUrl:url];
     [poiItem setSource:source.title];

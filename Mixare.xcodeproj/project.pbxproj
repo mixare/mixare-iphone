@@ -15,7 +15,6 @@
 		3626B93B12840B1600B52201 /* SourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3626B93A12840B1600B52201 /* SourceCell.xib */; };
 		3655C9AD12B0CB1E00AE6540 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3655C9AC12B0CB1E00AE6540 /* Default.png */; };
 		3655C9AF12B0CB2700AE6540 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3655C9AE12B0CB2700AE6540 /* Default@2x.png */; };
-		365B605B12B9F7230014850C /* PhysicalPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605812B9F7230014850C /* PhysicalPlace.m */; };
 		365B605C12B9F7230014850C /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
 		365B607312B9F7740014850C /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
 		365B609912B9F9100014850C /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
@@ -144,7 +143,6 @@
 		E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
 		E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
 		E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
-		E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605812B9F7230014850C /* PhysicalPlace.m */; };
 		E2BE2957162D9559009CF67D /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
 		E2BE295D162D9583009CF67D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
 		E2BE295F162D9583009CF67D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608E12B9F9100014850C /* MapViewController.m */; };
@@ -178,8 +176,6 @@
 		3626B93A12840B1600B52201 /* SourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SourceCell.xib; sourceTree = "<group>"; };
 		3655C9AC12B0CB1E00AE6540 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3655C9AE12B0CB2700AE6540 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		365B605712B9F7230014850C /* PhysicalPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalPlace.h; sourceTree = "<group>"; };
-		365B605812B9F7230014850C /* PhysicalPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhysicalPlace.m; sourceTree = "<group>"; };
 		365B605912B9F7230014850C /* PoiItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiItem.h; sourceTree = "<group>"; };
 		365B605A12B9F7230014850C /* PoiItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiItem.m; sourceTree = "<group>"; };
 		365B606012B9F7740014850C /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
@@ -489,8 +485,6 @@
 			children = (
 				E2E3ECBA162C599300A28F2B /* MapViewAnnotation.h */,
 				E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */,
-				365B605712B9F7230014850C /* PhysicalPlace.h */,
-				365B605812B9F7230014850C /* PhysicalPlace.m */,
 				365B605912B9F7230014850C /* PoiItem.h */,
 				365B605A12B9F7230014850C /* PoiItem.m */,
 			);
@@ -971,7 +965,6 @@
 			files = (
 				36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				365B605B12B9F7230014850C /* PhysicalPlace.m in Sources */,
 				365B605C12B9F7230014850C /* PoiItem.m in Sources */,
 				365B607312B9F7740014850C /* DataSource.m in Sources */,
 				365B609912B9F9100014850C /* NotificationViewController.m in Sources */,
@@ -1028,7 +1021,6 @@
 				E2BE295F162D9583009CF67D /* MapViewController.m in Sources */,
 				E2BE2961162D9583009CF67D /* MoreViewController.m in Sources */,
 				E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */,
-				E2BE2955162D9559009CF67D /* PhysicalPlace.m in Sources */,
 				E2BE2957162D9559009CF67D /* PoiItem.m in Sources */,
 				E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */,
 				E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */,

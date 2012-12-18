@@ -46,7 +46,7 @@
     _range = _radius *1000;
     float scale = _range / RADIUS;
     if (_pois != nil) {
-        for (PhysicalPlace *poi in _pois) {
+        for (PoiItem *poi in _pois) {
             float x, y;
             //case1: azimiut is in the 1 quadrant of the radar
             if (poi.azimuth >= 0 && poi.azimuth < M_PI / 2) {
