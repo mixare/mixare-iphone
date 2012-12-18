@@ -17,7 +17,6 @@
 		3655C9AF12B0CB2700AE6540 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3655C9AE12B0CB2700AE6540 /* Default@2x.png */; };
 		365B605C12B9F7230014850C /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
 		365B607312B9F7740014850C /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
-		365B609912B9F9100014850C /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
 		365B609A12B9F9100014850C /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608212B9F9100014850C /* Radar.m */; };
 		365B609B12B9F9100014850C /* RadarViewPortView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608412B9F9100014850C /* RadarViewPortView.m */; };
 		365B609E12B9F9100014850C /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
@@ -141,7 +140,6 @@
 		E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2BE293B162D9524009CF67D /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
 		E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
-		E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B607F12B9F9100014850C /* NotificationViewController.m */; };
 		E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
 		E2BE2957162D9559009CF67D /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
 		E2BE295D162D9583009CF67D /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
@@ -180,8 +178,6 @@
 		365B605A12B9F7230014850C /* PoiItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiItem.m; sourceTree = "<group>"; };
 		365B606012B9F7740014850C /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		365B606112B9F7740014850C /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
-		365B607E12B9F9100014850C /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
-		365B607F12B9F9100014850C /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
 		365B608112B9F9100014850C /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
 		365B608212B9F9100014850C /* Radar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Radar.m; sourceTree = "<group>"; };
 		365B608312B9F9100014850C /* RadarViewPortView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarViewPortView.h; sourceTree = "<group>"; };
@@ -507,8 +503,6 @@
 		365B607B12B9F9100014850C /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				365B607E12B9F9100014850C /* NotificationViewController.h */,
-				365B607F12B9F9100014850C /* NotificationViewController.m */,
 				365B608012B9F9100014850C /* radarView */,
 				365B608512B9F9100014850C /* tabbarControllers */,
 				365B609612B9F9100014850C /* WebViewController.h */,
@@ -967,7 +961,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				365B605C12B9F7230014850C /* PoiItem.m in Sources */,
 				365B607312B9F7740014850C /* DataSource.m in Sources */,
-				365B609912B9F9100014850C /* NotificationViewController.m in Sources */,
 				365B609A12B9F9100014850C /* Radar.m in Sources */,
 				365B609B12B9F9100014850C /* RadarViewPortView.m in Sources */,
 				365B609E12B9F9100014850C /* ListViewController.m in Sources */,
@@ -1022,7 +1015,6 @@
 				E2BE2961162D9583009CF67D /* MoreViewController.m in Sources */,
 				E2BE2953162D9559009CF67D /* MapViewAnnotation.m in Sources */,
 				E2BE2957162D9559009CF67D /* PoiItem.m in Sources */,
-				E2BE2941162D9531009CF67D /* NotificationViewController.m in Sources */,
 				E2BE293D162D952B009CF67D /* MixareAppDelegate.m in Sources */,
 				E2BE2939162D9524009CF67D /* DataSourceManager.m in Sources */,
 				E2A6FCDA163EB2A800007FA7 /* PullRefreshTableViewController.m in Sources */,
