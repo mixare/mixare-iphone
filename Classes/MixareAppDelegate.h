@@ -62,6 +62,4 @@
 
 @property (nonatomic) BOOL alertRunning;
 
-- (void)valueChanged;
-
 @end
