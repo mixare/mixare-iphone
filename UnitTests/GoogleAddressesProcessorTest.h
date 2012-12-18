@@ -17,15 +17,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  MixareProcessorTest.h
+//  GoogleAddressesProcessorTest.h
 //  Mixare
 //
 //  Created by Aswin Ly on 18-12-12.
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "MixareProcessor.h"
+#import "GoogleAddressesProcessor.h"
 
-@interface MixareProcessorTest : SenTestCase
+@interface GoogleAddressesProcessorTest : SenTestCase
 
 @end

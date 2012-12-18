@@ -78,6 +78,7 @@
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF6911680732500E9984C /* ArenaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF6901680732500E9984C /* ArenaProcessorTest.m */; };
 		E2AEF69416807BCE00E9984C /* MixareProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF69316807BCE00E9984C /* MixareProcessorTest.m */; };
+		E2AEF697168082A300E9984C /* GoogleAddressesProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF696168082A300E9984C /* GoogleAddressesProcessorTest.m */; };
 		E2AF18C61678DEF2002CE6D1 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF18C51678DEF1002CE6D1 /* CameraController.m */; };
 		E2AF18C71678DEF2002CE6D1 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF18C51678DEF1002CE6D1 /* CameraController.m */; };
 		E2AF6C2C162FEE29004E0625 /* WikipediaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF6C2B162FEE29004E0625 /* WikipediaProcessorTest.m */; };
@@ -254,6 +255,8 @@
 		E2AEF6901680732500E9984C /* ArenaProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArenaProcessorTest.m; sourceTree = "<group>"; };
 		E2AEF69216807BCE00E9984C /* MixareProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixareProcessorTest.h; sourceTree = "<group>"; };
 		E2AEF69316807BCE00E9984C /* MixareProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixareProcessorTest.m; sourceTree = "<group>"; };
+		E2AEF695168082A300E9984C /* GoogleAddressesProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAddressesProcessorTest.h; sourceTree = "<group>"; };
+		E2AEF696168082A300E9984C /* GoogleAddressesProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAddressesProcessorTest.m; sourceTree = "<group>"; };
 		E2AF18C41678DEF1002CE6D1 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
 		E2AF18C51678DEF1002CE6D1 /* CameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraController.m; sourceTree = "<group>"; };
 		E2AF6C2A162FEE29004E0625 /* WikipediaProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WikipediaProcessorTest.h; sourceTree = "<group>"; };
@@ -772,6 +775,8 @@
 				E2AEF6901680732500E9984C /* ArenaProcessorTest.m */,
 				E2AEF69216807BCE00E9984C /* MixareProcessorTest.h */,
 				E2AEF69316807BCE00E9984C /* MixareProcessorTest.m */,
+				E2AEF695168082A300E9984C /* GoogleAddressesProcessorTest.h */,
+				E2AEF696168082A300E9984C /* GoogleAddressesProcessorTest.m */,
 				E2A7C1C516368B9300489474 /* DownloadManagerTest.h */,
 				E2A7C1C616368B9300489474 /* DownloadManagerTest.m */,
 				E2B100F9165161E10086BD8E /* PluginLoaderTest.h */,
@@ -1061,6 +1066,7 @@
 				E2AEF68A168070FA00E9984C /* ProgressHUD.m in Sources */,
 				E2AEF6911680732500E9984C /* ArenaProcessorTest.m in Sources */,
 				E2AEF69416807BCE00E9984C /* MixareProcessorTest.m in Sources */,
+				E2AEF697168082A300E9984C /* GoogleAddressesProcessorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
