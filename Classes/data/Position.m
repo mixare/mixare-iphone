@@ -30,7 +30,7 @@
 
 @synthesize mapViewAnnotation, poiItem, title, summary, url, source, longitude, altitude, latitude, image;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour {
+- (id)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour {
     self = [super init];
     title = tit;
     summary = sum;

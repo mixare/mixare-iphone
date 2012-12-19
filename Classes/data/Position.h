@@ -52,7 +52,7 @@
 @property (nonatomic, readonly) CGFloat altitude;
 @property (nonatomic, readonly) UIImage *image;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour;
+- (id)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour;
 - (void)setMarker:(NSString*)marker;
 
 @end
