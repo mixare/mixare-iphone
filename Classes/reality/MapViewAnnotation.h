@@ -42,7 +42,7 @@
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic, strong) NSString *url;
 
-- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon;
+- (id)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon;
 - (void)setMarker:(UIImage*)img;
 
 @end

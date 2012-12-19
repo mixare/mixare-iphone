@@ -31,7 +31,7 @@
 @synthesize coordinate;
 @synthesize subTitle, title, image, url;
 
-- (MapViewAnnotation *)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon {
+- (id)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon {
     self = [super init];
     if (self) {
         if (lat != 0.0 && lon != 0.0) {

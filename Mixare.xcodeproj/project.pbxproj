@@ -47,6 +47,8 @@
 		E223A6CC1653942700C94815 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
 		E223A6CD1653943000C94815 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
 		E223A6CE1653943400C94815 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
+		E23FE78C1681D02600AC90F3 /* MapViewAnnotationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E23FE78B1681D02600AC90F3 /* MapViewAnnotationTest.m */; };
+		E23FE7901681D32A00AC90F3 /* PoiItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E23FE78F1681D32A00AC90F3 /* PoiItemTest.m */; };
 		E246F31C16104B140006EA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
 		E246F31D16104B140006EA40 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
@@ -214,6 +216,10 @@
 		36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo_small.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E23FE78A1681D02600AC90F3 /* MapViewAnnotationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotationTest.h; sourceTree = "<group>"; };
+		E23FE78B1681D02600AC90F3 /* MapViewAnnotationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotationTest.m; sourceTree = "<group>"; };
+		E23FE78E1681D32A00AC90F3 /* PoiItemTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiItemTest.h; sourceTree = "<group>"; };
+		E23FE78F1681D32A00AC90F3 /* PoiItemTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiItemTest.m; sourceTree = "<group>"; };
 		E246F3AA161061CB0006EA40 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
@@ -758,14 +764,16 @@
 			isa = PBXGroup;
 			children = (
 				E2DFCF87160B25470045A6C4 /* Supporting Files */,
-				E2B100D61650FD770086BD8E /* DataConverterTest.h */,
-				E2B100D71650FD770086BD8E /* DataConverterTest.m */,
-				E2B01672162EFE0200C93C91 /* DataSourceManagerTest.h */,
-				E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */,
 				E246F3B21610AE8C0006EA40 /* DataSourceTest.h */,
 				E246F3B31610AE8C0006EA40 /* DataSourceTest.m */,
 				E2B01678162F03EA00C93C91 /* PositionTest.h */,
 				E2B01679162F03EA00C93C91 /* PositionTest.m */,
+				E2B01672162EFE0200C93C91 /* DataSourceManagerTest.h */,
+				E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */,
+				E2A7C1C516368B9300489474 /* DownloadManagerTest.h */,
+				E2A7C1C616368B9300489474 /* DownloadManagerTest.m */,
+				E2B100D61650FD770086BD8E /* DataConverterTest.h */,
+				E2B100D71650FD770086BD8E /* DataConverterTest.m */,
 				E2AF6C2E162FF3ED004E0625 /* TwitterProcessorTest.h */,
 				E2AF6C2F162FF3ED004E0625 /* TwitterProcessorTest.m */,
 				E2AF6C2A162FEE29004E0625 /* WikipediaProcessorTest.h */,
@@ -776,12 +784,14 @@
 				E2AEF69316807BCE00E9984C /* MixareProcessorTest.m */,
 				E2AEF695168082A300E9984C /* GoogleAddressesProcessorTest.h */,
 				E2AEF696168082A300E9984C /* GoogleAddressesProcessorTest.m */,
-				E2A7C1C516368B9300489474 /* DownloadManagerTest.h */,
-				E2A7C1C616368B9300489474 /* DownloadManagerTest.m */,
 				E2B100F9165161E10086BD8E /* PluginLoaderTest.h */,
 				E2B100FA165161E10086BD8E /* PluginLoaderTest.m */,
 				E2A3CFF81680952D009A3943 /* CameraControllerTest.h */,
 				E2A3CFF91680952D009A3943 /* CameraControllerTest.m */,
+				E23FE78A1681D02600AC90F3 /* MapViewAnnotationTest.h */,
+				E23FE78B1681D02600AC90F3 /* MapViewAnnotationTest.m */,
+				E23FE78E1681D32A00AC90F3 /* PoiItemTest.h */,
+				E23FE78F1681D32A00AC90F3 /* PoiItemTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -1065,6 +1075,8 @@
 				E2A3D0151680BAC6009A3943 /* ProgressHUD.m in Sources */,
 				E2A3D0171680BAC6009A3943 /* PullRefreshTableViewController.m in Sources */,
 				E2A3D0191680BAC6009A3943 /* WebViewController.m in Sources */,
+				E23FE78C1681D02600AC90F3 /* MapViewAnnotationTest.m in Sources */,
+				E23FE7901681D32A00AC90F3 /* PoiItemTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
