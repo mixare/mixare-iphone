@@ -17,29 +17,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  MapAnnotation.h
+//  CameraControllerTest.h
 //  Mixare
 //
-//  Created by Aswin Ly on 05-10-12.
+//  Created by Aswin Ly on 18-12-12.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
-@class Position;
+#import <SenTestingKit/SenTestingKit.h>
+#import "CameraController.h"
 
-@interface MapViewAnnotation : NSObject <MKAnnotation> {
-	CLLocationCoordinate2D coordinate;
-    NSString *title;
-	NSString *subTitle;
-    Position *position;
-}
-
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *subTitle;
-@property (nonatomic, readonly) Position *position;
-
-- (id)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon position:(Position*)pos;
+@interface CameraControllerTest : SenTestCase
 
 @end

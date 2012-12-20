@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) NSMutableArray *dataSources;
 
-- (DataSourceManager*)init;
+- (id)init;
 - (DataSource*)getDataSourceByTitle:(NSString*)title;
 - (NSMutableArray*)getActivatedSources;
 - (DataSource*)createDataSource:(NSString*)title dataUrl:(NSString*)url;

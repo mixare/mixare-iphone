@@ -73,7 +73,7 @@
     DataSourceManager *dataManager = [[DataSourceManager alloc] init];
     dataManager.dataSources = [[NSMutableArray alloc] init];
     DataSource *wikipedia = [dataManager createDataSource:@"Wikipedia" dataUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-    DataSource *twitter = [dataManager createDataSource:@"Twitter" dataUrl:@"hhttp://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    [dataManager createDataSource:@"Twitter" dataUrl:@"hhttp://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
     NSArray *loadedData1 = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
     NSLog(@"AMOUNT LOADED: %d", loadedData1.count);
     BOOL check = NO;
@@ -94,8 +94,8 @@
 - (void)testGetDataSourceFromTitle {
     DataSourceManager *dataManager = [[DataSourceManager alloc] init];
     dataManager.dataSources = [[NSMutableArray alloc] init];
-    DataSource *wikipedia = [dataManager createDataSource:@"Wikipedia" dataUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
-    DataSource *twitter = [dataManager createDataSource:@"Twitter" dataUrl:@"hhttp://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
+    [dataManager createDataSource:@"Wikipedia" dataUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"];
+    [dataManager createDataSource:@"Twitter" dataUrl:@"hhttp://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"];
     STAssertEqualObjects([dataManager getDataSourceByTitle:@"Wikipedia"].jsonUrl, @"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG", @"Gets the wrong one");
 }
 

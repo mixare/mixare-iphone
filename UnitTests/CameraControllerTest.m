@@ -17,15 +17,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  PositionTest.m
+//  CameraControllerTest.m
 //  Mixare
 //
-//  Created by Aswin Ly on 17-10-12.
+//  Created by Aswin Ly on 18-12-12.
 //
 
-#import "PositionTest.h"
+#import "CameraControllerTest.h"
 
-@implementation PositionTest
+@implementation CameraControllerTest
 
 - (void)setUp {
     [super setUp];
@@ -35,16 +35,14 @@
     [super tearDown];
 }
 
-- (void)testCreatePosition {
-    Position *pos = [[Position alloc] initWithTitle:@"Groothandels" withSummary:@"Mooi" withUrl:@"http://www.finalist.nl" withLatitude:40 withLongitude:20 withAltitude:3.4 withSource:nil];
-    STAssertNotNil(pos, @"Not created");
-    STAssertEqualObjects(pos.title, @"Groothandels", @"Not the same title");
-}
-
-- (void)testCreatedMarkers {
-    Position *pos = [[Position alloc] initWithTitle:@"Groothandels" withSummary:@"Mooi" withUrl:@"http://www.finalist.nl" withLatitude:40 withLongitude:20 withAltitude:3.4 withSource:nil];
-    STAssertNotNil(pos.poiItem, @"Poi Item not created");
-    STAssertNotNil(pos.mapViewAnnotation, @"MapViewAnnotation not created");
+- (void)testInitializeCamera {
+    CameraController *camera = [[CameraController alloc] init];
+    [camera addVideoInput];
+    [camera addVideoPreviewLayer];
+    [camera setPortrait];
+    [camera setLandscapeLeft];
+    [camera setLandscapeRight];
+    STAssertNotNil(camera, @"Camera not created");
 }
 
 @end

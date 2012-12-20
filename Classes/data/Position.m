@@ -30,7 +30,7 @@
 
 @synthesize mapViewAnnotation, poiItem, title, summary, url, source, longitude, altitude, latitude, image;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour {
+- (id)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour {
     self = [super init];
     title = tit;
     summary = sum;
@@ -44,14 +44,10 @@
 }
 
 - (void)initMarkerAndMapAnnotation {
-    mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude longitude:longitude];
+    mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude longitude:longitude position:self];
     [mapViewAnnotation setTitle:title];
     [mapViewAnnotation setSubTitle:summary];
-    [mapViewAnnotation setUrl:url];
-    poiItem = [[PhysicalPlace alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
-    [poiItem setTitle:title];
-    [poiItem setUrl:url];
-    [poiItem setSource:source.title];
+    poiItem = [[PoiItem alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
 }
 
 - (void)setMarker:(NSString*)marker {
@@ -62,7 +58,6 @@
     } else if (marker != nil) {
         image = [UIImage imageNamed:marker];
     }
-    [mapViewAnnotation setMarker:image];
 }
 
 - (BOOL)isImageUrl:(NSString*)urls {

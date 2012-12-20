@@ -29,6 +29,7 @@
     UIButton *closeButton;
     PopUpWebView *popUpView;
 }
+
 @property (nonatomic, strong) MKMapView *map;
 - (void)refresh:(NSMutableArray*)dataSources;
 

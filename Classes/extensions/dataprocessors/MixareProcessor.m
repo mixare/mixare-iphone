@@ -39,7 +39,9 @@
         for(NSDictionary *geoname in geonames){
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
             dic[keys[@"title"]] = geoname[@"title"];
-            dic[keys[@"url"]] = geoname[@"webpage"];
+            if (geoname[@"webpage"] != [NSNull null] && geoname[@"webpage"] != nil) {
+                dic[keys[@"url"]] = geoname[@"webpage"];
+            }
             dic[keys[@"longitude"]] = geoname[@"lng"];
             dic[keys[@"latitude"]] = geoname[@"lat"];
             dic[keys[@"altitude"]] = geoname[@"elevation"];
