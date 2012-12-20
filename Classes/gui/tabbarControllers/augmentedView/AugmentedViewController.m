@@ -389,7 +389,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *  @param coordinate
  *
  ***/
-
 #define BOX_WIDTH 250
 #define BOX_HEIGHT 200
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {

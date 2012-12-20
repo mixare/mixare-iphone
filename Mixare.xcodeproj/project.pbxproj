@@ -224,6 +224,9 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
+		E2A387D416832BE400B6A493 /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataInput.h; path = plugin/DataInput.h; sourceTree = "<group>"; };
+		E2A387D516832BE400B6A493 /* SetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetDataSource.h; path = plugin/SetDataSource.h; sourceTree = "<group>"; };
+		E2A387D616832C0100B6A493 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = plugin/DataProcessor.h; sourceTree = "<group>"; };
 		E2A3CFF81680952D009A3943 /* CameraControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraControllerTest.h; sourceTree = "<group>"; };
 		E2A3CFF91680952D009A3943 /* CameraControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraControllerTest.m; sourceTree = "<group>"; };
 		E2A3CFFD1680B97B009A3943 /* Radar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Radar.h; sourceTree = "<group>"; };
@@ -240,7 +243,6 @@
 		E2A3D0111680BAC6009A3943 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = guiControllers/WebViewController.m; sourceTree = "<group>"; };
 		E2A5277416525EA700B4099C /* StandardInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandardInput.h; path = extensions/datainputs/StandardInput.h; sourceTree = "<group>"; };
 		E2A5277516525EA700B4099C /* StandardInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandardInput.m; path = extensions/datainputs/StandardInput.m; sourceTree = "<group>"; };
-		E2A527781652609A00B4099C /* SetDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetDataSource.h; sourceTree = "<group>"; };
 		E2A527791652763000B4099C /* BarcodeInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BarcodeInput.h; path = extensions/datainputs/BarcodeInput.h; sourceTree = "<group>"; };
 		E2A5277A1652763000B4099C /* BarcodeInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BarcodeInput.m; path = extensions/datainputs/BarcodeInput.m; sourceTree = "<group>"; };
 		E2A646E6167A37F00028B6F3 /* AugmentedGeoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedGeoViewController.h; sourceTree = "<group>"; };
@@ -304,7 +306,6 @@
 		E2B0C2DB16551A2E0099090E /* DataSourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceList.m; path = extensions/DataSourceList.m; sourceTree = "<group>"; };
 		E2B100A71650FC7D0086BD8E /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataConverter.h; path = dataconverter/DataConverter.h; sourceTree = "<group>"; };
 		E2B100A81650FC7D0086BD8E /* DataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataConverter.m; path = dataconverter/DataConverter.m; sourceTree = "<group>"; };
-		E2B100A91650FC7D0086BD8E /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = dataconverter/DataProcessor.h; sourceTree = "<group>"; };
 		E2B100AD1650FC7D0086BD8E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		E2B100AE1650FC7D0086BD8E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		E2B100AF1650FC7D0086BD8E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -322,7 +323,6 @@
 		E2B100D71650FD770086BD8E /* DataConverterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataConverterTest.m; sourceTree = "<group>"; };
 		E2B100DD165102400086BD8E /* PluginLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginLoader.h; path = plugin/PluginLoader.h; sourceTree = "<group>"; };
 		E2B100DE165102400086BD8E /* PluginLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginLoader.m; path = plugin/PluginLoader.m; sourceTree = "<group>"; };
-		E2B100E116512A2B0086BD8E /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataInput.h; sourceTree = "<group>"; };
 		E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginEntryPoint.h; path = plugin/PluginEntryPoint.h; sourceTree = "<group>"; };
 		E2B100E4165136DA0086BD8E /* PluginList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginList.h; path = extensions/PluginList.h; sourceTree = "<group>"; };
 		E2B100E5165136DA0086BD8E /* PluginList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PluginList.m; path = extensions/PluginList.m; sourceTree = "<group>"; };
@@ -496,8 +496,6 @@
 		365B605D12B9F7740014850C /* data */ = {
 			isa = PBXGroup;
 			children = (
-				E2B100E116512A2B0086BD8E /* DataInput.h */,
-				E2A527781652609A00B4099C /* SetDataSource.h */,
 				365B606012B9F7740014850C /* DataSource.h */,
 				365B606112B9F7740014850C /* DataSource.m */,
 				E246F3AA161061CB0006EA40 /* Position.h */,
@@ -722,7 +720,10 @@
 		E2B100DB1651005E0086BD8E /* plugin */ = {
 			isa = PBXGroup;
 			children = (
+				E2A387D616832C0100B6A493 /* DataProcessor.h */,
+				E2A387D416832BE400B6A493 /* DataInput.h */,
 				E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */,
+				E2A387D516832BE400B6A493 /* SetDataSource.h */,
 				E2B100DD165102400086BD8E /* PluginLoader.h */,
 				E2B100DE165102400086BD8E /* PluginLoader.m */,
 			);
@@ -820,7 +821,6 @@
 		E2E3ECAA162C4EEB00A28F2B /* dataconverter */ = {
 			isa = PBXGroup;
 			children = (
-				E2B100A91650FC7D0086BD8E /* DataProcessor.h */,
 				E2B100A71650FC7D0086BD8E /* DataConverter.h */,
 				E2B100A81650FC7D0086BD8E /* DataConverter.m */,
 				E2B100B81650FC7D0086BD8E /* JsonData.h */,
