@@ -407,11 +407,11 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.text = coordinate.title;
+	titleLabel.text = coordinate.position.title;
     //Markers get automatically resized
     [titleLabel sizeToFit];
 	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-    tempView.url = coordinate.url;
+    tempView.url = coordinate.position.url;
 	[tempView addSubview:titleLabel];
 	[tempView addSubview:pointView];
     tempView.userInteractionEnabled = YES;

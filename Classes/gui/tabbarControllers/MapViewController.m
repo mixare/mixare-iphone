@@ -70,14 +70,14 @@
     if (annotation != mapView.userLocation) {
         for(MapViewAnnotation *anno in _currentAnnotations) {
             if ([annotation isEqual:anno]) {
-                if (anno.image != nil) {
+                if (anno.position.image != nil) {
                     pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
-                    pinView.image = anno.image;
+                    pinView.image = anno.position.image;
                 } else {
                     pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
                 }
                 pinView.canShowCallout = YES;
-                if (anno.url != nil || ![anno.url isEqualToString:@""]) {
+                if (anno.position.url != nil || ![anno.position.url isEqualToString:@""]) {
                     UIButton *btnViewVenue = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
                     pinView.rightCalloutAccessoryView = btnViewVenue;
                 }
@@ -92,8 +92,7 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:annotation.url]];
-    [popUpView openUrlView:annotation.url];
+    [popUpView openUrlView:annotation.position.url];
 }
 
 

@@ -24,6 +24,8 @@
 //
 
 #import "MapViewAnnotationTest.h"
+#import "Position.h"
+#import "DataSource.h"
 
 @implementation MapViewAnnotationTest
 
@@ -36,25 +38,16 @@
 }
 
 - (void)testCreateMapViewAnnotation {
-    MapViewAnnotation *anno = [[MapViewAnnotation alloc] initWithLatitude:3.0 longitude:3.0];
+    MapViewAnnotation *anno = [[MapViewAnnotation alloc] initWithLatitude:3.0 longitude:3.0 position:[[Position alloc] initWithTitle:@"cool" withSummary:@"sum" withUrl:@"http://url.com/sub1" withLatitude:3.0 withLongitude:2.0 withAltitude:1.0 withSource:[[DataSource alloc] initTitle:@"wiki" jsonUrl:@"http://url.com" locked:NO]]];
     STAssertNotNil(anno, @"Annotation not created");
 }
 
 - (void)testAddingMapViewAnnotationData {
-    MapViewAnnotation *anno = [[MapViewAnnotation alloc] initWithLatitude:2.0 longitude:2.0];
+    MapViewAnnotation *anno = [[MapViewAnnotation alloc] initWithLatitude:3.0 longitude:3.0 position:[[Position alloc] initWithTitle:@"cool" withSummary:@"sum" withUrl:@"http://url.com/sub2" withLatitude:3.0 withLongitude:2.0 withAltitude:1.0 withSource:[[DataSource alloc] initTitle:@"wiki" jsonUrl:@"http://url.com" locked:NO]]];
     [anno setTitle:@"COOL"];
     [anno setSubTitle:@"cool2"];
-    [anno setUrl:@"http://url.com"];
     STAssertEquals(anno.title, @"COOL", @"Title not correct");
     STAssertEquals(anno.subTitle, @"cool2", @"subTitle not correct");
-    STAssertEquals(anno.url, @"http://url.com", @"Url not correct");
-}
-
-- (void)testAddMapViewAnnotationMarker {
-    MapViewAnnotation *anno = [[MapViewAnnotation alloc] initWithLatitude:2.0 longitude:2.0];
-    UIImage *img = [[UIImage alloc] init];
-    [anno setMarker:img];
-    STAssertEqualObjects(anno.image, img, @"Image nog correct");
 }
 
 @end

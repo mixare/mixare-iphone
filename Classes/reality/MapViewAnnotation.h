@@ -32,17 +32,14 @@
 	CLLocationCoordinate2D coordinate;
     NSString *title;
 	NSString *subTitle;
-    UIImage *image;
-    NSString *url;
+    Position *position;
 }
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
-@property (nonatomic, readonly) UIImage *image;
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, readonly) Position *position;
 
-- (id)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon;
-- (void)setMarker:(UIImage*)img;
+- (id)initWithLatitude:(CGFloat)lat longitude:(CGFloat)lon position:(Position*)pos;
 
 @end

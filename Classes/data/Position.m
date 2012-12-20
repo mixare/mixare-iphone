@@ -44,14 +44,10 @@
 }
 
 - (void)initMarkerAndMapAnnotation {
-    mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude longitude:longitude];
+    mapViewAnnotation = [[MapViewAnnotation alloc] initWithLatitude:latitude longitude:longitude position:self];
     [mapViewAnnotation setTitle:title];
     [mapViewAnnotation setSubTitle:summary];
-    [mapViewAnnotation setUrl:url];
     poiItem = [[PoiItem alloc] initWithLatitude:latitude longitude:longitude altitude:altitude position:self];
-    [poiItem setTitle:title];
-    [poiItem setUrl:url];
-    [poiItem setSource:source.title];
 }
 
 - (void)setMarker:(NSString*)marker {
@@ -62,7 +58,6 @@
     } else if (marker != nil) {
         image = [UIImage imageNamed:marker];
     }
-    [mapViewAnnotation setMarker:image];
 }
 
 - (BOOL)isImageUrl:(NSString*)urls {

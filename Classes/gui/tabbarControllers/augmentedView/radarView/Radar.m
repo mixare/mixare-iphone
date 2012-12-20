@@ -78,11 +78,7 @@
                 y = RADIUS;
             }
             //drawing the radar point
-            if ([poi.source isEqualToString:@"Wikipedia"]) {
-                CGContextSetRGBFillColor(contextRef, 255, 0, 0, 1);
-            } else if([poi.source isEqualToString:@"Buzz"]) {
-                CGContextSetRGBFillColor(contextRef, 0, 255, 0, 1);
-            }
+            CGContextSetRGBFillColor(contextRef, 255, 0, 0, 1);
             if (x <= RADIUS * 2 && x >= 0 && y >= 0 && y <= RADIUS * 2) {
                 CGContextFillEllipseInRect(contextRef, CGRectMake(x, y, 2, 2)); 
             }
