@@ -73,29 +73,6 @@
 @property double minimumScaleFactor;
 @property BOOL rotateViewsBasedOnPerspective;
 @property double maximumRotationAngle;
-@property double updateFrequency;
-
-//adding coordinates to the underlying data model.
-- (void)refresh:(NSMutableArray*)dataSources;
-- (void)addCoordinate:(PoiItem*)coordinate;
-- (void)addCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
-- (void)addCoordinates:(NSArray*)newCoordinates;
-- (void)initInterface;
-//removing coordinates
-- (void)removeCoordinate:(PoiItem*)coordinate;
-- (void)removeCoordinate:(PoiItem*)coordinate animated:(BOOL)animated;
-- (CGPoint)rotatePointAboutOrigin:(CGPoint)point angle:(float)angle;
-- (void)removeCoordinates;
-- (id)initWithLocationManager:(CLLocationManager*)manager;
-- (void)startListening:(CLLocationManager*)locManager;
-- (void)stopListening;
-- (void)updateLocations:(NSTimer*)timer;
-- (void)closeCameraView;
-- (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate;
-- (BOOL)viewportContainsCoordinate:(PoiItem*)coordinate;
-
-- (void)setViewToPortrait;
-- (void)setViewToLandscape;
 
 @property (nonatomic, strong) CameraController *cameraController;
 @property (nonatomic, weak) NSObject<CLLocationManagerDelegate> *locationDelegate;
@@ -103,5 +80,16 @@
 @property (strong) PoiItem *centerCoordinate;
 @property (nonatomic, strong) UIAccelerometer *accelerometerManager;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+
+- (void)refresh:(NSMutableArray*)dataSources;
+- (void)closeCameraView;
+- (void)startListening:(CLLocationManager*)locManager;
+- (void)stopListening;
+- (void)initInterface;
+
+- (void)setViewToPortrait;
+- (void)setViewToLandscape;
+
+
 
 @end

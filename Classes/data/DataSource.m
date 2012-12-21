@@ -34,7 +34,7 @@
  *  CONSTRUCTOR
  *
  ***/
-- (DataSource*)initTitle:(NSString*)tit jsonUrl:(NSString*)url locked:(BOOL)lock {
+- (id)initTitle:(NSString*)tit jsonUrl:(NSString*)url locked:(BOOL)lock {
     self = [super init];
     if(self) {
         title = tit;

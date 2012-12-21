@@ -18,7 +18,7 @@
  */
 #import "AugmentedGeoViewController.h"
 
-#import "PhysicalPlace.h"
+#import "PoiItem.h"
 
 @implementation AugmentedGeoViewController
 
@@ -35,12 +35,10 @@
 
 - (void)setCenterLocation:(CLLocation*)newLocation {
 	centerLocation = newLocation;
-	for (PhysicalPlace *geoLocation in self.coordinates) {
-		if ([geoLocation isKindOfClass:[PhysicalPlace class]]) {
-			[geoLocation calibrateUsingOrigin:centerLocation];
-			if (geoLocation.radialDistance > self.maximumScaleDistance) {
-				self.maximumScaleDistance = geoLocation.radialDistance;
-			}
+	for (PoiItem *geoLocation in self.coordinates) {
+        [geoLocation calibrateUsingOrigin:centerLocation];
+		if (geoLocation.radialDistance > self.maximumScaleDistance) {
+			self.maximumScaleDistance = geoLocation.radialDistance;
 		}
 	}
 }

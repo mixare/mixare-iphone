@@ -19,13 +19,13 @@
 
 #import <UIKit/UIKit.h>
 #define RADIUS 30.0
-#import "PhysicalPlace.h"
+#import "PoiItem.h"
 @interface Radar : UIView {
     NSArray * _pois;
     float _range;
     float _radius;
 }
-@property (nonatomic,strong) NSArray * pois;
+@property (nonatomic, strong) NSArray * pois;
 @property (nonatomic, readonly) float range;
 @property (nonatomic) float radius;
 

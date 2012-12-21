@@ -30,7 +30,7 @@
 
 @synthesize dataSources;
 
-- (DataSourceManager*)init {
+- (id)init {
     self = [super init];
     [self loadDataSources];
     return self;

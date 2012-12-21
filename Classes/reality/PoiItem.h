@@ -24,34 +24,7 @@
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 
 //This class represents a POI with all the needed information
-@class PoiItem;
 @class Position;
-
-@protocol ARPersistentItem
-
-@property (nonatomic, readonly) PoiItem *arCoordinate;
-
-@optional
-
-// Title and subtitle for use by selection UI.
-- (NSString*)title;
-- (NSString*)subtitle;
-
-@end
-
-
-@protocol ARGeoPersistentItem
-
-// Center latitude and longitude of the annotion view.
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-
-@optional
-
-// Title and subtitle for use by selection UI.
-- (NSString*)title;
-- (NSString*)subtitle;
-
-@end
 
 @interface PoiItem : NSObject {
     //distance from device to poi
@@ -59,30 +32,18 @@
 	double inclination;
     //value of how many degrees the poi is away from north in radiants
 	double azimuth;
-    //associated url to the poi (wikipedia, buzz …)
-    NSString *_url;
-    //string which describes from which source the poi comes from (WIKIPEDIA, BUZZ, TWITTER, MIXARE)
-	NSString *_source;
-    //title of the poi
-	NSString *title;
-    //subtitle of the poi
-	NSString *subtitle;
     Position *position;
+    CLLocation *geoLocation;
 }
 
-- (NSUInteger)hash;
-- (BOOL)isEqual:(id)other;
-- (BOOL)isEqualToCoordinate:(PoiItem*)otherCoordinate;
-- (PoiItem*)coordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
-
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, strong) NSString *source;
 @property (nonatomic) double radialDistance;
 @property (nonatomic) double inclination;
 @property (nonatomic) double azimuth;
-@property (nonatomic, strong) NSString *url;
 @property (nonatomic) CGPoint radarPos;
-@property (nonatomic, readonly) Position *position;
+@property (nonatomic, retain) Position *position;
+
+- (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
+- (id)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt position:(Position*)pos;
+- (void)calibrateUsingOrigin:(CLLocation*)origin;
 
 @end

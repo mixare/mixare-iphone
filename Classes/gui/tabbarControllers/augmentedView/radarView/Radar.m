@@ -46,7 +46,7 @@
     _range = _radius *1000;
     float scale = _range / RADIUS;
     if (_pois != nil) {
-        for (PhysicalPlace *poi in _pois) {
+        for (PoiItem *poi in _pois) {
             float x, y;
             //case1: azimiut is in the 1 quadrant of the radar
             if (poi.azimuth >= 0 && poi.azimuth < M_PI / 2) {
@@ -78,11 +78,7 @@
                 y = RADIUS;
             }
             //drawing the radar point
-            if ([poi.source isEqualToString:@"Wikipedia"]) {
-                CGContextSetRGBFillColor(contextRef, 255, 0, 0, 1);
-            } else if([poi.source isEqualToString:@"Buzz"]) {
-                CGContextSetRGBFillColor(contextRef, 0, 255, 0, 1);
-            }
+            CGContextSetRGBFillColor(contextRef, 255, 0, 0, 1);
             if (x <= RADIUS * 2 && x >= 0 && y >= 0 && y <= RADIUS * 2) {
                 CGContextFillEllipseInRect(contextRef, CGRectMake(x, y, 2, 2)); 
             }

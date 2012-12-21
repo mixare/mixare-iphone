@@ -30,7 +30,6 @@
 @synthesize scaleViewsBasedOnDistance, rotateViewsBasedOnPerspective;
 @synthesize maximumScaleDistance;
 @synthesize minimumScaleFactor, maximumRotationAngle;
-@synthesize updateFrequency;
 @synthesize coordinates = ar_coordinates;
 @synthesize locationDelegate, accelerometerDelegate;
 @synthesize cameraController;
@@ -42,7 +41,7 @@
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
-	self.updateFrequency = 1 / 20.0;
+	updateFrequency = 1 / 20.0;
     [self loadView];
     
 #if !TARGET_IPHONE_SIMULATOR
@@ -98,7 +97,7 @@
 	updateFrequency = newUpdateFrequency;
 	if (!_updateTimer) return;
 	[_updateTimer invalidate];
-	_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
+	_updateTimer = [NSTimer scheduledTimerWithTimeInterval:updateFrequency
 													 target:self
 												   selector:@selector(updateLocations:)
 												   userInfo:nil
@@ -155,11 +154,11 @@
 		self.accelerometerManager.delegate = self;
 	}
 	if (!self.centerCoordinate) {
-		self.centerCoordinate = [[PoiItem alloc] coordinateWithRadialDistance:0 inclination:0 azimuth:0];
+		self.centerCoordinate = [[PoiItem alloc] initCoordinateWithRadialDistance:0 inclination:0 azimuth:0];
 	}
 }
 
-- (CGPoint)pointInView:(MarkerView*)realityView forCoordinate:(PoiItem*)coordinate {
+- (CGPoint)pointInView:(UIView*)realityView forCoordinate:(PoiItem*)coordinate {
 	CGPoint point;
 	//x coordinate.
 	double pointAzimuth = coordinate.azimuth;
@@ -390,7 +389,6 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
  *  @param coordinate
  *
  ***/
-
 #define BOX_WIDTH 250
 #define BOX_HEIGHT 200
 - (MarkerView*)viewForCoordinate:(PoiItem*)coordinate {
@@ -408,11 +406,11 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.text = coordinate.title;
+	titleLabel.text = coordinate.position.title;
     //Markers get automatically resized
     [titleLabel sizeToFit];
 	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
-    tempView.url = coordinate.url;
+    tempView.url = coordinate.position.url;
 	[tempView addSubview:titleLabel];
 	[tempView addSubview:pointView];
     tempView.userInteractionEnabled = YES;
@@ -424,7 +422,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     [ar_overlayView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 #endif
 	if (!_updateTimer) {
-		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:self.updateFrequency
+		_updateTimer = [NSTimer scheduledTimerWithTimeInterval:updateFrequency
                                                          target:self
                                                        selector:@selector(updateLocations:)
                                                        userInfo:nil

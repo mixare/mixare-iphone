@@ -279,8 +279,6 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openTabCamera {
-    notificationView.center = window.center;
-    [window addSubview:notificationView];
     [self refresh];
     [self openARView];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];

@@ -17,16 +17,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  NotificationViewController.h
+//  MapViewAnnotationTest.h
 //  Mixare
 //
-//  Created by Obkircher Jakob on 06.12.10.
+//  Created by Aswin Ly on 19-12-12.
 //
 
-#import <UIKit/UIKit.h>
+#import <SenTestingKit/SenTestingKit.h>
+#import "MapViewAnnotation.h"
 
-@interface NotificationViewController : UIViewController {
-    IBOutlet UIActivityIndicatorView *indicator;
-}
+@interface MapViewAnnotationTest : SenTestCase
 
 @end

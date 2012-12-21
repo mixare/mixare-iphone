@@ -25,7 +25,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MapViewAnnotation.h"
-#import "PhysicalPlace.h"
+#import "PoiItem.h"
 @class DataSource;
 
 @interface Position : NSObject {
@@ -37,7 +37,7 @@
     CGFloat altitude;
     DataSource *source;
     MapViewAnnotation *mapViewAnnotation;
-    PhysicalPlace *poiItem;
+    PoiItem *poiItem;
     UIImage *image;
 }
 
@@ -45,14 +45,14 @@
 @property (nonatomic, readonly) NSString *summary;
 @property (nonatomic, readonly) NSString *url;
 @property (nonatomic, readonly) MapViewAnnotation *mapViewAnnotation;
-@property (nonatomic, readonly) PhysicalPlace *poiItem;
+@property (nonatomic, readonly) PoiItem *poiItem;
 @property (nonatomic, retain) DataSource *source;
 @property (nonatomic, readonly) float latitude;
 @property (nonatomic, readonly) float longitude;
 @property (nonatomic, readonly) CGFloat altitude;
 @property (nonatomic, readonly) UIImage *image;
 
-- (Position*)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour;
+- (id)initWithTitle:(NSString*)tit withSummary:(NSString*)sum withUrl:(NSString*)u withLatitude:(float)lat withLongitude:(float)lon withAltitude:(CGFloat)alt withSource:(DataSource*)sour;
 - (void)setMarker:(NSString*)marker;
 
 @end
