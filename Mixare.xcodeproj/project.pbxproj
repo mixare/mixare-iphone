@@ -25,7 +25,6 @@
 		365C5C2D12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 365C5C2C12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png */; };
 		365C5C2F12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 365C5C2E12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png */; };
 		365F945E12AE737800286824 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365F945D12AE737800286824 /* Localizable.strings */; };
-		365F947112AE7C7000286824 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD73870D9D96C1002E5188 /* MainWindow.xib */; };
 		3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
 		36A31585128D6E15002D1C57 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A31584128D6E15002D1C57 /* WebView.xib */; };
@@ -44,9 +43,6 @@
 		36B3DC9F12B9FCF100670FCF /* twitter_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9112B9FCF100670FCF /* twitter_logo_small.png */; };
 		36B3DCA012B9FCF100670FCF /* wikipedia_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */; };
 		36B3DCA112B9FCF100670FCF /* wikipedia_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */; };
-		E223A6CC1653942700C94815 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
-		E223A6CD1653943000C94815 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
-		E223A6CE1653943400C94815 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */; };
 		E23FE78C1681D02600AC90F3 /* MapViewAnnotationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E23FE78B1681D02600AC90F3 /* MapViewAnnotationTest.m */; };
 		E23FE7901681D32A00AC90F3 /* PoiItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E23FE78F1681D32A00AC90F3 /* PoiItemTest.m */; };
 		E246F31C16104B140006EA40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
@@ -78,6 +74,11 @@
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
 		E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
+		E2AA278516944CF500AABDE6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278416944CF500AABDE6 /* MainWindow.xib */; };
+		E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
+		E2AA278A16945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
+		E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
+		E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
@@ -170,7 +171,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765070DF74369002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AB4B0D9B1048005BE974 /* Mixare_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixare_Prefix.pch; sourceTree = "<group>"; };
-		28AD73870D9D96C1002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3602A50212B9FE0F00B92585 /* icon_datasource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_datasource.png; sourceTree = "<group>"; };
 		3626B93A12840B1600B52201 /* SourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SourceCell.xib; sourceTree = "<group>"; };
@@ -215,7 +215,6 @@
 		36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo.png; sourceTree = "<group>"; };
 		36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo_small.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E23FE78A1681D02600AC90F3 /* MapViewAnnotationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotationTest.h; sourceTree = "<group>"; };
 		E23FE78B1681D02600AC90F3 /* MapViewAnnotationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotationTest.m; sourceTree = "<group>"; };
 		E23FE78E1681D32A00AC90F3 /* PoiItemTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiItemTest.h; sourceTree = "<group>"; };
@@ -253,6 +252,8 @@
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
 		E2A8C247165FAA300077854B /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/bootstrap/StartWithMeDemo.h; sourceTree = "<group>"; };
 		E2A8C248165FAA300077854B /* StartWithMeDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartWithMeDemo.m; path = extensions/bootstrap/StartWithMeDemo.m; sourceTree = "<group>"; };
+		E2AA278416944CF500AABDE6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AEEC25165D375200802003 /* ArenaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaProcessor.h; path = extensions/dataprocessors/ArenaProcessor.h; sourceTree = "<group>"; };
 		E2AEEC26165D375200802003 /* ArenaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaProcessor.m; path = extensions/dataprocessors/ArenaProcessor.m; sourceTree = "<group>"; };
@@ -359,7 +360,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E223A6CD1653943000C94815 /* libiconv.2.4.0.dylib in Frameworks */,
+				E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */,
 				E2AFE7661652A9C60038E17A /* CoreVideo.framework in Frameworks */,
 				E2AFE7621652A9AD0038E17A /* CoreMedia.framework in Frameworks */,
 				E2AFE75E1652A9840038E17A /* AVFoundation.framework in Frameworks */,
@@ -378,7 +379,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E223A6CE1653943400C94815 /* libiconv.2.4.0.dylib in Frameworks */,
+				E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */,
 				E2AFE7671652A9CE0038E17A /* CoreVideo.framework in Frameworks */,
 				E2AFE7631652A9B10038E17A /* CoreMedia.framework in Frameworks */,
 				E2AFE75F1652A9920038E17A /* AVFoundation.framework in Frameworks */,
@@ -456,7 +457,7 @@
 			children = (
 				365F945D12AE737800286824 /* Localizable.strings */,
 				3626B93A12840B1600B52201 /* SourceCell.xib */,
-				28AD73870D9D96C1002E5188 /* MainWindow.xib */,
+				E2AA278416944CF500AABDE6 /* MainWindow.xib */,
 				36A31584128D6E15002D1C57 /* WebView.xib */,
 				8D1107310486CEB800E47090 /* Mixare-Info.plist */,
 			);
@@ -466,7 +467,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E223A6CB1653942700C94815 /* libiconv.2.4.0.dylib */,
+				E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */,
 				E2AFE7641652A9BF0038E17A /* CoreVideo.framework */,
 				E2AFE7601652A9A30038E17A /* CoreMedia.framework */,
 				E2AFE75C1652A9580038E17A /* AVFoundation.framework */,
@@ -907,7 +908,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				365F947112AE7C7000286824 /* MainWindow.xib in Resources */,
 				3626B93B12840B1600B52201 /* SourceCell.xib in Resources */,
 				36A31585128D6E15002D1C57 /* WebView.xib in Resources */,
 				365F945E12AE737800286824 /* Localizable.strings in Resources */,
@@ -935,8 +935,9 @@
 				E2AFE7551652A5E90038E17A /* zbar-help.html in Resources */,
 				E2AFE7571652A5E90038E17A /* zbar-helpicons.png in Resources */,
 				E2AFE7591652A5E90038E17A /* zbar-samples.png in Resources */,
-				E223A6CC1653942700C94815 /* libiconv.2.4.0.dylib in Resources */,
 				E2B6E8C4165E3F08004E8641 /* HUDBackground.png in Resources */,
+				E2AA278516944CF500AABDE6 /* MainWindow.xib in Resources */,
+				E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -949,6 +950,7 @@
 				E2AFE7561652A5E90038E17A /* zbar-help.html in Resources */,
 				E2AFE7581652A5E90038E17A /* zbar-helpicons.png in Resources */,
 				E2AFE75A1652A5E90038E17A /* zbar-samples.png in Resources */,
+				E2AA278A16945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,7 +1117,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Frameworks\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1129,14 +1130,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Mixare;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -1145,11 +1144,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aswin Ly (3EK88MD753)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Frameworks\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -1161,11 +1160,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Mixare;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1213,6 +1211,88 @@
 			};
 			name = Release;
 		};
+		E2A8FF0C1684740A00DF3B83 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = NO;
+				VALID_ARCHS = "armv6 armv7";
+			};
+			name = "Ad Hoc Distribution";
+		};
+		E2A8FF0D1684740A00DF3B83 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aswin Ly (3EK88MD753)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Mixare_Prefix.pch;
+				INFOPLIST_FILE = "Mixare-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
+				);
+				PRODUCT_NAME = Mixare;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution";
+		};
+		E2A8FF0E1684740A00DF3B83 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc Distribution";
+		};
 		E2DFCF90160B25470045A6C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1226,7 +1306,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1243,8 +1322,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1265,7 +1342,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1275,8 +1351,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1316,7 +1390,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Frameworks\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1330,8 +1403,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				"OTHER_CFLAGS[arch=*]" = (
@@ -1359,7 +1430,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"\"$(SRCROOT)/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1376,8 +1446,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Classes/ZBarSDK\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1395,6 +1463,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				E2DFCF95160B34100045A6C4 /* Coverage */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				E2A8FF0D1684740A00DF3B83 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Coverage;
@@ -1405,6 +1474,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				E2DFCF94160B34100045A6C4 /* Coverage */,
 				C01FCF5008A954540054247B /* Release */,
+				E2A8FF0C1684740A00DF3B83 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Coverage;
@@ -1415,6 +1485,7 @@
 				E2DFCF90160B25470045A6C4 /* Debug */,
 				E2DFCF96160B34100045A6C4 /* Coverage */,
 				E2DFCF91160B25470045A6C4 /* Release */,
+				E2A8FF0E1684740A00DF3B83 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Coverage;
