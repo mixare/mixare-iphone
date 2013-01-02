@@ -36,22 +36,26 @@ static ProgressHUD *hud;
         hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
         mainView = view;
         rotateable = rotate;
+        CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+        if ([UIApplication sharedApplication].isStatusBarHidden) {
+            statusBarHeight = 0;
+        }
         int tabBar = 0;
         if (tab) {
-            tabBar = 70;
+            tabBar = 49;
         } 
         windowPortrait = CGRectMake(pad, pad,
                                     [UIScreen mainScreen].bounds.size.width - (pad * 2),
-                                    [UIScreen mainScreen].bounds.size.height - tabBar - (pad * 2));
+                                    [UIScreen mainScreen].bounds.size.height - tabBar - statusBarHeight - (pad * 2));
         buttonPortrait = CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 50,
-                                    [UIScreen mainScreen].bounds.size.height - tabBar - 35,
+                                    [UIScreen mainScreen].bounds.size.height - tabBar - statusBarHeight - 35,
                                     100, 35);
         
         windowLandscape = CGRectMake(pad, pad,
                                     [UIScreen mainScreen].bounds.size.height - (pad * 2),
-                                    [UIScreen mainScreen].bounds.size.width - tabBar - (pad * 2));
+                                    [UIScreen mainScreen].bounds.size.width - tabBar - statusBarHeight - (pad * 2));
         buttonLandscape = CGRectMake([UIScreen mainScreen].bounds.size.height / 2 - 50,
-                                    [UIScreen mainScreen].bounds.size.width - tabBar - 35,
+                                    [UIScreen mainScreen].bounds.size.width - tabBar - statusBarHeight - 35,
                                     100, 35);
         
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
