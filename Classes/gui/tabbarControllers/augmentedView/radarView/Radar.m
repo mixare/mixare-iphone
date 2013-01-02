@@ -18,9 +18,9 @@
  */
 
 #import "Radar.h"
-#define radians(x) (M_PI * (x) / 180.0)
 
 @implementation Radar
+
 @synthesize pois = _pois, range= _range, radius= _radius;
 
 - (id)initWithFrame:(CGRect)frame {

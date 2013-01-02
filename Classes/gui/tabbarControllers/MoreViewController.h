@@ -43,8 +43,8 @@
     IBOutlet UILabel *date;
     //location position
     CLLocation *_loc;
-    
 }
+
 @property (nonatomic, strong) CLLocation *loc;
 
 //action method which is added to the logobutton .. open the mixare webpage
@@ -55,5 +55,6 @@
 
 //method which write gps information in the according labels
 - (void)showGPSInfo:(CLLocation*)loc;
+
 @end
  

@@ -32,8 +32,7 @@
 
 @implementation NSString (NSString_SBJSON)
 
-- (id)JSONValue
-{
+- (id)JSONValue {
     SBJsonParser *jsonParser = [SBJsonParser new];
     id repr = [jsonParser objectWithString:self];
     if (!repr)

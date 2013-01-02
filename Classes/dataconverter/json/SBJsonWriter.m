@@ -35,7 +35,6 @@
 - (BOOL)appendArray:(NSArray*)fragment into:(NSMutableString*)json;
 - (BOOL)appendDictionary:(NSDictionary*)fragment into:(NSMutableString*)json;
 - (BOOL)appendString:(NSString*)fragment into:(NSMutableString*)json;
-
 - (NSString*)indent;
 
 @end
@@ -234,6 +233,5 @@ static NSMutableCharacterSet *kEscapeChars;
     [json appendString:@"\""];
     return YES;
 }
-
 
 @end

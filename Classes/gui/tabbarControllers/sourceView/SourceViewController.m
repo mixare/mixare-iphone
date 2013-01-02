@@ -21,19 +21,9 @@
 #import "SourceTableCell.h"
 #import "PluginLoader.h"
 #import "DataInput.h"
-//Cons
-
-#define kTextFieldWidth         180.0
-#define kViewTag				1
-#define kLeftMargin				100.0
-#define kTopMargin				20.0
-#define kRightMargin			20.0
-#define kTweenMargin			11.0
-#define kTextFieldHeight		30.0
 
 @implementation SourceViewController
 @synthesize dataSourceArray, downloadManager;
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;

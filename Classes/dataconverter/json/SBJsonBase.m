@@ -28,8 +28,8 @@
  */
 
 #import "SBJsonBase.h"
-NSString * SBJSONErrorDomain = @"org.brautaset.JSON.ErrorDomain";
 
+NSString * SBJSONErrorDomain = @"org.brautaset.JSON.ErrorDomain";
 
 @implementation SBJsonBase
 
@@ -42,7 +42,6 @@ NSString * SBJSONErrorDomain = @"org.brautaset.JSON.ErrorDomain";
         self.maxDepth = 512;
     return self;
 }
-
 
 - (void)addErrorWithCode:(NSUInteger)code description:(NSString*)str {
     NSDictionary *userInfo;

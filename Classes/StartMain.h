@@ -38,7 +38,6 @@
 - (void)openARView;
 - (void)openMenu;
 - (void)refresh;
-
 - (void)showHud;
 - (void)closeHud;
 

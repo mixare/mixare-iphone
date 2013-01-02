@@ -26,6 +26,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+
 @class Position;
 
 @interface MapViewAnnotation : NSObject <MKAnnotation> {
