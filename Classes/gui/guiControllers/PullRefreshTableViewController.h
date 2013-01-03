@@ -47,7 +47,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface PullRefreshTableViewController : UITableViewController {
     UIView *refreshHeaderView;
     UILabel *refreshLabel;

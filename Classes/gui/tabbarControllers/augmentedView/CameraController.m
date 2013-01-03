@@ -25,10 +25,6 @@
 
 #import "CameraController.h"
 
-@interface CameraController ()
-
-@end
-
 @implementation CameraController
 
 @synthesize captureSession;

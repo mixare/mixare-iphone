@@ -22,7 +22,6 @@
 
 @interface RadarViewPortView : UIView {
     @private
-    BOOL isFirstAccess;
     float newAngle;
     float referenceAngle;
 }

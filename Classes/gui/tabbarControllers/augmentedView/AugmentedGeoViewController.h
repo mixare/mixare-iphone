@@ -18,7 +18,6 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import "AugmentedViewController.h"
 
 @interface AugmentedGeoViewController : AugmentedViewController {

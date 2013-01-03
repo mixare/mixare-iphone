@@ -26,7 +26,6 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         // Initialization code
-        isFirstAccess = YES;
         newAngle = 45.0;
         referenceAngle = 247.5;
     }
@@ -39,15 +38,10 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     CGContextSetRGBFillColor(contextRef, 0, 255, 115, 0.3);
-    
-    // view port 
-//    if(isFirstAccess){
-        CGContextMoveToPoint(contextRef, RADIUS, RADIUS);
-        CGContextAddArc(contextRef, RADIUS, RADIUS, RADIUS,  radians(referenceAngle), radians(referenceAngle+newAngle),0); 
-        CGContextClosePath(contextRef); 
-        CGContextFillPath(contextRef);
-//    }
-    isFirstAccess = NO;
+    CGContextMoveToPoint(contextRef, RADIUS, RADIUS);
+    CGContextAddArc(contextRef, RADIUS, RADIUS, RADIUS,  radians(referenceAngle), radians(referenceAngle+newAngle),0);
+    CGContextClosePath(contextRef);
+    CGContextFillPath(contextRef);
 }
 
 

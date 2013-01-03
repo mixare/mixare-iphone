@@ -32,7 +32,6 @@
 @interface SBJsonParser ()
 
 - (BOOL)scanValue:(NSObject **)o;
-
 - (BOOL)scanRestOfArray:(NSMutableArray **)o;
 - (BOOL)scanRestOfDictionary:(NSMutableDictionary **)o;
 - (BOOL)scanRestOfNull:(NSNull **)o;
@@ -42,10 +41,8 @@
 
 // Cannot manage without looking at the first digit
 - (BOOL)scanNumber:(NSNumber **)o;
-
 - (BOOL)scanHexQuad:(unichar *)x;
 - (BOOL)scanUnicodeChar:(unichar *)x;
-
 - (BOOL)scanIsAtEnd;
 
 @end
@@ -53,11 +50,9 @@
 #define skipWhitespace(c) while (isspace(*c)) c++
 #define skipDigits(c) while (isdigit(*c)) c++
 
-
 @implementation SBJsonParser
 
 static char ctrl[0x22];
-
 
 + (void)initialize {
     ctrl[0] = '\"';
@@ -160,8 +155,7 @@ static char ctrl[0x22];
     return NO;
 }
 
-- (BOOL)scanRestOfTrue:(NSNumber **)o
-{
+- (BOOL)scanRestOfTrue:(NSNumber **)o {
     if (!strncmp(c, "rue", 3)) {
         c += 3;
         *o = @YES;
@@ -171,8 +165,7 @@ static char ctrl[0x22];
     return NO;
 }
 
-- (BOOL)scanRestOfFalse:(NSNumber **)o
-{
+- (BOOL)scanRestOfFalse:(NSNumber **)o {
     if (!strncmp(c, "alse", 4)) {
         c += 4;
         *o = @NO;
@@ -230,8 +223,7 @@ static char ctrl[0x22];
     return NO;
 }
 
-- (BOOL)scanRestOfDictionary:(NSMutableDictionary **)o 
-{
+- (BOOL)scanRestOfDictionary:(NSMutableDictionary **)o {
     if (maxDepth && ++depth > maxDepth) {
         [self addErrorWithCode:EDEPTH description: @"Nested too deep"];
         return NO;
@@ -282,12 +274,10 @@ static char ctrl[0x22];
     return NO;
 }
 
-- (BOOL)scanRestOfString:(NSMutableString **)o 
-{
+- (BOOL)scanRestOfString:(NSMutableString **)o {
     // if the string has no control characters in it, return it in one go, without any temporary allocations.
     size_t len = strcspn(c, ctrl);
-    if (len && *(c + len) == '\"')
-    {
+    if (len && *(c + len) == '\"') {
         *o = [[NSMutableString alloc] initWithBytes:(char*)c length:len encoding:NSUTF8StringEncoding];
         c += len + 1;
         return YES;
@@ -391,8 +381,7 @@ static char ctrl[0x22];
     return YES;
 }
 
-- (BOOL)scanHexQuad:(unichar *)x
-{
+- (BOOL)scanHexQuad:(unichar *)x {
     *x = 0;
     for (int i = 0; i < 4; i++) {
         unichar uc = *c;
@@ -411,8 +400,7 @@ static char ctrl[0x22];
     return YES;
 }
 
-- (BOOL)scanNumber:(NSNumber **)o
-{
+- (BOOL)scanNumber:(NSNumber **)o {
     BOOL simple = YES;
     
     const char *ns = c;
@@ -505,11 +493,9 @@ static char ctrl[0x22];
     }
 }
 
-- (BOOL)scanIsAtEnd
-{
+- (BOOL)scanIsAtEnd {
     skipWhitespace(c);
     return !*c;
 }
-
 
 @end

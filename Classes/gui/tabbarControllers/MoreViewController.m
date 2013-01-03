@@ -20,6 +20,7 @@
 #import "MoreViewController.h"
 
 @implementation MoreViewController
+
 @synthesize loc = _loc;
 
 - (void)viewDidLoad {
@@ -69,7 +70,6 @@
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
     date.text = [dateFormatter stringFromDate:loc.timestamp];
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -87,8 +87,5 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
-
-
 
 @end
