@@ -26,6 +26,7 @@
 #import <Foundation/Foundation.h>
 #import "MapViewAnnotation.h"
 #import "PoiItem.h"
+
 @class DataSource;
 
 @interface Position : NSObject {

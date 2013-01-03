@@ -22,7 +22,6 @@
 #import "Position.h"
 
 @implementation ListViewController
-
 @synthesize downloadManager;
 
 /***

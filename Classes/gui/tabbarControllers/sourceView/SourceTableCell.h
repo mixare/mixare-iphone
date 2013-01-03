@@ -23,11 +23,9 @@
 @interface SourceTableCell : UITableViewCell {
 	UILabel *_sourceLabel;
 	UIImageView *_sourceLogoView;
-	//UISwitch *_sourceSwitch;
-
 }
+
 @property (nonatomic, strong) IBOutlet UILabel *sourceLabel;
-//@property (nonatomic, retain) IBOutlet UISwitch *sourceSwitch;
 @property (nonatomic, strong) IBOutlet UIImageView *sourceLogoView;
 
 @end

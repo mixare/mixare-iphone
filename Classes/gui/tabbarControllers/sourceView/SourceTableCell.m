@@ -21,7 +21,6 @@
 
 @implementation SourceTableCell
 @synthesize sourceLabel = _sourceLabel;
-//@synthesize sourceSwitch = _sourceSwitch;
 @synthesize sourceLogoView = _sourceLogoView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier {

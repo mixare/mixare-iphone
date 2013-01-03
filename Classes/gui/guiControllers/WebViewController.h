@@ -29,5 +29,7 @@
     //Loading view with activity indicator
     IBOutlet UIView *loadView;
 }
+
 @property (nonatomic, strong) NSString *url;
+
 @end

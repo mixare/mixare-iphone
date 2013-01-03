@@ -50,7 +50,6 @@
 
 #define REFRESH_HEADER_HEIGHT 52.0f
 
-
 @implementation PullRefreshTableViewController
 
 @synthesize textPull, textRelease, textLoading, refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner;

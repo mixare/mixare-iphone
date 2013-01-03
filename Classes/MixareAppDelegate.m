@@ -20,8 +20,6 @@
 #import "MixareAppDelegate.h"
 #import "PluginLoader.h"
 #import "ProgressHUD.h"
-#define CAMERA_TRANSFORM 1.12412
-#define degreesToRadian(x) (M_PI * (x) / 180.0)
  
 @implementation MixareAppDelegate
 

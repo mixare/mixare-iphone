@@ -25,12 +25,7 @@
 
 #import "DataConverter.h"
 #import "PluginLoader.h"
-
 #import "DataProcessor.h"
-#import "TwitterProcessor.h"
-#import "WikipediaProcessor.h"
-#import "MixareProcessor.h"
-#import "GoogleAddressesProcessor.h"
 
 static DataConverter *dataConverter;
 

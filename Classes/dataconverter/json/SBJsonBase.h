@@ -31,7 +31,6 @@
 
 extern NSString * SBJSONErrorDomain;
 
-
 enum {
     EUNSUPPORTED = 1,
     EPARSENUM,
