@@ -7,7 +7,14 @@
 //
 
 #import "Plugins.h"
+#import "MixareAppDelegate.h"
 
 @implementation Plugins
+
+- (id)init {
+    self = [super init];
+    NSLog(@"YEAH");
+    return self;
+}
 
 @end

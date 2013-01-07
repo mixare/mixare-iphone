@@ -51,7 +51,6 @@
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
-		E29C779F16972BF00006C4D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D11697362D0006C4D2 /* StartMain.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D616832C0100B6A493 /* DataProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,16 +85,41 @@
 		E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
-		E2AB2FF7169AD23800C00A07 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7641652A9BF0038E17A /* CoreVideo.framework */; };
-		E2AB2FF8169AD23800C00A07 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7601652A9A30038E17A /* CoreMedia.framework */; };
-		E2AB2FF9169AD23800C00A07 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE75C1652A9580038E17A /* AVFoundation.framework */; };
-		E2AB2FFA169AD23800C00A07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE2972162D9F32009CF67D /* QuartzCore.framework */; };
-		E2AB2FFB169AD23800C00A07 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
-		E2AB2FFC169AD23800C00A07 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
-		E2AB2FFD169AD23800C00A07 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
-		E2AB2FFE169AD23800C00A07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		E2AB2FFF169AD23800C00A07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E2AB3005169AD3A500C00A07 /* Plugins.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C77A516972BF00006C4D2 /* Plugins.m */; };
+		E2AB3044169ADC7400C00A07 /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
+		E2AB3046169ADCAB00C00A07 /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
+		E2AB3047169ADCAB00C00A07 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
+		E2AB3048169ADCAB00C00A07 /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFFE1680B97B009A3943 /* Radar.m */; };
+		E2AB3049169ADCAB00C00A07 /* RadarViewPortView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3D0001680B97B009A3943 /* RadarViewPortView.m */; };
+		E2AB304A169ADCAB00C00A07 /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B2058C1668E772005AC7B5 /* MarkerView.m */; };
+		E2AB304B169ADCAB00C00A07 /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */; };
+		E2AB304C169ADCAB00C00A07 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
+		E2AB304D169ADCAB00C00A07 /* CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AF18C51678DEF1002CE6D1 /* CameraController.m */; };
+		E2AB304E169ADCAB00C00A07 /* SourceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609312B9F9100014850C /* SourceTableCell.m */; };
+		E2AB304F169ADCAB00C00A07 /* SourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609512B9F9100014850C /* SourceViewController.m */; };
+		E2AB3050169ADCAB00C00A07 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
+		E2AB3051169ADCAB00C00A07 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608E12B9F9100014850C /* MapViewController.m */; };
+		E2AB3052169ADCAB00C00A07 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609012B9F9100014850C /* MoreViewController.m */; };
+		E2AB3053169ADCAB00C00A07 /* PopUpWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3D00B1680BAC6009A3943 /* PopUpWebView.m */; };
+		E2AB3054169ADCAB00C00A07 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3D00D1680BAC6009A3943 /* ProgressHUD.m */; };
+		E2AB3055169ADCAB00C00A07 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3D00F1680BAC6009A3943 /* PullRefreshTableViewController.m */; };
+		E2AB3056169ADCAB00C00A07 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3D0111680BAC6009A3943 /* WebViewController.m */; };
+		E2AB3057169ADCAB00C00A07 /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100A81650FC7D0086BD8E /* DataConverter.m */; };
+		E2AB3058169ADCAB00C00A07 /* JsonData.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B91650FC7D0086BD8E /* JsonData.m */; };
+		E2AB3059169ADCAB00C00A07 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100AF1650FC7D0086BD8E /* NSObject+SBJSON.m */; };
+		E2AB305A169ADCAB00C00A07 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B11650FC7D0086BD8E /* NSString+SBJSON.m */; };
+		E2AB305B169ADCAB00C00A07 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B31650FC7D0086BD8E /* SBJsonBase.m */; };
+		E2AB305C169ADCAB00C00A07 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B51650FC7D0086BD8E /* SBJsonParser.m */; };
+		E2AB305D169ADCAB00C00A07 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100B71650FC7D0086BD8E /* SBJsonWriter.m */; };
+		E2AB305E169ADCAB00C00A07 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
+		E2AB305F169ADCAB00C00A07 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
+		E2AB3060169ADCAB00C00A07 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
+		E2AB3061169ADCAB00C00A07 /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
+		E2AB3062169ADCAB00C00A07 /* PluginLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100DE165102400086BD8E /* PluginLoader.m */; };
+		E2AB3063169ADCAB00C00A07 /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
+		E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
+		E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
+		E2AB3072169AF30D00C00A07 /* Plugins.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C77A316972BF00006C4D2 /* Plugins.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
@@ -413,16 +437,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29C779F16972BF00006C4D2 /* Foundation.framework in Frameworks */,
-				E2AB2FF7169AD23800C00A07 /* CoreVideo.framework in Frameworks */,
-				E2AB2FF8169AD23800C00A07 /* CoreMedia.framework in Frameworks */,
-				E2AB2FF9169AD23800C00A07 /* AVFoundation.framework in Frameworks */,
-				E2AB2FFA169AD23800C00A07 /* QuartzCore.framework in Frameworks */,
-				E2AB2FFB169AD23800C00A07 /* CoreMotion.framework in Frameworks */,
-				E2AB2FFC169AD23800C00A07 /* MapKit.framework in Frameworks */,
-				E2AB2FFD169AD23800C00A07 /* CoreLocation.framework in Frameworks */,
-				E2AB2FFE169AD23800C00A07 /* UIKit.framework in Frameworks */,
-				E2AB2FFF169AD23800C00A07 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +924,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2AB3072169AF30D00C00A07 /* Plugins.h in Headers */,
 				E29C77D01697362D0006C4D2 /* Mixare.h in Headers */,
 				E29C77D11697362D0006C4D2 /* StartMain.h in Headers */,
 				E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */,
@@ -1133,6 +1148,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2AB3005169AD3A500C00A07 /* Plugins.m in Sources */,
+				E2AB3046169ADCAB00C00A07 /* DataSourceManager.m in Sources */,
+				E2AB3047169ADCAB00C00A07 /* DownloadManager.m in Sources */,
+				E2AB3048169ADCAB00C00A07 /* Radar.m in Sources */,
+				E2AB3049169ADCAB00C00A07 /* RadarViewPortView.m in Sources */,
+				E2AB304A169ADCAB00C00A07 /* MarkerView.m in Sources */,
+				E2AB304B169ADCAB00C00A07 /* AugmentedGeoViewController.m in Sources */,
+				E2AB304C169ADCAB00C00A07 /* AugmentedViewController.m in Sources */,
+				E2AB304D169ADCAB00C00A07 /* CameraController.m in Sources */,
+				E2AB304E169ADCAB00C00A07 /* SourceTableCell.m in Sources */,
+				E2AB304F169ADCAB00C00A07 /* SourceViewController.m in Sources */,
+				E2AB3050169ADCAB00C00A07 /* ListViewController.m in Sources */,
+				E2AB3051169ADCAB00C00A07 /* MapViewController.m in Sources */,
+				E2AB3052169ADCAB00C00A07 /* MoreViewController.m in Sources */,
+				E2AB3053169ADCAB00C00A07 /* PopUpWebView.m in Sources */,
+				E2AB3054169ADCAB00C00A07 /* ProgressHUD.m in Sources */,
+				E2AB3055169ADCAB00C00A07 /* PullRefreshTableViewController.m in Sources */,
+				E2AB3056169ADCAB00C00A07 /* WebViewController.m in Sources */,
+				E2AB3057169ADCAB00C00A07 /* DataConverter.m in Sources */,
+				E2AB3058169ADCAB00C00A07 /* JsonData.m in Sources */,
+				E2AB3059169ADCAB00C00A07 /* NSObject+SBJSON.m in Sources */,
+				E2AB305A169ADCAB00C00A07 /* NSString+SBJSON.m in Sources */,
+				E2AB305B169ADCAB00C00A07 /* SBJsonBase.m in Sources */,
+				E2AB305C169ADCAB00C00A07 /* SBJsonParser.m in Sources */,
+				E2AB305D169ADCAB00C00A07 /* SBJsonWriter.m in Sources */,
+				E2AB305E169ADCAB00C00A07 /* DataSource.m in Sources */,
+				E2AB305F169ADCAB00C00A07 /* Position.m in Sources */,
+				E2AB3060169ADCAB00C00A07 /* MapViewAnnotation.m in Sources */,
+				E2AB3061169ADCAB00C00A07 /* PoiItem.m in Sources */,
+				E2AB3062169ADCAB00C00A07 /* PluginLoader.m in Sources */,
+				E2AB3063169ADCAB00C00A07 /* DataSourceList.m in Sources */,
+				E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */,
+				E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */,
+				E2AB3044169ADC7400C00A07 /* MixareAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1347,6 +1395,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/Plugins.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1362,8 +1415,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1380,6 +1433,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/Plugins.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
@@ -1388,8 +1446,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1407,6 +1465,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/Plugins.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
@@ -1415,8 +1478,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1434,6 +1497,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/Plugins.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)\"",
+					"$(inherited)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
@@ -1442,8 +1510,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
