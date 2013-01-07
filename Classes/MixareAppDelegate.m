@@ -38,12 +38,15 @@ static ProgressHUD *hud;
  *
  ***/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self runApplication];
+    [self runApplication:nil];
     return YES;
 }
 
-- (void)runApplication {
-    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
+- (void)runApplication:(UIWindow*)win {
+    if (win != nil) {
+        window = win;
+    }
+    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"", nil)];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
@@ -120,10 +123,10 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)initUIBarTitles {
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
+    ((UITabBarItem *)(tabBarController.tabBar.items)[0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
+    ((UITabBarItem *)(tabBarController.tabBar.items)[1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
+    ((UITabBarItem *)(tabBarController.tabBar.items)[2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
+    ((UITabBarItem *)(tabBarController.tabBar.items)[3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
 }
 
 /***
@@ -205,11 +208,11 @@ static ProgressHUD *hud;
 - (void)openMenu {
     [hud show];
     [augViewController closeCameraView];
-    _tabBarController.selectedIndex = 1;
+    tabBarController.selectedIndex = 1;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    window.rootViewController = _tabBarController;
+    window.rootViewController = tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -240,14 +243,14 @@ static ProgressHUD *hud;
  *  @param viewController
  *
  ***/
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+- (void)tabBarController:(UITabBarController *)tabController didSelectViewController:(UIViewController *)viewController {
     [hud show];
-    if (tabBarController.selectedIndex != 0) {
+    if (tabController.selectedIndex != 0) {
         [augViewController.locationManager stopUpdatingHeading];
         [augViewController.locationManager stopUpdatingLocation];
         [_locationManager stopUpdatingLocation];
     }
-    switch (tabBarController.selectedIndex) {
+    switch (tabController.selectedIndex) {
         case 0:
             NSLog(@"Opened camera tab");
             [self performSelectorInBackground:@selector(openTabCamera) withObject:nil];
@@ -296,8 +299,8 @@ static ProgressHUD *hud;
 - (void)openTabSources {
     if (_dataSourceManager.dataSources != nil) {
         [self refresh];
-        [_sourceViewController setDownloadManager:_downloadManager];
-        [_sourceViewController refresh:_dataSourceManager];
+        [sourceViewController setDownloadManager:_downloadManager];
+        [sourceViewController refresh:_dataSourceManager];
     }
     [hud dismiss];
 }
@@ -310,8 +313,8 @@ static ProgressHUD *hud;
 - (void)openTabPOI {
     if (_dataSourceManager.dataSources != nil) {
         [self refresh];
-        [_listViewController setDownloadManager:_downloadManager];
-        [_listViewController refresh:[_dataSourceManager getActivatedSources]];
+        [listViewController setDownloadManager:_downloadManager];
+        [listViewController refresh:[_dataSourceManager getActivatedSources]];
     } else {
         NSLog(@"Data POI List not set");
     }
@@ -327,7 +330,7 @@ static ProgressHUD *hud;
 - (void)openTabMap {
     if (_dataSourceManager.dataSources != nil) {
         [self refresh];
-        [_mapViewController refresh:[_dataSourceManager getActivatedSources]];
+        [mapViewController refresh:[_dataSourceManager getActivatedSources]];
         NSLog(@"Data Annotations map set");
     }
     [hud dismiss];
@@ -341,7 +344,7 @@ static ProgressHUD *hud;
  ***/
 - (void)openTabMore {
     NSLog(@"latitude: %f", _locationManager.location.coordinate.latitude);
-    [_moreViewController showGPSInfo:_locationManager.location];
+    [moreViewController showGPSInfo:_locationManager.location];
     [hud dismiss];
 }
 

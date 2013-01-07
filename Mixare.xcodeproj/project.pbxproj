@@ -12,9 +12,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		3602A50312B9FE0F00B92585 /* icon_datasource.png in Resources */ = {isa = PBXBuildFile; fileRef = 3602A50212B9FE0F00B92585 /* icon_datasource.png */; };
-		3626B93B12840B1600B52201 /* SourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3626B93A12840B1600B52201 /* SourceCell.xib */; };
-		3655C9AD12B0CB1E00AE6540 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3655C9AC12B0CB1E00AE6540 /* Default.png */; };
-		3655C9AF12B0CB2700AE6540 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3655C9AE12B0CB2700AE6540 /* Default@2x.png */; };
 		365B605C12B9F7230014850C /* PoiItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B605A12B9F7230014850C /* PoiItem.m */; };
 		365B607312B9F7740014850C /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
 		365B609E12B9F9100014850C /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B608C12B9F9100014850C /* ListViewController.m */; };
@@ -22,12 +19,9 @@
 		365B60A012B9F9100014850C /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609012B9F9100014850C /* MoreViewController.m */; };
 		365B60A112B9F9100014850C /* SourceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609312B9F9100014850C /* SourceTableCell.m */; };
 		365B60A212B9F9100014850C /* SourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B609512B9F9100014850C /* SourceViewController.m */; };
-		365C5C2D12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 365C5C2C12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png */; };
-		365C5C2F12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 365C5C2E12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png */; };
 		365F945E12AE737800286824 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365F945D12AE737800286824 /* Localizable.strings */; };
 		3685BA2C1275653F005FF922 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
 		3685BA2E12756566005FF922 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
-		36A31585128D6E15002D1C57 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A31584128D6E15002D1C57 /* WebView.xib */; };
 		36B3DC8312B9FB3500670FCF /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
 		36B3DC9412B9FCF100670FCF /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8512B9FCF100670FCF /* buzz_logo.png */; };
 		36B3DC9512B9FCF100670FCF /* buzz_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8612B9FCF100670FCF /* buzz_logo_small.png */; };
@@ -81,7 +75,6 @@
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
 		E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
-		E2AA278516944CF500AABDE6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278416944CF500AABDE6 /* MainWindow.xib */; };
 		E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
@@ -119,6 +112,40 @@
 		E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
 		E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2AB309E169B0D7400C00A07 /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EC16515BA50086BD8E /* MixareProcessor.m */; };
+		E2AB30CE169B1C4000C00A07 /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2DFCF88160B25470045A6C4 /* UnitTests-Info.plist */; };
+		E2AB30CF169B1C4000C00A07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DFCF89160B25470045A6C4 /* InfoPlist.strings */; };
+		E2AB30D0169B1C4E00C00A07 /* HUDBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B6E8C3165E3F08004E8641 /* HUDBackground.png */; };
+		E2AB30D1169B1C4E00C00A07 /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8512B9FCF100670FCF /* buzz_logo.png */; };
+		E2AB30D2169B1C4E00C00A07 /* buzz_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8612B9FCF100670FCF /* buzz_logo_small.png */; };
+		E2AB30D3169B1C4E00C00A07 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8712B9FCF100670FCF /* circle.png */; };
+		E2AB30D4169B1C4E00C00A07 /* logo_mixare_round.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8812B9FCF100670FCF /* logo_mixare_round.png */; };
+		E2AB30D5169B1C4E00C00A07 /* mixare_512x512px.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8912B9FCF100670FCF /* mixare_512x512px.png */; };
+		E2AB30D6169B1C4E00C00A07 /* mixare_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8A12B9FCF100670FCF /* mixare_button.png */; };
+		E2AB30D7169B1C4E00C00A07 /* icon_datasource.png in Resources */ = {isa = PBXBuildFile; fileRef = 3602A50212B9FE0F00B92585 /* icon_datasource.png */; };
+		E2AB30D8169B1C4E00C00A07 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8C12B9FCF100670FCF /* camera.png */; };
+		E2AB30D9169B1C4E00C00A07 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8D12B9FCF100670FCF /* list.png */; };
+		E2AB30DA169B1C4E00C00A07 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8E12B9FCF100670FCF /* map.png */; };
+		E2AB30DB169B1C4E00C00A07 /* source.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC8F12B9FCF100670FCF /* source.png */; };
+		E2AB30DC169B1C4E00C00A07 /* twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9012B9FCF100670FCF /* twitter_logo.png */; };
+		E2AB30DD169B1C4E00C00A07 /* twitter_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9112B9FCF100670FCF /* twitter_logo_small.png */; };
+		E2AB30DE169B1C4E00C00A07 /* wikipedia_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */; };
+		E2AB30DF169B1C4E00C00A07 /* wikipedia_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */; };
+		E2AB30E0169B1C5C00C00A07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 365F945D12AE737800286824 /* Localizable.strings */; };
+		E2AB30E5169B1C6900C00A07 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AFE74D1652A5E90038E17A /* zbar-back.png */; };
+		E2AB30E6169B1C6900C00A07 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = E2AFE74E1652A5E90038E17A /* zbar-help.html */; };
+		E2AB30E7169B1C6900C00A07 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AFE74F1652A5E90038E17A /* zbar-helpicons.png */; };
+		E2AB30E8169B1C6900C00A07 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AFE7501652A5E90038E17A /* zbar-samples.png */; };
+		E2AB30F2169B326800C00A07 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30EE169B326800C00A07 /* MainWindow.xib */; };
+		E2AB30F3169B326800C00A07 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30EE169B326800C00A07 /* MainWindow.xib */; };
+		E2AB30F6169B326800C00A07 /* SourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30F0169B326800C00A07 /* SourceCell.xib */; };
+		E2AB30F7169B326800C00A07 /* SourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30F0169B326800C00A07 /* SourceCell.xib */; };
+		E2AB30F8169B326800C00A07 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30F1169B326800C00A07 /* WebView.xib */; };
+		E2AB30F9169B326800C00A07 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30F1169B326800C00A07 /* WebView.xib */; };
+		E2AB30FF169B34CE00C00A07 /* mixare-logo_114x114_72_dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB30FE169B34CE00C00A07 /* mixare-logo_114x114_72_dpi.png */; };
+		E2AB3101169B34DC00C00A07 /* mixare-logo_57x57_72_dpi.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB3100169B34DC00C00A07 /* mixare-logo_57x57_72_dpi.png */; };
+		E2AB3103169B34F300C00A07 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB3102169B34F300C00A07 /* Default-568h@2x.png */; };
+		E2AB3105169B351200C00A07 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB3104169B351200C00A07 /* Default@2x.png */; };
+		E2AB3107169B351B00C00A07 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB3106169B351B00C00A07 /* Default.png */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
@@ -145,7 +172,6 @@
 		E2AFE7631652A9B10038E17A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7601652A9A30038E17A /* CoreMedia.framework */; };
 		E2AFE7661652A9C60038E17A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7641652A9BF0038E17A /* CoreVideo.framework */; };
 		E2AFE7671652A9CE0038E17A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7641652A9BF0038E17A /* CoreVideo.framework */; };
-		E2B01581162EB2CF00C93C91 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B01580162EB2CF00C93C91 /* Default-568h@2x.png */; };
 		E2B01670162EBC3C00C93C91 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 365B606112B9F7740014850C /* DataSource.m */; };
 		E2B01671162EBC3F00C93C91 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E2B01674162EFE0200C93C91 /* DataSourceManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */; };
@@ -225,9 +251,6 @@
 		28A0AB4B0D9B1048005BE974 /* Mixare_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixare_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3602A50212B9FE0F00B92585 /* icon_datasource.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_datasource.png; sourceTree = "<group>"; };
-		3626B93A12840B1600B52201 /* SourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SourceCell.xib; sourceTree = "<group>"; };
-		3655C9AC12B0CB1E00AE6540 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		3655C9AE12B0CB2700AE6540 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		365B605912B9F7230014850C /* PoiItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiItem.h; sourceTree = "<group>"; };
 		365B605A12B9F7230014850C /* PoiItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoiItem.m; sourceTree = "<group>"; };
 		365B606012B9F7740014850C /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
@@ -242,14 +265,11 @@
 		365B609312B9F9100014850C /* SourceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTableCell.m; sourceTree = "<group>"; };
 		365B609412B9F9100014850C /* SourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceViewController.h; sourceTree = "<group>"; };
 		365B609512B9F9100014850C /* SourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceViewController.m; sourceTree = "<group>"; };
-		365C5C2C12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mixare-logo_114x114_72_dpi.png"; sourceTree = "<group>"; };
-		365C5C2E12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mixare-logo_57x57_72_dpi.png"; sourceTree = "<group>"; };
 		365F945A12AE735A00286824 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		365F945F12AE738400286824 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		365F946012AE738A00286824 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3685BA2B1275653F005FF922 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3685BA2D12756566005FF922 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		36A31584128D6E15002D1C57 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
 		36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixareAppDelegate.m; sourceTree = "<group>"; };
 		36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixareAppDelegate.h; sourceTree = "<group>"; };
 		36B3DC8512B9FCF100670FCF /* buzz_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buzz_logo.png; sourceTree = "<group>"; };
@@ -266,7 +286,6 @@
 		36B3DC9112B9FCF100670FCF /* twitter_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_logo_small.png; sourceTree = "<group>"; };
 		36B3DC9212B9FCF100670FCF /* wikipedia_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo.png; sourceTree = "<group>"; };
 		36B3DC9312B9FCF100670FCF /* wikipedia_logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wikipedia_logo_small.png; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		E23FE78A1681D02600AC90F3 /* MapViewAnnotationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotationTest.h; sourceTree = "<group>"; };
 		E23FE78B1681D02600AC90F3 /* MapViewAnnotationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotationTest.m; sourceTree = "<group>"; };
 		E23FE78E1681D32A00AC90F3 /* PoiItemTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoiItemTest.h; sourceTree = "<group>"; };
@@ -307,8 +326,16 @@
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
 		E2A8C247165FAA300077854B /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/bootstrap/StartWithMeDemo.h; sourceTree = "<group>"; };
 		E2A8C248165FAA300077854B /* StartWithMeDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartWithMeDemo.m; path = extensions/bootstrap/StartWithMeDemo.m; sourceTree = "<group>"; };
-		E2AA278416944CF500AABDE6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E2AB30EE169B326800C00A07 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
+		E2AB30F0169B326800C00A07 /* SourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SourceCell.xib; path = Resources/SourceCell.xib; sourceTree = "<group>"; };
+		E2AB30F1169B326800C00A07 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebView.xib; path = Resources/WebView.xib; sourceTree = "<group>"; };
+		E2AB30FA169B332F00C00A07 /* Mixare-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Mixare-Info.plist"; sourceTree = "<group>"; };
+		E2AB30FE169B34CE00C00A07 /* mixare-logo_114x114_72_dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mixare-logo_114x114_72_dpi.png"; sourceTree = "<group>"; };
+		E2AB3100169B34DC00C00A07 /* mixare-logo_57x57_72_dpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mixare-logo_57x57_72_dpi.png"; sourceTree = "<group>"; };
+		E2AB3102169B34F300C00A07 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E2AB3104169B351200C00A07 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E2AB3106169B351B00C00A07 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AEEC25165D375200802003 /* ArenaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaProcessor.h; path = extensions/dataprocessors/ArenaProcessor.h; sourceTree = "<group>"; };
 		E2AEEC26165D375200802003 /* ArenaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaProcessor.m; path = extensions/dataprocessors/ArenaProcessor.m; sourceTree = "<group>"; };
@@ -352,7 +379,6 @@
 		E2AFE75C1652A9580038E17A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		E2AFE7601652A9A30038E17A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		E2AFE7641652A9BF0038E17A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		E2B01580162EB2CF00C93C91 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E2B01672162EFE0200C93C91 /* DataSourceManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceManagerTest.h; sourceTree = "<group>"; };
 		E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManagerTest.m; sourceTree = "<group>"; };
 		E2B01678162F03EA00C93C91 /* PositionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTest.h; sourceTree = "<group>"; };
@@ -488,11 +514,6 @@
 		29B97314FDCFA39411CA2CEA /* Mixare */ = {
 			isa = PBXGroup;
 			children = (
-				365C5C2E12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png */,
-				365C5C2C12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png */,
-				E2B01580162EB2CF00C93C91 /* Default-568h@2x.png */,
-				3655C9AE12B0CB2700AE6540 /* Default@2x.png */,
-				3655C9AC12B0CB1E00AE6540 /* Default.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -506,6 +527,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E2AB30FD169B342000C00A07 /* App Images */,
 				36B3DC8412B9FCF100670FCF /* images */,
 				28A0AB4B0D9B1048005BE974 /* Mixare_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -517,10 +539,10 @@
 			isa = PBXGroup;
 			children = (
 				365F945D12AE737800286824 /* Localizable.strings */,
-				3626B93A12840B1600B52201 /* SourceCell.xib */,
-				E2AA278416944CF500AABDE6 /* MainWindow.xib */,
-				36A31584128D6E15002D1C57 /* WebView.xib */,
-				8D1107310486CEB800E47090 /* Mixare-Info.plist */,
+				E2AB30FA169B332F00C00A07 /* Mixare-Info.plist */,
+				E2AB30EE169B326800C00A07 /* MainWindow.xib */,
+				E2AB30F0169B326800C00A07 /* SourceCell.xib */,
+				E2AB30F1169B326800C00A07 /* WebView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -684,6 +706,18 @@
 				E2AFE7331652A5E90038E17A /* ZBarSDK */,
 			);
 			name = datainputs;
+			sourceTree = "<group>";
+		};
+		E2AB30FD169B342000C00A07 /* App Images */ = {
+			isa = PBXGroup;
+			children = (
+				E2AB3106169B351B00C00A07 /* Default.png */,
+				E2AB3104169B351200C00A07 /* Default@2x.png */,
+				E2AB3102169B34F300C00A07 /* Default-568h@2x.png */,
+				E2AB3100169B34DC00C00A07 /* mixare-logo_57x57_72_dpi.png */,
+				E2AB30FE169B34CE00C00A07 /* mixare-logo_114x114_72_dpi.png */,
+			);
+			name = "App Images";
 			sourceTree = "<group>";
 		};
 		E2AFE7331652A5E90038E17A /* ZBarSDK */ = {
@@ -938,6 +972,7 @@
 				E29C779B16972BF00006C4D2 /* Frameworks */,
 				E29C77CF1697361D0006C4D2 /* Headers */,
 				E29C779C16972BF00006C4D2 /* CopyFiles */,
+				E2AB30C7169B1C1400C00A07 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1006,13 +1041,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3626B93B12840B1600B52201 /* SourceCell.xib in Resources */,
-				36A31585128D6E15002D1C57 /* WebView.xib in Resources */,
 				365F945E12AE737800286824 /* Localizable.strings in Resources */,
-				3655C9AD12B0CB1E00AE6540 /* Default.png in Resources */,
-				3655C9AF12B0CB2700AE6540 /* Default@2x.png in Resources */,
-				365C5C2D12B0FE5B00E2A924 /* mixare-logo_114x114_72_dpi.png in Resources */,
-				365C5C2F12B0FE6900E2A924 /* mixare-logo_57x57_72_dpi.png in Resources */,
 				36B3DC9412B9FCF100670FCF /* buzz_logo.png in Resources */,
 				36B3DC9512B9FCF100670FCF /* buzz_logo_small.png in Resources */,
 				36B3DC9612B9FCF100670FCF /* circle.png in Resources */,
@@ -1028,14 +1057,53 @@
 				36B3DCA012B9FCF100670FCF /* wikipedia_logo.png in Resources */,
 				36B3DCA112B9FCF100670FCF /* wikipedia_logo_small.png in Resources */,
 				3602A50312B9FE0F00B92585 /* icon_datasource.png in Resources */,
-				E2B01581162EB2CF00C93C91 /* Default-568h@2x.png in Resources */,
 				E2AFE7531652A5E90038E17A /* zbar-back.png in Resources */,
 				E2AFE7551652A5E90038E17A /* zbar-help.html in Resources */,
 				E2AFE7571652A5E90038E17A /* zbar-helpicons.png in Resources */,
 				E2AFE7591652A5E90038E17A /* zbar-samples.png in Resources */,
 				E2B6E8C4165E3F08004E8641 /* HUDBackground.png in Resources */,
-				E2AA278516944CF500AABDE6 /* MainWindow.xib in Resources */,
 				E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */,
+				E2AB30F2169B326800C00A07 /* MainWindow.xib in Resources */,
+				E2AB30F6169B326800C00A07 /* SourceCell.xib in Resources */,
+				E2AB30F8169B326800C00A07 /* WebView.xib in Resources */,
+				E2AB30FF169B34CE00C00A07 /* mixare-logo_114x114_72_dpi.png in Resources */,
+				E2AB3101169B34DC00C00A07 /* mixare-logo_57x57_72_dpi.png in Resources */,
+				E2AB3103169B34F300C00A07 /* Default-568h@2x.png in Resources */,
+				E2AB3105169B351200C00A07 /* Default@2x.png in Resources */,
+				E2AB3107169B351B00C00A07 /* Default.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2AB30C7169B1C1400C00A07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AB30E5169B1C6900C00A07 /* zbar-back.png in Resources */,
+				E2AB30E6169B1C6900C00A07 /* zbar-help.html in Resources */,
+				E2AB30E7169B1C6900C00A07 /* zbar-helpicons.png in Resources */,
+				E2AB30E8169B1C6900C00A07 /* zbar-samples.png in Resources */,
+				E2AB30E0169B1C5C00C00A07 /* Localizable.strings in Resources */,
+				E2AB30D0169B1C4E00C00A07 /* HUDBackground.png in Resources */,
+				E2AB30D1169B1C4E00C00A07 /* buzz_logo.png in Resources */,
+				E2AB30D2169B1C4E00C00A07 /* buzz_logo_small.png in Resources */,
+				E2AB30D3169B1C4E00C00A07 /* circle.png in Resources */,
+				E2AB30D4169B1C4E00C00A07 /* logo_mixare_round.png in Resources */,
+				E2AB30D5169B1C4E00C00A07 /* mixare_512x512px.png in Resources */,
+				E2AB30D6169B1C4E00C00A07 /* mixare_button.png in Resources */,
+				E2AB30D7169B1C4E00C00A07 /* icon_datasource.png in Resources */,
+				E2AB30D8169B1C4E00C00A07 /* camera.png in Resources */,
+				E2AB30D9169B1C4E00C00A07 /* list.png in Resources */,
+				E2AB30DA169B1C4E00C00A07 /* map.png in Resources */,
+				E2AB30DB169B1C4E00C00A07 /* source.png in Resources */,
+				E2AB30DC169B1C4E00C00A07 /* twitter_logo.png in Resources */,
+				E2AB30DD169B1C4E00C00A07 /* twitter_logo_small.png in Resources */,
+				E2AB30DE169B1C4E00C00A07 /* wikipedia_logo.png in Resources */,
+				E2AB30DF169B1C4E00C00A07 /* wikipedia_logo_small.png in Resources */,
+				E2AB30CE169B1C4000C00A07 /* UnitTests-Info.plist in Resources */,
+				E2AB30CF169B1C4000C00A07 /* InfoPlist.strings in Resources */,
+				E2AB30F3169B326800C00A07 /* MainWindow.xib in Resources */,
+				E2AB30F7169B326800C00A07 /* SourceCell.xib in Resources */,
+				E2AB30F9169B326800C00A07 /* WebView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

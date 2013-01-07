@@ -38,16 +38,15 @@
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
     
-    UIWindow *window;
-	UITabBarController *_tabBarController;
-	CMMotionManager *motionManager;
-	ListViewController *_listViewController;
-	MapViewController *_mapViewController;
-    AugmentedGeoViewController *augViewController;
+    IBOutlet UIWindow *window;
+	IBOutlet UITabBarController *tabBarController;
+	IBOutlet ListViewController *listViewController;
+	IBOutlet MapViewController *mapViewController;
+    IBOutlet AugmentedGeoViewController *augViewController;
 	
 	IBOutlet UIView *menuView;
-    MoreViewController *_moreViewController;
-    SourceViewController *_sourceViewController;
+    IBOutlet MoreViewController *moreViewController;
+    IBOutlet SourceViewController *sourceViewController;
     
     NSArray *startPlugin;
     BOOL toggleMenu;
@@ -62,6 +61,6 @@
 
 @property (nonatomic) BOOL alertRunning;
 
-- (void)runApplication;
+- (void)runApplication:(UIWindow*)win;
 
 @end

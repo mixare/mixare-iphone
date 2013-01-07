@@ -86,14 +86,14 @@
     CGSize backGroundImageSize = self.backgroundImageView.image.size;
     self.bounds = CGRectMake(0, 0, backGroundImageSize.width, backGroundImageSize.height);
 	[self layoutSubviews];
-    [self.appDelegate setAlertRunning:YES];
+    //[self.appDelegate setAlertRunning:YES];
     [self bringSubviewToFront:activityIndicator];
     [self bringSubviewToFront:progressMessage];
 }
 
 - (void)dismiss {
     [super dismissWithClickedButtonIndex:0 animated:YES];
-    [self.appDelegate setAlertRunning:NO];
+    //[self.appDelegate setAlertRunning:NO];
 }
 
 // Wrapper to dismiss in main thread
@@ -108,7 +108,7 @@
     [super performSelectorOnMainThread:@selector(realDismissWithArgs:)
                             withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:buttonIndex], [NSNumber numberWithBool:animated],nil]
                          waitUntilDone:YES];
-    [self.appDelegate setAlertRunning:NO];
+    //[self.appDelegate setAlertRunning:NO];
 }
 
 @end

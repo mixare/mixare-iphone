@@ -14,7 +14,24 @@
 	<array>
 		<string>mixare-logo_114x114_72_dpi.png</string>
 		<string>mixare-logo_57x57_72_dpi.png</string>
+		<string>mixare-logo_114x114_72_dpi.png</string>
+		<string>mixare-logo_57x57_72_dpi.png</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>mixare-logo_114x114_72_dpi.png</string>
+				<string>mixare-logo_57x57_72_dpi.png</string>
+				<string>mixare-logo_114x114_72_dpi.png</string>
+				<string>mixare-logo_57x57_72_dpi.png</string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<true/>
+		</dict>
+	</dict>
 	<key>CFBundleIdentifier</key>
 	<string>org.mixare.mixare</string>
 	<key>CFBundleInfoDictionaryVersion</key>
