@@ -85,7 +85,6 @@
 		E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
-		E2AB3005169AD3A500C00A07 /* Plugins.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C77A516972BF00006C4D2 /* Plugins.m */; };
 		E2AB3044169ADC7400C00A07 /* MixareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */; };
 		E2AB3046169ADCAB00C00A07 /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA5162C2B1700A28F2B /* DataSourceManager.m */; };
 		E2AB3047169ADCAB00C00A07 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
@@ -119,7 +118,7 @@
 		E2AB3063169ADCAB00C00A07 /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
 		E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
 		E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
-		E2AB3072169AF30D00C00A07 /* Plugins.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C77A316972BF00006C4D2 /* Plugins.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2AB309E169B0D7400C00A07 /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EC16515BA50086BD8E /* MixareProcessor.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
@@ -279,9 +278,6 @@
 		E29C76751696DAD70006C4D2 /* StartMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMain.h; path = plugin/StartMain.h; sourceTree = "<group>"; };
 		E29C76831696DE300006C4D2 /* Mixare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mixare.h; path = plugin/Mixare.h; sourceTree = "<group>"; };
 		E29C779E16972BF00006C4D2 /* libMixare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMixare.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E29C77A216972BF00006C4D2 /* Plugins-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plugins-Prefix.pch"; sourceTree = "<group>"; };
-		E29C77A316972BF00006C4D2 /* Plugins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugins.h; sourceTree = "<group>"; };
-		E29C77A516972BF00006C4D2 /* Plugins.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Plugins.m; sourceTree = "<group>"; };
 		E2A387D416832BE400B6A493 /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataInput.h; path = plugin/DataInput.h; sourceTree = "<group>"; };
 		E2A387D516832BE400B6A493 /* SetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetDataSource.h; path = plugin/SetDataSource.h; sourceTree = "<group>"; };
 		E2A387D616832C0100B6A493 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = plugin/DataProcessor.h; sourceTree = "<group>"; };
@@ -501,7 +497,6 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				E2DFCF86160B25470045A6C4 /* UnitTests */,
-				E29C77A016972BF00006C4D2 /* Plugins */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -651,24 +646,6 @@
 				36B3DC8F12B9FCF100670FCF /* source.png */,
 			);
 			path = tabbarIcons;
-			sourceTree = "<group>";
-		};
-		E29C77A016972BF00006C4D2 /* Plugins */ = {
-			isa = PBXGroup;
-			children = (
-				E29C77A316972BF00006C4D2 /* Plugins.h */,
-				E29C77A516972BF00006C4D2 /* Plugins.m */,
-				E29C77A116972BF00006C4D2 /* Supporting Files */,
-			);
-			path = Plugins;
-			sourceTree = "<group>";
-		};
-		E29C77A116972BF00006C4D2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E29C77A216972BF00006C4D2 /* Plugins-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E2A3CFFC1680B97A009A3943 /* radarView */ = {
@@ -924,7 +901,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AB3072169AF30D00C00A07 /* Plugins.h in Headers */,
 				E29C77D01697362D0006C4D2 /* Mixare.h in Headers */,
 				E29C77D11697362D0006C4D2 /* StartMain.h in Headers */,
 				E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */,
@@ -1147,7 +1123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AB3005169AD3A500C00A07 /* Plugins.m in Sources */,
+				E2AB309E169B0D7400C00A07 /* MixareProcessor.m in Sources */,
 				E2AB3046169ADCAB00C00A07 /* DataSourceManager.m in Sources */,
 				E2AB3047169ADCAB00C00A07 /* DownloadManager.m in Sources */,
 				E2AB3048169ADCAB00C00A07 /* Radar.m in Sources */,
@@ -1403,8 +1379,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1439,8 +1415,8 @@
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1471,8 +1447,8 @@
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1503,8 +1479,8 @@
 					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
