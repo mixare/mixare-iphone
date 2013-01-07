@@ -4,20 +4,50 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Library.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>Mixare.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+		<key>MixareLibrary.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Plugins.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>UnitTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1D6058900D05DD3D006BFB54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E29C76611696D9DB0006C4D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E29C771F1696F96B0006C4D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E29C779D16972BF00006C4D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

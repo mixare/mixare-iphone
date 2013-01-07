@@ -17,28 +17,16 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  StartMain.h
+//  Mixare.h
 //  Mixare
 //
-//  Created by Aswin Ly on 19-11-12.
+//  Created by Aswin Ly on 04-01-13.
 //
 
 #import <Foundation/Foundation.h>
-#import "DataSourceManager.h"
-#import <CoreLocation/CoreLocation.h>
-#import "PluginEntryPoint.h"
-
-@protocol StartMain
-
-@property (nonatomic, retain) DataSourceManager *_dataSourceManager;
-@property (nonatomic, retain) CLLocationManager *_locationManager;
-@property (nonatomic, retain) id<PluginEntryPoint> pluginDelegate;
-@property (nonatomic) BOOL toggleMenu;
-
-- (void)openARView;
-- (void)openMenu;
-- (void)refresh;
-- (void)showHud;
-- (void)closeHud;
-
-@end
+#import <Mixare/StartMain.h>
+#import <Mixare/DataProcessor.h>
+#import <Mixare/DataInput.h>
+#import <Mixare/PluginEntryPoint.h>
+#import <Mixare/SetDataSource.h>
+#import <Mixare/MixareAppDelegate.h>

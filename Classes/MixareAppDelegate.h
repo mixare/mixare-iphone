@@ -21,8 +21,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
-#import "manager/DataSourceManager.h"
-#import "manager/DownloadManager.h"
+#import "DataSourceManager.h"
+#import "DownloadManager.h"
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
 #import "MapViewController.h"
@@ -61,5 +61,7 @@
 }
 
 @property (nonatomic) BOOL alertRunning;
+
+- (void)runApplication;
 
 @end

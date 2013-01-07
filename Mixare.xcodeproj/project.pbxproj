@@ -50,6 +50,14 @@
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
+		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
+		E29C779F16972BF00006C4D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D11697362D0006C4D2 /* StartMain.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D616832C0100B6A493 /* DataProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D31697362D0006C4D2 /* DataInput.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D416832BE400B6A493 /* DataInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D41697362D0006C4D2 /* PluginEntryPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D51697362D0006C4D2 /* SetDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D516832BE400B6A493 /* SetDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2A3CFFA1680952D009A3943 /* CameraControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFF91680952D009A3943 /* CameraControllerTest.m */; };
 		E2A3D0011680B97B009A3943 /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFFE1680B97B009A3943 /* Radar.m */; };
 		E2A3D0021680B97B009A3943 /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFFE1680B97B009A3943 /* Radar.m */; };
@@ -76,9 +84,18 @@
 		E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2AA278516944CF500AABDE6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278416944CF500AABDE6 /* MainWindow.xib */; };
 		E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
-		E2AA278A16945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
+		E2AB2FF7169AD23800C00A07 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7641652A9BF0038E17A /* CoreVideo.framework */; };
+		E2AB2FF8169AD23800C00A07 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE7601652A9A30038E17A /* CoreMedia.framework */; };
+		E2AB2FF9169AD23800C00A07 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AFE75C1652A9580038E17A /* AVFoundation.framework */; };
+		E2AB2FFA169AD23800C00A07 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE2972162D9F32009CF67D /* QuartzCore.framework */; };
+		E2AB2FFB169AD23800C00A07 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
+		E2AB2FFC169AD23800C00A07 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2D12756566005FF922 /* MapKit.framework */; };
+		E2AB2FFD169AD23800C00A07 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3685BA2B1275653F005FF922 /* CoreLocation.framework */; };
+		E2AB2FFE169AD23800C00A07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		E2AB2FFF169AD23800C00A07 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
+		E2AB3005169AD3A500C00A07 /* Plugins.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C77A516972BF00006C4D2 /* Plugins.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
 		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
@@ -165,6 +182,18 @@
 		E2E3ECBD162C59A800A28F2B /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E29C779C16972BF00006C4D2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Mixare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mixare.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +252,12 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
+		E29C76751696DAD70006C4D2 /* StartMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMain.h; path = plugin/StartMain.h; sourceTree = "<group>"; };
+		E29C76831696DE300006C4D2 /* Mixare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mixare.h; path = plugin/Mixare.h; sourceTree = "<group>"; };
+		E29C779E16972BF00006C4D2 /* libMixare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMixare.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29C77A216972BF00006C4D2 /* Plugins-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plugins-Prefix.pch"; sourceTree = "<group>"; };
+		E29C77A316972BF00006C4D2 /* Plugins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Plugins.h; sourceTree = "<group>"; };
+		E29C77A516972BF00006C4D2 /* Plugins.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Plugins.m; sourceTree = "<group>"; };
 		E2A387D416832BE400B6A493 /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataInput.h; path = plugin/DataInput.h; sourceTree = "<group>"; };
 		E2A387D516832BE400B6A493 /* SetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetDataSource.h; path = plugin/SetDataSource.h; sourceTree = "<group>"; };
 		E2A387D616832C0100B6A493 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = plugin/DataProcessor.h; sourceTree = "<group>"; };
@@ -253,7 +288,7 @@
 		E2A8C247165FAA300077854B /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/bootstrap/StartWithMeDemo.h; sourceTree = "<group>"; };
 		E2A8C248165FAA300077854B /* StartWithMeDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartWithMeDemo.m; path = extensions/bootstrap/StartWithMeDemo.m; sourceTree = "<group>"; };
 		E2AA278416944CF500AABDE6 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
+		E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		E2AEEC25165D375200802003 /* ArenaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaProcessor.h; path = extensions/dataprocessors/ArenaProcessor.h; sourceTree = "<group>"; };
 		E2AEEC26165D375200802003 /* ArenaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaProcessor.m; path = extensions/dataprocessors/ArenaProcessor.m; sourceTree = "<group>"; };
@@ -302,7 +337,6 @@
 		E2B01673162EFE0200C93C91 /* DataSourceManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceManagerTest.m; sourceTree = "<group>"; };
 		E2B01678162F03EA00C93C91 /* PositionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionTest.h; sourceTree = "<group>"; };
 		E2B01679162F03EA00C93C91 /* PositionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionTest.m; sourceTree = "<group>"; };
-		E2B07261165A3EE80076B7FE /* StartMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartMain.h; sourceTree = "<group>"; };
 		E2B0C2DA16551A2E0099090E /* DataSourceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSourceList.h; path = extensions/DataSourceList.h; sourceTree = "<group>"; };
 		E2B0C2DB16551A2E0099090E /* DataSourceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceList.m; path = extensions/DataSourceList.m; sourceTree = "<group>"; };
 		E2B100A71650FC7D0086BD8E /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataConverter.h; path = dataconverter/DataConverter.h; sourceTree = "<group>"; };
@@ -375,6 +409,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E29C779B16972BF00006C4D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E29C779F16972BF00006C4D2 /* Foundation.framework in Frameworks */,
+				E2AB2FF7169AD23800C00A07 /* CoreVideo.framework in Frameworks */,
+				E2AB2FF8169AD23800C00A07 /* CoreMedia.framework in Frameworks */,
+				E2AB2FF9169AD23800C00A07 /* AVFoundation.framework in Frameworks */,
+				E2AB2FFA169AD23800C00A07 /* QuartzCore.framework in Frameworks */,
+				E2AB2FFB169AD23800C00A07 /* CoreMotion.framework in Frameworks */,
+				E2AB2FFC169AD23800C00A07 /* MapKit.framework in Frameworks */,
+				E2AB2FFD169AD23800C00A07 /* CoreLocation.framework in Frameworks */,
+				E2AB2FFE169AD23800C00A07 /* UIKit.framework in Frameworks */,
+				E2AB2FFF169AD23800C00A07 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E2DFCF7D160B25470045A6C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,7 +452,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				E2B07261165A3EE80076B7FE /* StartMain.h */,
 				36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */,
 				36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */,
 				E2E3ECA3162C2ACB00A28F2B /* manager */,
@@ -420,6 +470,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* Mixare.app */,
 				E2DFCF81160B25470045A6C4 /* UnitTests.octest */,
+				E29C779E16972BF00006C4D2 /* libMixare.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,6 +487,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				E2DFCF86160B25470045A6C4 /* UnitTests */,
+				E29C77A016972BF00006C4D2 /* Plugins */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -587,6 +639,24 @@
 			path = tabbarIcons;
 			sourceTree = "<group>";
 		};
+		E29C77A016972BF00006C4D2 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				E29C77A316972BF00006C4D2 /* Plugins.h */,
+				E29C77A516972BF00006C4D2 /* Plugins.m */,
+				E29C77A116972BF00006C4D2 /* Supporting Files */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		E29C77A116972BF00006C4D2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E29C77A216972BF00006C4D2 /* Plugins-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E2A3CFFC1680B97A009A3943 /* radarView */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,6 +791,8 @@
 		E2B100DB1651005E0086BD8E /* plugin */ = {
 			isa = PBXGroup;
 			children = (
+				E29C76831696DE300006C4D2 /* Mixare.h */,
+				E29C76751696DAD70006C4D2 /* StartMain.h */,
 				E2A387D616832C0100B6A493 /* DataProcessor.h */,
 				E2A387D416832BE400B6A493 /* DataInput.h */,
 				E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */,
@@ -833,6 +905,22 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E29C77CF1697361D0006C4D2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E29C77D01697362D0006C4D2 /* Mixare.h in Headers */,
+				E29C77D11697362D0006C4D2 /* StartMain.h in Headers */,
+				E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */,
+				E29C77D31697362D0006C4D2 /* DataInput.h in Headers */,
+				E29C77D41697362D0006C4D2 /* PluginEntryPoint.h in Headers */,
+				E29C77D51697362D0006C4D2 /* SetDataSource.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* Mixare */ = {
 			isa = PBXNativeTarget;
@@ -850,6 +938,24 @@
 			productName = Mixare;
 			productReference = 1D6058910D05DD3D006BFB54 /* Mixare.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E29C779D16972BF00006C4D2 /* Plugins */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E29C77A716972BF00006C4D2 /* Build configuration list for PBXNativeTarget "Plugins" */;
+			buildPhases = (
+				E29C779A16972BF00006C4D2 /* Sources */,
+				E29C779B16972BF00006C4D2 /* Frameworks */,
+				E29C77CF1697361D0006C4D2 /* Headers */,
+				E29C779C16972BF00006C4D2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Plugins;
+			productName = Plugins;
+			productReference = E29C779E16972BF00006C4D2 /* libMixare.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 		E2DFCF80160B25470045A6C4 /* UnitTests */ = {
 			isa = PBXNativeTarget;
@@ -899,6 +1005,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Mixare */,
 				E2DFCF80160B25470045A6C4 /* UnitTests */,
+				E29C779D16972BF00006C4D2 /* Plugins */,
 			);
 		};
 /* End PBXProject section */
@@ -950,7 +1057,7 @@
 				E2AFE7561652A5E90038E17A /* zbar-help.html in Resources */,
 				E2AFE7581652A5E90038E17A /* zbar-helpicons.png in Resources */,
 				E2AFE75A1652A5E90038E17A /* zbar-samples.png in Resources */,
-				E2AA278A16945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */,
+				E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1018,6 +1125,14 @@
 				E2A3D0141680BAC6009A3943 /* ProgressHUD.m in Sources */,
 				E2A3D0161680BAC6009A3943 /* PullRefreshTableViewController.m in Sources */,
 				E2A3D0181680BAC6009A3943 /* WebViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E29C779A16972BF00006C4D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AB3005169AD3A500C00A07 /* Plugins.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,7 +1227,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aswin Ly (3EK88MD753)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1120,8 +1236,8 @@
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Mixare_Prefix.pch;
@@ -1132,8 +1248,10 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_NAME = Mixare;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
@@ -1144,15 +1262,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aswin Ly (3EK88MD753)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Mixare_Prefix.pch;
 				INFOPLIST_FILE = "Mixare-Info.plist";
@@ -1163,7 +1282,8 @@
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Mixare;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1173,16 +1293,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Mixare;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7";
@@ -1193,17 +1316,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don't Code Sign";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = Mixare;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
@@ -1211,21 +1337,138 @@
 			};
 			name = Release;
 		};
+		E29C77A816972BF00006C4D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/Plugins.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Mixare;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E29C77A916972BF00006C4D2 /* Coverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Plugins.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Mixare;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Coverage;
+		};
+		E29C77AA16972BF00006C4D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Plugins.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Mixare;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E29C77AB16972BF00006C4D2 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/Plugins.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Plugins/Plugins-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Mixare;
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution";
+		};
 		E2A8FF0C1684740A00DF3B83 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PRODUCT_NAME = Mixare;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
@@ -1238,15 +1481,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aswin Ly (3EK88MD753)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Mixare_Prefix.pch;
 				INFOPLIST_FILE = "Mixare-Info.plist";
@@ -1257,7 +1501,8 @@
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
 				PRODUCT_NAME = Mixare;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1363,17 +1608,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_CFLAGS[arch=*]" = "";
+				PRODUCT_NAME = Mixare;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7";
@@ -1385,7 +1633,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aswin Ly (3EK88MD753)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1393,8 +1642,8 @@
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Mixare_Prefix.pch;
@@ -1405,15 +1654,13 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				"OTHER_CFLAGS[arch=*]" = (
-					"-profile-arcs",
-					"-ftest-coverage",
-				);
-				"OTHER_LDFLAGS[arch=*]" = "-lgcov";
+				"OTHER_CFLAGS[arch=*]" = "";
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_NAME = Mixare;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8769FD00-3E0D-488A-AF04-1D46FB2804DB";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Coverage;
 		};
@@ -1475,6 +1722,17 @@
 				E2DFCF94160B34100045A6C4 /* Coverage */,
 				C01FCF5008A954540054247B /* Release */,
 				E2A8FF0C1684740A00DF3B83 /* Ad Hoc Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Coverage;
+		};
+		E29C77A716972BF00006C4D2 /* Build configuration list for PBXNativeTarget "Plugins" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E29C77A816972BF00006C4D2 /* Debug */,
+				E29C77A916972BF00006C4D2 /* Coverage */,
+				E29C77AA16972BF00006C4D2 /* Release */,
+				E29C77AB16972BF00006C4D2 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Coverage;

@@ -23,7 +23,7 @@
  
 @implementation MixareAppDelegate
 
-@synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate, alertRunning;
+@synthesize toggleMenu, pluginDelegate, alertRunning;
 
 static ProgressHUD *hud;
 
@@ -38,6 +38,11 @@ static ProgressHUD *hud;
  *
  ***/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self runApplication];
+    return YES;
+}
+
+- (void)runApplication {
     hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
     NSLog(@"STARTING");
 	[self initManagers];
@@ -60,7 +65,6 @@ static ProgressHUD *hud;
         [hud show];
         [self performSelectorInBackground:@selector(standardViewInitialize) withObject:nil];
     }
-    return YES;
 }
 
 - (void)standardViewInitialize {
