@@ -33,7 +33,7 @@
 #import "StartMain.h"
 #import "PluginEntryPoint.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
+@interface MixareAppDelegate : UIViewController <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
     CLLocationManager *_locationManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
@@ -44,6 +44,7 @@
 	IBOutlet MapViewController *mapViewController;
     IBOutlet AugmentedGeoViewController *augViewController;
 	
+    UIWindow *mainWindow;
 	IBOutlet UIView *menuView;
     IBOutlet MoreViewController *moreViewController;
     IBOutlet SourceViewController *sourceViewController;

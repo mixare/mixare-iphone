@@ -25,11 +25,14 @@
 
 #import <Foundation/Foundation.h>
 #import "PluginEntryPoint.h"
+#import "DataSourceManager.h"
 
 @protocol StartMain
 
+@property (nonatomic, retain) DataSourceManager *_dataSourceManager;
 @property (nonatomic, retain) id<PluginEntryPoint> pluginDelegate;
 @property (nonatomic) BOOL toggleMenu;
+@property (nonatomic, retain) UIWindow *mainWindow;
 
 - (void)openARView;
 - (void)openMenu;

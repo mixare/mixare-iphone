@@ -18,12 +18,13 @@
  */
 
 #import "MixareAppDelegate.h"
+#import "MainViewController.h"
 #import "PluginLoader.h"
 #import "ProgressHUD.h"
  
 @implementation MixareAppDelegate
 
-@synthesize toggleMenu, pluginDelegate, alertRunning;
+@synthesize toggleMenu, pluginDelegate, alertRunning, mainWindow, _dataSourceManager;
 
 static ProgressHUD *hud;
 
@@ -44,6 +45,7 @@ static ProgressHUD *hud;
 
 - (void)runApplication:(UIWindow*)win {
     if (win != nil) {
+        NSLog(@"TEST");
         window = win;
     }
     hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"", nil)];
@@ -51,6 +53,7 @@ static ProgressHUD *hud;
 	[self initManagers];
     beforeWasLandscape = NO;
 	[window makeKeyAndVisible];
+    mainWindow = window;
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didRotate:)
@@ -62,6 +65,7 @@ static ProgressHUD *hud;
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
         NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
+            pluginDelegate = plugin;
             [plugin run:self];
         }
     } else {
@@ -150,6 +154,7 @@ static ProgressHUD *hud;
     }
     augViewController.centerLocation = _locationManager.location;
     [self initControls];
+    window.rootViewController = augViewController;
 }
 
 /***
@@ -208,6 +213,7 @@ static ProgressHUD *hud;
 - (void)openMenu {
     [hud show];
     [augViewController closeCameraView];
+    // here you are assigning the tb as the root viewcontroller
     tabBarController.selectedIndex = 1;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
@@ -438,7 +444,6 @@ static ProgressHUD *hud;
     [augViewController.sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
     [augViewController.menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
     [augViewController.backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    window.rootViewController = augViewController;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         [augViewController setViewToLandscape];
         beforeWasLandscape = YES;

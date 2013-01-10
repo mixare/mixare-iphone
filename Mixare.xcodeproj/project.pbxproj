@@ -72,6 +72,9 @@
 		E2A646EB167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */; };
 		E2A646EC167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
 		E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
+		E2A68031169EDCBC00FF2224 /* MixareBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */; };
+		E2A68032169EDCBC00FF2224 /* MixareBootstrap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */; };
+		E2A68037169EECA600FF2224 /* arena_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A68036169EECA600FF2224 /* arena_logo.png */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
 		E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
@@ -147,6 +150,8 @@
 		E2AB3105169B351200C00A07 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB3104169B351200C00A07 /* Default@2x.png */; };
 		E2AB3107169B351B00C00A07 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E2AB3106169B351B00C00A07 /* Default.png */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
+		E2AD2EB1169DA09D0078CBA5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AD2EAE169DA09D0078CBA5 /* MainViewController.m */; };
+		E2AD2EB2169DA09D0078CBA5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AD2EAE169DA09D0078CBA5 /* MainViewController.m */; };
 		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF6911680732500E9984C /* ArenaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF6901680732500E9984C /* ArenaProcessorTest.m */; };
@@ -322,6 +327,10 @@
 		E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedGeoViewController.m; sourceTree = "<group>"; };
 		E2A646E8167A37F00028B6F3 /* AugmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedViewController.h; sourceTree = "<group>"; };
 		E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedViewController.m; sourceTree = "<group>"; };
+		E2A6802E169EDCBC00FF2224 /* MixareBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixareBootstrap.h; path = extensions/bootstrap/MixareBootstrap.h; sourceTree = "<group>"; };
+		E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixareBootstrap.m; path = extensions/bootstrap/MixareBootstrap.m; sourceTree = "<group>"; };
+		E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MixareBootstrap.xib; path = extensions/bootstrap/MixareBootstrap.xib; sourceTree = "<group>"; };
+		E2A68036169EECA600FF2224 /* arena_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arena_logo.png; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
 		E2A8C247165FAA300077854B /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/bootstrap/StartWithMeDemo.h; sourceTree = "<group>"; };
@@ -337,6 +346,8 @@
 		E2AB3104169B351200C00A07 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E2AB3106169B351B00C00A07 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E2AD2EAD169DA09D0078CBA5 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		E2AD2EAE169DA09D0078CBA5 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		E2AEEC25165D375200802003 /* ArenaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaProcessor.h; path = extensions/dataprocessors/ArenaProcessor.h; sourceTree = "<group>"; };
 		E2AEEC26165D375200802003 /* ArenaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaProcessor.m; path = extensions/dataprocessors/ArenaProcessor.m; sourceTree = "<group>"; };
 		E2AEF68F1680732500E9984C /* ArenaProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArenaProcessorTest.h; sourceTree = "<group>"; };
@@ -608,6 +619,8 @@
 				365B608E12B9F9100014850C /* MapViewController.m */,
 				365B608F12B9F9100014850C /* MoreViewController.h */,
 				365B609012B9F9100014850C /* MoreViewController.m */,
+				E2AD2EAD169DA09D0078CBA5 /* MainViewController.h */,
+				E2AD2EAE169DA09D0078CBA5 /* MainViewController.m */,
 			);
 			path = tabbarControllers;
 			sourceTree = "<group>";
@@ -708,6 +721,17 @@
 			name = datainputs;
 			sourceTree = "<group>";
 		};
+		E2A68033169EEC7800FF2224 /* arena */ = {
+			isa = PBXGroup;
+			children = (
+				E2A68036169EECA600FF2224 /* arena_logo.png */,
+				E2A6802E169EDCBC00FF2224 /* MixareBootstrap.h */,
+				E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */,
+				E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */,
+			);
+			name = arena;
+			sourceTree = "<group>";
+		};
 		E2AB30FD169B342000C00A07 /* App Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +812,7 @@
 		E2B07263165A3FFF0076B7FE /* bootstrap */ = {
 			isa = PBXGroup;
 			children = (
+				E2A68033169EEC7800FF2224 /* arena */,
 				E2A8C247165FAA300077854B /* StartWithMeDemo.h */,
 				E2A8C248165FAA300077854B /* StartWithMeDemo.m */,
 			);
@@ -1071,6 +1096,8 @@
 				E2AB3103169B34F300C00A07 /* Default-568h@2x.png in Resources */,
 				E2AB3105169B351200C00A07 /* Default@2x.png in Resources */,
 				E2AB3107169B351B00C00A07 /* Default.png in Resources */,
+				E2A68032169EDCBC00FF2224 /* MixareBootstrap.xib in Resources */,
+				E2A68037169EECA600FF2224 /* arena_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1184,6 +1211,8 @@
 				E2A3D0141680BAC6009A3943 /* ProgressHUD.m in Sources */,
 				E2A3D0161680BAC6009A3943 /* PullRefreshTableViewController.m in Sources */,
 				E2A3D0181680BAC6009A3943 /* WebViewController.m in Sources */,
+				E2AD2EB1169DA09D0078CBA5 /* MainViewController.m in Sources */,
+				E2A68031169EDCBC00FF2224 /* MixareBootstrap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,6 +1254,7 @@
 				E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */,
 				E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */,
 				E2AB3044169ADC7400C00A07 /* MixareAppDelegate.m in Sources */,
+				E2AD2EB2169DA09D0078CBA5 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1400,7 +1430,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -1425,14 +1455,14 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
 		E29C77A816972BF00006C4D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1455,22 +1485,27 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"include/$(TARGET_NAME)",
+					Include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
 		E29C77A916972BF00006C4D2 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1486,15 +1521,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"include/$(TARGET_NAME)",
+					Include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Coverage;
@@ -1502,7 +1542,7 @@
 		E29C77AA16972BF00006C4D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1518,15 +1558,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"include/$(TARGET_NAME)",
+					Include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1534,7 +1579,7 @@
 		E29C77AB16972BF00006C4D2 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1550,15 +1595,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"include/$(TARGET_NAME)",
+					Include,
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
 				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad Hoc Distribution";
@@ -1584,7 +1634,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv7;
 			};
 			name = "Ad Hoc Distribution";
 		};
@@ -1736,7 +1786,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = armv7;
 			};
 			name = Coverage;
 		};

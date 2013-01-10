@@ -61,6 +61,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
+    NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
+    if ([availablePlugins count] == 0) {
+        addButton.enabled = NO;
+    }
 }
 
 - (void)setNewData:(NSDictionary *)data {

@@ -76,7 +76,7 @@ static DataSourceList *dataSourceList;
  *
  ***/
 - (void)initDataSources {
-    [dataSources addObject:[[DataSource alloc]
+    /*[dataSources addObject:[[DataSource alloc]
                             initTitle:@"Wikipedia"
                             jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"
                             locked:YES]];
@@ -87,7 +87,7 @@ static DataSourceList *dataSourceList;
     [dataSources addObject:[[DataSource alloc]
                             initTitle:@"Google Addresses"
                             jsonUrl:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=PARAM_LAT,PARAM_LON&sensor=true"
-                            locked:YES]];
+                            locked:YES]];*/
 }
 
 - (NSMutableArray*)getDataSources {
