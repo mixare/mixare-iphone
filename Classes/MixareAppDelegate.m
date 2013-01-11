@@ -48,7 +48,7 @@ static ProgressHUD *hud;
         NSLog(@"TEST");
         window = win;
     }
-    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"", nil)];
+    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
@@ -65,7 +65,6 @@ static ProgressHUD *hud;
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
         NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
-            pluginDelegate = plugin;
             [plugin run:self];
         }
     } else {
@@ -201,8 +200,14 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)pluginButtonClicked:(id)sender {
+    [hud show];
+    [self performSelectorInBackground:@selector(openPlugin) withObject:nil];
+}
+
+- (void)openPlugin {
     [augViewController closeCameraView];
     [pluginDelegate run:self];
+    [hud dismiss];
 }
 
 /***

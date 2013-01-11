@@ -30,6 +30,13 @@
     [reUseArenaButton addTarget:self action:@selector(reuse) forControlEvents:(UIControlEvents)UIControlEventTouchUpInside];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    DataSource *checkSource = [[mainClass _dataSourceManager] getDataSourceByTitle:@"Arena"];
+    if (checkSource == nil) {
+        [self enableButton:NO button:reUseArenaButton];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -38,9 +45,9 @@
 - (void)run:(id<StartMain>)delegate {
     mainClass = delegate;
     [mainClass setToggleMenu:YES];
-    NSLog(@"MIXARE loaded");
-    // [mainClass showHud];                    //  Show indicator
+    [mainClass setPluginDelegate:self];
 	[mainClass mainWindow].rootViewController = self;
+    NSLog(@"MIXARE loaded");
 }
 
 - (void)reuse {
@@ -55,8 +62,13 @@
 }
 
 - (void)scan {
+    [mainClass showHud];
+    [self performSelectorInBackground:@selector(openScan) withObject:nil];
+}
+- (void)openScan {
     barcode = [[BarcodeInput alloc] init];
     [barcode runInput:self];
+    [mainClass closeHud];
 }
 
 - (void)setNewData:(NSDictionary *)data {
@@ -72,8 +84,18 @@
             [[mainClass _dataSourceManager] deleteDataSource:checkSource];
         }
         [[[mainClass _dataSourceManager] createDataSource:title dataUrl:url] setActivated:YES];
+        [self enableButton:YES button:reUseArenaButton];
     }
 }
 
+- (void)enableButton:(BOOL)enable button:(UIButton*)button {
+    if (enable) {
+        button.enabled = YES;
+        button.alpha = 1;
+    } else {
+        button.enabled = NO;
+        button.alpha = 0.3;
+    }
+}
 
 @end
