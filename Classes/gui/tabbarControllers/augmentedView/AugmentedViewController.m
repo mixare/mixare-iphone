@@ -37,7 +37,12 @@
 
 - (id)init {
 	if (!(self = [super init])) return nil;
-	ar_overlayView = nil;
+    [self loadSettings];
+	return self;
+}
+
+- (void)loadSettings {
+    ar_overlayView = nil;
 	ar_coordinates = [[NSMutableArray alloc] init];
 	ar_coordinateViews = [[NSMutableArray alloc] init];
 	_updateTimer = nil;
@@ -60,7 +65,6 @@
 	self.maximumRotationAngle = M_PI / 6.0;
 	self.wantsFullScreenLayout = NO;
 	oldHeading = 0;
-	return self;
 }
 
 - (void)closeCameraView {
@@ -75,9 +79,8 @@
 - (id)initWithLocationManager:(CLLocationManager*)manager {
 	if (!(self = [super init])) return nil;
 	//use the passed in location manager instead of ours.
-	self.locationManager = manager;
-	self.locationManager.delegate = self;
-	self.locationDelegate = nil;
+	[self startListening:manager];
+    [self loadSettings];
 	return self;
 }
 
@@ -406,7 +409,10 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	titleLabel.backgroundColor = [UIColor colorWithWhite:.3 alpha:.8];
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.text = coordinate.position.title;
+    titleLabel.numberOfLines = 0;
+    double distance = [locationManager.location distanceFromLocation:coordinate.geoLocation] / 1000;
+    NSString *labelText = [NSString stringWithFormat:@"%@ \n %.2fkm", coordinate.position.title, distance];
+	titleLabel.text = labelText;
     //Markers get automatically resized
     [titleLabel sizeToFit];
 	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);

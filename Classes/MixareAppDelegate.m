@@ -101,8 +101,8 @@ static ProgressHUD *hud;
 		_locationManager = [[CLLocationManager alloc] init];
 		_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 		_locationManager.delegate = self;
-		_locationManager.distanceFilter = 3.0;
-		//[_locationManager startUpdatingLocation];
+		_locationManager.distanceFilter = kCLDistanceFilterNone;
+		[_locationManager startUpdatingLocation];
 	}
 }
 
@@ -146,7 +146,7 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openARView {
-    augViewController = [[AugmentedGeoViewController alloc] init];
+    augViewController = [[AugmentedGeoViewController alloc] initWithLocationManager:_locationManager];
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
