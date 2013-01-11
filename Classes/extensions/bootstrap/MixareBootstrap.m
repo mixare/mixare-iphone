@@ -7,7 +7,6 @@
 //
 
 #import "MixareBootstrap.h"
-#import "DataSourceManager.h"
 
 @interface MixareBootstrap ()
 
@@ -45,7 +44,14 @@
 }
 
 - (void)reuse {
+    [mainClass showHud];
+    [self performSelectorInBackground:@selector(openAR) withObject:nil];
+}
+
+- (void)openAR {
+    [mainClass refresh];
     [mainClass openARView];
+    [mainClass closeHud];
 }
 
 - (void)scan {
@@ -60,11 +66,12 @@
         NSLog(@"ERROR");
     } else {
         NSLog(@"URL: %@", url);
-        NSLog(@"TITLEZ: %@", title);
-        if ([[mainClass _dataSourceManager] createDataSource:title dataUrl:url] == nil) {
-            [[mainClass _dataSourceManager] deleteDataSource:[[mainClass _dataSourceManager] getDataSourceByTitle:title]];
-            [[mainClass _dataSourceManager] createDataSource:title dataUrl:url];
+        NSLog(@"TITLE: %@", title);
+        DataSource *checkSource = [[mainClass _dataSourceManager] getDataSourceByTitle:title];
+        if (checkSource != nil) {
+            [[mainClass _dataSourceManager] deleteDataSource:checkSource];
         }
+        [[[mainClass _dataSourceManager] createDataSource:title dataUrl:url] setActivated:YES];
     }
 }
 

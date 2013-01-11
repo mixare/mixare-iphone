@@ -78,7 +78,7 @@ static ProgressHUD *hud;
     }
     CGRect windowDimension = windowPortrait;
     CGRect buttonDimension = buttonPortrait;
-    if (rotateable && (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight))) {
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
         windowDimension = windowLandscape;
         buttonDimension = buttonLandscape;
     }

@@ -52,8 +52,8 @@
     for (symbol in results) {
         break;
     }
-    [aClass setNewData:@{@"title":@"Arena", @"url":symbol.data}];
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [aClass setNewData:@{@"title":@"Arena", @"url":symbol.data}];
 }
 
 - (void)viewDidLoad {
