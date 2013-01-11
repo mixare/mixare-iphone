@@ -18,7 +18,6 @@
  */
 
 #import "MixareAppDelegate.h"
-#import "MainViewController.h"
 #import "PluginLoader.h"
 #import "ProgressHUD.h"
  

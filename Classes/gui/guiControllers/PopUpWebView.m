@@ -94,9 +94,9 @@ static ProgressHUD *hud;
     [self performSelectorInBackground:@selector(loadUrl:) withObject:url];
     
     closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton setTitle:NSLocalizedString(@"Close", nil) forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.titleLabel.text = @"Close";
+    closeButton.titleLabel.text = NSLocalizedString(@"Close", nil);
     closeButton.alpha = 1;
     closeButton.titleLabel.textColor = [UIColor blackColor];
     closeButton.frame = buttonDimension;

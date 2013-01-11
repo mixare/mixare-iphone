@@ -71,7 +71,8 @@
              keys[@"url"]: url,
              keys[@"longitude"]: geoname[@"lng"],
              keys[@"latitude"]: geoname[@"lat"],
-             keys[@"marker"]: geoname[@"object_url"]}];
+             keys[@"marker"]: geoname[@"object_url"],
+             keys[@"logo"]: @"arena_logo.png"}];
         }
         return ret;
     }

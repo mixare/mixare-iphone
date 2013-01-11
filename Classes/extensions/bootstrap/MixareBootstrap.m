@@ -75,7 +75,9 @@
     NSString *title = [data objectForKey:@"title"];
     NSString *url = [data objectForKey:@"url"];
     if (url == nil || title == nil || [url isEqualToString:@""] || [title isEqualToString:@""]) {
-        NSLog(@"ERROR");
+        [self errorPopUp:@"Geen geldige barcode"];
+    } else if ([url rangeOfString:@"arena"].location == NSNotFound) {
+        [self errorPopUp:@"Geen geldige barcode"];
     } else {
         NSLog(@"URL: %@", url);
         NSLog(@"TITLE: %@", title);
@@ -96,6 +98,15 @@
         button.enabled = NO;
         button.alpha = 0.3;
     }
+}
+
+- (void)errorPopUp:(NSString*)message {
+    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
+                                                       message:NSLocalizedString(message, nil)
+                                                      delegate:self
+                                             cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                             otherButtonTitles:nil];
+    [addAlert show];
 }
 
 @end

@@ -74,7 +74,7 @@
 		E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
 		E2A68031169EDCBC00FF2224 /* MixareBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */; };
 		E2A68032169EDCBC00FF2224 /* MixareBootstrap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */; };
-		E2A68037169EECA600FF2224 /* arena_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A68036169EECA600FF2224 /* arena_logo.png */; };
+		E2A6EF4616A03A43001CFB9A /* arena_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A6EF4516A03A43001CFB9A /* arena_logo.png */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
 		E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
@@ -328,7 +328,7 @@
 		E2A6802E169EDCBC00FF2224 /* MixareBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixareBootstrap.h; path = extensions/bootstrap/MixareBootstrap.h; sourceTree = "<group>"; };
 		E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixareBootstrap.m; path = extensions/bootstrap/MixareBootstrap.m; sourceTree = "<group>"; };
 		E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MixareBootstrap.xib; path = extensions/bootstrap/MixareBootstrap.xib; sourceTree = "<group>"; };
-		E2A68036169EECA600FF2224 /* arena_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arena_logo.png; sourceTree = "<group>"; };
+		E2A6EF4516A03A43001CFB9A /* arena_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arena_logo.png; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
 		E2A8C247165FAA300077854B /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/bootstrap/StartWithMeDemo.h; sourceTree = "<group>"; };
@@ -718,7 +718,7 @@
 		E2A68033169EEC7800FF2224 /* arena */ = {
 			isa = PBXGroup;
 			children = (
-				E2A68036169EECA600FF2224 /* arena_logo.png */,
+				E2A6EF4516A03A43001CFB9A /* arena_logo.png */,
 				E2A6802E169EDCBC00FF2224 /* MixareBootstrap.h */,
 				E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */,
 				E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */,
@@ -1091,7 +1091,7 @@
 				E2AB3105169B351200C00A07 /* Default@2x.png in Resources */,
 				E2AB3107169B351B00C00A07 /* Default.png in Resources */,
 				E2A68032169EDCBC00FF2224 /* MixareBootstrap.xib in Resources */,
-				E2A68037169EECA600FF2224 /* arena_logo.png in Resources */,
+				E2A6EF4616A03A43001CFB9A /* arena_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
