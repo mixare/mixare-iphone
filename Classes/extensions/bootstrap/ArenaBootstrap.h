@@ -12,7 +12,7 @@
 #import "PluginEntryPoint.h"
 #import "BarcodeInput.h"
 
-@interface MixareBootstrap : UIViewController<PluginEntryPoint, SetDataSourceDelegate> {
+@interface ArenaBootstrap : UIViewController<PluginEntryPoint, SetDataSourceDelegate> {
     id<StartMainDelegate> mainClass;
     IBOutlet UIButton *scanButton;
     IBOutlet UIButton *reUseArenaButton;

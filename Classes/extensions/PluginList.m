@@ -38,7 +38,7 @@
 #import "GoogleAddressesProcessor.h"*/
 #import "ArenaProcessor.h"
 #import "MixareProcessor.h"
-#import "MixareBootstrap.h"
+#import "ArenaBootstrap.h"
 
 @implementation PluginList
 
@@ -80,7 +80,7 @@ static PluginList *pluginList;
     [plugins addObject:[[GoogleAddressesProcessor alloc] init]];*/
     [plugins addObject:[[ArenaProcessor alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];
-    [plugins addObject:[[MixareBootstrap alloc] initWithNibName:@"MixareBootstrap" bundle:nil]];
+    [plugins addObject:[[ArenaBootstrap alloc] initWithNibName:@"MixareBootstrap" bundle:nil]];
 }
 
 @end

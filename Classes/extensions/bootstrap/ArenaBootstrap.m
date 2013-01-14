@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Peer GmbH. All rights reserved.
 //
 
-#import "MixareBootstrap.h"
+#import "ArenaBootstrap.h"
 
-@interface MixareBootstrap ()
+@interface ArenaBootstrap ()
 
 @end
 
-@implementation MixareBootstrap
+@implementation ArenaBootstrap
 
 @synthesize reUseArenaButton, scanButton;
 
@@ -47,7 +47,7 @@
     [mainClass setToggleMenu:YES];
     [mainClass setPluginDelegate:self];
 	[mainClass mainWindow].rootViewController = self;
-    NSLog(@"MIXARE loaded");
+    NSLog(@"ARENA loaded");
 }
 
 - (void)reuse {

@@ -44,6 +44,7 @@
 		E246F31E16104B140006EA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		E246F3AC161061CB0006EA40 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3AB161061CB0006EA40 /* Position.m */; };
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
+		E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMainDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,8 +73,7 @@
 		E2A646EB167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */; };
 		E2A646EC167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
 		E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
-		E2A68031169EDCBC00FF2224 /* MixareBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */; };
-		E2A68032169EDCBC00FF2224 /* MixareBootstrap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */; };
+		E2A68032169EDCBC00FF2224 /* ArenaBootstrap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */; };
 		E2A6EF4616A03A43001CFB9A /* arena_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A6EF4516A03A43001CFB9A /* arena_logo.png */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
 		E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
@@ -297,6 +297,8 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
+		E29C390B16A44A2B0092F97C /* ArenaBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaBootstrap.h; path = extensions/bootstrap/ArenaBootstrap.h; sourceTree = "<group>"; };
+		E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaBootstrap.m; path = extensions/bootstrap/ArenaBootstrap.m; sourceTree = "<group>"; };
 		E29C76751696DAD70006C4D2 /* StartMainDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMainDelegate.h; path = plugin/StartMainDelegate.h; sourceTree = "<group>"; };
 		E29C76831696DE300006C4D2 /* Mixare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mixare.h; path = plugin/Mixare.h; sourceTree = "<group>"; };
 		E29C779E16972BF00006C4D2 /* libMixare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMixare.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,9 +327,7 @@
 		E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedGeoViewController.m; sourceTree = "<group>"; };
 		E2A646E8167A37F00028B6F3 /* AugmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedViewController.h; sourceTree = "<group>"; };
 		E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedViewController.m; sourceTree = "<group>"; };
-		E2A6802E169EDCBC00FF2224 /* MixareBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MixareBootstrap.h; path = extensions/bootstrap/MixareBootstrap.h; sourceTree = "<group>"; };
-		E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MixareBootstrap.m; path = extensions/bootstrap/MixareBootstrap.m; sourceTree = "<group>"; };
-		E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MixareBootstrap.xib; path = extensions/bootstrap/MixareBootstrap.xib; sourceTree = "<group>"; };
+		E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArenaBootstrap.xib; path = extensions/bootstrap/ArenaBootstrap.xib; sourceTree = "<group>"; };
 		E2A6EF4516A03A43001CFB9A /* arena_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arena_logo.png; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
@@ -719,9 +719,9 @@
 			isa = PBXGroup;
 			children = (
 				E2A6EF4516A03A43001CFB9A /* arena_logo.png */,
-				E2A6802E169EDCBC00FF2224 /* MixareBootstrap.h */,
-				E2A6802F169EDCBC00FF2224 /* MixareBootstrap.m */,
-				E2A68030169EDCBC00FF2224 /* MixareBootstrap.xib */,
+				E29C390B16A44A2B0092F97C /* ArenaBootstrap.h */,
+				E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */,
+				E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */,
 			);
 			name = arena;
 			sourceTree = "<group>";
@@ -1090,7 +1090,7 @@
 				E2AB3103169B34F300C00A07 /* Default-568h@2x.png in Resources */,
 				E2AB3105169B351200C00A07 /* Default@2x.png in Resources */,
 				E2AB3107169B351B00C00A07 /* Default.png in Resources */,
-				E2A68032169EDCBC00FF2224 /* MixareBootstrap.xib in Resources */,
+				E2A68032169EDCBC00FF2224 /* ArenaBootstrap.xib in Resources */,
 				E2A6EF4616A03A43001CFB9A /* arena_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1205,7 +1205,7 @@
 				E2A3D0141680BAC6009A3943 /* ProgressHUD.m in Sources */,
 				E2A3D0161680BAC6009A3943 /* PullRefreshTableViewController.m in Sources */,
 				E2A3D0181680BAC6009A3943 /* WebViewController.m in Sources */,
-				E2A68031169EDCBC00FF2224 /* MixareBootstrap.m in Sources */,
+				E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
