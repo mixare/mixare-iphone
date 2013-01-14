@@ -29,7 +29,8 @@
     NSMutableArray *plugins;
 }
 
+@property (nonatomic, retain) NSMutableArray *plugins;
+
 + (id)getInstance;
-- (NSMutableArray*)getPluginList;
 
 @end

@@ -33,6 +33,8 @@
 
 @implementation DataSourceList
 
+@synthesize dataSources;
+
 static DataSourceList *dataSourceList;
 
 + (void)initialize {
@@ -88,10 +90,6 @@ static DataSourceList *dataSourceList;
                             initTitle:@"Google Addresses"
                             jsonUrl:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=PARAM_LAT,PARAM_LON&sensor=true"
                             locked:YES]];*/
-}
-
-- (NSMutableArray*)getDataSources {
-    return dataSources;
 }
 
 @end

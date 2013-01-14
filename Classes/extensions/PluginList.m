@@ -42,6 +42,8 @@
 
 @implementation PluginList
 
+@synthesize plugins;
+
 static PluginList *pluginList;
 
 + (void)initialize {
@@ -79,10 +81,6 @@ static PluginList *pluginList;
     [plugins addObject:[[ArenaProcessor alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];
     [plugins addObject:[[MixareBootstrap alloc] initWithNibName:@"MixareBootstrap" bundle:nil]];
-}
-
-- (NSMutableArray*)getPluginList {
-    return plugins;
 }
 
 @end

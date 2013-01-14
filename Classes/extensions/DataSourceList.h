@@ -30,7 +30,8 @@
     NSMutableArray *dataSources;
 }
 
+@property (nonatomic, retain) NSMutableArray *dataSources;
+
 + (id)getInstance;
-- (NSMutableArray*)getDataSources;
 
 @end

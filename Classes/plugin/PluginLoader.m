@@ -48,7 +48,7 @@ static PluginLoader *pluginLoader;
     self = [super init];
     if (self) {
         plugins = [[NSMutableArray alloc] init];
-        [self addArrayOfPlugins:[[PluginList getInstance] getPluginList]];
+        [self addArrayOfPlugins:[[PluginList getInstance] plugins]];
     }
     return self;
 }
