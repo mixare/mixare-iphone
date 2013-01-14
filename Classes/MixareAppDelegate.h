@@ -30,10 +30,10 @@
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
-#import "StartMain.h"
+#import "StartMainDelegate.h"
 #import "PluginEntryPoint.h"
 
-@interface MixareAppDelegate : UIViewController <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
+@interface MixareAppDelegate : UIViewController <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMainDelegate> {
     CLLocationManager *_locationManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;

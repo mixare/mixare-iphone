@@ -36,7 +36,7 @@
     return @"Standard Text Input";
 }
 
-- (void)runInput:(id<SetDataSource>)classToSetYourData {
+- (void)runInput:(id<SetDataSourceDelegate>)classToSetYourData {
     aClass = classToSetYourData;
     [self initInputView];
 }

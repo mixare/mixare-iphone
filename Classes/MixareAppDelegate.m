@@ -86,24 +86,9 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)initManagers {
-    [self initLocationManager];
+    _locationManager = [[CLLocationManager alloc] init];
     _downloadManager = [[DownloadManager alloc] init];
     _dataSourceManager = [[DataSourceManager alloc] init];
-}
-
-/***
- *
- *  Initialize location manager
- *
- ***/
-- (void)initLocationManager {
-	if (_locationManager == nil) {
-		_locationManager = [[CLLocationManager alloc] init];
-		_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-		_locationManager.delegate = self;
-		_locationManager.distanceFilter = kCLDistanceFilterNone;
-		[_locationManager startUpdatingLocation];
-	}
 }
 
 /***
@@ -129,15 +114,6 @@ static ProgressHUD *hud;
     ((UITabBarItem *)(tabBarController.tabBar.items)[1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
     ((UITabBarItem *)(tabBarController.tabBar.items)[2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
     ((UITabBarItem *)(tabBarController.tabBar.items)[3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
-}
-
-/***
- *
- *  Response after click at marker
- *
- ***/
-- (void)markerClick:(id)sender{
-    NSLog(@"MARKER");
 }
 
 /***
@@ -256,9 +232,8 @@ static ProgressHUD *hud;
 - (void)tabBarController:(UITabBarController *)tabController didSelectViewController:(UIViewController *)viewController {
     [hud show];
     if (tabController.selectedIndex != 0) {
-        [augViewController.locationManager stopUpdatingHeading];
-        [augViewController.locationManager stopUpdatingLocation];
         [_locationManager stopUpdatingLocation];
+        [_locationManager stopUpdatingHeading];
     }
     switch (tabController.selectedIndex) {
         case 0:
@@ -353,7 +328,6 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openTabMore {
-    NSLog(@"latitude: %f", _locationManager.location.coordinate.latitude);
     [moreViewController showGPSInfo:_locationManager.location];
     [hud dismiss];
 }

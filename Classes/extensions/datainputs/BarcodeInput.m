@@ -36,7 +36,7 @@
     return @"Barcode Scanner";
 }
 
-- (void)runInput:(id<SetDataSource>)classToSetYourData {
+- (void)runInput:(id<SetDataSourceDelegate>)classToSetYourData {
     aClass = classToSetYourData;
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
     reader.readerDelegate = self;

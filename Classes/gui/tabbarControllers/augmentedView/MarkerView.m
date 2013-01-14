@@ -21,7 +21,7 @@
 
 @implementation MarkerView
 
-@synthesize viewTouched, url = _url, popUpView;
+@synthesize viewTouched, url = _url, popUpView, titleLabel;
 
 - (id)initWithWebView:(PopUpWebView*)webView {
     self = [super init];

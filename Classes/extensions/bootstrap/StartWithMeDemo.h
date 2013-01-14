@@ -25,10 +25,10 @@
 
 #import <Foundation/Foundation.h>
 #import "PluginEntryPoint.h"
-#import "StartMain.h"
+#import "StartMainDelegate.h"
 
 @interface StartWithMeDemo : NSObject <PluginEntryPoint> {
-    id<StartMain> mainClass;
+    id<StartMainDelegate> mainClass;
 }
 
 @end

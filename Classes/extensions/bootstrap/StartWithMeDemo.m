@@ -27,7 +27,7 @@
 
 @implementation StartWithMeDemo
 
-- (void)run:(id<StartMain>)delegate {
+- (void)run:(id<StartMainDelegate>)delegate {
     mainClass = delegate;
     //  ADD HERE YOUR PRE-STUFF
     //  RUN ME BEFORE APPLICATION STARTS (Like an extra view)

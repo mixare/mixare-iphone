@@ -42,7 +42,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)run:(id<StartMain>)delegate {
+- (void)run:(id<StartMainDelegate>)delegate {
     mainClass = delegate;
     [mainClass setToggleMenu:YES];
     [mainClass setPluginDelegate:self];

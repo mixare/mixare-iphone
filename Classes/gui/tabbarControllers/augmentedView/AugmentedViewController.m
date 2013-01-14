@@ -136,7 +136,8 @@
 
 - (void)stopListening {
 	if (self.locationManager != nil) {
-		[locationManager stopUpdatingHeading];
+		[self.locationManager stopUpdatingHeading];
+        [self.locationManager stopUpdatingLocation];
 	}
 }
 
@@ -148,6 +149,7 @@
 		self.locationManager.headingFilter = kCLHeadingFilterNone;
 		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 		[self.locationManager startUpdatingHeading];
+        [self.locationManager startUpdatingLocation];
 	}
 	//steal back the delegate.
 	self.locationManager.delegate = self;
@@ -293,6 +295,9 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	for (PoiItem *item in ar_coordinates) {
 		MarkerView *viewToDraw = ar_coordinateViews[index];
 		if ([self viewportContainsCoordinate:item]) {
+            double distance = [self.locationManager.location distanceFromLocation:item.geoLocation] / 1000;
+            NSString *labelText = [NSString stringWithFormat:@"%@ \n %.2fkm", item.position.title, distance];
+            viewToDraw.titleLabel.text = labelText;
 			CGPoint loc = [self pointInView:ar_overlayView forCoordinate:item];
 			CGFloat scaleFactor = 1.5;
 			if (self.scaleViewsBasedOnDistance) {
@@ -410,13 +415,14 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
 	titleLabel.textColor = [UIColor whiteColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.numberOfLines = 0;
-    double distance = [locationManager.location distanceFromLocation:coordinate.geoLocation] / 1000;
+    double distance = [self.locationManager.location distanceFromLocation:coordinate.geoLocation] / 1000;
     NSString *labelText = [NSString stringWithFormat:@"%@ \n %.2fkm", coordinate.position.title, distance];
 	titleLabel.text = labelText;
     //Markers get automatically resized
     [titleLabel sizeToFit];
 	titleLabel.frame = CGRectMake(BOX_WIDTH / 2.0 - titleLabel.frame.size.width / 2.0 - 4.0, pointView.image.size.height + 5, titleLabel.frame.size.width + 8.0, titleLabel.frame.size.height + 8.0);
     tempView.url = coordinate.position.url;
+    [tempView setTitleLabel:titleLabel];
 	[tempView addSubview:titleLabel];
 	[tempView addSubview:pointView];
     tempView.userInteractionEnabled = YES;

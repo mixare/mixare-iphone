@@ -17,27 +17,17 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  StartMain.h
+//  SetDataSource.h
 //  Mixare
 //
-//  Created by Aswin Ly on 19-11-12.
+//  Created by Aswin Ly on 13-11-12.
 //
 
 #import <Foundation/Foundation.h>
-#import "PluginEntryPoint.h"
-#import "DataSourceManager.h"
 
-@protocol StartMain
+@protocol SetDataSourceDelegate
 
-@property (nonatomic, retain) DataSourceManager *_dataSourceManager;
-@property (nonatomic, retain) id<PluginEntryPoint> pluginDelegate;
-@property (nonatomic) BOOL toggleMenu;
-@property (nonatomic, retain) UIWindow *mainWindow;
-
-- (void)openARView;
-- (void)openMenu;
-- (void)refresh;
-- (void)showHud;
-- (void)closeHud;
+- (void)setNewData:(NSDictionary *)data;
+- (void)presentViewController:id animated:id completion:id;
 
 @end

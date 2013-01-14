@@ -46,11 +46,11 @@
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E29C77D11697362D0006C4D2 /* StartMain.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMainDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D616832C0100B6A493 /* DataProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D31697362D0006C4D2 /* DataInput.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D416832BE400B6A493 /* DataInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D41697362D0006C4D2 /* PluginEntryPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E29C77D51697362D0006C4D2 /* SetDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D516832BE400B6A493 /* SetDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C77D51697362D0006C4D2 /* SetDataSourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A387D516832BE400B6A493 /* SetDataSourceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2A3CFFA1680952D009A3943 /* CameraControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFF91680952D009A3943 /* CameraControllerTest.m */; };
 		E2A3D0011680B97B009A3943 /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFFE1680B97B009A3943 /* Radar.m */; };
 		E2A3D0021680B97B009A3943 /* Radar.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A3CFFE1680B97B009A3943 /* Radar.m */; };
@@ -297,11 +297,11 @@
 		E246F3AB161061CB0006EA40 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		E246F3B21610AE8C0006EA40 /* DataSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceTest.h; sourceTree = "<group>"; };
 		E246F3B31610AE8C0006EA40 /* DataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceTest.m; sourceTree = "<group>"; };
-		E29C76751696DAD70006C4D2 /* StartMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMain.h; path = plugin/StartMain.h; sourceTree = "<group>"; };
+		E29C76751696DAD70006C4D2 /* StartMainDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMainDelegate.h; path = plugin/StartMainDelegate.h; sourceTree = "<group>"; };
 		E29C76831696DE300006C4D2 /* Mixare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mixare.h; path = plugin/Mixare.h; sourceTree = "<group>"; };
 		E29C779E16972BF00006C4D2 /* libMixare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMixare.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A387D416832BE400B6A493 /* DataInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataInput.h; path = plugin/DataInput.h; sourceTree = "<group>"; };
-		E2A387D516832BE400B6A493 /* SetDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetDataSource.h; path = plugin/SetDataSource.h; sourceTree = "<group>"; };
+		E2A387D516832BE400B6A493 /* SetDataSourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetDataSourceDelegate.h; path = plugin/SetDataSourceDelegate.h; sourceTree = "<group>"; };
 		E2A387D616832C0100B6A493 /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = plugin/DataProcessor.h; sourceTree = "<group>"; };
 		E2A3CFF81680952D009A3943 /* CameraControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraControllerTest.h; sourceTree = "<group>"; };
 		E2A3CFF91680952D009A3943 /* CameraControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraControllerTest.m; sourceTree = "<group>"; };
@@ -836,11 +836,11 @@
 			isa = PBXGroup;
 			children = (
 				E29C76831696DE300006C4D2 /* Mixare.h */,
-				E29C76751696DAD70006C4D2 /* StartMain.h */,
+				E29C76751696DAD70006C4D2 /* StartMainDelegate.h */,
+				E2A387D516832BE400B6A493 /* SetDataSourceDelegate.h */,
 				E2A387D616832C0100B6A493 /* DataProcessor.h */,
 				E2A387D416832BE400B6A493 /* DataInput.h */,
 				E2B100E3165133AA0086BD8E /* PluginEntryPoint.h */,
-				E2A387D516832BE400B6A493 /* SetDataSource.h */,
 				E2B100DD165102400086BD8E /* PluginLoader.h */,
 				E2B100DE165102400086BD8E /* PluginLoader.m */,
 			);
@@ -955,11 +955,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29C77D01697362D0006C4D2 /* Mixare.h in Headers */,
-				E29C77D11697362D0006C4D2 /* StartMain.h in Headers */,
+				E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */,
 				E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */,
 				E29C77D31697362D0006C4D2 /* DataInput.h in Headers */,
 				E29C77D41697362D0006C4D2 /* PluginEntryPoint.h in Headers */,
-				E29C77D51697362D0006C4D2 /* SetDataSource.h in Headers */,
+				E29C77D51697362D0006C4D2 /* SetDataSourceDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
