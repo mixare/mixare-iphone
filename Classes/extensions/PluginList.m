@@ -35,9 +35,9 @@
 #import "StartWithMeDemo.h"
 #import "WikipediaProcessor.h"
 #import "TwitterProcessor.h"
-#import "GoogleAddressesProcessor.h"
+#import "GoogleAddressesProcessor.h"*/
 #import "ArenaProcessor.h"
-#import "ArenaBootstrap.h"*/
+#import "ArenaBootstrap.h"
 #import "MixareProcessor.h"
 
 @implementation PluginList
@@ -77,9 +77,9 @@ static PluginList *pluginList;
     [plugins addObject:[[StartWithMeDemo alloc] init]];
     [plugins addObject:[[WikipediaProcessor alloc] init]];
     [plugins addObject:[[TwitterProcessor alloc] init]];
-    [plugins addObject:[[GoogleAddressesProcessor alloc] init]];
+    [plugins addObject:[[GoogleAddressesProcessor alloc] init]];*/
     [plugins addObject:[[ArenaProcessor alloc] init]];
-    [plugins addObject:[[ArenaBootstrap alloc] initWithNibName:@"MixareBootstrap" bundle:nil]];*/
+    [plugins addObject:[[ArenaBootstrap alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];
 }
 

@@ -1,5 +1,5 @@
 //
-//  MixareBootstrap.h
+//  ArenaBootstrap.h
 //  Mixare
 //
 //  Created by Aswin Ly on 10-01-13.

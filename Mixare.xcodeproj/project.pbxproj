@@ -46,6 +46,41 @@
 		E246F3B41610AE8C0006EA40 /* DataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E246F3B31610AE8C0006EA40 /* DataSourceTest.m */; };
 		E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C396116A45C850092F97C /* arena_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E29C396016A45C850092F97C /* arena_logo.png */; };
+		E29C399F16A6BBD50092F97C /* DataSourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E2E3ECA4162C2B1700A28F2B /* DataSourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A016A6BC2F0092F97C /* DataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B606012B9F7740014850C /* DataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A116A6BC4A0092F97C /* Position.h in Headers */ = {isa = PBXBuildFile; fileRef = E246F3AA161061CB0006EA40 /* Position.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A316A6BC780092F97C /* MapViewAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = E2E3ECBA162C599300A28F2B /* MapViewAnnotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A416A6BC940092F97C /* PoiItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B605912B9F7230014850C /* PoiItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A516A6BCC60092F97C /* MixareAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A616A6BCD40092F97C /* DownloadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E2E3ECA7162C369A00A28F2B /* DownloadManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A716A6BCFF0092F97C /* Radar.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A3CFFD1680B97B009A3943 /* Radar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A816A6BD2A0092F97C /* RadarViewPortView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A3CFFF1680B97B009A3943 /* RadarViewPortView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39A916A6BD2A0092F97C /* MarkerView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B2058B1668E772005AC7B5 /* MarkerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39AA16A6BD2A0092F97C /* AugmentedGeoViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A646E6167A37F00028B6F3 /* AugmentedGeoViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39AB16A6BD2A0092F97C /* AugmentedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A646E8167A37F00028B6F3 /* AugmentedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39AC16A6BD2A0092F97C /* CameraController.h in Headers */ = {isa = PBXBuildFile; fileRef = E2AF18C41678DEF1002CE6D1 /* CameraController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39AD16A6BD2A0092F97C /* SourceTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B609212B9F9100014850C /* SourceTableCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39AE16A6BD2A0092F97C /* SourceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B609412B9F9100014850C /* SourceViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39AF16A6BD2A0092F97C /* ListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B608B12B9F9100014850C /* ListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B016A6BD2A0092F97C /* MapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B608D12B9F9100014850C /* MapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B116A6BD2A0092F97C /* MoreViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B608F12B9F9100014850C /* MoreViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B216A6BD2A0092F97C /* PopUpWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A3D00A1680BAC6009A3943 /* PopUpWebView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B316A6BD2A0092F97C /* ProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A3D00C1680BAC6009A3943 /* ProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B416A6BD2A0092F97C /* PullRefreshTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A3D00E1680BAC6009A3943 /* PullRefreshTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B516A6BD2A0092F97C /* WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = E2A3D0101680BAC6009A3943 /* WebViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B616A6BD2A0092F97C /* DataConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100A71650FC7D0086BD8E /* DataConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B716A6BD2A0092F97C /* JsonData.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100B81650FC7D0086BD8E /* JsonData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B816A6BD2A0092F97C /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100AD1650FC7D0086BD8E /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39B916A6BD2A0092F97C /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100AE1650FC7D0086BD8E /* NSObject+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39BA16A6BD2A0092F97C /* NSString+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100B01650FC7D0086BD8E /* NSString+SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39BB16A6BD2A0092F97C /* SBJsonBase.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100B21650FC7D0086BD8E /* SBJsonBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39BC16A6BD2A0092F97C /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100B41650FC7D0086BD8E /* SBJsonParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39BD16A6BD2A0092F97C /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100B61650FC7D0086BD8E /* SBJsonWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39BE16A6BD2A0092F97C /* PluginLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100DD165102400086BD8E /* PluginLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39BF16A6BD2A0092F97C /* DataSourceList.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B0C2DA16551A2E0099090E /* DataSourceList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39C016A6BD2A0092F97C /* PluginList.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100E4165136DA0086BD8E /* PluginList.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E29C39CC16A6D03A0092F97C /* MixareMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C39CB16A6D03A0092F97C /* MixareMain.m */; };
+		E29C39CD16A6D03A0092F97C /* MixareMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C39CB16A6D03A0092F97C /* MixareMain.m */; };
 		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMainDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -300,6 +335,8 @@
 		E29C390B16A44A2B0092F97C /* ArenaBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaBootstrap.h; path = extensions/bootstrap/ArenaBootstrap.h; sourceTree = "<group>"; };
 		E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaBootstrap.m; path = extensions/bootstrap/ArenaBootstrap.m; sourceTree = "<group>"; };
 		E29C396016A45C850092F97C /* arena_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arena_logo.png; path = extensions/bootstrap/arena_logo.png; sourceTree = "<group>"; };
+		E29C39CA16A6D03A0092F97C /* MixareMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixareMain.h; sourceTree = "<group>"; };
+		E29C39CB16A6D03A0092F97C /* MixareMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixareMain.m; sourceTree = "<group>"; };
 		E29C76751696DAD70006C4D2 /* StartMainDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMainDelegate.h; path = plugin/StartMainDelegate.h; sourceTree = "<group>"; };
 		E29C76831696DE300006C4D2 /* Mixare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mixare.h; path = plugin/Mixare.h; sourceTree = "<group>"; };
 		E29C779E16972BF00006C4D2 /* libMixare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMixare.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -495,6 +532,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E29C39CA16A6D03A0092F97C /* MixareMain.h */,
+				E29C39CB16A6D03A0092F97C /* MixareMain.m */,
 				36B3DC8212B9FB3500670FCF /* MixareAppDelegate.h */,
 				36B3DC8112B9FB3500670FCF /* MixareAppDelegate.m */,
 				E2E3ECA3162C2ACB00A28F2B /* manager */,
@@ -955,11 +994,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29C77D01697362D0006C4D2 /* Mixare.h in Headers */,
+				E29C39A516A6BCC60092F97C /* MixareAppDelegate.h in Headers */,
 				E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */,
 				E29C77D21697362D0006C4D2 /* DataProcessor.h in Headers */,
 				E29C77D31697362D0006C4D2 /* DataInput.h in Headers */,
 				E29C77D41697362D0006C4D2 /* PluginEntryPoint.h in Headers */,
 				E29C77D51697362D0006C4D2 /* SetDataSourceDelegate.h in Headers */,
+				E29C399F16A6BBD50092F97C /* DataSourceManager.h in Headers */,
+				E29C39A016A6BC2F0092F97C /* DataSource.h in Headers */,
+				E29C39A116A6BC4A0092F97C /* Position.h in Headers */,
+				E29C39A316A6BC780092F97C /* MapViewAnnotation.h in Headers */,
+				E29C39A416A6BC940092F97C /* PoiItem.h in Headers */,
+				E29C39A616A6BCD40092F97C /* DownloadManager.h in Headers */,
+				E29C39A816A6BD2A0092F97C /* RadarViewPortView.h in Headers */,
+				E29C39A916A6BD2A0092F97C /* MarkerView.h in Headers */,
+				E29C39AA16A6BD2A0092F97C /* AugmentedGeoViewController.h in Headers */,
+				E29C39AB16A6BD2A0092F97C /* AugmentedViewController.h in Headers */,
+				E29C39AC16A6BD2A0092F97C /* CameraController.h in Headers */,
+				E29C39AD16A6BD2A0092F97C /* SourceTableCell.h in Headers */,
+				E29C39AE16A6BD2A0092F97C /* SourceViewController.h in Headers */,
+				E29C39AF16A6BD2A0092F97C /* ListViewController.h in Headers */,
+				E29C39B016A6BD2A0092F97C /* MapViewController.h in Headers */,
+				E29C39B116A6BD2A0092F97C /* MoreViewController.h in Headers */,
+				E29C39B216A6BD2A0092F97C /* PopUpWebView.h in Headers */,
+				E29C39B316A6BD2A0092F97C /* ProgressHUD.h in Headers */,
+				E29C39B416A6BD2A0092F97C /* PullRefreshTableViewController.h in Headers */,
+				E29C39B516A6BD2A0092F97C /* WebViewController.h in Headers */,
+				E29C39B616A6BD2A0092F97C /* DataConverter.h in Headers */,
+				E29C39B716A6BD2A0092F97C /* JsonData.h in Headers */,
+				E29C39B816A6BD2A0092F97C /* JSON.h in Headers */,
+				E29C39B916A6BD2A0092F97C /* NSObject+SBJSON.h in Headers */,
+				E29C39BA16A6BD2A0092F97C /* NSString+SBJSON.h in Headers */,
+				E29C39BB16A6BD2A0092F97C /* SBJsonBase.h in Headers */,
+				E29C39BC16A6BD2A0092F97C /* SBJsonParser.h in Headers */,
+				E29C39BD16A6BD2A0092F97C /* SBJsonWriter.h in Headers */,
+				E29C39BE16A6BD2A0092F97C /* PluginLoader.h in Headers */,
+				E29C39BF16A6BD2A0092F97C /* DataSourceList.h in Headers */,
+				E29C39C016A6BD2A0092F97C /* PluginList.h in Headers */,
+				E29C39A716A6BCFF0092F97C /* Radar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,6 +1278,7 @@
 				E2A3D0161680BAC6009A3943 /* PullRefreshTableViewController.m in Sources */,
 				E2A3D0181680BAC6009A3943 /* WebViewController.m in Sources */,
 				E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */,
+				E29C39CC16A6D03A0092F97C /* MixareMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1308,6 +1381,7 @@
 				E2A3D0191680BAC6009A3943 /* WebViewController.m in Sources */,
 				E23FE78C1681D02600AC90F3 /* MapViewAnnotationTest.m in Sources */,
 				E23FE7901681D32A00AC90F3 /* PoiItemTest.m in Sources */,
+				E29C39CD16A6D03A0092F97C /* MixareMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1454,22 +1528,18 @@
 		E29C77A816972BF00006C4D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/Plugins.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"\"$(SRCROOT)\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1477,10 +1547,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = (
-					"include/$(TARGET_NAME)",
-					Include,
-				);
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
@@ -1488,35 +1555,28 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/Mixare;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		E29C77A916972BF00006C4D2 /* Coverage */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/Plugins.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"\"$(SRCROOT)\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = (
-					"include/$(TARGET_NAME)",
-					Include,
-				);
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
@@ -1524,9 +1584,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/Mixare;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Coverage;
@@ -1534,26 +1594,19 @@
 		E29C77AA16972BF00006C4D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/Plugins.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"\"$(SRCROOT)\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = (
-					"include/$(TARGET_NAME)",
-					Include,
-				);
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
@@ -1561,9 +1614,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/Mixare;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1571,26 +1624,19 @@
 		E29C77AB16972BF00006C4D2 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/Plugins.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"\"$(SRCROOT)\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = (
-					"include/$(TARGET_NAME)",
-					Include,
-				);
+				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes/extensions/datainputs/ZBarSDK\"",
@@ -1598,9 +1644,9 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Mixare;
-				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = include/Mixare;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "include/$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad Hoc Distribution";

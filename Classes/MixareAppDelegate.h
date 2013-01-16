@@ -38,13 +38,11 @@
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
     
-    IBOutlet UIWindow *window;
 	IBOutlet UITabBarController *tabBarController;
 	IBOutlet ListViewController *listViewController;
 	IBOutlet MapViewController *mapViewController;
     IBOutlet AugmentedGeoViewController *augViewController;
 	
-    UIWindow *mainWindow;
 	IBOutlet UIView *menuView;
     IBOutlet MoreViewController *moreViewController;
     IBOutlet SourceViewController *sourceViewController;
@@ -54,14 +52,16 @@
     id<PluginEntryPoint> pluginDelegate;
     
     BOOL alertRunning;
+    UIWindow *mainWindow;
     
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView *notificationView;
 }
 
+@property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) BOOL alertRunning;
 
-- (void)runApplication:(UIWindow*)win;
+- (void)runApplication;
 
 @end

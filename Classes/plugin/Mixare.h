@@ -24,9 +24,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Mixare/StartMain.h>
+#import <Mixare/StartMainDelegate.h>
 #import <Mixare/DataProcessor.h>
 #import <Mixare/DataInput.h>
 #import <Mixare/PluginEntryPoint.h>
-#import <Mixare/SetDataSource.h>
+#import <Mixare/SetDataSourceDelegate.h>
 #import <Mixare/MixareAppDelegate.h>

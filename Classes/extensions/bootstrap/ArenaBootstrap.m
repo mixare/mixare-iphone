@@ -1,5 +1,5 @@
 //
-//  MixareBootstrap.m
+//  ArenaBootstrap.m
 //  Mixare
 //
 //  Created by Aswin Ly on 10-01-13.
@@ -15,6 +15,14 @@
 @implementation ArenaBootstrap
 
 @synthesize reUseArenaButton, scanButton;
+
+- (id)init {
+    self = [super initWithNibName:@"ArenaBootstrap" bundle:nil];
+    if (self != nil) {
+        
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

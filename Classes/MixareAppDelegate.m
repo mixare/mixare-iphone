@@ -38,21 +38,33 @@ static ProgressHUD *hud;
  *
  ***/
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self runApplication:nil];
+    [self runApplication];
     return YES;
 }
 
-- (void)runApplication:(UIWindow*)win {
-    if (win != nil) {
-        NSLog(@"TEST");
-        window = win;
+- (id)init {
+    self = [super initWithNibName:@"MainWindow" bundle:nil];
+    if (self != nil) {
+        // Further initialization if needed
+        NSLog(@"LOAD SHIT");
     }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
+    NSAssert(NO, @"Initialize with -init");
+    return nil;
+}
+
+- (void)runApplication {
     hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
-	[window makeKeyAndVisible];
-    mainWindow = window;
+    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    self.window.backgroundColor = [UIColor blueColor];
+	[self.window makeKeyAndVisible];
+    mainWindow = self.window;
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didRotate:)
@@ -60,8 +72,8 @@ static ProgressHUD *hud;
                                                object:nil];
     [self initUIBarTitles];
     [self firstBootLicenseText];
-    if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
-        startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
+    if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] > 0) {
+        startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:nil];
         NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
             [plugin run:self];
@@ -128,7 +140,7 @@ static ProgressHUD *hud;
     }
     augViewController.centerLocation = _locationManager.location;
     [self initControls];
-    window.rootViewController = augViewController;
+    self.window.rootViewController = augViewController;
 }
 
 /***
@@ -198,7 +210,7 @@ static ProgressHUD *hud;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    window.rootViewController = tabBarController;
+    self.window.rootViewController = tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -341,51 +353,8 @@ static ProgressHUD *hud;
  *  --------------------------------------
  ***/
 
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
-}
-
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    /*
-     Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
-     */
-}
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-}
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"extern_url"];
-}
-
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
-}
-*/
-
 #pragma mark -
 #pragma mark Memory management
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    /*
-     Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
-     */
-}
 
 /***
  *
