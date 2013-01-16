@@ -74,9 +74,7 @@
 - (void)setNewData:(NSDictionary *)data {
     NSString *title = [data objectForKey:@"title"];
     NSString *url = [data objectForKey:@"url"];
-    if (url == nil || title == nil || [url isEqualToString:@""] || [title isEqualToString:@""]) {
-        [self errorPopUp:@"Geen geldige barcode"];
-    } else if ([url rangeOfString:@"arena"].location == NSNotFound) {
+    if (url == nil || title == nil || [url isEqualToString:@""] || [title isEqualToString:@""] || [url rangeOfString:@"arena"].location == NSNotFound) {
         [self errorPopUp:@"Geen geldige barcode"];
     } else {
         NSLog(@"URL: %@", url);
