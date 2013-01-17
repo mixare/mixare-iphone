@@ -48,7 +48,7 @@ static ProgressHUD *hud;
 	[self initManagers];
     beforeWasLandscape = NO;
     window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    [self createTabBarController];
+    [self createInterface];
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -390,7 +390,7 @@ static ProgressHUD *hud;
     [hud dismiss];
 }
 
-- (void)createTabBarController {
+- (void)createInterface {
     tabBarController = [[UITabBarController alloc] init];
     tabBarController.delegate = self;
     tabBarController.selectedIndex = 0;
@@ -399,6 +399,7 @@ static ProgressHUD *hud;
     
     NSString *sourceTitle = NSLocalizedString(@"Sources", @"2nd tabbar icon");
     UINavigationController *sourceNavigationController = [[UINavigationController alloc] init];
+    sourceNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     sourceViewController = [[SourceViewController alloc] init];
     [sourceViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:sourceTitle image:[UIImage imageNamed:@"icon_datasource"] tag:1]];
     sourceViewController.navigationItem.title = sourceTitle;
@@ -406,6 +407,7 @@ static ProgressHUD *hud;
     
     NSString *listTitle = NSLocalizedString(@"List View", @"3rd tabbar icon");
     UINavigationController *listNavigationController = [[UINavigationController alloc] init];
+    listNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     listViewController = [[ListViewController alloc] init];
     [listViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:listTitle image:[UIImage imageNamed:@"list"] tag:2]];
     listViewController.navigationItem.title = listTitle;

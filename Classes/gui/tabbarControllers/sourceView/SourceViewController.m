@@ -190,6 +190,7 @@
 	}
 	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = dataSourceArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if ([dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo != nil) {
 			[cell.sourceLogoView setImage:[dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo];
 		} else {
