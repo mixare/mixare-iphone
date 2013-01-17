@@ -32,7 +32,7 @@
 @property (nonatomic, retain) DataSourceManager *_dataSourceManager;
 @property (nonatomic, retain) id<PluginEntryPoint> pluginDelegate;
 @property (nonatomic) BOOL toggleMenu;
-@property (nonatomic, retain) UIWindow *mainWindow;
+@property (nonatomic, retain) UIWindow *window;
 
 - (void)openARView;
 - (void)openMenu;

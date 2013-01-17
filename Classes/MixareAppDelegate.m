@@ -23,7 +23,7 @@
  
 @implementation MixareAppDelegate
 
-@synthesize toggleMenu, pluginDelegate, alertRunning, mainWindow, _dataSourceManager;
+@synthesize toggleMenu, pluginDelegate, alertRunning, _dataSourceManager, window;
 
 static ProgressHUD *hud;
 
@@ -36,41 +36,26 @@ static ProgressHUD *hud;
  *  @param application
  *  @param launch options dictionary
  *
- ***/
+ **
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self runApplication];
     return YES;
-}
-
-- (id)init {
-    self = [super initWithNibName:@"MainWindow" bundle:nil];
-    if (self != nil) {
-        // Further initialization if needed
-        NSLog(@"LOAD SHIT");
-    }
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
-    NSAssert(NO, @"Initialize with -init");
-    return nil;
-}
+}*/
 
 - (void)runApplication {
     hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
-    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    self.window.backgroundColor = [UIColor blueColor];
-	[self.window makeKeyAndVisible];
-    mainWindow = self.window;
+    window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self createTabBarController];
+	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didRotate:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
-    [self initUIBarTitles];
+    //[self initUIBarTitles];
     [self firstBootLicenseText];
     if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] > 0) {
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:nil];
@@ -88,7 +73,7 @@ static ProgressHUD *hud;
     toggleMenu = YES;
     [self refresh];
     [self openARView];
-    //[self openMenu]; Start with ARview instead of menu
+    //[self openMenu];
     [hud dismiss];
 }
 
@@ -140,7 +125,7 @@ static ProgressHUD *hud;
     }
     augViewController.centerLocation = _locationManager.location;
     [self initControls];
-    self.window.rootViewController = augViewController;
+    window.rootViewController = augViewController;
 }
 
 /***
@@ -210,7 +195,7 @@ static ProgressHUD *hud;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    self.window.rootViewController = tabBarController;
+    window.rootViewController = tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -403,6 +388,36 @@ static ProgressHUD *hud;
 
 - (void)closeHud {
     [hud dismiss];
+}
+
+- (void)createTabBarController {
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.delegate = self;
+    tabBarController.selectedIndex = 0;
+    UIViewController *cameraButtonDummy = [[UIViewController alloc] init];
+    [cameraButtonDummy setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Camera", @"1st tabbar icon") image:[UIImage imageNamed:@"camera"] tag:0]];
+    
+    NSString *sourceTitle = NSLocalizedString(@"Sources", @"2nd tabbar icon");
+    UINavigationController *sourceNavigationController = [[UINavigationController alloc] init];
+    sourceViewController = [[SourceViewController alloc] init];
+    [sourceViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:sourceTitle image:[UIImage imageNamed:@"icon_datasource"] tag:1]];
+    sourceViewController.navigationItem.title = sourceTitle;
+    sourceNavigationController.viewControllers = [NSArray arrayWithObjects:sourceViewController, nil];
+    
+    NSString *listTitle = NSLocalizedString(@"List View", @"3rd tabbar icon");
+    UINavigationController *listNavigationController = [[UINavigationController alloc] init];
+    listViewController = [[ListViewController alloc] init];
+    [listViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:listTitle image:[UIImage imageNamed:@"list"] tag:2]];
+    listViewController.navigationItem.title = listTitle;
+    listNavigationController.viewControllers = [NSArray arrayWithObjects:listViewController, nil];
+    
+    mapViewController = [[MapViewController alloc] init];
+    [mapViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Map", @"4th tabbar icon") image:[UIImage imageNamed:@"map"] tag:3]];
+    
+    moreViewController = [[MoreViewController alloc] init];
+    [moreViewController setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:4]];
+    
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:cameraButtonDummy, sourceNavigationController, listNavigationController, mapViewController, moreViewController, nil]];
 }
 
 /***

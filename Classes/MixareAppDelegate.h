@@ -33,33 +33,32 @@
 #import "StartMainDelegate.h"
 #import "PluginEntryPoint.h"
 
-@interface MixareAppDelegate : UIViewController <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMainDelegate> {
+@interface MixareAppDelegate : UIViewController <UITabBarControllerDelegate, CLLocationManagerDelegate, StartMainDelegate> {
+    UIWindow *window;
+    
     CLLocationManager *_locationManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
     
-	IBOutlet UITabBarController *tabBarController;
-	IBOutlet ListViewController *listViewController;
-	IBOutlet MapViewController *mapViewController;
-    IBOutlet AugmentedGeoViewController *augViewController;
-	
-	IBOutlet UIView *menuView;
-    IBOutlet MoreViewController *moreViewController;
-    IBOutlet SourceViewController *sourceViewController;
+    AugmentedGeoViewController *augViewController;
+    
+	UITabBarController *tabBarController;
+	ListViewController *listViewController;
+	MapViewController *mapViewController;
+    MoreViewController *moreViewController;
+    SourceViewController *sourceViewController;
     
     NSArray *startPlugin;
     BOOL toggleMenu;
     id<PluginEntryPoint> pluginDelegate;
     
     BOOL alertRunning;
-    UIWindow *mainWindow;
     
     @private
     BOOL beforeWasLandscape;
     IBOutlet UIView *notificationView;
 }
 
-@property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) BOOL alertRunning;
 
 - (void)runApplication;

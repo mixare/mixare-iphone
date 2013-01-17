@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MixareAppDelegate.m"
-         timestampString = "380040978.33023"
+         timestampString = "380128667.083818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "90"
-         endingLineNumber = "90"
+         startingLineNumber = "75"
+         endingLineNumber = "75"
          landmarkName = "-standardViewInitialize"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MixareAppDelegate.m"
-         timestampString = "380040978.33023"
+         timestampString = "380128667.083818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
          landmarkName = "-standardViewInitialize"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MixareAppDelegate.m"
-         timestampString = "380040978.33023"
+         timestampString = "380128667.083818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "141"
-         endingLineNumber = "141"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
          landmarkName = "-openARView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MixareAppDelegate.m"
-         timestampString = "380040978.33023"
+         timestampString = "380128667.083818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "142"
-         endingLineNumber = "142"
+         startingLineNumber = "127"
+         endingLineNumber = "127"
          landmarkName = "-openARView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Classes/MixareAppDelegate.m"
-         timestampString = "380040978.33023"
+         timestampString = "380128667.083818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "143"
-         endingLineNumber = "143"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
          landmarkName = "-openARView"
          landmarkType = "5">
       </FileBreakpoint>
