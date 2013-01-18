@@ -24,23 +24,32 @@
 
 @synthesize map  = _map;
 
+- (id)init {
+    self = [super init];
+    
+    return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
     _map.delegate = self;
 	MKCoordinateRegion newRegion;
-	CLLocationManager* locmng = [[CLLocationManager alloc]init];
+	CLLocationManager *locmng = [[CLLocationManager alloc] init];
 	newRegion.center.latitude = locmng.location.coordinate.latitude;
 	newRegion.center.longitude = locmng.location.coordinate.longitude;
 	newRegion.span.latitudeDelta = 0.03;
 	newRegion.span.longitudeDelta = 0.03;
 	[self.map setRegion:newRegion animated:YES];
-    if (_currentAnnotations == nil) {
-        _currentAnnotations = [[NSMutableArray alloc] init];
-    }
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rightRotateable:YES];
+    _currentAnnotations = [[NSMutableArray alloc] init];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rightRotateable:YES alpha:.6];
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        // code for landscape orientation
+        _map.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    }
 	return YES;
 }
 
@@ -51,7 +60,7 @@
     }
 }
 
-- (void)addAnnotationsFromDataSource:(DataSource *)data{
+- (void)addAnnotationsFromDataSource:(DataSource *)data {
 	if(data.positions != nil){
 		for(Position *pos in data.positions) {
             [_currentAnnotations addObject:pos.mapViewAnnotation];
@@ -93,7 +102,13 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     MapViewAnnotation *annotation = (MapViewAnnotation*)view.annotation;
-    [popUpView openUrlView:annotation.position.url];
+    if (self.navigationController != nil) {
+        WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+        targetViewController.url = annotation.position.url;
+        [[self navigationController] pushViewController:targetViewController animated:YES];
+    } else {
+        [popUpView openUrlView:annotation.position.url];
+    }
 }
 
 

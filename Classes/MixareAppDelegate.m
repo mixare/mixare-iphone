@@ -413,11 +413,22 @@ static ProgressHUD *hud;
     listViewController.navigationItem.title = listTitle;
     listNavigationController.viewControllers = [NSArray arrayWithObjects:listViewController, nil];
     
+    UINavigationController *mapNavigationController = [[UINavigationController alloc] init];
+    mapNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     mapViewController = [[MapViewController alloc] init];
     [mapViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Map", @"4th tabbar icon") image:[UIImage imageNamed:@"map"] tag:3]];
+    mapViewController.navigationItem.title = @"Map";
+    mapNavigationController.viewControllers = [NSArray arrayWithObjects:mapViewController, nil];
     
+    UINavigationController *moreNavigationController = [[UINavigationController alloc] init];
+    moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     moreViewController = [[MoreViewController alloc] init];
     [moreViewController setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:4]];
+    moreViewController.navigationItem.title = NSLocalizedString(@"General Info", nil);
+    moreNavigationController.viewControllers = [NSArray arrayWithObjects:moreViewController, nil];
+    
+    UIBarButtonItem *license = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"License", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showLicense)];
+    moreViewController.navigationItem.rightBarButtonItem = license;
     
     [tabBarController setViewControllers:[NSArray arrayWithObjects:cameraButtonDummy, sourceNavigationController, listNavigationController, mapViewController, moreViewController, nil]];
 }
@@ -430,10 +441,14 @@ static ProgressHUD *hud;
 - (void)firstBootLicenseText {
     NSString *licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLaunch"];
     if ([licenseText isEqualToString:@""] || licenseText == nil) {
-        UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"License",nil) message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
-        [addAlert show];
+        [self showLicense];
         [[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"mixaresFirstLaunch"];
     }
+}
+
+- (void)showLicense {
+    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"License",nil) message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+    [addAlert show];
 }
 
 @end

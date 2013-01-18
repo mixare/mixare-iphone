@@ -27,14 +27,14 @@
 //ViewController for the source tabbarsection 
 @interface SourceViewController : PullRefreshTableViewController<UITextFieldDelegate, UIAlertViewDelegate, SetDataSourceDelegate> {
 	NSMutableArray *dataSourceArray;
-    IBOutlet UIBarButtonItem *addButton;
+    UIBarButtonItem *addButton;
     DownloadManager *downloadManager;
     DataSourceManager *dataSourceManager;
     UITextField *textField;
     UITextField *urlField;
 }
 
-- (IBAction)addSource;
+- (void)addSource;
 - (void)setNewData:(NSDictionary*)data;
 - (void)refresh:(DataSourceManager*)dataSourceManager;
 

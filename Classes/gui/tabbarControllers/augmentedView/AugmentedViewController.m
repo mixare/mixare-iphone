@@ -56,7 +56,7 @@
     [self.cameraController setPortrait];
 	[[self.view layer] addSublayer:[self.cameraController previewLayer]];
     [[self.cameraController captureSession] startRunning];
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rightRotateable:NO];
+    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:20 isTabbar:NO rightRotateable:NO alpha:.6];
 #endif
 	self.scaleViewsBasedOnDistance = NO;
 	self.maximumScaleDistance = 0.0;

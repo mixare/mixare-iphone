@@ -25,7 +25,7 @@
 	UIImageView *_sourceLogoView;
 }
 
-@property (nonatomic, strong) IBOutlet UILabel *sourceLabel;
-@property (nonatomic, strong) IBOutlet UIImageView *sourceLogoView;
+@property (nonatomic, strong) UILabel *sourceLabel;
+@property (nonatomic, strong) UIImageView *sourceLogoView;
 
 @end

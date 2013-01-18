@@ -30,10 +30,11 @@
 
 static ProgressHUD *hud;
 
-- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate {
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate alpha:(float)alp {
     self = [super init];
     if (self) {
         hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
+        alpha = alp;
         mainView = view;
         rotateable = rotate;
         CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -87,7 +88,7 @@ static ProgressHUD *hud;
     popUpView.alpha = 0.0;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    [popUpView setAlpha:.6];
+    [popUpView setAlpha:alpha];
     [UIView commitAnimations];
     
     [hud show];
