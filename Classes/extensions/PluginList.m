@@ -30,15 +30,17 @@
  ***                                         ***/
 
 #import "PluginList.h"
-/*#import "StandardInput.h"
-#import "BarcodeInput.h"
+#import "MixareProcessor.h"
+#import "BootView.h"
+#import "StandardInput.h"
+
+/*#import "BarcodeInput.h"
 #import "BootView.h"
 #import "WikipediaProcessor.h"
 #import "TwitterProcessor.h"
-#import "GoogleAddressesProcessor.h"*/
+#import "GoogleAddressesProcessor.h"
 #import "ArenaProcessor.h"
-#import "ArenaBootstrap.h"
-#import "MixareProcessor.h"
+#import "ArenaBootstrap.h"*/
 
 @implementation PluginList
 
@@ -77,10 +79,21 @@ static PluginList *pluginList;
     [plugins addObject:[[BootView alloc] init]];
     [plugins addObject:[[WikipediaProcessor alloc] init]];
     [plugins addObject:[[TwitterProcessor alloc] init]];
-    [plugins addObject:[[GoogleAddressesProcessor alloc] init]]*/
+    [plugins addObject:[[GoogleAddressesProcessor alloc] init]]
     [plugins addObject:[[ArenaProcessor alloc] init]];
-    [plugins addObject:[[ArenaBootstrap alloc] init]];
-    [plugins addObject:[[MixareProcessor alloc] init]];
+    [plugins addObject:[[ArenaBootstrap alloc] init]];*/
+}
+
+- (id<DataProcessor>)defaultProcessor {
+    return [[MixareProcessor alloc] init];
+}
+
+- (id<PluginEntryPoint>)defaultBootstrap {
+    return [[BootView alloc] init];
+}
+
+- (id<DataInput>)defaultInput {
+    return [[StandardInput alloc] init];
 }
 
 @end

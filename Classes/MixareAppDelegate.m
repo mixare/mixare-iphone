@@ -19,8 +19,8 @@
 
 #import "MixareAppDelegate.h"
 #import "PluginLoader.h"
+#import "PluginList.h"
 #import "ProgressHUD.h"
-#import "BootView.h"
  
 @implementation MixareAppDelegate
 
@@ -68,9 +68,7 @@ static ProgressHUD *hud;
             [plugin run:self];
         }
     } else {
-        BootView *start = [[BootView alloc] init];
-        [start run:self];
-        
+        [[[PluginList getInstance] defaultBootstrap] run:self];
     }
     [self temporaryView];
 }

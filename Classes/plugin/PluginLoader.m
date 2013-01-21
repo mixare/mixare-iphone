@@ -49,6 +49,7 @@ static PluginLoader *pluginLoader;
     if (self) {
         plugins = [[NSMutableArray alloc] init];
         [self addArrayOfPlugins:[[PluginList getInstance] plugins]];
+        [self addPlugin:[[PluginList getInstance] defaultProcessor]];
     }
     return self;
 }

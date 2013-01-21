@@ -85,6 +85,8 @@
 		E29C3A0616A9630E0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C3A0816A9AE5D0092F97C /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C3A0716A9AE5B0092F97C /* MapViewController.xib */; };
 		E29C3A1516AD4A160092F97C /* BootView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C3A1316AD4A160092F97C /* BootView.m */; };
+		E29C3A1716AD687A0092F97C /* BootView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C3A1316AD4A160092F97C /* BootView.m */; };
+		E29C3A1816AD68850092F97C /* BootView.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C3A1216AD4A160092F97C /* BootView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMainDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1002,6 +1004,7 @@
 				E29C77D41697362D0006C4D2 /* PluginEntryPoint.h in Headers */,
 				E29C77D51697362D0006C4D2 /* SetDataSourceDelegate.h in Headers */,
 				E29C399F16A6BBD50092F97C /* DataSourceManager.h in Headers */,
+				E29C3A1816AD68850092F97C /* BootView.h in Headers */,
 				E29C39A016A6BC2F0092F97C /* DataSource.h in Headers */,
 				E29C39A116A6BC4A0092F97C /* Position.h in Headers */,
 				E29C39A316A6BC780092F97C /* MapViewAnnotation.h in Headers */,
@@ -1317,6 +1320,7 @@
 				E2AB3060169ADCAB00C00A07 /* MapViewAnnotation.m in Sources */,
 				E2AB3061169ADCAB00C00A07 /* PoiItem.m in Sources */,
 				E2AB3062169ADCAB00C00A07 /* PluginLoader.m in Sources */,
+				E29C3A1716AD687A0092F97C /* BootView.m in Sources */,
 				E2AB3063169ADCAB00C00A07 /* DataSourceList.m in Sources */,
 				E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */,
 				E2AB3044169ADC7400C00A07 /* MixareAppDelegate.m in Sources */,
