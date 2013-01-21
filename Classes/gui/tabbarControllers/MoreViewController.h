@@ -38,12 +38,8 @@
     //Label which contains the date value of the last valid gps signal
     IBOutlet UILabel *date;
     IBOutlet UIButton *licenseButton;
-    //location position
-    CLLocation *_loc;
     PopUpWebView *popUpView;
 }
-
-@property (nonatomic, strong) CLLocation *loc;
 
 //action method which is added to the logobutton .. open the mixare webpage
 - (void)buttonClick:(id)sender;

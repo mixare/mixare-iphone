@@ -84,6 +84,7 @@
 		E29C3A0516A962980092F97C /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C3A0416A962960092F97C /* MoreViewController.xib */; };
 		E29C3A0616A9630E0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C3A0816A9AE5D0092F97C /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E29C3A0716A9AE5B0092F97C /* MapViewController.xib */; };
+		E29C3A1516AD4A160092F97C /* BootView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C3A1316AD4A160092F97C /* BootView.m */; };
 		E29C77831697247D0006C4D2 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E29C77D01697362D0006C4D2 /* Mixare.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76831696DE300006C4D2 /* Mixare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C77D11697362D0006C4D2 /* StartMainDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C76751696DAD70006C4D2 /* StartMainDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -114,8 +115,6 @@
 		E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */; };
 		E2A68032169EDCBC00FF2224 /* ArenaBootstrap.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */; };
 		E2A7C1C716368B9300489474 /* DownloadManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A7C1C616368B9300489474 /* DownloadManagerTest.m */; };
-		E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
-		E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2AA278916945A4700AABDE6 /* libiconv.2.4.0.dylib in Resources */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278B16945A5200AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
 		E2AA278C16945A5700AABDE6 /* libiconv.2.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */; };
@@ -151,7 +150,6 @@
 		E2AB3062169ADCAB00C00A07 /* PluginLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100DE165102400086BD8E /* PluginLoader.m */; };
 		E2AB3063169ADCAB00C00A07 /* DataSourceList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B0C2DB16551A2E0099090E /* DataSourceList.m */; };
 		E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
-		E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8C248165FAA300077854B /* StartWithMeDemo.m */; };
 		E2AB309E169B0D7400C00A07 /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EC16515BA50086BD8E /* MixareProcessor.m */; };
 		E2AB30CE169B1C4000C00A07 /* UnitTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2DFCF88160B25470045A6C4 /* UnitTests-Info.plist */; };
 		E2AB30CF169B1C4000C00A07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DFCF89160B25470045A6C4 /* InfoPlist.strings */; };
@@ -340,6 +338,8 @@
 		E29C39CB16A6D03A0092F97C /* MixareMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixareMain.m; sourceTree = "<group>"; };
 		E29C3A0416A962960092F97C /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
 		E29C3A0716A9AE5B0092F97C /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		E29C3A1216AD4A160092F97C /* BootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootView.h; path = extensions/bootstrap/BootView.h; sourceTree = "<group>"; };
+		E29C3A1316AD4A160092F97C /* BootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BootView.m; path = extensions/bootstrap/BootView.m; sourceTree = "<group>"; };
 		E29C76751696DAD70006C4D2 /* StartMainDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartMainDelegate.h; path = plugin/StartMainDelegate.h; sourceTree = "<group>"; };
 		E29C76831696DE300006C4D2 /* Mixare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mixare.h; path = plugin/Mixare.h; sourceTree = "<group>"; };
 		E29C779E16972BF00006C4D2 /* libMixare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMixare.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -371,8 +371,6 @@
 		E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArenaBootstrap.xib; path = extensions/bootstrap/ArenaBootstrap.xib; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
-		E2A8C247165FAA300077854B /* StartWithMeDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartWithMeDemo.h; path = extensions/bootstrap/StartWithMeDemo.h; sourceTree = "<group>"; };
-		E2A8C248165FAA300077854B /* StartWithMeDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartWithMeDemo.m; path = extensions/bootstrap/StartWithMeDemo.m; sourceTree = "<group>"; };
 		E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
 		E2AB30F0169B326800C00A07 /* SourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SourceCell.xib; path = Resources/SourceCell.xib; sourceTree = "<group>"; };
 		E2AB30F1169B326800C00A07 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebView.xib; path = Resources/WebView.xib; sourceTree = "<group>"; };
@@ -848,9 +846,9 @@
 		E2B07263165A3FFF0076B7FE /* bootstrap */ = {
 			isa = PBXGroup;
 			children = (
+				E29C3A1216AD4A160092F97C /* BootView.h */,
+				E29C3A1316AD4A160092F97C /* BootView.m */,
 				E2A68033169EEC7800FF2224 /* arena */,
-				E2A8C247165FAA300077854B /* StartWithMeDemo.h */,
-				E2A8C248165FAA300077854B /* StartWithMeDemo.m */,
 			);
 			name = bootstrap;
 			sourceTree = "<group>";
@@ -1268,7 +1266,6 @@
 				E2A5277616525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */,
 				E2B0C2DC16551A2E0099090E /* DataSourceList.m in Sources */,
-				E2A8C24A165FC77F0077854B /* StartWithMeDemo.m in Sources */,
 				E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */,
 				E2B2058D1668E772005AC7B5 /* MarkerView.m in Sources */,
 				E2AF18C61678DEF2002CE6D1 /* CameraController.m in Sources */,
@@ -1282,6 +1279,7 @@
 				E2A3D0181680BAC6009A3943 /* WebViewController.m in Sources */,
 				E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */,
 				E29C39CC16A6D03A0092F97C /* MixareMain.m in Sources */,
+				E29C3A1516AD4A160092F97C /* BootView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,7 +1319,6 @@
 				E2AB3062169ADCAB00C00A07 /* PluginLoader.m in Sources */,
 				E2AB3063169ADCAB00C00A07 /* DataSourceList.m in Sources */,
 				E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */,
-				E2AB3065169ADCAB00C00A07 /* StartWithMeDemo.m in Sources */,
 				E2AB3044169ADC7400C00A07 /* MixareAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1366,7 +1363,6 @@
 				E2A5277716525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277C1652763000B4099C /* BarcodeInput.m in Sources */,
 				E2B0C2DD16551A2E0099090E /* DataSourceList.m in Sources */,
-				E2A8C249165FAA300077854B /* StartWithMeDemo.m in Sources */,
 				E2B2058E1668E772005AC7B5 /* MarkerView.m in Sources */,
 				E2AF18C71678DEF2002CE6D1 /* CameraController.m in Sources */,
 				E2A646EB167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */,

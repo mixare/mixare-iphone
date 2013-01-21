@@ -32,7 +32,7 @@
 #import "PluginList.h"
 /*#import "StandardInput.h"
 #import "BarcodeInput.h"
-#import "StartWithMeDemo.h"
+#import "BootView.h"
 #import "WikipediaProcessor.h"
 #import "TwitterProcessor.h"
 #import "GoogleAddressesProcessor.h"*/
@@ -74,10 +74,10 @@ static PluginList *pluginList;
 - (void)initPlugins {
     /*[plugins addObject:[[StandardInput alloc] init]];
     [plugins addObject:[[BarcodeInput alloc] init]];
-    [plugins addObject:[[StartWithMeDemo alloc] init]];
+    [plugins addObject:[[BootView alloc] init]];
     [plugins addObject:[[WikipediaProcessor alloc] init]];
     [plugins addObject:[[TwitterProcessor alloc] init]];
-    [plugins addObject:[[GoogleAddressesProcessor alloc] init]];*/
+    [plugins addObject:[[GoogleAddressesProcessor alloc] init]]*/
     [plugins addObject:[[ArenaProcessor alloc] init]];
     [plugins addObject:[[ArenaBootstrap alloc] init]];
     [plugins addObject:[[MixareProcessor alloc] init]];

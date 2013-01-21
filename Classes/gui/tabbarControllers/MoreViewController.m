@@ -22,8 +22,6 @@
 
 @implementation MoreViewController
 
-@synthesize loc = _loc;
-
 - (id)init {
     self = [super init];
     

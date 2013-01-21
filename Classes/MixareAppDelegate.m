@@ -20,10 +20,11 @@
 #import "MixareAppDelegate.h"
 #import "PluginLoader.h"
 #import "ProgressHUD.h"
+#import "BootView.h"
  
 @implementation MixareAppDelegate
 
-@synthesize toggleMenu, pluginDelegate, alertRunning, _dataSourceManager, window;
+@synthesize toggleReturnButton, toggleMenuButton, pluginDelegate, alertRunning, _dataSourceManager, window;
 
 static ProgressHUD *hud;
 
@@ -47,7 +48,11 @@ static ProgressHUD *hud;
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
+    toggleReturnButton = NO;
     window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    if (window != nil) {
+        NSLog(@"Created window");
+    }
     [self createInterface];
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -55,26 +60,32 @@ static ProgressHUD *hud;
                                              selector:@selector(didRotate:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
-    //[self initUIBarTitles];
     [self firstBootLicenseText];
-    if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] > 0) {
+    if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] < 0) {
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:nil];
         NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
             [plugin run:self];
         }
     } else {
-        [hud show];
-        [self performSelectorInBackground:@selector(standardViewInitialize) withObject:nil];
+        BootView *start = [[BootView alloc] init];
+        [start run:self];
+        
     }
+    [self temporaryView];
+}
+
+- (void)temporaryView {
+    if (window.rootViewController == nil) {
+        window.rootViewController = [[UIViewController alloc] init];
+    }
+    // small issue, temporary fix
 }
 
 - (void)standardViewInitialize {
-    toggleMenu = YES;
     [self refresh];
     [self openARView];
-    //[self openMenu];
-    [hud dismiss];
+    [self closeHud];
 }
 
 /***
@@ -103,18 +114,6 @@ static ProgressHUD *hud;
 
 /***
  *
- *  Initialize UIBarTitles
- *
- ***/
-- (void)initUIBarTitles {
-    ((UITabBarItem *)(tabBarController.tabBar.items)[0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
-    ((UITabBarItem *)(tabBarController.tabBar.items)[1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
-    ((UITabBarItem *)(tabBarController.tabBar.items)[2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
-    ((UITabBarItem *)(tabBarController.tabBar.items)[3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
-}
-
-/***
- *
  *  Initialize ARView
  *
  ***/
@@ -125,7 +124,7 @@ static ProgressHUD *hud;
     }
     augViewController.centerLocation = _locationManager.location;
     [self initControls];
-    window.rootViewController = augViewController;
+    self.window.rootViewController = augViewController;
 }
 
 /***
@@ -195,7 +194,7 @@ static ProgressHUD *hud;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    window.rootViewController = tabBarController;
+    self.window.rootViewController = tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -365,11 +364,11 @@ static ProgressHUD *hud;
  ***/
 - (void)initControls {    
     [augViewController initInterface];
-    if (!toggleMenu) {
+    if (!toggleMenuButton) {
         augViewController.menuButton.hidden = YES;
     }
 	[augViewController startListening:_locationManager];
-    if (pluginDelegate == nil) {
+    if (!toggleReturnButton) {
         augViewController.backToPlugin.hidden = YES;
     }
     [augViewController.slider addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];

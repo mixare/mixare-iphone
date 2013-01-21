@@ -17,18 +17,34 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  StartWithMeDemo.h
+//  BootView.m
 //  Mixare
 //
 //  Created by Aswin Ly on 19-11-12.
 //
 
-#import <Foundation/Foundation.h>
-#import "PluginEntryPoint.h"
-#import "StartMainDelegate.h"
+#import "BootView.h"
 
-@interface StartWithMeDemo : NSObject <PluginEntryPoint> {
-    id<StartMainDelegate> mainClass;
+@implementation BootView
+
+- (void)run:(id<StartMainDelegate>)delegate {
+    mainClass = delegate;
+    [mainClass setToggleMenuButton:YES];
+    [mainClass setToggleReturnButton:NO];
+    [mainClass setPluginDelegate:self];
+	[mainClass window].rootViewController = nil;
+    [self reuse];
+}
+
+- (void)reuse {
+    [mainClass showHud];
+    [self performSelectorInBackground:@selector(threadLoad) withObject:nil];
+}
+
+- (void)threadLoad {
+    [mainClass refresh];                    //  Download Data
+    [mainClass openARView];                 //  Open AR-View
+    [mainClass closeHud];                   //  Close indicator
 }
 
 @end

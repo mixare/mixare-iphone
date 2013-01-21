@@ -17,7 +17,7 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  StartMain.h
+//  BootView.h
 //  Mixare
 //
 //  Created by Aswin Ly on 19-11-12.
@@ -25,20 +25,10 @@
 
 #import <Foundation/Foundation.h>
 #import "PluginEntryPoint.h"
-#import "DataSourceManager.h"
+#import "StartMainDelegate.h"
 
-@protocol StartMainDelegate
-
-@property (nonatomic, retain) DataSourceManager *_dataSourceManager;
-@property (nonatomic, retain) id<PluginEntryPoint> pluginDelegate;
-@property (nonatomic) BOOL toggleMenuButton;
-@property (nonatomic) BOOL toggleReturnButton;
-@property (nonatomic, retain) UIWindow *window;
-
-- (void)openARView;
-- (void)openMenu;
-- (void)refresh;
-- (void)showHud;
-- (void)closeHud;
+@interface BootView : NSObject <PluginEntryPoint> {
+    id<StartMainDelegate> mainClass;
+}
 
 @end
