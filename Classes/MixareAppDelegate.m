@@ -61,7 +61,7 @@ static ProgressHUD *hud;
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
     [self firstBootLicenseText];
-    if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] < 0) {
+    if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] > 0) {
         startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:nil];
         NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
