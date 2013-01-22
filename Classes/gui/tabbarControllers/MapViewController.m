@@ -44,6 +44,7 @@
 	[self.map setRegion:newRegion animated:YES];
     _currentAnnotations = [[NSMutableArray alloc] init];
     popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rightRotateable:YES alpha:.6];
+    self.map.showsUserLocation = YES;
 }
 
 
@@ -77,7 +78,7 @@
     [_currentAnnotations removeAllObjects];
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation{
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>) annotation {
     MKAnnotationView *pinView = nil;
     if (annotation != mapView.userLocation) {
         for(MapViewAnnotation *anno in _currentAnnotations) {
@@ -97,7 +98,7 @@
         }
     }
     else {
-        [mapView.userLocation setTitle:@"I am here"];
+        [mapView.userLocation setTitle:NSLocalizedStringFromTableInBundle(@"I am here", @"Localizable", [[Resources getInstance] bundle], @"")];
     }
     return pinView;
 }

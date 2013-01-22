@@ -32,3 +32,4 @@
 #import <Mixare/MixareAppDelegate.h>
 #import <Mixare/DataSourceList.h>
 #import <Mixare/PluginList.h>
+#import <Mixare/JsonData.h>

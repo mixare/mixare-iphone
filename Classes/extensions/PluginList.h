@@ -32,7 +32,7 @@
     NSMutableArray *plugins;
 }
 
-@property (nonatomic, retain) NSMutableArray *plugins;
+@property (nonatomic, readonly) NSMutableArray *plugins;
 
 + (id)getInstance;
 - (id<DataProcessor>)defaultProcessor;
