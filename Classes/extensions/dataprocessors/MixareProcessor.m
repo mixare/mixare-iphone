@@ -24,6 +24,7 @@
 //
 
 #import "MixareProcessor.h"
+#import "Resources.h"
 
 @implementation MixareProcessor
 
@@ -47,7 +48,7 @@
             if (geoname[@"logo"] != [NSNull null] && geoname[@"logo"] != nil) {
                 dic[keys[@"logo"]] = geoname[@"logo"];
             } else {
-                dic[keys[@"logo"]] = @"logo_mixare_round.png";
+                dic[keys[@"logo"]] = [[[Resources getInstance] bundle] pathForResource:@"logo_mixare_round" ofType:@"png"];
             }
             [ret addObject:dic];
         }

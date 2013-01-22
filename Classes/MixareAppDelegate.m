@@ -21,6 +21,7 @@
 #import "PluginLoader.h"
 #import "PluginList.h"
 #import "ProgressHUD.h"
+#import "Resources.h"
  
 @implementation MixareAppDelegate
 
@@ -44,7 +45,7 @@ static ProgressHUD *hud;
 }*/
 
 - (void)runApplication {
-    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
+    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedStringFromTableInBundle(@"Loading...", @"Localizable", [[Resources getInstance] bundle], @"")];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
@@ -388,43 +389,46 @@ static ProgressHUD *hud;
 }
 
 - (void)createInterface {
+    NSBundle *bundle = [[Resources getInstance] bundle];
+    
     tabBarController = [[UITabBarController alloc] init];
     tabBarController.delegate = self;
     tabBarController.selectedIndex = 0;
     UIViewController *cameraButtonDummy = [[UIViewController alloc] init];
-    [cameraButtonDummy setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Camera", @"1st tabbar icon") image:[UIImage imageNamed:@"camera"] tag:0]];
+    [cameraButtonDummy setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"Camera", @"Localizable", [[Resources getInstance] bundle], @"") image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"camera" ofType:@"png"]] tag:0]];
     
-    NSString *sourceTitle = NSLocalizedString(@"Sources", @"2nd tabbar icon");
+    NSString *sourceTitle = NSLocalizedStringFromTableInBundle(@"Sources", @"Localizable", [[Resources getInstance] bundle], @"");
     UINavigationController *sourceNavigationController = [[UINavigationController alloc] init];
     sourceNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     sourceViewController = [[SourceViewController alloc] init];
-    [sourceViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:sourceTitle image:[UIImage imageNamed:@"icon_datasource"] tag:1]];
+    [sourceViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:sourceTitle image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"icon_datasource" ofType:@"png"]]  tag:1]];
     sourceViewController.navigationItem.title = sourceTitle;
     sourceNavigationController.viewControllers = [NSArray arrayWithObjects:sourceViewController, nil];
     
-    NSString *listTitle = NSLocalizedString(@"List View", @"3rd tabbar icon");
+    NSString *listTitle = NSLocalizedStringFromTableInBundle(@"List View", @"Localizable", [[Resources getInstance] bundle], @"");
     UINavigationController *listNavigationController = [[UINavigationController alloc] init];
     listNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     listViewController = [[ListViewController alloc] init];
-    [listViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:listTitle image:[UIImage imageNamed:@"list"] tag:2]];
+    [listViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:listTitle image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"list" ofType:@"png"]]  tag:2]];
     listViewController.navigationItem.title = listTitle;
     listNavigationController.viewControllers = [NSArray arrayWithObjects:listViewController, nil];
     
+    NSString *mapTitle = NSLocalizedStringFromTableInBundle(@"Map", @"Localizable", [[Resources getInstance] bundle], @"");
     UINavigationController *mapNavigationController = [[UINavigationController alloc] init];
     mapNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     mapViewController = [[MapViewController alloc] init];
-    [mapViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Map", @"4th tabbar icon") image:[UIImage imageNamed:@"map"] tag:3]];
-    mapViewController.navigationItem.title = @"Map";
+    [mapViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:mapTitle image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"map" ofType:@"png"]] tag:3]];
+    mapViewController.navigationItem.title = mapTitle;
     mapNavigationController.viewControllers = [NSArray arrayWithObjects:mapViewController, nil];
     
     UINavigationController *moreNavigationController = [[UINavigationController alloc] init];
     moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     moreViewController = [[MoreViewController alloc] init];
     [moreViewController setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:4]];
-    moreViewController.navigationItem.title = NSLocalizedString(@"General Info", nil);
+    moreViewController.navigationItem.title = NSLocalizedStringFromTableInBundle(@"General Info", @"Localizable", [[Resources getInstance] bundle], @"");
     moreNavigationController.viewControllers = [NSArray arrayWithObjects:moreViewController, nil];
     
-    UIBarButtonItem *license = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"License", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showLicense)];
+    UIBarButtonItem *license = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"License", @"Localizable", [[Resources getInstance] bundle], @"") style:UIBarButtonItemStyleBordered target:self action:@selector(showLicense)];
     moreViewController.navigationItem.rightBarButtonItem = license;
     
     [tabBarController setViewControllers:[NSArray arrayWithObjects:cameraButtonDummy, sourceNavigationController, listNavigationController, mapViewController, moreViewController, nil]];
@@ -444,7 +448,7 @@ static ProgressHUD *hud;
 }
 
 - (void)showLicense {
-    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"License",nil) message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"License", @"Localizable", [[Resources getInstance] bundle], @"") message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedStringFromTableInBundle(@"OK", @"Localizable", [[Resources getInstance] bundle], @"") otherButtonTitles:nil, nil];
     [addAlert show];
 }
 

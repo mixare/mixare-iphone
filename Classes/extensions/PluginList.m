@@ -32,7 +32,6 @@
 #import "PluginList.h"
 #import "MixareProcessor.h"
 #import "BootView.h"
-#import "StandardInput.h"
 
 /*#import "BarcodeInput.h"
 #import "BootView.h"
@@ -93,7 +92,8 @@ static PluginList *pluginList;
 }
 
 - (id<DataInput>)defaultInput {
-    return [[StandardInput alloc] init];
+    //return [[StandardInput alloc] init];
+    return nil;
 }
 
 @end

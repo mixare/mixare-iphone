@@ -19,6 +19,7 @@
 
 #import "AugmentedViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Resources.h"
 
 #define VIEWPORT_WIDTH_RADIANS 0.5
 #define VIEWPORT_HEIGHT_RADIANS .7392
@@ -405,7 +406,7 @@ NSComparisonResult LocationSortClosestFirst(PoiItem *s1, PoiItem *s2, void *igno
     tempView.frame = theFrame;
 	UIImageView *pointView = [[UIImageView alloc] initWithFrame:CGRectZero];
     if (coordinate.position.image == nil) {
-        pointView.image = [UIImage imageNamed:@"circle.png"];
+        pointView.image = [UIImage imageWithContentsOfFile:[[[Resources getInstance] bundle] pathForResource:@"circle" ofType:@"png"]];
     } else {
         pointView.image = coordinate.position.image;
     }

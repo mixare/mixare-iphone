@@ -53,10 +53,9 @@
 - (void)run:(id<StartMainDelegate>)delegate {
     mainClass = delegate;
     [mainClass setToggleMenuButton:YES];
-    //[mainClass setPluginDelegate:self];
+    [mainClass setPluginDelegate:self];
 	[mainClass window].rootViewController = self;
     NSLog(@"ARENA loaded");
-    [self reuse];
 }
 
 - (void)reuse {

@@ -19,14 +19,16 @@
 
 #import "MapViewController.h"
 #import "WebViewController.h"
+#import "Resources.h"
 
 @implementation MapViewController
 
 @synthesize map  = _map;
 
 - (id)init {
-    self = [super init];
-    
+    if ((self = [super initWithNibName:@"MapViewController" bundle:[[Resources getInstance] bundle]])) {
+        
+    }
     return self;
 }
 

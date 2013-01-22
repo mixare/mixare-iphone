@@ -17,18 +17,17 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  Mixare.h
+//  Resources.h
 //  Mixare
 //
-//  Created by Aswin Ly on 04-01-13.
+//  Created by Aswin Ly on 22-01-13.
 //
 
 #import <Foundation/Foundation.h>
-#import <Mixare/StartMainDelegate.h>
-#import <Mixare/DataProcessor.h>
-#import <Mixare/DataInput.h>
-#import <Mixare/PluginEntryPoint.h>
-#import <Mixare/SetDataSourceDelegate.h>
-#import <Mixare/MixareAppDelegate.h>
-#import <Mixare/DataSourceList.h>
-#import <Mixare/PluginList.h>
+
+@interface Resources : NSObject
+
++ (id)getInstance;
+- (NSBundle*)bundle;
+
+@end

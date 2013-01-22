@@ -19,6 +19,7 @@
 
 #import "SourceViewController.h"
 #import "SourceTableCell.h"
+#import "Resources.h"
 #import "PluginLoader.h"
 #import "DataInput.h"
 
@@ -181,7 +182,7 @@
 	static NSString *CellIdentifier = @"SourceCell";
 	SourceTableCell *cell = (SourceTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
+		NSArray *topLevelObjects = [[[Resources getInstance] bundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
 		for (id currentObject in topLevelObjects) {
 			if ([currentObject isKindOfClass:[UITableViewCell class]]) {
 				cell = (SourceTableCell*)currentObject;
