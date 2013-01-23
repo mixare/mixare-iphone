@@ -24,8 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataProcessor.h"
-#import "JsonData.h"
+#import <Mixare/Mixare.h>
 
 @interface WikipediaProcessor : JsonData <DataProcessor>
 

@@ -24,8 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataInput.h"
-#import "SetDataSourceDelegate.h"
+#import <Mixare/Mixare.h>
 #import "ZBarSDK.h"
 
 @interface BarcodeInput : UIViewController <ZBarReaderDelegate, DataInput> {

@@ -24,8 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PluginEntryPoint.h"
-#import "StartMainDelegate.h"
+#import <Mixare/Mixare.h>
 
 @interface BootView : NSObject <PluginEntryPoint> {
     id<StartMainDelegate> mainClass;
