@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Mixare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E2A0B70E16AD8BC1007920B7"
+               BuildableName = "Resources.bundle"
+               BlueprintName = "Resources"
+               ReferencedContainer = "container:Mixare.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
