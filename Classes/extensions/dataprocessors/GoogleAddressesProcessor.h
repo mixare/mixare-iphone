@@ -24,8 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JsonData.h"
-#import "DataProcessor.h"
+#import <Mixare/Mixare.h>
 
 @interface GoogleAddressesProcessor : JsonData <DataProcessor>
 
