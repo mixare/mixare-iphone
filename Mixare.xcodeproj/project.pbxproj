@@ -40,6 +40,13 @@
 		E266224C16AEC68E00DEAB3B /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = E266224A16AEC68E00DEAB3B /* Resources.m */; };
 		E266224D16AEC68E00DEAB3B /* Resources.m in Sources */ = {isa = PBXBuildFile; fileRef = E266224A16AEC68E00DEAB3B /* Resources.m */; };
 		E266229E16AEE50B00DEAB3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E266222E16AEC07F00DEAB3B /* Localizable.strings */; };
+		E26622E716AFF47B00DEAB3B /* MixareProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100EB16515BA50086BD8E /* MixareProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E26622EC16B010FD00DEAB3B /* buzz_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B74C16AEAABD007920B7 /* buzz_logo.png */; };
+		E26622ED16B010FD00DEAB3B /* buzz_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B74D16AEAABD007920B7 /* buzz_logo_small.png */; };
+		E26622EE16B010FD00DEAB3B /* twitter_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75B16AEAABD007920B7 /* twitter_logo.png */; };
+		E26622EF16B010FD00DEAB3B /* twitter_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75C16AEAABD007920B7 /* twitter_logo_small.png */; };
+		E26622F016B010FD00DEAB3B /* wikipedia_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75D16AEAABD007920B7 /* wikipedia_logo.png */; };
+		E26622F116B010FD00DEAB3B /* wikipedia_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75E16AEAABD007920B7 /* wikipedia_logo_small.png */; };
 		E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C399F16A6BBD50092F97C /* DataSourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E2E3ECA4162C2B1700A28F2B /* DataSourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C39A016A6BC2F0092F97C /* DataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B606012B9F7740014850C /* DataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -239,18 +246,6 @@
 		E2E3ECA9162C369A00A28F2B /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECA8162C369A00A28F2B /* DownloadManager.m */; };
 		E2E3ECBD162C59A800A28F2B /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E3ECBB162C599300A28F2B /* MapViewAnnotation.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E29C779C16972BF00006C4D2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -477,13 +472,6 @@
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
 				E2AFE7511652A5E90038E17A /* libzbar.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E29C779B16972BF00006C4D2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1020,7 @@
 				E29C39BF16A6BD2A0092F97C /* DataSourceList.h in Headers */,
 				E266224B16AEC68E00DEAB3B /* Resources.h in Headers */,
 				E29C39C016A6BD2A0092F97C /* PluginList.h in Headers */,
+				E26622E716AFF47B00DEAB3B /* MixareProcessor.h in Headers */,
 				E29C39A716A6BCFF0092F97C /* Radar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1061,10 +1050,7 @@
 			buildConfigurationList = E29C77A716972BF00006C4D2 /* Build configuration list for PBXNativeTarget "Plugins" */;
 			buildPhases = (
 				E29C779A16972BF00006C4D2 /* Sources */,
-				E29C779B16972BF00006C4D2 /* Frameworks */,
 				E29C77CF1697361D0006C4D2 /* Headers */,
-				E29C779C16972BF00006C4D2 /* CopyFiles */,
-				E2AB30C7169B1C1400C00A07 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -1156,6 +1142,12 @@
 				E266224716AEC5CD00DEAB3B /* mixare-logo_114x114_72_dpi.png in Resources */,
 				E266224816AEC5D300DEAB3B /* mixare-logo_57x57_72_dpi.png in Resources */,
 				E266229E16AEE50B00DEAB3B /* Localizable.strings in Resources */,
+				E26622EC16B010FD00DEAB3B /* buzz_logo.png in Resources */,
+				E26622ED16B010FD00DEAB3B /* buzz_logo_small.png in Resources */,
+				E26622EE16B010FD00DEAB3B /* twitter_logo.png in Resources */,
+				E26622EF16B010FD00DEAB3B /* twitter_logo_small.png in Resources */,
+				E26622F016B010FD00DEAB3B /* wikipedia_logo.png in Resources */,
+				E26622F116B010FD00DEAB3B /* wikipedia_logo_small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1181,13 +1173,6 @@
 				E2A0B78816AEAB1A007920B7 /* MoreViewController.xib in Resources */,
 				E266222616AEBF2300DEAB3B /* Mixare-Info.plist in Resources */,
 				E266222C16AEC07F00DEAB3B /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2AB30C7169B1C1400C00A07 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

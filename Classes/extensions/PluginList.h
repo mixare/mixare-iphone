@@ -35,6 +35,7 @@
 @property (nonatomic, readonly) NSMutableArray *plugins;
 
 + (id)getInstance;
+- (void)addPlugin:(id)plugin;
 - (id<DataProcessor>)defaultProcessor;
 - (id<PluginEntryPoint>)defaultBootstrap;
 - (id<DataInput>)defaultInput;

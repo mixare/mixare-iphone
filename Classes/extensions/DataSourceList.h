@@ -33,5 +33,6 @@
 @property (nonatomic, readonly) NSMutableArray *dataSources;
 
 + (id)getInstance;
+- (void)addDataSource:(NSString*)title dataUrl:(NSString*)url lockDeletable:(BOOL)lock;
 
 @end

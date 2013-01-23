@@ -33,14 +33,6 @@
 #import "MixareProcessor.h"
 #import "BootView.h"
 
-/*#import "BarcodeInput.h"
-#import "BootView.h"
-#import "WikipediaProcessor.h"
-#import "TwitterProcessor.h"
-#import "GoogleAddressesProcessor.h"
-#import "ArenaProcessor.h"
-#import "ArenaBootstrap.h"*/
-
 @implementation PluginList
 
 @synthesize plugins;
@@ -66,21 +58,12 @@ static PluginList *pluginList;
     return self;
 }
 
-/***
- *
- *  ADD YOUR PLUGINS HERE
- *  Only possible with interface/protocol: DataInput, DataProcessor or PluginEntryPoint
- *
- ***/
 - (void)initPlugins {
-    /*[plugins addObject:[[StandardInput alloc] init]];
-    [plugins addObject:[[BarcodeInput alloc] init]];
-    [plugins addObject:[[BootView alloc] init]];
-    [plugins addObject:[[WikipediaProcessor alloc] init]];
-    [plugins addObject:[[TwitterProcessor alloc] init]];
-    [plugins addObject:[[GoogleAddressesProcessor alloc] init]]
-    [plugins addObject:[[ArenaProcessor alloc] init]];
-    [plugins addObject:[[ArenaBootstrap alloc] init]];*/
+    
+}
+
+- (void)addPlugin:(id)plugin {
+    [plugins addObject:plugin];
 }
 
 - (id<DataProcessor>)defaultProcessor {

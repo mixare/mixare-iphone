@@ -30,6 +30,7 @@
  ***                                                        ***/
 
 #import "DataSourceList.h"
+#import "DataSource.h"
 
 @implementation DataSourceList
 
@@ -58,7 +59,7 @@ static DataSourceList *dataSourceList;
 
 /***
  *
- *  ADD YOUR DATASOURCES HERE
+ *  ADD YOUR DATASOURCES WITH addDataSource method.
  *  App will pre-load your data
  *  Users can't delete your source if you call 'locked' true/yes.
  *
@@ -78,18 +79,11 @@ static DataSourceList *dataSourceList;
  *
  ***/
 - (void)initDataSources {
-    /*[dataSources addObject:[[DataSource alloc]
-                            initTitle:@"Wikipedia"
-                            jsonUrl:@"http://ws.geonames.org/findNearbyWikipediaJSON?lat=PARAM_LAT&lng=PARAM_LON&radius=PARAM_RAD&maxRows=50&lang=PARAM_LANG"
-                            locked:YES]];
-    [dataSources addObject:[[DataSource alloc]
-                            initTitle:@"Twitter"
-                            jsonUrl:@"http://search.twitter.com/search.json?geocode=PARAM_LAT,PARAM_LON,PARAM_RADkm"
-                            locked:YES]];
-    [dataSources addObject:[[DataSource alloc]
-                            initTitle:@"Google Addresses"
-                            jsonUrl:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=PARAM_LAT,PARAM_LON&sensor=true"
-                            locked:YES]];*/
+    
+}
+
+- (void)addDataSource:(NSString*)title dataUrl:(NSString*)url lockDeletable:(BOOL)lock {
+    [dataSources addObject:[[DataSource alloc] initTitle:title jsonUrl:url locked:lock]];
 }
 
 @end
