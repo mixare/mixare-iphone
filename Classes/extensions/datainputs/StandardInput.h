@@ -24,8 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataInput.h"
-#import "SetDataSourceDelegate.h"
+#import <Mixare/Mixare.h>
 
 @interface StandardInput : UIViewController <DataInput, UITextFieldDelegate> {
     UITextField *textField;
