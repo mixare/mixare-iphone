@@ -30,16 +30,12 @@
  ***                                         ***/
 
 #import "PluginList.h"
-#import "WikipediaProcessor.h"
-#import "TwitterProcessor.h"
-#import "GoogleAddressesProcessor.h"
-#import "ArenaProcessor.h"
 #import "MixareProcessor.h"
-#import "StandardInput.h"
-#import "BarcodeInput.h"
-#import "StartWithMeDemo.h"
+#import "BootView.h"
 
 @implementation PluginList
+
+@synthesize plugins;
 
 static PluginList *pluginList;
 
@@ -62,25 +58,25 @@ static PluginList *pluginList;
     return self;
 }
 
-/***
- *
- *  ADD YOUR PLUGINS HERE
- *  Only possible with interface/protocol: DataInput, DataProcessor or PluginEntryPoint
- *
- ***/
 - (void)initPlugins {
-    [plugins addObject:[[WikipediaProcessor alloc] init]];
-    [plugins addObject:[[TwitterProcessor alloc] init]];
-    [plugins addObject:[[GoogleAddressesProcessor alloc] init]];
-    [plugins addObject:[[ArenaProcessor alloc] init]];
-    [plugins addObject:[[MixareProcessor alloc] init]];
-    [plugins addObject:[[StandardInput alloc] init]];
-    [plugins addObject:[[BarcodeInput alloc] init]];
-    [plugins addObject:[[StartWithMeDemo alloc] init]];
+    
 }
 
-- (NSMutableArray*)getPluginList {
-    return plugins;
+- (void)addPlugin:(id)plugin {
+    [plugins addObject:plugin];
+}
+
+- (id<DataProcessor>)defaultProcessor {
+    return [[MixareProcessor alloc] init];
+}
+
+- (id<PluginEntryPoint>)defaultBootstrap {
+    return [[BootView alloc] init];
+}
+
+- (id<DataInput>)defaultInput {
+    //return [[StandardInput alloc] init];
+    return nil;
 }
 
 @end

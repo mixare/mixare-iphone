@@ -20,6 +20,7 @@
 #import "ListViewController.h"
 #import "WebViewController.h"
 #import "Position.h"
+#import "Resources.h"
 
 @implementation ListViewController
 @synthesize downloadManager;
@@ -67,7 +68,7 @@
 
 - (void)viewDidLoad {	
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"Poi List", nil);
+    self.navigationItem.title = NSLocalizedStringFromTableInBundle(@"Poi List", @"Localizable", [[Resources getInstance] bundle], @"");
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -127,7 +128,7 @@
 // the table's selection has changed, switch to that item's UIViewController -> opens the webpage of the item/poi
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSLog(@"in select row");
-	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:nil];
+	WebViewController *targetViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[[Resources getInstance] bundle]];
     targetViewController.url = [dataSourceArray[indexPath.row] valueForKey:@"url"];
 	[[self navigationController] pushViewController:targetViewController animated:YES];
 }

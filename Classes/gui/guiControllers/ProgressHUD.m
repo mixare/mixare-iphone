@@ -24,6 +24,7 @@
 //
 
 #import "ProgressHUD.h"
+#import "Resources.h"
 
 @implementation ProgressHUD
 
@@ -34,7 +35,7 @@
     if (self) {
         self.appDelegate = (MixareAppDelegate *)[[UIApplication sharedApplication] delegate];
 		
-		backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HUDBackground.png"]];
+		backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[[[Resources getInstance] bundle] pathForResource:@"HUDBackground" ofType:@"png"]] ];
 		backgroundImageView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin);
 		[self addSubview:backgroundImageView];
         
@@ -86,14 +87,14 @@
     CGSize backGroundImageSize = self.backgroundImageView.image.size;
     self.bounds = CGRectMake(0, 0, backGroundImageSize.width, backGroundImageSize.height);
 	[self layoutSubviews];
-    [self.appDelegate setAlertRunning:YES];
+    //[self.appDelegate setAlertRunning:YES];
     [self bringSubviewToFront:activityIndicator];
     [self bringSubviewToFront:progressMessage];
 }
 
 - (void)dismiss {
     [super dismissWithClickedButtonIndex:0 animated:YES];
-    [self.appDelegate setAlertRunning:NO];
+    //[self.appDelegate setAlertRunning:NO];
 }
 
 // Wrapper to dismiss in main thread
@@ -108,7 +109,7 @@
     [super performSelectorOnMainThread:@selector(realDismissWithArgs:)
                             withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:buttonIndex], [NSNumber numberWithBool:animated],nil]
                          waitUntilDone:YES];
-    [self.appDelegate setAlertRunning:NO];
+    //[self.appDelegate setAlertRunning:NO];
 }
 
 @end

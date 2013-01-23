@@ -1,0 +1,78 @@
+/* No comment provided by engineer. */
+"Insert your Source address \n\n\n\n\n" = "Quellenadresse eingeben \n\n\n\n\n";
+
+/* No comment provided by engineer. */
+"Add Source" = "Quelle hinzufügen";
+
+/* First tabbar icon */
+"Camera" = "Kamera";
+
+/* No comment provided by engineer. */
+"Cancel" = "Abbrechen";
+
+/* No comment provided by engineer. */
+"Format:www.example.com" = "http://www.beispiel.com";
+
+/* No comment provided by engineer. */
+"General Info" = "Algemeine Infos";
+
+/* No comment provided by engineer. */
+"License" = "Lizenz";
+
+/* 3 tabbar icon */
+"List View" = "Liste";
+
+/* 4 tabbar icon */
+"Map" = "Karte";
+
+/* No comment provided by engineer. */
+"Menu" = "Menü";
+
+/* No comment provided by engineer. */
+"Not Allowed" = "Nicht erlaubt";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Poi List" = "Liste der Poi's";
+
+/* No comment provided by engineer. */
+"Radius" = "Radius";
+
+/* 2 tabbar icon */
+"Sources" = "Quellen";
+
+"Insert link" = "Link hinzufügen";
+
+"Scan QR code" = "Scan QR code";
+
+"Choose an option to insert source" = "Wählen Sie eine Option zur Quelle einfügen";
+
+"Add source" = "Quelle hinzufügen";
+
+"Title" = "Titel";
+
+"You can only delete your own sources!" = "Sie können nur Ihre eigenen Quellen!";
+
+"Data input" = "Data Entry";
+
+"Choose your data input method." = "Wählen Sie Ihre Daten-Input Methode.";
+
+"No input possibility found" = "Keine Eingabe Möglichkeit gefunden";
+
+"Added title already exists" = "Ihre aufgenommen Titel existiert bereits";
+
+"You have to fill all inputs" = "Sie müssen alle Felder ausfüllen";
+
+"Pull down to refresh..." = "Ziehen Sie nach unten, um zu aktualisieren...";
+
+"Release to refresh..." = "Lassen Sie zu aktualisieren...";
+
+"Loading..." = "Um loading...";
+
+"Main menu" = "Hauptmenü";
+
+"Close" = "Schließen";
+
+"I am here" = "Ich bin hier";

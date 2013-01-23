@@ -24,12 +24,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataProcessor.h"
+#import "DataInput.h"
+#import "PluginEntryPoint.h"
 
 @interface PluginList : NSObject {
     NSMutableArray *plugins;
 }
 
+@property (nonatomic, readonly) NSMutableArray *plugins;
+
 + (id)getInstance;
-- (NSMutableArray*)getPluginList;
+- (void)addPlugin:(id)plugin;
+- (id<DataProcessor>)defaultProcessor;
+- (id<PluginEntryPoint>)defaultBootstrap;
+- (id<DataInput>)defaultInput;
 
 @end

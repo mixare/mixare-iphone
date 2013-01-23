@@ -35,11 +35,13 @@
     CGRect buttonPortrait;
     CGRect buttonLandscape;
     
+    float alpha;
+    
     BOOL beforeWasLandscape;
     BOOL rotateable;
 }
 
-- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate;
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate alpha:(float)alp;
 - (void)openUrlView:(NSString*)url;
 
 @end

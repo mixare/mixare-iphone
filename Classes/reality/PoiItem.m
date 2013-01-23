@@ -22,7 +22,7 @@
 @implementation PoiItem
 
 @synthesize radialDistance, inclination, azimuth;
-@synthesize radarPos = _radarPos, position;
+@synthesize radarPos = _radarPos, position, geoLocation;
 
 - (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth {
 	self = [super init];

@@ -25,11 +25,11 @@
 
 #import <Foundation/Foundation.h>
 #import "DataInput.h"
-#import "SetDataSource.h"
+#import "SetDataSourceDelegate.h"
 #import "ZBarSDK.h"
 
 @interface BarcodeInput : UIViewController <ZBarReaderDelegate, DataInput> {
-    id<SetDataSource> aClass;
+    id<SetDataSourceDelegate> aClass;
 }
 
 @end

@@ -36,7 +36,7 @@
     return @"Barcode Scanner";
 }
 
-- (void)runInput:(id<SetDataSource>)classToSetYourData {
+- (void)runInput:(id<SetDataSourceDelegate>)classToSetYourData {
     aClass = classToSetYourData;
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
     reader.readerDelegate = self;
@@ -52,8 +52,8 @@
     for (symbol in results) {
         break;
     }
-    [aClass setNewData:@{@"title":@"Arena", @"url":symbol.data}];
     [picker dismissViewControllerAnimated:YES completion:nil];
+    [aClass setNewData:@{@"title":@"Barcode Source", @"url":symbol.data}];
 }
 
 - (void)viewDidLoad {

@@ -80,6 +80,9 @@
         logo = [UIImage imageWithData:data];
     } else if (marker != nil) {
         logo = [UIImage imageNamed:marker];
+        if (logo == nil) {
+            logo = [UIImage imageWithContentsOfFile:marker];
+        }
     }
 }
 

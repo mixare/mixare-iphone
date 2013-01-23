@@ -81,6 +81,7 @@
 @property (nonatomic, strong) UIAccelerometer *accelerometerManager;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
+- (id)initWithLocationManager:(CLLocationManager*)manager;
 - (void)refresh:(NSMutableArray*)dataSources;
 - (void)closeCameraView;
 - (void)startListening:(CLLocationManager*)locManager;

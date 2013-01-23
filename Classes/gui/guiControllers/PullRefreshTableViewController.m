@@ -47,6 +47,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "PullRefreshTableViewController.h"
+#import "Resources.h"
 
 #define REFRESH_HEADER_HEIGHT 52.0f
 
@@ -84,9 +85,9 @@
 }
 
 - (void)setupStrings{
-    textPull = NSLocalizedString(@"Pull down to refresh...", nil);
-    textRelease = NSLocalizedString(@"Release to refresh...", nil);
-    textLoading = NSLocalizedString(@"Loading...", nil);
+    textPull = NSLocalizedStringFromTableInBundle(@"Pull down to refresh...", @"Localizable", [[Resources getInstance] bundle], @"");
+    textRelease = NSLocalizedStringFromTableInBundle(@"Release to refresh...", @"Localizable", [[Resources getInstance] bundle], @"");
+    textLoading = NSLocalizedStringFromTableInBundle(@"Loading...", @"Localizable", [[Resources getInstance] bundle], @"");
 }
 
 - (void)addPullToRefreshHeader {

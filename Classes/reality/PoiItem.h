@@ -41,6 +41,7 @@
 @property (nonatomic) double azimuth;
 @property (nonatomic) CGPoint radarPos;
 @property (nonatomic, retain) Position *position;
+@property (nonatomic, readonly) CLLocation *geoLocation;
 
 - (id)initCoordinateWithRadialDistance:(double)newRadialDistance inclination:(double)newInclination azimuth:(double)newAzimuth;
 - (id)initWithLatitude:(float)lat longitude:(float)lon altitude:(CGFloat)alt position:(Position*)pos;

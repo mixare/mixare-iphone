@@ -80,7 +80,7 @@
 - (void)loadDataSources {
     NSArray *loadedData = [[NSUserDefaults standardUserDefaults] arrayForKey:@"dataSources"];
     dataSources = [NSMutableArray array];
-    for (DataSource *data in [[DataSourceList getInstance] getDataSources]) {
+    for (DataSource *data in [[DataSourceList getInstance] dataSources]) {
         [dataSources addObject:data];
     }
     for (NSDictionary *data in loadedData) {

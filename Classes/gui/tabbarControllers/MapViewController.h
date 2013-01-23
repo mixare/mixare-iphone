@@ -30,7 +30,7 @@
     PopUpWebView *popUpView;
 }
 
-@property (nonatomic, strong) MKMapView *map;
+@property (nonatomic, strong) IBOutlet MKMapView *map;
 - (void)refresh:(NSMutableArray*)dataSources;
 
 @end

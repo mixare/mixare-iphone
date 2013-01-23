@@ -30,7 +30,9 @@
     NSMutableArray *dataSources;
 }
 
+@property (nonatomic, readonly) NSMutableArray *dataSources;
+
 + (id)getInstance;
-- (NSMutableArray*)getDataSources;
+- (void)addDataSource:(NSString*)title dataUrl:(NSString*)url lockDeletable:(BOOL)lock;
 
 @end
