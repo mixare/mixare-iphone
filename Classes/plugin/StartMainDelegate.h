@@ -24,16 +24,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataSourceManager.h"
-#import <CoreLocation/CoreLocation.h>
 #import "PluginEntryPoint.h"
+#import "DataSourceManager.h"
 
-@protocol StartMain
+@protocol StartMainDelegate
 
 @property (nonatomic, retain) DataSourceManager *_dataSourceManager;
-@property (nonatomic, retain) CLLocationManager *_locationManager;
 @property (nonatomic, retain) id<PluginEntryPoint> pluginDelegate;
-@property (nonatomic) BOOL toggleMenu;
+@property (nonatomic) BOOL toggleMenuButton;
+@property (nonatomic) BOOL toggleReturnButton;
+@property (nonatomic, retain) UIWindow *window;
 
 - (void)openARView;
 - (void)openMenu;

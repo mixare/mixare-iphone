@@ -25,12 +25,12 @@
 
 #import <Foundation/Foundation.h>
 #import "DataInput.h"
-#import "SetDataSource.h"
+#import "SetDataSourceDelegate.h"
 
-@interface StandardInput : NSObject <DataInput, UITextFieldDelegate> {
+@interface StandardInput : UIViewController <DataInput, UITextFieldDelegate> {
     UITextField *textField;
     UITextField *urlField;
-    id<SetDataSource> aClass;
+    id<SetDataSourceDelegate> aClass;
 }
 
 @end

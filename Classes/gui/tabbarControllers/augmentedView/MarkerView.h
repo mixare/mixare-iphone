@@ -27,11 +27,13 @@
     UIView *loadView;
     UIButton *btn;
     PopUpWebView *popUpView;
+    UILabel *titleLabel;
 }
 
 @property (nonatomic, strong) UIView *viewTouched;
 @property (nonatomic, strong) NSString *url;
 @property PopUpWebView *popUpView;
+@property (nonatomic, retain) UILabel *titleLabel;
 
 - (id)initWithWebView:(PopUpWebView*)webView;
 

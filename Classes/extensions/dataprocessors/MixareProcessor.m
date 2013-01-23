@@ -24,6 +24,7 @@
 //
 
 #import "MixareProcessor.h"
+#import "Resources.h"
 
 @implementation MixareProcessor
 
@@ -38,25 +39,27 @@
         NSArray* geonames = data[@"results"];
         for(NSDictionary *geoname in geonames){
             NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-            dic[keys[@"title"]] = geoname[@"title"];
-            if (geoname[@"webpage"] != [NSNull null] && geoname[@"webpage"] != nil) {
-                dic[keys[@"url"]] = geoname[@"webpage"];
-            }
-            dic[keys[@"longitude"]] = geoname[@"lng"];
-            dic[keys[@"latitude"]] = geoname[@"lat"];
-            dic[keys[@"altitude"]] = geoname[@"elevation"];
-            if (geoname[@"imagemarker"] != [NSNull null] && geoname[@"imagemarker"] != nil) {
-                dic[keys[@"marker"]] = geoname[@"imagemarker"];
-            }
+            [self setData:@"title" dataDictionary:geoname newKey:@"title" newDictionary:dic];
+            [self setData:@"webpage" dataDictionary:geoname newKey:@"url" newDictionary:dic];
+            [self setData:@"lng" dataDictionary:geoname newKey:@"longitude" newDictionary:dic];
+            [self setData:@"lat" dataDictionary:geoname newKey:@"latitude" newDictionary:dic];
+            [self setData:@"elevation" dataDictionary:geoname newKey:@"altitude" newDictionary:dic];
+            [self setData:@"imagemarker" dataDictionary:geoname newKey:@"marker" newDictionary:dic];
             if (geoname[@"logo"] != [NSNull null] && geoname[@"logo"] != nil) {
                 dic[keys[@"logo"]] = geoname[@"logo"];
             } else {
-                dic[keys[@"logo"]] = @"logo_mixare_round.png";
+                dic[keys[@"logo"]] = [[[Resources getInstance] bundle] pathForResource:@"logo_mixare_round" ofType:@"png"];
             }
             [ret addObject:dic];
         }
         return ret;
     } else return nil;
+}
+
+- (void)setData:(NSString*)dataKey dataDictionary:(NSDictionary*)dataDic newKey:(NSString*)key newDictionary:(NSMutableDictionary*)dic {
+    if (dataDic[dataKey] != [NSNull null] && dataDic[dataKey] != nil) {
+        dic[keys[key]] = dataDic[dataKey];
+    }
 }
 
 @end

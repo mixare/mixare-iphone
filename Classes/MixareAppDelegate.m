@@ -19,56 +19,60 @@
 
 #import "MixareAppDelegate.h"
 #import "PluginLoader.h"
+#import "PluginList.h"
 #import "ProgressHUD.h"
+#import "Resources.h"
  
 @implementation MixareAppDelegate
 
-@synthesize _dataSourceManager, _locationManager, toggleMenu, pluginDelegate, alertRunning;
+@synthesize toggleReturnButton, toggleMenuButton, pluginDelegate, alertRunning, _dataSourceManager, window;
 
 static ProgressHUD *hud;
 
 #pragma mark -
 #pragma mark Application lifecycle
 
-/***
- *
- *  Starting app: init application
- *  @param application
- *  @param launch options dictionary
- *
- ***/
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
+- (void)runApplication {
+    hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedStringFromTableInBundle(@"Loading...", @"Localizable", [[Resources getInstance] bundle], @"")];
     NSLog(@"STARTING");
 	[self initManagers];
     beforeWasLandscape = NO;
+    toggleReturnButton = NO;
+    window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    if (window != nil) {
+        NSLog(@"Created window");
+    }
+    [self createInterface];
 	[window makeKeyAndVisible];
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didRotate:)
                                                  name:@"UIDeviceOrientationDidChangeNotification"
                                                object:nil];
-    [self initUIBarTitles];
     [self firstBootLicenseText];
-    if ([[[PluginLoader getInstance] getPluginsFromClassName:@"START"] count] > 0) {
-        startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:@"START"];
+    if ([[[PluginLoader getInstance] getPluginsFromClassName:nil] count] > 0) {
+        startPlugin = [[PluginLoader getInstance] getPluginsFromClassName:nil];
         NSLog(@"Pre-plugins to run: %d", [startPlugin count]);
         for (id<PluginEntryPoint> plugin in startPlugin) {
             [plugin run:self];
         }
     } else {
-        [hud show];
-        [self performSelectorInBackground:@selector(standardViewInitialize) withObject:nil];
+        [[[PluginList getInstance] defaultBootstrap] run:self];
     }
-    return YES;
+    [self temporaryView];
+}
+
+- (void)temporaryView {
+    if (window.rootViewController == nil) {
+        window.rootViewController = [[UIViewController alloc] init];
+    }
+    // small issue, temporary fix
 }
 
 - (void)standardViewInitialize {
-    toggleMenu = YES;
     [self refresh];
     [self openARView];
-    //[self openMenu]; Start with ARview instead of menu
-    [hud dismiss];
+    [self closeHud];
 }
 
 /***
@@ -77,24 +81,9 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)initManagers {
-    [self initLocationManager];
+    _locationManager = [[CLLocationManager alloc] init];
     _downloadManager = [[DownloadManager alloc] init];
     _dataSourceManager = [[DataSourceManager alloc] init];
-}
-
-/***
- *
- *  Initialize location manager
- *
- ***/
-- (void)initLocationManager {
-	if (_locationManager == nil) {
-		_locationManager = [[CLLocationManager alloc] init];
-		_locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-		_locationManager.delegate = self;
-		_locationManager.distanceFilter = 3.0;
-		//[_locationManager startUpdatingLocation];
-	}
 }
 
 /***
@@ -112,37 +101,17 @@ static ProgressHUD *hud;
 
 /***
  *
- *  Initialize UIBarTitles
- *
- ***/
-- (void)initUIBarTitles {
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[0]).title = NSLocalizedString(@"Camera", @"First tabbar icon");
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[1]).title = NSLocalizedString(@"Sources", @"2nd tabbar icon");
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[2]).title = NSLocalizedString(@"List View", @"3rd tabbar icon");
-    ((UITabBarItem *)(_tabBarController.tabBar.items)[3]).title = NSLocalizedString(@"Map", @"4th tabbar icon");
-}
-
-/***
- *
- *  Response after click at marker
- *
- ***/
-- (void)markerClick:(id)sender{
-    NSLog(@"MARKER");
-}
-
-/***
- *
  *  Initialize ARView
  *
  ***/
 - (void)openARView {
-    augViewController = [[AugmentedGeoViewController alloc] init];
+    augViewController = [[AugmentedGeoViewController alloc] initWithLocationManager:_locationManager];
     if (_dataSourceManager.dataSources != nil) {
         [augViewController refresh:[_dataSourceManager getActivatedSources]];
     }
     augViewController.centerLocation = _locationManager.location;
     [self initControls];
+    self.window.rootViewController = augViewController;
 }
 
 /***
@@ -189,8 +158,14 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)pluginButtonClicked:(id)sender {
+    [hud show];
+    [self performSelectorInBackground:@selector(openPlugin) withObject:nil];
+}
+
+- (void)openPlugin {
     [augViewController closeCameraView];
     [pluginDelegate run:self];
+    [hud dismiss];
 }
 
 /***
@@ -201,11 +176,12 @@ static ProgressHUD *hud;
 - (void)openMenu {
     [hud show];
     [augViewController closeCameraView];
-    _tabBarController.selectedIndex = 1;
+    // here you are assigning the tb as the root viewcontroller
+    tabBarController.selectedIndex = 1;
     [self performSelectorInBackground:@selector(openTabSources) withObject:nil];
     [UIApplication sharedApplication].statusBarHidden = NO;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    window.rootViewController = _tabBarController;
+    self.window.rootViewController = tabBarController;
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 }
@@ -236,14 +212,13 @@ static ProgressHUD *hud;
  *  @param viewController
  *
  ***/
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+- (void)tabBarController:(UITabBarController *)tabController didSelectViewController:(UIViewController *)viewController {
     [hud show];
-    if (tabBarController.selectedIndex != 0) {
-        [augViewController.locationManager stopUpdatingHeading];
-        [augViewController.locationManager stopUpdatingLocation];
+    if (tabController.selectedIndex != 0) {
         [_locationManager stopUpdatingLocation];
+        [_locationManager stopUpdatingHeading];
     }
-    switch (tabBarController.selectedIndex) {
+    switch (tabController.selectedIndex) {
         case 0:
             NSLog(@"Opened camera tab");
             [self performSelectorInBackground:@selector(openTabCamera) withObject:nil];
@@ -292,8 +267,8 @@ static ProgressHUD *hud;
 - (void)openTabSources {
     if (_dataSourceManager.dataSources != nil) {
         [self refresh];
-        [_sourceViewController setDownloadManager:_downloadManager];
-        [_sourceViewController refresh:_dataSourceManager];
+        [sourceViewController setDownloadManager:_downloadManager];
+        [sourceViewController refresh:_dataSourceManager];
     }
     [hud dismiss];
 }
@@ -306,8 +281,8 @@ static ProgressHUD *hud;
 - (void)openTabPOI {
     if (_dataSourceManager.dataSources != nil) {
         [self refresh];
-        [_listViewController setDownloadManager:_downloadManager];
-        [_listViewController refresh:[_dataSourceManager getActivatedSources]];
+        [listViewController setDownloadManager:_downloadManager];
+        [listViewController refresh:[_dataSourceManager getActivatedSources]];
     } else {
         NSLog(@"Data POI List not set");
     }
@@ -323,7 +298,7 @@ static ProgressHUD *hud;
 - (void)openTabMap {
     if (_dataSourceManager.dataSources != nil) {
         [self refresh];
-        [_mapViewController refresh:[_dataSourceManager getActivatedSources]];
+        [mapViewController refresh:[_dataSourceManager getActivatedSources]];
         NSLog(@"Data Annotations map set");
     }
     [hud dismiss];
@@ -336,8 +311,7 @@ static ProgressHUD *hud;
  *
  ***/
 - (void)openTabMore {
-    NSLog(@"latitude: %f", _locationManager.location.coordinate.latitude);
-    [_moreViewController showGPSInfo:_locationManager.location];
+    [moreViewController showGPSInfo:_locationManager.location];
     [hud dismiss];
 }
 
@@ -350,51 +324,8 @@ static ProgressHUD *hud;
  *  --------------------------------------
  ***/
 
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
-}
-
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    /*
-     Called as part of  transition from the background to the inactive state: here you can undo many of the changes made on entering the background.
-     */
-}
-
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-}
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"extern_url"];
-}
-
-/*
-// Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
-}
-*/
-
 #pragma mark -
 #pragma mark Memory management
-- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    /*
-     Free up as much memory as possible by purging cached data objects that can be recreated (or reloaded from disk) later.
-     */
-}
 
 /***
  *
@@ -420,18 +351,17 @@ static ProgressHUD *hud;
  ***/
 - (void)initControls {    
     [augViewController initInterface];
-    if (!toggleMenu) {
+    if (!toggleMenuButton) {
         augViewController.menuButton.hidden = YES;
     }
 	[augViewController startListening:_locationManager];
-    if (pluginDelegate == nil) {
+    if (!toggleReturnButton) {
         augViewController.backToPlugin.hidden = YES;
     }
     [augViewController.slider addTarget:self action:@selector(valueChanged) forControlEvents:UIControlEventValueChanged];
     [augViewController.sliderButton addTarget:self action:@selector(radiusClicked:)forControlEvents:UIControlEventTouchUpInside];
     [augViewController.menuButton addTarget:self action:@selector(menuClicked:)forControlEvents:UIControlEventTouchUpInside];
     [augViewController.backToPlugin addTarget:self action:@selector(pluginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    window.rootViewController = augViewController;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
         [augViewController setViewToLandscape];
         beforeWasLandscape = YES;
@@ -446,6 +376,52 @@ static ProgressHUD *hud;
     [hud dismiss];
 }
 
+- (void)createInterface {
+    NSBundle *bundle = [[Resources getInstance] bundle];
+    
+    tabBarController = [[UITabBarController alloc] init];
+    tabBarController.delegate = self;
+    tabBarController.selectedIndex = 0;
+    UIViewController *cameraButtonDummy = [[UIViewController alloc] init];
+    [cameraButtonDummy setTabBarItem:[[UITabBarItem alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"Camera", @"Localizable", [[Resources getInstance] bundle], @"") image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"camera" ofType:@"png"]] tag:0]];
+    
+    NSString *sourceTitle = NSLocalizedStringFromTableInBundle(@"Sources", @"Localizable", [[Resources getInstance] bundle], @"");
+    UINavigationController *sourceNavigationController = [[UINavigationController alloc] init];
+    sourceNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    sourceViewController = [[SourceViewController alloc] init];
+    [sourceViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:sourceTitle image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"icon_datasource" ofType:@"png"]]  tag:1]];
+    sourceViewController.navigationItem.title = sourceTitle;
+    sourceNavigationController.viewControllers = [NSArray arrayWithObjects:sourceViewController, nil];
+    
+    NSString *listTitle = NSLocalizedStringFromTableInBundle(@"List View", @"Localizable", [[Resources getInstance] bundle], @"");
+    UINavigationController *listNavigationController = [[UINavigationController alloc] init];
+    listNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    listViewController = [[ListViewController alloc] init];
+    [listViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:listTitle image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"list" ofType:@"png"]]  tag:2]];
+    listViewController.navigationItem.title = listTitle;
+    listNavigationController.viewControllers = [NSArray arrayWithObjects:listViewController, nil];
+    
+    NSString *mapTitle = NSLocalizedStringFromTableInBundle(@"Map", @"Localizable", [[Resources getInstance] bundle], @"");
+    UINavigationController *mapNavigationController = [[UINavigationController alloc] init];
+    mapNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    mapViewController = [[MapViewController alloc] init];
+    [mapViewController setTabBarItem:[[UITabBarItem alloc] initWithTitle:mapTitle image:[UIImage imageWithContentsOfFile:[bundle pathForResource:@"map" ofType:@"png"]] tag:3]];
+    mapViewController.navigationItem.title = mapTitle;
+    mapNavigationController.viewControllers = [NSArray arrayWithObjects:mapViewController, nil];
+    
+    UINavigationController *moreNavigationController = [[UINavigationController alloc] init];
+    moreNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    moreViewController = [[MoreViewController alloc] init];
+    [moreViewController setTabBarItem:[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:4]];
+    moreViewController.navigationItem.title = NSLocalizedStringFromTableInBundle(@"General Info", @"Localizable", [[Resources getInstance] bundle], @"");
+    moreNavigationController.viewControllers = [NSArray arrayWithObjects:moreViewController, nil];
+    
+    UIBarButtonItem *license = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"License", @"Localizable", [[Resources getInstance] bundle], @"") style:UIBarButtonItemStyleBordered target:self action:@selector(showLicense)];
+    moreViewController.navigationItem.rightBarButtonItem = license;
+    
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:cameraButtonDummy, sourceNavigationController, listNavigationController, mapViewController, moreViewController, nil]];
+}
+
 /***
  *
  *  License text at first start
@@ -454,10 +430,14 @@ static ProgressHUD *hud;
 - (void)firstBootLicenseText {
     NSString *licenseText = [[NSUserDefaults standardUserDefaults] objectForKey:@"mixaresFirstLaunch"];
     if ([licenseText isEqualToString:@""] || licenseText == nil) {
-        UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"License",nil) message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
-        [addAlert show];
+        [self showLicense];
         [[NSUserDefaults standardUserDefaults] setObject:@"TRUE" forKey:@"mixaresFirstLaunch"];
     }
+}
+
+- (void)showLicense {
+    UIAlertView *addAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedStringFromTableInBundle(@"License", @"Localizable", [[Resources getInstance] bundle], @"") message:@"Copyright (C) 2010- Peer internet solutions\n This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. \n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \nYou should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/" delegate:self cancelButtonTitle:NSLocalizedStringFromTableInBundle(@"OK", @"Localizable", [[Resources getInstance] bundle], @"") otherButtonTitles:nil, nil];
+    [addAlert show];
 }
 
 @end

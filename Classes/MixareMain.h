@@ -17,16 +17,15 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  ArenaProcessor.h
+//  MixareMain.h
 //  Mixare
 //
-//  Created by Aswin Ly on 21-11-12.
+//  Created by Aswin Ly on 16-01-13.
 //
 
 #import <Foundation/Foundation.h>
-#import "DataProcessor.h"
-#import "JsonData.h"
+#import "MixareAppDelegate.h"
 
-@interface ArenaProcessor : JsonData <DataProcessor>
+@interface MixareMain : NSObject<UIApplicationDelegate>
 
 @end

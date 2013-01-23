@@ -17,18 +17,30 @@
  * this program. If not, see <http://www.gnu.org/licenses/>
  */
 //
-//  StartWithMeDemo.h
+//  Resources.m
 //  Mixare
 //
-//  Created by Aswin Ly on 19-11-12.
+//  Created by Aswin Ly on 22-01-13.
 //
 
-#import <Foundation/Foundation.h>
-#import "PluginEntryPoint.h"
-#import "StartMain.h"
+#import "Resources.h"
 
-@interface StartWithMeDemo : NSObject <PluginEntryPoint> {
-    id<StartMain> mainClass;
+@implementation Resources
+
+static Resources *resources;
+
++ (void)initialize {
+    if (self == [Resources class]){
+        resources = [[Resources alloc] init];
+    }
+}
+
++ (id)getInstance {
+    return resources;
+}
+
+- (NSBundle*)bundle {
+    return [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"Resources" withExtension:@"bundle"]];
 }
 
 @end

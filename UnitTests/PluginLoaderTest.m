@@ -43,7 +43,7 @@
 
 - (void)testLoadPluginList {
     PluginLoader *loader = [PluginLoader getInstance];
-    [loader addArrayOfPlugins:[[PluginList getInstance] getPluginList]];
+    [loader addArrayOfPlugins:[[PluginList getInstance] plugins]];
     STAssertNotNil([loader getPluginsFromClassName:@"DataProcessor"], @"Plugins not loaded");
     BOOL check = NO;
     if ([[loader getPluginsFromClassName:@"DataProcessor"][0] conformsToProtocol:@protocol(DataProcessor)]) {

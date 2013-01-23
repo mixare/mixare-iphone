@@ -21,8 +21,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <CoreMotion/CoreMotion.h>
-#import "manager/DataSourceManager.h"
-#import "manager/DownloadManager.h"
+#import "DataSourceManager.h"
+#import "DownloadManager.h"
 #import "ListViewController.h"
 #import "AugmentedGeoViewController.h"
 #import "MapViewController.h"
@@ -30,27 +30,27 @@
 #import "Radar.h"
 #import "MoreViewController.h"
 #import "SourceViewController.h"
-#import "StartMain.h"
+#import "StartMainDelegate.h"
 #import "PluginEntryPoint.h"
 
-@interface MixareAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, CLLocationManagerDelegate, StartMain> {
+@interface MixareAppDelegate : UIViewController <UITabBarControllerDelegate, CLLocationManagerDelegate, StartMainDelegate> {
+    UIWindow *window;
+    
     CLLocationManager *_locationManager;
     DataSourceManager *_dataSourceManager;
     DownloadManager *_downloadManager;
     
-    UIWindow *window;
-	UITabBarController *_tabBarController;
-	CMMotionManager *motionManager;
-	ListViewController *_listViewController;
-	MapViewController *_mapViewController;
     AugmentedGeoViewController *augViewController;
-	
-	IBOutlet UIView *menuView;
-    MoreViewController *_moreViewController;
-    SourceViewController *_sourceViewController;
+    
+	UITabBarController *tabBarController;
+	ListViewController *listViewController;
+	MapViewController *mapViewController;
+    MoreViewController *moreViewController;
+    SourceViewController *sourceViewController;
     
     NSArray *startPlugin;
-    BOOL toggleMenu;
+    BOOL toggleMenuButton;
+    BOOL toggleReturnButton;
     id<PluginEntryPoint> pluginDelegate;
     
     BOOL alertRunning;
@@ -61,5 +61,7 @@
 }
 
 @property (nonatomic) BOOL alertRunning;
+
+- (void)runApplication;
 
 @end

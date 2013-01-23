@@ -19,6 +19,7 @@
 
 #import "SourceViewController.h"
 #import "SourceTableCell.h"
+#import "Resources.h"
 #import "PluginLoader.h"
 #import "DataInput.h"
 
@@ -61,6 +62,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = NSLocalizedString(@"Sources", nil);
+    addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSource)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    NSMutableArray *availablePlugins = [[PluginLoader getInstance] getPluginsFromClassName:@"DataInput"];
+    if ([availablePlugins count] == 0) {
+        addButton.enabled = NO;
+    } 
 }
 
 - (void)setNewData:(NSDictionary *)data {
@@ -175,7 +182,7 @@
 	static NSString *CellIdentifier = @"SourceCell";
 	SourceTableCell *cell = (SourceTableCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-		NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
+		NSArray *topLevelObjects = [[[Resources getInstance] bundle] loadNibNamed:@"SourceCell" owner:nil options:nil];
 		for (id currentObject in topLevelObjects) {
 			if ([currentObject isKindOfClass:[UITableViewCell class]]) {
 				cell = (SourceTableCell*)currentObject;
@@ -186,6 +193,7 @@
 	}
 	if (dataSourceArray != nil) {
 		cell.sourceLabel.text = dataSourceArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if ([dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo != nil) {
 			[cell.sourceLogoView setImage:[dataSourceManager getDataSourceByTitle:cell.sourceLabel.text].logo];
 		} else {

@@ -25,15 +25,17 @@
 
 #import "PopUpWebView.h"
 #import "ProgressHUD.h"
+#import "Resources.h"
 
 @implementation PopUpWebView
 
 static ProgressHUD *hud;
 
-- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate {
+- (id)initWithMainView:(UIView*)view padding:(int)pad isTabbar:(BOOL)tab rightRotateable:(BOOL)rotate alpha:(float)alp {
     self = [super init];
     if (self) {
-        hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedString(@"Loading...", nil)];
+        hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedStringFromTableInBundle(@"Loading...", @"Localizable", [[Resources getInstance] bundle], @"")];
+        alpha = alp;
         mainView = view;
         rotateable = rotate;
         CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -78,7 +80,7 @@ static ProgressHUD *hud;
     }
     CGRect windowDimension = windowPortrait;
     CGRect buttonDimension = buttonPortrait;
-    if (rotateable && (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight))) {
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
         windowDimension = windowLandscape;
         buttonDimension = buttonLandscape;
     }
@@ -87,16 +89,16 @@ static ProgressHUD *hud;
     popUpView.alpha = 0.0;
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    [popUpView setAlpha:.6];
+    [popUpView setAlpha:alpha];
     [UIView commitAnimations];
     
     [hud show];
     [self performSelectorInBackground:@selector(loadUrl:) withObject:url];
     
     closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [closeButton setTitle:NSLocalizedString(@"Close", nil) forState:UIControlStateNormal];
     [closeButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    closeButton.titleLabel.text = @"Close";
+    closeButton.titleLabel.text = NSLocalizedString(@"Close", nil);
     closeButton.alpha = 1;
     closeButton.titleLabel.textColor = [UIColor blackColor];
     closeButton.frame = buttonDimension;

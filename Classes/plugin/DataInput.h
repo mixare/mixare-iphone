@@ -24,7 +24,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SetDataSource.h"
+#import "SetDataSourceDelegate.h"
 
 @protocol DataInput
 
@@ -34,7 +34,7 @@
  *  And uses the method setNewData to manage the received data
  *
  ***/
-- (void)runInput:(id<SetDataSource>)classToSetYourData;
+- (void)runInput:(id<SetDataSourceDelegate>)classToSetYourData;
 - (NSString*)getTitle;
 
 @end
