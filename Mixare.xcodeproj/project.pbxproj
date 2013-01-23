@@ -47,7 +47,6 @@
 		E26622EF16B010FD00DEAB3B /* twitter_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75C16AEAABD007920B7 /* twitter_logo_small.png */; };
 		E26622F016B010FD00DEAB3B /* wikipedia_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75D16AEAABD007920B7 /* wikipedia_logo.png */; };
 		E26622F116B010FD00DEAB3B /* wikipedia_logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = E2A0B75E16AEAABD007920B7 /* wikipedia_logo_small.png */; };
-		E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C399F16A6BBD50092F97C /* DataSourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E2E3ECA4162C2B1700A28F2B /* DataSourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C39A016A6BC2F0092F97C /* DataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 365B606012B9F7740014850C /* DataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C39A116A6BC4A0092F97C /* Position.h in Headers */ = {isa = PBXBuildFile; fileRef = E246F3AA161061CB0006EA40 /* Position.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,7 +82,6 @@
 		E29C39C016A6BD2A0092F97C /* PluginList.h in Headers */ = {isa = PBXBuildFile; fileRef = E2B100E4165136DA0086BD8E /* PluginList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E29C39CC16A6D03A0092F97C /* MixareMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C39CB16A6D03A0092F97C /* MixareMain.m */; };
 		E29C39CD16A6D03A0092F97C /* MixareMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C39CB16A6D03A0092F97C /* MixareMain.m */; };
-		E29C3A0616A9630E0092F97C /* ArenaBootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */; };
 		E29C3A1516AD4A160092F97C /* BootView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C3A1316AD4A160092F97C /* BootView.m */; };
 		E29C3A1716AD687A0092F97C /* BootView.m in Sources */ = {isa = PBXBuildFile; fileRef = E29C3A1316AD4A160092F97C /* BootView.m */; };
 		E29C3A1816AD68850092F97C /* BootView.h in Headers */ = {isa = PBXBuildFile; fileRef = E29C3A1216AD4A160092F97C /* BootView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -168,8 +166,6 @@
 		E2AB3064169ADCAB00C00A07 /* PluginList.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100E5165136DA0086BD8E /* PluginList.m */; };
 		E2AB309E169B0D7400C00A07 /* MixareProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B100EC16515BA50086BD8E /* MixareProcessor.m */; };
 		E2AB940F1607208F006F8884 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AB940E1607208F006F8884 /* CoreMotion.framework */; };
-		E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
-		E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEEC26165D375200802003 /* ArenaProcessor.m */; };
 		E2AEF6911680732500E9984C /* ArenaProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF6901680732500E9984C /* ArenaProcessorTest.m */; };
 		E2AEF69416807BCE00E9984C /* MixareProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF69316807BCE00E9984C /* MixareProcessorTest.m */; };
 		E2AEF697168082A300E9984C /* GoogleAddressesProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E2AEF696168082A300E9984C /* GoogleAddressesProcessorTest.m */; };
@@ -286,9 +282,6 @@
 		E266223116AEC0B600DEAB3B /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E266224916AEC68E00DEAB3B /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 		E266224A16AEC68E00DEAB3B /* Resources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Resources.m; sourceTree = "<group>"; };
-		E29C390B16A44A2B0092F97C /* ArenaBootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaBootstrap.h; path = extensions/bootstrap/ArenaBootstrap.h; sourceTree = "<group>"; };
-		E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaBootstrap.m; path = extensions/bootstrap/ArenaBootstrap.m; sourceTree = "<group>"; };
-		E29C396016A45C850092F97C /* arena_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arena_logo.png; path = extensions/bootstrap/arena_logo.png; sourceTree = "<group>"; };
 		E29C39CA16A6D03A0092F97C /* MixareMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixareMain.h; sourceTree = "<group>"; };
 		E29C39CB16A6D03A0092F97C /* MixareMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixareMain.m; sourceTree = "<group>"; };
 		E29C3A1216AD4A160092F97C /* BootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootView.h; path = extensions/bootstrap/BootView.h; sourceTree = "<group>"; };
@@ -346,7 +339,6 @@
 		E2A646E7167A37F00028B6F3 /* AugmentedGeoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedGeoViewController.m; sourceTree = "<group>"; };
 		E2A646E8167A37F00028B6F3 /* AugmentedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AugmentedViewController.h; sourceTree = "<group>"; };
 		E2A646E9167A37F00028B6F3 /* AugmentedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AugmentedViewController.m; sourceTree = "<group>"; };
-		E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ArenaBootstrap.xib; path = extensions/bootstrap/ArenaBootstrap.xib; sourceTree = "<group>"; };
 		E2A7C1C516368B9300489474 /* DownloadManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManagerTest.h; sourceTree = "<group>"; };
 		E2A7C1C616368B9300489474 /* DownloadManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManagerTest.m; sourceTree = "<group>"; };
 		E2AA278816945A4700AABDE6 /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = Classes/extensions/datainputs/ZBarSDK/libiconv.2.4.0.dylib; sourceTree = "<group>"; };
@@ -359,8 +351,6 @@
 		E2AB3104169B351200C00A07 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E2AB3106169B351B00C00A07 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E2AB940E1607208F006F8884 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		E2AEEC25165D375200802003 /* ArenaProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaProcessor.h; path = extensions/dataprocessors/ArenaProcessor.h; sourceTree = "<group>"; };
-		E2AEEC26165D375200802003 /* ArenaProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArenaProcessor.m; path = extensions/dataprocessors/ArenaProcessor.m; sourceTree = "<group>"; };
 		E2AEF68F1680732500E9984C /* ArenaProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArenaProcessorTest.h; sourceTree = "<group>"; };
 		E2AEF6901680732500E9984C /* ArenaProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArenaProcessorTest.m; sourceTree = "<group>"; };
 		E2AEF69216807BCE00E9984C /* MixareProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixareProcessorTest.h; sourceTree = "<group>"; };
@@ -741,17 +731,6 @@
 			name = datainputs;
 			sourceTree = "<group>";
 		};
-		E2A68033169EEC7800FF2224 /* arena */ = {
-			isa = PBXGroup;
-			children = (
-				E29C396016A45C850092F97C /* arena_logo.png */,
-				E29C390B16A44A2B0092F97C /* ArenaBootstrap.h */,
-				E29C390C16A44A2B0092F97C /* ArenaBootstrap.m */,
-				E2A68030169EDCBC00FF2224 /* ArenaBootstrap.xib */,
-			);
-			name = arena;
-			sourceTree = "<group>";
-		};
 		E2AB30FD169B342000C00A07 /* App Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -834,7 +813,6 @@
 			children = (
 				E29C3A1216AD4A160092F97C /* BootView.h */,
 				E29C3A1316AD4A160092F97C /* BootView.m */,
-				E2A68033169EEC7800FF2224 /* arena */,
 			);
 			name = bootstrap;
 			sourceTree = "<group>";
@@ -898,8 +876,6 @@
 				E2B100EE16515BA50086BD8E /* TwitterProcessor.m */,
 				E2B100EF16515BA50086BD8E /* WikipediaProcessor.h */,
 				E2B100F016515BA50086BD8E /* WikipediaProcessor.m */,
-				E2AEEC25165D375200802003 /* ArenaProcessor.h */,
-				E2AEEC26165D375200802003 /* ArenaProcessor.m */,
 			);
 			name = dataprocessors;
 			sourceTree = "<group>";
@@ -1241,7 +1217,6 @@
 				E2A5277616525EA700B4099C /* StandardInput.m in Sources */,
 				E2A5277B1652763000B4099C /* BarcodeInput.m in Sources */,
 				E2B0C2DC16551A2E0099090E /* DataSourceList.m in Sources */,
-				E2AEEC27165D375200802003 /* ArenaProcessor.m in Sources */,
 				E2B2058D1668E772005AC7B5 /* MarkerView.m in Sources */,
 				E2AF18C61678DEF2002CE6D1 /* CameraController.m in Sources */,
 				E2A646EA167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */,
@@ -1252,7 +1227,6 @@
 				E2A3D0141680BAC6009A3943 /* ProgressHUD.m in Sources */,
 				E2A3D0161680BAC6009A3943 /* PullRefreshTableViewController.m in Sources */,
 				E2A3D0181680BAC6009A3943 /* WebViewController.m in Sources */,
-				E29C390D16A44A2B0092F97C /* ArenaBootstrap.m in Sources */,
 				E29C39CC16A6D03A0092F97C /* MixareMain.m in Sources */,
 				E29C3A1516AD4A160092F97C /* BootView.m in Sources */,
 				E266224C16AEC68E00DEAB3B /* Resources.m in Sources */,
@@ -1345,7 +1319,6 @@
 				E2AF18C71678DEF2002CE6D1 /* CameraController.m in Sources */,
 				E2A646EB167A37F00028B6F3 /* AugmentedGeoViewController.m in Sources */,
 				E2A646ED167A37F00028B6F3 /* AugmentedViewController.m in Sources */,
-				E2AEF68B1680711300E9984C /* ArenaProcessor.m in Sources */,
 				E2AEF6911680732500E9984C /* ArenaProcessorTest.m in Sources */,
 				E2AEF69416807BCE00E9984C /* MixareProcessorTest.m in Sources */,
 				E2AEF697168082A300E9984C /* GoogleAddressesProcessorTest.m in Sources */,
@@ -1358,7 +1331,6 @@
 				E2A3D0191680BAC6009A3943 /* WebViewController.m in Sources */,
 				E23FE78C1681D02600AC90F3 /* MapViewAnnotationTest.m in Sources */,
 				E23FE7901681D32A00AC90F3 /* PoiItemTest.m in Sources */,
-				E29C3A0616A9630E0092F97C /* ArenaBootstrap.m in Sources */,
 				E29C39CD16A6D03A0092F97C /* MixareMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

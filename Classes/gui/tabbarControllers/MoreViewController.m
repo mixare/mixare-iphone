@@ -33,7 +33,6 @@
     [super viewDidLoad];
     [licenseButton addTarget:self action:@selector(licenseClick:) forControlEvents:UIControlEventTouchUpInside];
     [logoButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    popUpView = [[PopUpWebView alloc] initWithMainView:self.view padding:0 isTabbar:YES rightRotateable:YES alpha:1];
 }
 
 - (void)buttonClick:(id)sender {
@@ -43,7 +42,7 @@
         targetViewController.url = @"http://www.mixare.org";
         [[self navigationController] pushViewController:targetViewController animated:YES];
     } else {
-        [popUpView openUrlView:@"http://www.mixare.org"];
+        [[[UIWebView alloc] init] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mixare.org"]]];
     }
 }
 

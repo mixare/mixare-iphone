@@ -32,18 +32,6 @@ static ProgressHUD *hud;
 #pragma mark -
 #pragma mark Application lifecycle
 
-/***
- *
- *  Starting app: init application
- *  @param application
- *  @param launch options dictionary
- *
- **
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self runApplication];
-    return YES;
-}*/
-
 - (void)runApplication {
     hud = [[ProgressHUD alloc] initWithLabel:NSLocalizedStringFromTableInBundle(@"Loading...", @"Localizable", [[Resources getInstance] bundle], @"")];
     NSLog(@"STARTING");

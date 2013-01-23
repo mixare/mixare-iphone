@@ -53,7 +53,7 @@
         break;
     }
     [picker dismissViewControllerAnimated:YES completion:nil];
-    [aClass setNewData:@{@"title":@"Arena", @"url":symbol.data}];
+    [aClass setNewData:@{@"title":@"Barcode Source", @"url":symbol.data}];
 }
 
 - (void)viewDidLoad {

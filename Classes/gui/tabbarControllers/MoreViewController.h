@@ -19,7 +19,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "PopUpWebView.h"
 
 //Is the Viewcontroller for the more tab in the tabbar
 @interface MoreViewController : UIViewController {
@@ -38,7 +37,6 @@
     //Label which contains the date value of the last valid gps signal
     IBOutlet UILabel *date;
     IBOutlet UIButton *licenseButton;
-    PopUpWebView *popUpView;
 }
 
 //action method which is added to the logobutton .. open the mixare webpage
