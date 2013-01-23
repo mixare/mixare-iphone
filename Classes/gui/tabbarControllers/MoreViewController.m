@@ -42,7 +42,7 @@
         targetViewController.url = @"http://www.mixare.org";
         [[self navigationController] pushViewController:targetViewController animated:YES];
     } else {
-        [[[UIWebView alloc] init] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mixare.org"]]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.mixare.org"]];
     }
 }
 
