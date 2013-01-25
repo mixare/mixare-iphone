@@ -1648,6 +1648,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -1677,6 +1678,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Coverage;
@@ -1706,6 +1708,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -1735,6 +1738,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = "Ad Hoc Distribution";
